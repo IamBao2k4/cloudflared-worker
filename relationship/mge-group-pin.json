@@ -1,0 +1,16 @@
+[
+  {
+    "name": "social_group",
+    "targetTable": "mge-group",
+    "localField": "social_group",
+    "foreignField": "_id",
+    "type": "one-to-one"
+  },
+  {
+    "name": "user",
+    "targetTable": "user",
+    "localField": "user",
+    "foreignField": "_id",
+    "type": "one-to-one"
+  }
+]

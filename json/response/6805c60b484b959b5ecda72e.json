@@ -1,0 +1,52 @@
+{
+  "_id": "6805c60b484b959b5ecda72e",
+  "title": "CREATE payment method",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "6805ba9df4d18535c7e63b1d"
+  ],
+  "categories": [],
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "code",
+      "value": "code"
+    },
+    {
+      "key": "description",
+      "value": "description"
+    },
+    {
+      "key": "status",
+      "value": "status"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "6801bf1b887875ca1b8c3ee4",
+  "documents": [],
+  "queryAdvance": "{\n  \"title\": 1,\n  \"code\": 1,\n  \"description\": 1,\n  \"instructions\": 1\n}"
+}

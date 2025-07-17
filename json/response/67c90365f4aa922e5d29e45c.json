@@ -1,0 +1,13 @@
+{
+  "_id": "67c90365f4aa922e5d29e45c",
+  "title": "reply rating in course",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "6780ca7ca78c4e63fee5ab77"
+  ],
+  "queryAdvance": "{\n  \"instructor_response\":1\n}",
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

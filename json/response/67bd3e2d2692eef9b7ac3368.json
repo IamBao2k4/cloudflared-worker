@@ -1,0 +1,12 @@
+{
+  "_id": "67bd3e2d2692eef9b7ac3368",
+  "title": "delete chapter",
+  "note": "",
+  "cache_time": "",
+  "method": "delete",
+  "outputEntity": [
+    "67529e3265017d942f759319"
+  ],
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

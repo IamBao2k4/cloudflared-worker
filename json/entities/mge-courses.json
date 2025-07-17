@@ -1,0 +1,586 @@
+{
+  "_id": "67529c0665017d942f7592d1",
+  "title": "mge courses",
+  "mongodb_collection_name": "mge-courses",
+  "json_schema": {
+    "type": "object",
+    "expanded": true,
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "description": "Tên của khóa học, hiển thị trên giao diện người dùng.",
+        "widget": "shortAnswer",
+        "expanded": true,
+        "require": false,
+        "min": 2,
+        "max": 160,
+        "filter": true
+      },
+      "slug": {
+        "title": "Slug",
+        "type": "string",
+        "description": "Đường dẫn URL của khóa học (ví dụ: lap-trinh-cpp-can-ban).",
+        "widget": "UriKeyGen",
+        "expanded": true,
+        "require": false,
+        "depend_field": "root_name",
+        "filter": true
+      },
+      "short_description": {
+        "title": "Short Description",
+        "type": "string",
+        "description": "Mô tả ngắn gọn của khóa học, hiển thị ở phần giới thiệu",
+        "widget": "shortAnswer",
+        "expanded": true,
+        "require": false,
+        "filter": true
+      },
+      "long_description": {
+        "title": "Long Description",
+        "type": "string",
+        "widget": "longAnswer",
+        "expanded": true,
+        "require": false,
+        "customRole": "textarea",
+        "filter": true
+      },
+      "cover_image": {
+        "type": "string",
+        "widget": "file",
+        "title": "Cover_image",
+        "description": "Ảnh bìa của khóa học.",
+        "expanded": true,
+        "filter": true
+      },
+      "status": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "Active",
+            "value": "active"
+          },
+          {
+            "key": "Inactive",
+            "value": "inactive"
+          }
+        ],
+        "default": "active",
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "Status",
+        "type": "string",
+        "expanded": true,
+        "filter": true
+      },
+      "contains_course": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "title": "title",
+              "type": "string",
+              "widget": "shortAnswer"
+            }
+          },
+          "required": [],
+          "title": ""
+        },
+        "title": "Contains Course",
+        "type": "array",
+        "description": "Danh sách các tài nguyên của khóa học bao gồm. Do người dùng từ nhập",
+        "filter": true
+      },
+      "objectives": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "title": "title",
+              "type": "string",
+              "widget": "shortAnswer"
+            }
+          },
+          "required": []
+        },
+        "title": "Objectives",
+        "type": "array",
+        "description": "Danh sách các mục tiêu học tập của khóa học. Do người dùng từ nhập",
+        "filter": true
+      },
+      "objects": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "title": "title",
+              "type": "string",
+              "widget": "shortAnswer"
+            }
+          },
+          "required": []
+        },
+        "title": "Objects",
+        "type": "array",
+        "description": "Đối tượng mục tiêu của khóa học (ví dụ: Sinh viên, Người mới bắt đầu...). Do người dùng từ nhập",
+        "filter": true
+      },
+      "requests": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "title": "title",
+              "type": "string",
+              "widget": "shortAnswer"
+            }
+          },
+          "required": []
+        },
+        "title": "requests",
+        "type": "array",
+        "filter": true
+      },
+      "category": {
+        "title": "Category",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-categories",
+          "_id": "mge-categories",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "012fa760-17a1-49b2-85b8-84245c5cbc60"
+          }
+        },
+        "filter": true
+      },
+      "type": {
+        "title": "Type",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "public",
+            "value": "public"
+          },
+          {
+            "key": "private",
+            "value": "private"
+          }
+        ],
+        "filter": true
+      },
+      "permissions": {
+        "title": "permissions",
+        "type": "object",
+        "properties": {
+          "course_chapter_create": {
+            "title": "course_chapter_create",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "instructor",
+                "value": "instructor"
+              },
+              {
+                "key": "assistant",
+                "value": "assistant"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "isMultiple": true,
+            "default": "instructor"
+          },
+          "course_chapter_manage": {
+            "title": "course_chapter_manage",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "instructor",
+                "value": "instructor"
+              },
+              {
+                "key": "assistant",
+                "value": "assistant"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "isMultiple": true,
+            "default": "instructor"
+          },
+          "course_lesson_create": {
+            "title": "course_lesson_create",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "instructor",
+                "value": "instructor"
+              },
+              {
+                "key": "assistant",
+                "value": "assistant"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "isMultiple": true,
+            "default": "instructor"
+          },
+          "course_lesson_manage": {
+            "title": "course_lesson_manage",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "instructor",
+                "value": "instructor"
+              },
+              {
+                "key": "assistant",
+                "value": "assistant"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "isMultiple": true,
+            "default": "instructor"
+          },
+          "course_exam_create": {
+            "title": "course_exam_create",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "instructor",
+                "value": "instructor"
+              },
+              {
+                "key": "assistant",
+                "value": "assistant"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "isMultiple": true,
+            "default": "instructor"
+          },
+          "course_exam_manage": {
+            "title": "course_exam_manage",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "instructor",
+                "value": "instructor"
+              },
+              {
+                "key": "assistant",
+                "value": "assistant"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "isMultiple": true,
+            "default": "instructor"
+          },
+          "course_discussion_manage": {
+            "title": "course_discussion_manage",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "instructor",
+                "value": "instructor"
+              },
+              {
+                "key": "assistant",
+                "value": "assistant"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "isMultiple": true,
+            "default": "instructor"
+          },
+          "course_member_create": {
+            "title": "course_member_create",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "instructor",
+                "value": "instructor"
+              },
+              {
+                "key": "assistant",
+                "value": "assistant"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "isMultiple": true,
+            "default": "instructor"
+          },
+          "course_member_manage": {
+            "title": "course_member_manage",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "instructor",
+                "value": "instructor"
+              },
+              {
+                "key": "assistant",
+                "value": "assistant"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "isMultiple": true,
+            "default": "instructor"
+          },
+          "course_rating_response": {
+            "title": "course_rating_response",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "instructor",
+                "value": "instructor"
+              },
+              {
+                "key": "assistant",
+                "value": "assistant"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "isMultiple": true,
+            "default": "instructor"
+          }
+        },
+        "required": [
+          "course_chapter_create",
+          "course_chapter_manage",
+          "course_lesson_create",
+          "course_lesson_manage",
+          "course_exam_create",
+          "course_exam_manage",
+          "course_discussion_manage",
+          "course_member_create",
+          "course_member_manage",
+          "course_rating_response"
+        ]
+      },
+      "original_price": {
+        "title": "original_price",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "sale_price": {
+        "title": "sale_price",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "time_to_complete": {
+        "title": "time_to_complete",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": false,
+        "field": "single",
+        "mode": "dateTime"
+      }
+    },
+    "required": [
+      "title",
+      "slug",
+      "status",
+      "category",
+      "type"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "short_description": {
+      "ui:widget": "shortAnswer"
+    },
+    "long_description": {
+      "ui:widget": "longAnswer"
+    },
+    "cover_image": {
+      "ui:widget": "file"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "contains_course": {
+      "items": {
+        "title": {
+          "ui:widget": "shortAnswer"
+        },
+        "ui:order": [
+          "title"
+        ]
+      }
+    },
+    "objectives": {
+      "items": {
+        "title": {
+          "ui:widget": "shortAnswer"
+        },
+        "ui:order": [
+          "title"
+        ]
+      }
+    },
+    "objects": {
+      "items": {
+        "title": {
+          "ui:widget": "shortAnswer"
+        },
+        "ui:order": [
+          "title"
+        ]
+      }
+    },
+    "requests": {
+      "items": {
+        "title": {
+          "ui:widget": "shortAnswer"
+        },
+        "ui:order": [
+          "title"
+        ]
+      }
+    },
+    "category": {
+      "ui:widget": "relation"
+    },
+    "type": {
+      "ui:widget": "select"
+    },
+    "permissions": {
+      "course_chapter_create": {
+        "ui:widget": "select"
+      },
+      "course_chapter_manage": {
+        "ui:widget": "select"
+      },
+      "course_lesson_create": {
+        "ui:widget": "select"
+      },
+      "course_lesson_manage": {
+        "ui:widget": "select"
+      },
+      "course_exam_create": {
+        "ui:widget": "select"
+      },
+      "course_exam_manage": {
+        "ui:widget": "select"
+      },
+      "course_discussion_manage": {
+        "ui:widget": "select"
+      },
+      "course_member_create": {
+        "ui:widget": "select"
+      },
+      "course_member_manage": {
+        "ui:widget": "select"
+      },
+      "course_rating_response": {
+        "ui:widget": "select"
+      },
+      "ui:order": [
+        "course_chapter_create",
+        "course_chapter_manage",
+        "course_lesson_create",
+        "course_lesson_manage",
+        "course_exam_create",
+        "course_exam_manage",
+        "course_discussion_manage",
+        "course_member_create",
+        "course_member_manage",
+        "course_rating_response"
+      ]
+    },
+    "original_price": {
+      "ui:widget": "numberInput"
+    },
+    "sale_price": {
+      "ui:widget": "numberInput"
+    },
+    "time_to_complete": {
+      "ui:widget": "dateTime"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "short_description",
+      "long_description",
+      "cover_image",
+      "status",
+      "contains_course",
+      "objectives",
+      "objects",
+      "requests",
+      "category",
+      "type",
+      "permissions",
+      "original_price",
+      "sale_price",
+      "time_to_complete"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "entity_group": null,
+  "created_at": "2024-12-06T04:19:48.301Z",
+  "__v": 0,
+  "use_seo_path": false,
+  "use_parent_delete_childs": false,
+  "id": "67529c0665017d942f7592d1"
+}

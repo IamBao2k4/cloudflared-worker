@@ -1,0 +1,68 @@
+{
+  "_id": "681866a8753574930d60fcf3",
+  "title": "mge course cart",
+  "mongodb_collection_name": "mge-course-cart",
+  "unique_keys": "[\n  {\n    \"user\": 1,\n    \"course\": 1\n  }\n]",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "user": {
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "ed6db71a-46f9-40c3-83bc-4efedad23050"
+          }
+        },
+        "title": "user",
+        "filter": true
+      },
+      "course": {
+        "title": "course",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-courses",
+          "_id": "mge-courses",
+          "type": "n-1"
+        },
+        "filter": true
+      }
+    },
+    "required": [
+      "user",
+      "course"
+    ]
+  },
+  "ui_schema": {
+    "user": {
+      "ui:widget": "relation"
+    },
+    "course": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "user",
+      "course"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-05-05T07:20:08.543Z",
+  "__v": 0
+}

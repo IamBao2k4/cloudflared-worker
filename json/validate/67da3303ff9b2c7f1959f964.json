@@ -1,0 +1,32 @@
+{
+  "_id": "67da3303ff9b2c7f1959f964",
+  "title": "is-tweet-status-send-to-review",
+  "note": "",
+  "entity": [
+    "67b6a286606da18e6c1976f1"
+  ],
+  "data": {
+    "id": "5601b758-a224-4a52-9db5-5cfa923a9d1a",
+    "rules": [
+      {
+        "id": "49de9a57-524c-4847-843b-5d726fe0092c",
+        "field": "mge-tweet._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-tweet._id:param._id"
+      },
+      {
+        "id": "436d3d6d-e1b4-4601-833a-615d404cbdf0",
+        "field": "mge-tweet.status",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "send_to_review"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"mge-tweet._id\":\"$mge-tweet._id:param._id\"},{\"mge-tweet.status\":\"send_to_review\"}]}",
+  "required": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

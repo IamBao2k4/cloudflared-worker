@@ -1,0 +1,11 @@
+{
+  "_id": "67ee62f2b086ec27910e7b47",
+  "is_active": true,
+  "meta_data": {},
+  "title": "[Cá nhân] Thích bình luận",
+  "title_input": "[@main_result:created_by.full_name] đã thích bình luận của bạn trong nhóm [@main_result:social_group.title]",
+  "advance": "{\r\n  \"collection_name_find_user_to\": \"mge-tweet-comment\",\r\n  \"field_get_id\": \"created_by\",\r\n  \"query_pipeline\": [\r\n    {\r\n      \"$addFields\": {\r\n        \"id\": {\r\n          \"$toString\": \"$_id\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"$match\": {\r\n        \"id\": \"@main_result:entity_id\"\r\n      }\r\n    }\r\n  ]\r\n}",
+  "type": "SOCIAL_TWEET_COMMENT_LIKED",
+  "blocks": {},
+  "tenant_id": "674028d2611a654e763a73e8"
+}

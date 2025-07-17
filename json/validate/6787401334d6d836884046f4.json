@@ -1,0 +1,12 @@
+{
+  "_id": "6787401334d6d836884046f4",
+  "title": "is-user-has-permission-to-create-exam",
+  "note": "",
+  "entity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "advance": "[\n    {\n    \"$match\": {\n      \"user\": \"@jwt:user.id\",\n      \"course\": \"@params:course_id\"\n    }\n  },\n    {\n    \"$addFields\": {\n      \"course\": {\n        \"$map\": {\n          \"input\": \"$course\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-courses\",\n      \"localField\": \"course\",\n      \"foreignField\": \"_id\",\n      \"as\": \"group_info\"\n    }\n  },\n{\n    \"$addFields\": {\n      \"group_info\": { \"$arrayElemAt\": [\"$group_info\", 0] }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"can_create_course_lesson\": {\n        \"$gt\": [\n          {\n            \"$size\": {\n              \"$filter\": {\n                \"input\": { \"$ifNull\": [\"$group_info.permissions.course_lesson_create\", []] },\n                \"as\": \"p\",\n                \"cond\": { \"$in\": [\"$$p\", \"$role\"] }\n              }\n            }\n          },\n          0\n        ]\n      }\n    }\n  },\n    {\n    \"$match\": {\n      \"can_create_course_lesson\": true\n    }\n  }\n]",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

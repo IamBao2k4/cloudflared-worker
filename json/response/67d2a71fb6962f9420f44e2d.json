@@ -1,0 +1,14 @@
+{
+  "_id": "67d2a71fb6962f9420f44e2d",
+  "title": "create contacts",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "67d29b47b6962f9420f43ebb"
+  ],
+  "queryAdvance": "{\r\n  \"type\": \"broker,organization\",\r\n  \"company_name\": 1,\r\n  \"address\": {\r\n    \"city\": 0,\r\n    \"district\": 0,\r\n    \"ward\": 0,\r\n    \"street\": 0,\r\n    \"full_address\": 0\r\n  },\r\n  \"phone\": 0,\r\n  \"mail\": 0,\r\n  \"logo\": 0,\r\n  \"cover_image\": 0,\r\n  \"slug\": 1\r\n}",
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb",
+  "documents": []
+}

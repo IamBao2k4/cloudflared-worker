@@ -1,0 +1,51 @@
+{
+  "_id": "677caae02102c096a386836c",
+  "title": "is-user-level-3",
+  "note": "",
+  "entity": [
+    "6757b1998659c9e98a2f1e2b"
+  ],
+  "data": {
+    "id": "5d71d679-1aac-43e2-815d-fb79915e0bbe",
+    "rules": [
+      {
+        "id": "cce822f6-2781-45fd-9eab-66f45cb350a7",
+        "field": "user-tenant-level-mapping.user",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$user-tenant-level-mapping.user:jwt.user@id"
+      },
+      {
+        "id": "4f967d8e-4efc-49fb-87cc-eb4bf219ef25",
+        "field": "user-tenant-level-mapping.tenant_level",
+        "operator": "=",
+        "valueSource": "value",
+        "value": [
+          {
+            "_id": "6756b92b43dcdc4a3eeef677",
+            "title": "User level 3",
+            "locale": null,
+            "locale_id": null,
+            "created_at": "2024-12-09T16:32:27.000Z",
+            "updated_at": "2024-12-09T16:32:27.000Z",
+            "created_by": {
+              "_id": "6711e8a47b45b2974bd6133c",
+              "username": "admin2024@gmail.com",
+              "featured_image": [],
+              "first_name": "Ngọc Quyên 1",
+              "last_name": "Super"
+            },
+            "tenant_id": "674028d2611a654e763a73e8"
+          }
+        ]
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"user-tenant-level-mapping.user\":\"$user-tenant-level-mapping.user:jwt.user@id\"},{\"user-tenant-level-mapping.tenant_level\":[\"6756b92b43dcdc4a3eeef677\"]}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

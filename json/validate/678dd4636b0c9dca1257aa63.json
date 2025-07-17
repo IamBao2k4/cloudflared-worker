@@ -1,0 +1,18 @@
+{
+  "_id": "678dd4636b0c9dca1257aa63",
+  "title": "is-user-has-permission-to-manage-topic",
+  "note": "",
+  "entity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "advance": "[\n    {\n    \"$match\": {\n      \"user\": \"@jwt:user.id\",\n      \"course\": \"@params:course_id\"\n    }\n  },\n    {\n    \"$addFields\": {\n      \"course\": {\n        \"$map\": {\n          \"input\": \"$course\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-courses\",\n      \"localField\": \"course\",\n      \"foreignField\": \"_id\",\n      \"as\": \"group_info\"\n    }\n  },\n   {\n    \"$addFields\": {\n      \"can_update_group_info\": {\n        \"$anyElementTrue\": {\n          \"$map\": {\n            \"input\": { \n              \"$ifNull\": [\n                { \"$arrayElemAt\": [\"$group_info.permissions.course_topic_manage\", 0] }, \n                []\n              ] \n            },\n            \"as\": \"permission\",\n            \"in\": { \"$eq\": [\"$$permission\", \"$role\"] }\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"can_update_group_info\": true\n    }\n  }\n]",
+  "data": {
+    "id": "ac461586-56ed-4bff-b528-b769c24c0592",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "required": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

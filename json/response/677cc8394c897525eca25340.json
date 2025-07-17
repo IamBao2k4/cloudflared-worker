@@ -1,0 +1,32 @@
+{
+  "_id": "677cc8394c897525eca25340",
+  "title": "get detail social tag",
+  "outputEntity": [
+    "67590fed9b0285b4f6be778d"
+  ],
+  "note": "",
+  "method": "get-detail",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "body": null,
+  "documents": [],
+  "headers": null,
+  "params": [
+    {
+      "value": "_id",
+      "key": "_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ],
+  "queryAdvance": "[\n    {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"_id\": \"@param:_id\",\n      \"tenant_id\":\"@header:x-tenant-id\"\n    }\n  },\n    {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "cache_time": "",
+  "categories": []
+}

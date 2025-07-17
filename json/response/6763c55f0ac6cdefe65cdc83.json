@@ -1,0 +1,42 @@
+{
+  "_id": "6763c55f0ac6cdefe65cdc83",
+  "title": "Get list group managing",
+  "outputEntity": [
+    "6747ef07c47463d88f8c5ab1"
+  ],
+  "queryAdvance": "[\n  {\n    \"$addFields\": {\n      \"_id\": { \"$toString\": \"$_id\" }\n    }\n  },\n  {\n    \"$match\":{\n      \"tenant_id\": \"@header:x-tenant-id\",\n      \"$or\": [\n        {\"status\":\"active\"},\n        {\"status\":\"pause\"}\n        ]\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group-member\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"social_group\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"status\": \"joined\",\n            \"tenant_id\":\"@header:x-tenant-id\"\n          }\n        }\n      ],\n      \"as\": \"group_members\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"member_count\": {\n        \"$size\": \"$group_members\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group-member\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"social_group\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$and\": [\n                { \"$in\": [\"@jwt:user.id\", \"$user\"] },\n                {\n                  \"$or\": [\n                    { \"$eq\": [\"$role\", [\"owner\"]] },\n                    { \"$eq\": [\"$role\", [\"manager\"]] }\n                  ]\n                }\n\n              ]\n            },\n            \"status\":\"joined\"\n          }\n        }\n      ],\n      \"as\": \"member_status\"\n    }\n  },\n    {\n    \"$match\": {\n      \"member_status\": { \"$ne\": [] }\n    }\n  },\n  {\n    \"$project\": {\n      \"group_members\":0\n    }\n  },\n    {\n          \"$lookup\": {\n            \"from\": \"media\",\n            \"let\": { \"featuredImageId\": { \"$arrayElemAt\": [ \"$cover\", 0 ] } },\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"$expr\": {\n                    \"$eq\": [ \"$_id\", { \"$toObjectId\": \"$$featuredImageId\" } ]\n                  }\n                }\n              },\n              {\n                \"$addFields\": {\n                  \"path\": {\n                    \"$concat\": [\n                      {\n                        \"$cond\": [\n                          { \"$eq\": [ \"minio\", \"@app_settings:storage_type\" ] },\n                          \"@app_settings:minio.public\",\n                          \"@app_settings:doSpace.public\"\n                        ]\n                      },\n                      \"/\",\n                      \"$disk\",\n                      \"/\",\n                      \"$filename\"\n                    ]\n                  }\n                }\n              }\n            ],\n            \"as\": \"cover\"\n          }\n        },\n    {\n    \"$match\": {\n      \"$expr\": {\n        \"$or\": [\n          { \"$eq\": [ \"@param:title\", null ] },\n          {\n            \"$regexMatch\": {\n              \"input\": \"$title\",\n              \"regex\": \"@param:title\",\n              \"options\": \"i\"\n            }\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$sort\": {\n      \"created_at\":-1\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        { \"$count\": \"count\" },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        { \"$skip\": \"@param:skip\" },\n        { \"$limit\": \"@param:limit\" }\n      ]\n    }\n  }\n]",
+  "note": "",
+  "method": "get-list",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "categories": [],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "title",
+      "key": "title"
+    }
+  ],
+  "data": {
+    "id": "325f94cc-289c-4dc9-a1d1-009d944ceb30",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "cache_time": "",
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ]
+}

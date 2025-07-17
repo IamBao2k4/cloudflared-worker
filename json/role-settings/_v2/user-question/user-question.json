@@ -1,0 +1,62 @@
+{
+  "user-question": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67d0fabc563a6f3245cb11d8",
+          "title": "get list user question",
+          "entity": "mge-questions",
+          "path_file": "json/response/67d0fabc563a6f3245cb11d8.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "439d8386-5f4e-47a2-9fac-8205bbe8c4c4",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "3b7bcceb-00df-417b-a6d0-2ae717c5ba3e",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67879ff7a4af196f44604d60"
+            }
+          ],
+          "id": "c5fd7249-7e54-4b55-92fb-2bc67df536c2"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "67879ff7a4af196f44604d60",
+            "title": "is-user-has-permission-to-create-question",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/67879ff7a4af196f44604d60.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

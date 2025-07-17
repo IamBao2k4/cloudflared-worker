@@ -1,0 +1,30 @@
+{
+  "_id": "67d0f79b563a6f3245cb0de7",
+  "title": "get list tweet report",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "67c66d92cb2d3f0de04bccc1"
+  ],
+  "queryAdvance": "[\r\n  {\r\n    \"$match\": {\r\n      \"tenant_id\": \"@header:x-tenant-id\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"id\": {\r\n        \"$toString\": \"$_id\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-listing-tweet-report\",\r\n      \"localField\": \"id\",\r\n      \"foreignField\": \"tweet\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$addFields\": {\r\n            \"created_by\": {\r\n              \"$toObjectId\": \"$created_by\"\r\n            }\r\n          }\r\n        },\r\n        {\r\n          \"$lookup\": {\r\n            \"from\": \"user\",\r\n            \"localField\": \"created_by\",\r\n            \"foreignField\": \"_id\",\r\n            \"pipeline\": [\r\n              {\r\n                \"$project\": {\r\n                  \"password\": 0\r\n                }\r\n              },\r\n              {\r\n                \"$lookup\": {\r\n                  \"from\": \"media\",\r\n                  \"let\": {\r\n                    \"featuredImageId\": {\r\n                      \"$arrayElemAt\": [\r\n                        \"$cover\",\r\n                        0\r\n                      ]\r\n                    }\r\n                  },\r\n                  \"pipeline\": [\r\n                    {\r\n                      \"$match\": {\r\n                        \"$expr\": {\r\n                          \"$eq\": [\r\n                            \"$_id\",\r\n                            {\r\n                              \"$toObjectId\": \"$$featuredImageId\"\r\n                            }\r\n                          ]\r\n                        }\r\n                      }\r\n                    },\r\n                    {\r\n                      \"$addFields\": {\r\n                        \"path\": {\r\n                          \"$concat\": [\r\n                            {\r\n                              \"$cond\": [\r\n                                {\r\n                                  \"$eq\": [\r\n                                    \"minio\",\r\n                                    \"@app_settings:storage_type\"\r\n                                  ]\r\n                                },\r\n                                \"@app_settings:minio.public\",\r\n                                \"@app_settings:doSpace.public\"\r\n                              ]\r\n                            },\r\n                            \"/\",\r\n                            \"$disk\",\r\n                            \"/\",\r\n                            \"$filename\"\r\n                          ]\r\n                        }\r\n                      }\r\n                    }\r\n                  ],\r\n                  \"as\": \"featured_image\"\r\n                }\r\n              }\r\n            ],\r\n            \"as\": \"created_by\"\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"report_info\"\r\n    }\r\n  },\r\n  {\r\n    \"$match\": {\r\n      \"report_info\": {\r\n        \"$ne\": []\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$facet\": {\r\n      \"meta_data\": [\r\n        {\r\n          \"$count\": \"count\"\r\n        },\r\n        {\r\n          \"$addFields\": {\r\n            \"skip\": \"@param:skip\",\r\n            \"limit\": \"@param:limit\"\r\n          }\r\n        }\r\n      ],\r\n      \"data\": [\r\n        {\r\n          \"$skip\": \"@param:skip\"\r\n        },\r\n        {\r\n          \"$limit\": \"@param:limit\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n]",
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb",
+  "documents": [],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ]
+}

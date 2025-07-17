@@ -1,0 +1,10 @@
+{
+  "_id": "67a1cd3c1aaf205cfbd7128d",
+  "title": "is-user-has-permission-to-manage-course-member",
+  "note": "",
+  "entity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "advance": "[\n  {\n    \"$match\": {\n      \"user\": \"@jwt:user.id\",\n      \"course\": \"@params:course_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"course\": {\n        \"$map\": {\n          \"input\": \"$course\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-courses\",\n      \"localField\": \"course\",\n      \"foreignField\": \"_id\",\n      \"as\": \"course_info\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"course_info\": {\n        \"$arrayElemAt\": [\n          \"$course_info\",\n          0\n        ]\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"can_manage_member_in_course\": {\n        \"$gt\": [\n          {\n            \"$size\": {\n              \"$setIntersection\": [\n                \"$role\",\n                \"$course_info.permissions.course_member_manage\"\n              ]\n            }\n          },\n          0\n        ]\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"can_manage_member_in_course\": true\n    }\n  }\n]",
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

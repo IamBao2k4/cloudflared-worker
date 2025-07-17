@@ -1,0 +1,44 @@
+{
+  "_id": "67bf3e40753a12b443f2c530",
+  "title": "get detail menu item",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "67493d3f10905d9ddbd007cc"
+  ],
+  "queryAdvance": "[\n  {\n    \"$addFields\": {\n      \"id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n {\n   \"$match\": {\n     \"id\":\"@param:_id\",\n     \"tenant_id\":\"@header:x-tenant-id\"\n   }\n },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "params": [
+    {
+      "value": "menu_item_id",
+      "key": "menu_item_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "_id",
+      "key": "_id"
+    }
+  ],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "data": {
+    "id": "ab4966e9-542f-42e7-b97a-44723dfe39f6",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  }
+}

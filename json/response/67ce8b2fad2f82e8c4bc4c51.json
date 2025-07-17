@@ -1,0 +1,14 @@
+{
+  "_id": "67ce8b2fad2f82e8c4bc4c51",
+  "title": "create tweet saved",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "67c6bd12cb2d3f0de04c8e75"
+  ],
+  "queryAdvance": "{\r\n  \"tweet_id\": \"@param:tweet_id\"\r\n}",
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb",
+  "documents": []
+}

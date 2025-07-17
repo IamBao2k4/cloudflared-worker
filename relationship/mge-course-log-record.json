@@ -1,0 +1,16 @@
+[
+  {
+    "name": "from",
+    "targetTable": "entity",
+    "localField": "from",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "course",
+    "targetTable": "entity",
+    "localField": "course",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

@@ -1,0 +1,63 @@
+{
+  "_id": "68077851fa0fd1ce859894b9",
+  "title": "get list user's learning  path",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "68062af5beb73c2d42c97dc5"
+  ],
+  "categories": [],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"tenant_id\": \"@header:x-tenant-id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-user-learning-path\",\n      \"localField\": \"id\",\n      \"foreignField\": \"learning_path\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"user\": \"@jwt:user.id\"\n          }\n        }\n      ],\n      \"as\": \"user_learning_path\"\n    }\n  },\n  {\n    \"$match\": {\n      \"user_learning_path\": {\n        \"$ne\": []\n      }\n    }\n  },\n  {\n    \"$facet\": {\n      \"with_courses\": [\n        {\n          \"$match\": {\n            \"courses\": {\n              \"$exists\": true,\n              \"$type\": \"array\",\n              \"$ne\": []\n            }\n          }\n        },\n        {\n          \"$unwind\": {\n            \"path\": \"$courses\",\n            \"preserveNullAndEmptyArrays\": false\n          }\n        },\n        {\n          \"$lookup\": {\n            \"from\": \"mge-courses\",\n            \"localField\": \"courses.course\",\n            \"foreignField\": \"id\",\n            \"pipeline\":[\n                {\n                  \"$lookup\": {\n                    \"from\": \"media\",\n                    \"let\": {\n                      \"featuredImageId\": {\n                        \"$arrayElemAt\": [\n                          \"$cover_image\",\n                          0\n                        ]\n                      }\n                    },\n                    \"pipeline\": [\n                      {\n                        \"$match\": {\n                          \"$expr\": {\n                            \"$eq\": [\n                              \"$_id\",\n                              {\n                                \"$toObjectId\": \"$$featuredImageId\"\n                              }\n                            ]\n                          }\n                        }\n                      },\n                      {\n                        \"$addFields\": {\n                          \"path\": {\n                            \"$concat\": [\n                              {\n                                \"$cond\": [\n                                  {\n                                    \"$eq\": [\n                                      \"minio\",\n                                      \"@app_settings:storage_type\"\n                                    ]\n                                  },\n                                  \"@app_settings:minio.public\",\n                                  \"@app_settings:doSpace.public\"\n                                ]\n                              },\n                              \"/\",\n                              \"$disk\",\n                              \"/\",\n                              \"$filename\"\n                            ]\n                          }\n                        }\n                      }\n                    ],\n                    \"as\": \"cover_image\"\n                  }\n                }\n            ],\n            \"as\": \"course_info\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"courses.course\": \"$course_info\"\n          }\n        },\n        {\n          \"$group\": {\n            \"_id\": \"$_id\",\n            \"title\": {\n              \"$first\": \"$title\"\n            },\n            \"slug\": {\n              \"$first\": \"$slug\"\n            },\n            \"department\": {\n              \"$first\": \"$department\"\n            },\n            \"team\": {\n              \"$first\": \"$team\"\n            },\n            \"locale\": {\n              \"$first\": \"$locale\"\n            },\n            \"locale_id\": {\n              \"$first\": \"$locale_id\"\n            },\n            \"created_at\": {\n              \"$first\": \"$created_at\"\n            },\n            \"created_by\": {\n              \"$first\": \"$created_by\"\n            },\n            \"updated_at\": {\n              \"$first\": \"$updated_at\"\n            },\n            \"updated_by\": {\n              \"$first\": \"$updated_by\"\n            },\n            \"tenant_id\": {\n              \"$first\": \"$tenant_id\"\n            },\n            \"id\": {\n              \"$first\": \"$id\"\n            },\n            \"user_learning_path\": {\n              \"$first\": \"$user_learning_path\"\n            },\n            \"courses\": {\n              \"$push\": \"$courses\"\n            }\n          }\n        }\n      ],\n      \"without_courses\": [\n        {\n          \"$match\": {\n            \"$or\": [\n              {\n                \"courses\": {\n                  \"$exists\": false\n                }\n              },\n              {\n                \"courses\": {\n                  \"$eq\": []\n                }\n              }\n            ]\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"$project\": {\n      \"data\": {\n        \"$concatArrays\": [\n          \"$with_courses\",\n          \"$without_courses\"\n        ]\n      }\n    }\n  },\n  {\n    \"$unwind\": \"$data\"\n  },\n  {\n    \"$replaceRoot\": {\n      \"newRoot\": \"$data\"\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "restricted": [
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "data": {
+    "id": "df94a4cf-8359-4421-9f27-a58631e2f597",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "documents": [],
+  "headers": [
+    {
+      "value": "x-tenant_id",
+      "key": "x-tenant_id"
+    },
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ],
+  "id": "68077851fa0fd1ce859894b9"
+}

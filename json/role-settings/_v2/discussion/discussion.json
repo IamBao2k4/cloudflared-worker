@@ -1,0 +1,366 @@
+{
+  "discussion": {},
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {
+          "_id": "67e26c90fa021b57b9727e6e",
+          "path_file": "json/notification/67e26c90fa021b57b9727e6e.json"
+        },
+        "response": {
+          "_id": "678dd6ebd799d77c03c6d4c8",
+          "title": "create discussion",
+          "entity": "mge-discussions",
+          "path_file": "json/response/678dd6ebd799d77c03c6d4c8.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "05f43a77-98bf-4505-8fa4-cecd5438ac73",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "358e7dad-e837-43f9-9e06-9161a96facbc",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            }
+          ],
+          "id": "152ce395-e5d8-48f8-8141-af9bd5877de0"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        },
+        "trigger_pipeline": "[\r\n  {\r\n    \"collection_name\": \"user-tenant-profile\",\r\n    \"action\": \"find-one\",\r\n    \"query_advance\": [\r\n      {\r\n        \"$match\": {\r\n          \"tenant_id\": \"@header:x-tenant-id\",\r\n          \"user\": \"@jwt:user.id\"\r\n        }\r\n      },\r\n      {\r\n        \"$addFields\": {\r\n          \"profile.full_name\": {\r\n            \"$concat\": [\r\n              \"$profile.last_name\",\r\n              \" \",\r\n              \"$profile.first_name\"\r\n            ]\r\n          }\r\n        }\r\n      }\r\n    ]\r\n  }\r\n]"
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "678dfdc0c9f11199898e4348",
+          "title": "update discussion",
+          "entity": "mge-discussions",
+          "path_file": "json/response/678dfdc0c9f11199898e4348.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "ce3ce61c-7b0f-49cf-ae9b-f0e4f4b8d3b1",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "6bc9e411-3fc2-4380-8585-076b65b0f25f",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678e1af7cabf809df48a6976"
+            },
+            {
+              "id": "5f637ed2-eabd-4a1a-924a-9a654cc5b37e",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678e18b49cb7777fb689cca7"
+            }
+          ],
+          "id": "9a7d9adf-55a1-45ec-8383-94ff77c866a4"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "678e18b49cb7777fb689cca7",
+            "title": "is-user-discussion-creator",
+            "entity": {
+              "_id": "6752bcd265017d942f759541",
+              "mongodb_collection_name": "mge-discussions"
+            },
+            "path_file": "json/validate/678e18b49cb7777fb689cca7.json"
+          },
+          {
+            "_id": "678e1af7cabf809df48a6976",
+            "title": "is-user-joined-course-through-discussion",
+            "entity": {
+              "_id": "6752bcd265017d942f759541",
+              "mongodb_collection_name": "mge-discussions"
+            },
+            "path_file": "json/validate/678e1af7cabf809df48a6976.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "678e2e7ce8bbafb4fc9a3bdd",
+          "title": "delete discussion",
+          "entity": "mge-discussions",
+          "path_file": "json/response/678e2e7ce8bbafb4fc9a3bdd.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "b0a10898-f18d-459c-8df7-78d651f89267",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "08545f77-9b95-42d2-8f54-c610e4891276",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678e1af7cabf809df48a6976"
+            },
+            {
+              "id": "b0b6cf10-941f-40a0-9b76-9fc882837325",
+              "rules": [
+                {
+                  "id": "ed7d10aa-1031-44bb-8d64-28cdeb6dbe4f",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "678e18b49cb7777fb689cca7"
+                },
+                {
+                  "id": "c243a7b3-0ce3-4e2c-9fa4-f15e3926bd8f",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "678f084f6d210344f0264c7e"
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "9350e880-3527-447e-82bd-913beb96ff51"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "678e1af7cabf809df48a6976",
+            "title": "is-user-joined-course-through-discussion",
+            "entity": {
+              "_id": "6752bcd265017d942f759541",
+              "mongodb_collection_name": "mge-discussions"
+            },
+            "path_file": "json/validate/678e1af7cabf809df48a6976.json"
+          },
+          {
+            "_id": "678e18b49cb7777fb689cca7",
+            "title": "is-user-discussion-creator",
+            "entity": {
+              "_id": "6752bcd265017d942f759541",
+              "mongodb_collection_name": "mge-discussions"
+            },
+            "path_file": "json/validate/678e18b49cb7777fb689cca7.json"
+          },
+          {
+            "_id": "678f084f6d210344f0264c7e",
+            "title": "is-user-has-permission-to-manage-discussion",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/678f084f6d210344f0264c7e.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "678f244c34775cefc244f807",
+          "title": "get list discussions of topic",
+          "entity": "mge-discussions",
+          "path_file": "json/response/678f244c34775cefc244f807.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "b5f62bce-9e5e-4cbc-a603-4b67d895a367",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "139b7134-f1a4-45fb-a0a6-ae5ccdaeccb0",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            }
+          ],
+          "id": "7c993ed7-9af1-4ef1-920b-70c11ecc0c59"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-detail": {
+    "headers": [],
+    "params": [
+      {
+        "value": "course_id",
+        "key": "course_id"
+      },
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67f5cf2d7c363c642e83dbb3",
+          "title": "get detail discussion",
+          "entity": "mge-discussions",
+          "path_file": "json/response/67f5cf2d7c363c642e83dbb3.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "9b305613-4db0-4262-aac1-ec04b846e3b0",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "225f3211-cc2c-44fb-b981-c9185744efeb",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            }
+          ],
+          "id": "dd8897e6-9029-4bb9-8d27-219ebd2aad63"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

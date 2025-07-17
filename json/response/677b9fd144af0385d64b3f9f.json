@@ -1,0 +1,32 @@
+{
+  "_id": "677b9fd144af0385d64b3f9f",
+  "title": "view user followers",
+  "outputEntity": [
+    "67611eb5deb9ba00adac5876"
+  ],
+  "note": "",
+  "method": "get-list",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "body": null,
+  "documents": [],
+  "headers": null,
+  "params": [
+    {
+      "value": "user_id",
+      "key": "user_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"to\": \"@param:user_id\",\n      \"tenant_id\":\"@header:x-tenant-id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"to\": {\n        \"$map\": {\n          \"input\": \"$to\",\n          \"as\": \"u\",\n          \"in\": {\n            \"$toObjectId\": \"$$u\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"user\",\n      \"localField\": \"to\",\n      \"foreignField\": \"_id\",\n      \"pipeline\":[\n        {\n          \"$project\": {\n            \"password\":0,\n            \"role_system\":0\n          }\n        }\n        ],\n      \"as\": \"followers_info\"\n    }\n  },\n  {\n    \"$project\": {\n      \"followers_info.password\": 0\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]\n",
+  "cache_time": "",
+  "categories": []
+}

@@ -1,0 +1,33 @@
+{
+  "course-job-position": {},
+  "get-list": {
+    "headers": [
+      {
+        "value": "x-tenant-id",
+        "key": "x-tenant-id"
+      }
+    ],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "680a1448bc11e2ce3d19ad6a",
+          "title": "get list course job position",
+          "entity": "mge-job-position",
+          "path_file": "json/response/680a1448bc11e2ce3d19ad6a.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "6b67a8ff-f43e-46c4-b046-f5f2aeeb0742"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

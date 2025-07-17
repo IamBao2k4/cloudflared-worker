@@ -1,0 +1,313 @@
+{
+  "comments": {},
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {
+          "_id": "67d93397ff9b2c7f195974ef",
+          "path_file": "json/notification/67d93397ff9b2c7f195974ef.json"
+        },
+        "response": {
+          "_id": "676e33942cff0e67149ebb6c",
+          "title": "create comment",
+          "entity": "mge-tweet-comment",
+          "path_file": "json/response/676e33942cff0e67149ebb6c.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "21a88bbd-0e58-49f7-afb1-e43a254a3a55",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "30d45b27-c404-4def-b5d9-490cec7836e3",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            }
+          ],
+          "id": "28a3ddd0-d146-4baf-aafe-ec3604f30394"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        },
+        "trigger_pipeline": "[\n  {\n    \"collection_name\": \"mge-tweet\",\n    \"action\": \"update\",\n    \"query_advance\": [\n      {\n        \"$addFields\": {\n          \"id\": {\n            \"$toString\": \"$_id\"\n          }\n        }\n      },\n      {\n        \"$match\": {\n          \"tenant_id\": \"@header:x-tenant-id\",\n          \"id\": \"@param:tweet_id\"\n        }\n      }\n    ],\n    \"advance\": {\n      \"$inc\": {\n        \"comment_count\": 1\n      }\n    }\n  }\n]"
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "677b434df99e7327567de020",
+          "title": "Get comments level 1 of tweet",
+          "entity": "mge-tweet-comment",
+          "path_file": "json/response/677b434df99e7327567de020.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "aab14664-02c2-46d0-a2f8-67a2f3a900fe"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "676e4efcde20f5a098f19a35",
+          "title": "update comment",
+          "entity": "mge-tweet-comment",
+          "path_file": "json/response/676e4efcde20f5a098f19a35.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "2105222d-95cc-4e1b-9b0e-cd86982734c5",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "3f6953c0-5b64-4e8f-b50c-cee3b16a0c9d",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "560925b3-9987-4733-8a92-b1607ea018fd",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "677b9d3744af0385d64b3ec6"
+            },
+            {
+              "id": "dd51c8b8-5143-438c-8384-1b222780681f",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "677b9ef844af0385d64b3f68"
+            },
+            {
+              "id": "167b177d-9873-4f30-92fd-147368c7f7be",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "676e5a34beadbd78b8083e8c"
+            }
+          ],
+          "id": "b439f865-ac51-41f1-b903-cddf716c952e"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "676e5a34beadbd78b8083e8c",
+            "title": "is-comment-be-mine",
+            "entity": {
+              "_id": "6764e3926e57acaf6815ab97",
+              "mongodb_collection_name": "mge-tweet-comment"
+            },
+            "path_file": "json/validate/676e5a34beadbd78b8083e8c.json"
+          },
+          {
+            "_id": "677b9d3744af0385d64b3ec6",
+            "title": "is-tweet-belongs-to-group",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/677b9d3744af0385d64b3ec6.json"
+          },
+          {
+            "_id": "677b9ef844af0385d64b3f68",
+            "title": "is-comment-belongs-to-tweet",
+            "entity": {
+              "_id": "6764e3926e57acaf6815ab97",
+              "mongodb_collection_name": "mge-tweet-comment"
+            },
+            "path_file": "json/validate/677b9ef844af0385d64b3f68.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "676e5a08beadbd78b8083e89",
+          "title": "delete comment",
+          "entity": "mge-tweet-comment",
+          "path_file": "json/response/676e5a08beadbd78b8083e89.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "27c29afe-cff6-4615-b13b-0f43041223fc",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "825934af-9915-4680-886d-c688e14576b1",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "ff3f47ae-aa96-4116-8c37-4d2dfc267038",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "677ba29844af0385d64b4053"
+            },
+            {
+              "id": "b2f6226b-3e9a-4d76-8054-48273602fbc1",
+              "rules": [
+                {
+                  "id": "9100a353-8a61-4e5b-9518-8931d88f980f",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "676e5a34beadbd78b8083e8c"
+                },
+                {
+                  "id": "e5a3ee68-4edc-4c48-b884-53425463c1d4",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "6759411a2fbf378066198410"
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "057021f3-5acf-4dc6-97c0-c1d135a0e559"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "676e5a34beadbd78b8083e8c",
+            "title": "is-comment-be-mine",
+            "entity": {
+              "_id": "6764e3926e57acaf6815ab97",
+              "mongodb_collection_name": "mge-tweet-comment"
+            },
+            "path_file": "json/validate/676e5a34beadbd78b8083e8c.json"
+          },
+          {
+            "_id": "6759411a2fbf378066198410",
+            "title": "is-group-manager or group-owner",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/6759411a2fbf378066198410.json"
+          },
+          {
+            "_id": "677ba29844af0385d64b4053",
+            "title": "is-comment-belongs-to-group",
+            "entity": {
+              "_id": "6764e3926e57acaf6815ab97",
+              "mongodb_collection_name": "mge-tweet-comment"
+            },
+            "path_file": "json/validate/677ba29844af0385d64b4053.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        },
+        "trigger_pipeline": "[\r\n  {\r\n    \"collection_name\": \"mge-tweet\",\r\n    \"action\": \"update\",\r\n    \"query_advance\": [\r\n      {\r\n        \"$addFields\": {\r\n          \"id\": {\r\n            \"$toString\": \"$_id\"\r\n          }\r\n        }\r\n      },\r\n      {\r\n        \"$match\": {\r\n          \"tenant_id\": \"@header:x-tenant-id\",\r\n          \"id\": \"@param:tweet_id\"\r\n        }\r\n      }\r\n    ],\r\n    \"advance\": {\r\n      \"$inc\": {\r\n        \"comment_count\": -1\r\n      }\r\n    }\r\n  }\r\n]"
+      }
+    ]
+  }
+}

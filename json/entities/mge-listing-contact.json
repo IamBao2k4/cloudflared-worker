@@ -1,0 +1,190 @@
+{
+  "_id": "67d29b47b6962f9420f43ebb",
+  "title": "mge listing contact",
+  "mongodb_collection_name": "mge-listing-contact",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "title": "type",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "Môi giới",
+            "value": "broker"
+          },
+          {
+            "key": "Doanh nghiệp",
+            "value": "organization"
+          }
+        ],
+        "filter": true
+      },
+      "company_name": {
+        "title": "company_name",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "phone": {
+        "title": "phone",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": false
+      },
+      "email": {
+        "title": "email",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": false
+      },
+      "website": {
+        "title": "website",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": false
+      },
+      "introduction": {
+        "title": "introduction",
+        "type": "string",
+        "widget": "textarea",
+        "customRole": "texteditor"
+      },
+      "logo": {
+        "title": "logo",
+        "type": "string",
+        "widget": "file",
+        "filter": true
+      },
+      "cover_image": {
+        "title": "cover_image",
+        "type": "string",
+        "widget": "file",
+        "filter": true
+      },
+      "slug": {
+        "title": "slug",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "depend_field": "root_company_name",
+        "filter": true
+      },
+      "address": {
+        "title": "address",
+        "type": "object",
+        "properties": {
+          "city": {
+            "title": "city",
+            "type": "string",
+            "widget": "shortAnswer"
+          },
+          "district": {
+            "title": "district",
+            "type": "string",
+            "widget": "shortAnswer"
+          },
+          "ward": {
+            "title": "ward",
+            "type": "string",
+            "widget": "shortAnswer"
+          },
+          "street": {
+            "title": "street",
+            "type": "string",
+            "widget": "shortAnswer"
+          },
+          "full_address": {
+            "title": "full_address",
+            "type": "string",
+            "widget": "shortAnswer"
+          }
+        },
+        "required": []
+      }
+    },
+    "required": [
+      "type",
+      "company_name"
+    ]
+  },
+  "ui_schema": {
+    "type": {
+      "ui:widget": "select"
+    },
+    "company_name": {
+      "ui:widget": "shortAnswer"
+    },
+    "phone": {
+      "ui:widget": "shortAnswer"
+    },
+    "email": {
+      "ui:widget": "shortAnswer"
+    },
+    "website": {
+      "ui:widget": "shortAnswer"
+    },
+    "introduction": {
+      "ui:widget": "textarea"
+    },
+    "logo": {
+      "ui:widget": "file"
+    },
+    "cover_image": {
+      "ui:widget": "file"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "address": {
+      "city": {
+        "ui:widget": "shortAnswer"
+      },
+      "district": {
+        "ui:widget": "shortAnswer"
+      },
+      "ward": {
+        "ui:widget": "shortAnswer"
+      },
+      "street": {
+        "ui:widget": "shortAnswer"
+      },
+      "full_address": {
+        "ui:widget": "shortAnswer"
+      },
+      "ui:order": [
+        "city",
+        "district",
+        "ward",
+        "street",
+        "full_address"
+      ]
+    },
+    "ui:order": [
+      "type",
+      "company_name",
+      "phone",
+      "email",
+      "website",
+      "introduction",
+      "logo",
+      "cover_image",
+      "slug",
+      "address"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-03-13T08:45:59.368Z",
+  "__v": 0
+}

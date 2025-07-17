@@ -1,0 +1,502 @@
+{
+  "_id": "674e8f8885bc5241dd6405fb",
+  "title": "mge tweet social votes",
+  "mongodb_collection_name": "mge-tweet-social-votes",
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "entity_group": [
+    "674e8bdf2f536fda4192c8e1"
+  ],
+  "created_at": "2024-12-03T04:56:40.332Z",
+  "__v": 0,
+  "json_schema": {
+    "type": "object",
+    "expanded": true,
+    "required": [
+      "title",
+      "slug"
+    ],
+    "properties": {
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "expanded": true,
+        "require": true,
+        "filter": true
+      },
+      "slug": {
+        "title": "Slug",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "expanded": true,
+        "require": true,
+        "filter": true
+      },
+      "short_description": {
+        "title": "Short Description",
+        "type": "string",
+        "widget": "shortAnswer",
+        "expanded": true,
+        "require": false
+      },
+      "long_description": {
+        "title": "Long Description",
+        "type": "string",
+        "widget": "longAnswer",
+        "expanded": true,
+        "require": false,
+        "customRole": "texteditor"
+      },
+      "vote_type": {
+        "title": "Vote Type",
+        "type": "string",
+        "widget": "select",
+        "expanded": true,
+        "require": false,
+        "choices": [
+          {
+            "key": "Vote",
+            "value": "vote"
+          },
+          {
+            "key": "Multiple Choice",
+            "value": "multiple_choice"
+          }
+        ]
+      },
+      "content": {
+        "title": "Content",
+        "type": "string",
+        "widget": "shortAnswer",
+        "expanded": true,
+        "require": false
+      },
+      "answers": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "content": {
+              "title": "content",
+              "type": "string",
+              "widget": "shortAnswer"
+            },
+            "is_correct": {
+              "title": "is_correct",
+              "type": "string",
+              "default": false,
+              "widget": "boolean"
+            },
+            "ordering": {
+              "title": "ordering",
+              "type": "string",
+              "widget": "numberInput"
+            },
+            "image": {
+              "title": "image",
+              "type": "object",
+              "properties": {
+                "title": {
+                  "title": "title",
+                  "type": "string",
+                  "widget": "shortAnswer"
+                },
+                "path": {
+                  "title": "path",
+                  "type": "string",
+                  "widget": "shortAnswer"
+                }
+              },
+              "required": []
+            }
+          },
+          "required": [],
+          "title": ""
+        },
+        "title": "answers",
+        "type": "array"
+      },
+      "reason": {
+        "title": "Reason",
+        "type": "string",
+        "widget": "shortAnswer",
+        "expanded": true,
+        "require": false
+      },
+      "featured_image": {
+        "title": "Featured Image",
+        "type": "string",
+        "widget": "file",
+        "expanded": true,
+        "require": false
+      },
+      "categories": {
+        "title": "Categories",
+        "type": "string",
+        "widget": "relation",
+        "expanded": true,
+        "require": false,
+        "typeRelation": {
+          "title": "mge-group-category",
+          "_id": "mge-group-category",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "bff5ac07-1d14-4788-99a7-a828b2207f7d"
+          }
+        }
+      },
+      "tag": {
+        "title": "Tag",
+        "type": "string",
+        "widget": "relation",
+        "expanded": true,
+        "require": false,
+        "typeRelation": {
+          "title": "mge-social-tag",
+          "_id": "mge-social-tag",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "fcfc6f47-38c6-4228-8929-cad159c6464f"
+          }
+        }
+      },
+      "comment_off": {
+        "title": "Comment Off",
+        "type": "string",
+        "widget": "boolean",
+        "expanded": true,
+        "require": false
+      },
+      "like_off": {
+        "title": "Like Off",
+        "type": "string",
+        "widget": "boolean",
+        "expanded": true,
+        "require": false
+      },
+      "status": {
+        "title": "Status",
+        "type": "string",
+        "widget": "select",
+        "expanded": true,
+        "require": false,
+        "choices": [
+          {
+            "key": "ACTIVE",
+            "value": "active"
+          },
+          {
+            "key": "DELETED",
+            "value": "deleted"
+          },
+          {
+            "key": "APPROVE",
+            "value": "approve"
+          },
+          {
+            "key": "HIDDEN",
+            "value": "hidden"
+          },
+          {
+            "key": "DRAFT",
+            "value": "draft"
+          },
+          {
+            "key": "ARCHIVE",
+            "value": "archive"
+          },
+          {
+            "key": "WAITING",
+            "value": "waiting"
+          },
+          {
+            "key": "REJECT",
+            "value": "reject"
+          },
+          {
+            "key": "SEND TO REVIEW",
+            "value": "send_to_review"
+          }
+        ]
+      },
+      "social_group": {
+        "title": "Social Group",
+        "type": "string",
+        "widget": "relation",
+        "expanded": true,
+        "require": false,
+        "typeRelation": {
+          "title": "mge-group",
+          "_id": "mge-group",
+          "type": "n-1"
+        },
+        "filter": true
+      },
+      "approve_at": {
+        "title": "Approve At",
+        "type": "string",
+        "widget": "dateTime",
+        "expanded": true,
+        "require": false,
+        "displayFormat": "YYYY/MM/DD : HH:mm a",
+        "formatDate": "date-time"
+      },
+      "approve_by": {
+        "title": "Approve By",
+        "type": "string",
+        "widget": "relation",
+        "expanded": true,
+        "require": false,
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "e98f2bc7-90f0-41e4-b953-bf2254d9ea23"
+          }
+        },
+        "typeSelect": "multiple"
+      },
+      "published_at": {
+        "title": "Published At",
+        "type": "string",
+        "widget": "dateTime",
+        "expanded": true,
+        "require": false,
+        "displayFormat": "YYYY/MM/DD : HH:mm a",
+        "formatDate": "date-time"
+      },
+      "report_comment_off": {
+        "title": "Report Comment Off",
+        "type": "string",
+        "widget": "boolean",
+        "expanded": true,
+        "require": false
+      },
+      "report_tweet_off": {
+        "title": "Report Tweet Off",
+        "type": "string",
+        "widget": "boolean",
+        "expanded": true,
+        "require": false
+      },
+      "question_type": {
+        "title": "question_type",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "text",
+            "value": "text"
+          },
+          {
+            "key": "image",
+            "value": "image"
+          }
+        ],
+        "default": "text"
+      },
+      "layout": {
+        "title": "layout",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "tweet_waiting_time": {
+        "title": "tweet_waiting_time",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": false,
+        "field": "single",
+        "mode": "dateTime"
+      },
+      "reject_reason": {
+        "title": "reject_reason",
+        "type": "string",
+        "widget": "shortAnswer",
+        "description": "Lưu lý do khi bài viết bị từ chối "
+      },
+      "total_user_voted": {
+        "title": "total_user_voted",
+        "type": "string",
+        "widget": "numberInput",
+        "filter": true
+      },
+      "$inc": {
+        "title": "$inc",
+        "type": "object",
+        "properties": {
+          "total_user_voted": {
+            "title": "total_user_voted",
+            "type": "string",
+            "widget": "numberInput",
+            "default": "0"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "short_description": {
+      "ui:widget": "shortAnswer"
+    },
+    "long_description": {
+      "ui:widget": "longAnswer"
+    },
+    "vote_type": {
+      "ui:widget": "select"
+    },
+    "content": {
+      "ui:widget": "shortAnswer"
+    },
+    "answers": {
+      "items": {
+        "content": {
+          "ui:widget": "shortAnswer"
+        },
+        "is_correct": {
+          "ui:widget": "boolean"
+        },
+        "ordering": {
+          "ui:widget": "numberInput"
+        },
+        "image": {
+          "title": {
+            "ui:widget": "shortAnswer"
+          },
+          "path": {
+            "ui:widget": "shortAnswer"
+          },
+          "ui:order": [
+            "title",
+            "path"
+          ]
+        },
+        "ui:order": [
+          "content",
+          "is_correct",
+          "ordering",
+          "image"
+        ]
+      }
+    },
+    "reason": {
+      "ui:widget": "shortAnswer"
+    },
+    "featured_image": {
+      "ui:widget": "file"
+    },
+    "categories": {
+      "ui:widget": "relation"
+    },
+    "tag": {
+      "ui:widget": "relation"
+    },
+    "comment_off": {
+      "ui:widget": "boolean"
+    },
+    "like_off": {
+      "ui:widget": "boolean"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "social_group": {
+      "ui:widget": "relation"
+    },
+    "approve_at": {
+      "ui:widget": "dateTime"
+    },
+    "approve_by": {
+      "ui:widget": "relation"
+    },
+    "published_at": {
+      "ui:widget": "dateTime"
+    },
+    "report_comment_off": {
+      "ui:widget": "boolean"
+    },
+    "report_tweet_off": {
+      "ui:widget": "boolean"
+    },
+    "question_type": {
+      "ui:widget": "select"
+    },
+    "layout": {
+      "ui:widget": "shortAnswer"
+    },
+    "tweet_waiting_time": {
+      "ui:widget": "dateTime"
+    },
+    "reject_reason": {
+      "ui:widget": "shortAnswer"
+    },
+    "total_user_voted": {
+      "ui:widget": "numberInput"
+    },
+    "$inc": {
+      "total_user_voted": {
+        "ui:widget": "numberInput"
+      },
+      "ui:order": [
+        "total_user_voted"
+      ]
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "short_description",
+      "long_description",
+      "vote_type",
+      "content",
+      "answers",
+      "reason",
+      "featured_image",
+      "categories",
+      "tag",
+      "comment_off",
+      "like_off",
+      "status",
+      "social_group",
+      "approve_at",
+      "approve_by",
+      "published_at",
+      "report_comment_off",
+      "report_tweet_off",
+      "question_type",
+      "layout",
+      "tweet_waiting_time",
+      "reject_reason",
+      "total_user_voted",
+      "$inc"
+    ]
+  },
+  "use_seo_path": false,
+  "use_parent_delete_childs": false,
+  "entity_setting": {
+    "merge_collection": "mge-tweet",
+    "type": "votes"
+  },
+  "type": "votes"
+}

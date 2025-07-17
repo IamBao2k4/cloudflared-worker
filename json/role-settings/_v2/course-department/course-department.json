@@ -1,0 +1,28 @@
+{
+  "course-department": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "680a0e7217c9cce3de7bbe34",
+          "title": "get list course department",
+          "entity": "mge-department",
+          "path_file": "json/response/680a0e7217c9cce3de7bbe34.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "0996d879-4c8e-48f3-90e3-8690d2aae3bb"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

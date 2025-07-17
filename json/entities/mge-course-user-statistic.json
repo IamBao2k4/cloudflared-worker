@@ -1,0 +1,142 @@
+{
+  "_id": "6823096287dcae27865d2d5f",
+  "title": "mge course user statistic",
+  "mongodb_collection_name": "mge-course-user-statistic",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "user": {
+        "title": "user",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "c729267f-5f3a-47b8-8226-b15ff89f782e"
+          }
+        },
+        "filter": true
+      },
+      "total_course": {
+        "title": "total_course",
+        "type": "string",
+        "widget": "numberInput",
+        "description": "Tổng số khóa học user đã tham gia (chỉ tính joined và khóa học đang active)"
+      },
+      "total_course_finished": {
+        "title": "total_course_finished",
+        "type": "string",
+        "widget": "numberInput",
+        "description": "Tổng số khóa học user đã hoàn thành"
+      },
+      "avg_completion_rate": {
+        "type": "string",
+        "widget": "numberInput",
+        "title": "avg_completion_rate",
+        "description": "Tỷ lệ hoàn thành trung bình"
+      },
+      "total_discussions": {
+        "type": "string",
+        "widget": "numberInput",
+        "title": "total_discussions",
+        "description": "Tổng số bài thảo luận user đã tạo"
+      },
+      "total_comments": {
+        "type": "string",
+        "widget": "numberInput",
+        "title": "total_comments",
+        "description": "Tổng số bình luận user đã tạo trong thảo luận"
+      },
+      "total_likes": {
+        "type": "string",
+        "widget": "numberInput",
+        "title": "total_likes",
+        "description": "Số lượt like mà user đã thực hiện"
+      },
+      "interaction_score": {
+        "type": "string",
+        "widget": "numberInput",
+        "title": "interaction_score",
+        "description": "Điểm tương tác trung bình\t"
+      },
+      "total_learning_path": {
+        "type": "string",
+        "widget": "numberInput",
+        "title": "total_learning_path",
+        "description": "Số lượng lộ trình học mà user đã tham gia"
+      },
+      "total_learning_path_finished": {
+        "type": "string",
+        "widget": "numberInput",
+        "title": "total_learning_path_finished",
+        "description": "Tổng số lộ trình mà user đã hoàn thành"
+      }
+    },
+    "required": [
+      "user"
+    ]
+  },
+  "ui_schema": {
+    "user": {
+      "ui:widget": "relation"
+    },
+    "total_course": {
+      "ui:widget": "numberInput"
+    },
+    "total_course_finished": {
+      "ui:widget": "numberInput"
+    },
+    "avg_completion_rate": {
+      "ui:widget": "numberInput"
+    },
+    "total_discussions": {
+      "ui:widget": "numberInput"
+    },
+    "total_comments": {
+      "ui:widget": "numberInput"
+    },
+    "total_likes": {
+      "ui:widget": "numberInput"
+    },
+    "interaction_score": {
+      "ui:widget": "numberInput"
+    },
+    "total_learning_path": {
+      "ui:widget": "numberInput"
+    },
+    "total_learning_path_finished": {
+      "ui:widget": "numberInput"
+    },
+    "ui:order": [
+      "user",
+      "total_course",
+      "total_course_finished",
+      "avg_completion_rate",
+      "total_discussions",
+      "total_comments",
+      "total_likes",
+      "interaction_score",
+      "total_learning_path",
+      "total_learning_path_finished"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-05-13T08:57:06.503Z",
+  "__v": 0,
+  "id": "6823096287dcae27865d2d5f"
+}

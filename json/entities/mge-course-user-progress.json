@@ -1,0 +1,94 @@
+{
+  "_id": "680665bdbeb73c2d42c993b9",
+  "title": "mge course user progress",
+  "mongodb_collection_name": "mge-course-user-progress",
+  "unique_keys": "[\n  {\n    \"user\": 1,\n    \"lesson\": 1\n  }\n]",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "user": {
+        "type": "string",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "1-n"
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "user",
+        "filter": true
+      },
+      "lesson": {
+        "title": "lesson",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-lessons",
+          "_id": "mge-lessons",
+          "type": "n-1"
+        },
+        "filter": true
+      },
+      "exam": {
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-exams",
+          "_id": "mge-exams",
+          "type": "n-1"
+        },
+        "title": "exam",
+        "filter": true
+      },
+      "course": {
+        "title": "course",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-courses",
+          "_id": "mge-courses",
+          "type": "n-1"
+        },
+        "filter": true
+      }
+    },
+    "required": [
+      "user",
+      "course"
+    ]
+  },
+  "ui_schema": {
+    "user": {
+      "ui:widget": "relation"
+    },
+    "lesson": {
+      "ui:widget": "relation"
+    },
+    "exam": {
+      "ui:widget": "relation"
+    },
+    "course": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "user",
+      "lesson",
+      "exam",
+      "course"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-04-21T15:35:25.076Z",
+  "__v": 0
+}

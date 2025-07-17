@@ -1,0 +1,19 @@
+{
+  "_id": "677572bc3c56caf3d6e34e85",
+  "title": "is-tweet-not-mine",
+  "note": "",
+  "entity": [
+    "67b6a286606da18e6c1976f1"
+  ],
+  "advance": "[\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"status\": \"active\",\n      \"_id\": \"@param:tweet_id\",\n      \"created_by\": {\n        \"$ne\": \"@jwt:user.id\"\n      }\n    }\n  }\n]",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "categories": [],
+  "params": [
+    {
+      "value": "tweet_id",
+      "key": "tweet_id"
+    }
+  ]
+}

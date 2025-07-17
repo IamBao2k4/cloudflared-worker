@@ -1,0 +1,71 @@
+{
+  "_id": "67a32ec603679925e42bb2cb",
+  "title": "mge user note",
+  "mongodb_collection_name": "mge-user-note",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "content": {
+        "title": "content",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "timestamp": {
+        "widget": "shortAnswer",
+        "title": "timestamp",
+        "type": "string"
+      },
+      "lesson": {
+        "title": "lesson",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      }
+    },
+    "required": [
+      "content",
+      "timestamp"
+    ]
+  },
+  "ui_schema": {
+    "content": {
+      "ui:widget": "shortAnswer"
+    },
+    "timestamp": {
+      "ui:widget": "shortAnswer"
+    },
+    "lesson": {
+      "ui:widget": "shortAnswer"
+    },
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "ui:order": [
+      "content",
+      "timestamp",
+      "lesson",
+      "title"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-02-05T09:26:30.456Z",
+  "__v": 0
+}

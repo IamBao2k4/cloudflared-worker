@@ -1,0 +1,74 @@
+{
+  "_id": "676e33942cff0e67149ebb6c",
+  "title": "create comment",
+  "outputEntity": [
+    "6764e3926e57acaf6815ab97"
+  ],
+  "queryAdvance": "{\n  \"parent_id\": 0,\n  \"content\": 1,\n  \"attachments\": 0,\n  \"tweet\": \"@param:tweet_id\",\n  \"social_group\": \"@param:group_id\"\n}",
+  "note": "",
+  "method": "post",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "cache_time": "",
+  "categories": [],
+  "data": {
+    "id": "db25e574-8c69-4739-bbe2-a9a29561c8dd",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "documents": [],
+  "params": [
+    {
+      "value": "tweet_id",
+      "key": "tweet_id"
+    },
+    {
+      "value": "group_id",
+      "key": "group_id"
+    }
+  ],
+  "restricted": [
+    {
+      "key": "parent_id",
+      "value": "parent_id"
+    },
+    {
+      "key": "content",
+      "value": "content"
+    },
+    {
+      "key": "tweet",
+      "value": "tweet"
+    },
+    {
+      "key": "social_group",
+      "value": "social_group"
+    },
+    {
+      "key": "like_count",
+      "value": "like_count"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ]
+}

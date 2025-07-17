@@ -1,0 +1,227 @@
+{
+  "payment-methods": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6805c374484b959b5ecda58f",
+          "title": "GET danh sách payment method",
+          "entity": "ecommerce-payment-method",
+          "path_file": "json/response/6805c374484b959b5ecda58f.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "dd0022fb-9eeb-42f7-9a85-ddf2a990cb75",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "c0457ec0-37d6-4bf4-bc60-c4a5595282d3"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra người dùng trạng thái ",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-detail": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6805c487484b959b5ecda654",
+          "title": "GET chi tiết payment method",
+          "entity": "ecommerce-payment-method",
+          "path_file": "json/response/6805c487484b959b5ecda654.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "2e2fd24f-ff35-474b-afb4-4ca444ef2c82",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "bce9f3a8-681f-4359-83fc-7f19cd1a0a36"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6805c60b484b959b5ecda72e",
+          "title": "CREATE payment method",
+          "entity": "ecommerce-payment-method",
+          "path_file": "json/response/6805c60b484b959b5ecda72e.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95b1b0d8-4f91-4859-8e01-c157d1487690",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "8cbfe753-ec62-470e-90f6-61b05433d489"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6805c799484b959b5ecda76e",
+          "title": "UPDATE payment method",
+          "entity": "ecommerce-payment-method",
+          "path_file": "json/response/6805c799484b959b5ecda76e.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "6af77a66-1386-41d9-b6d9-155c1eed7d75",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "ae181e3e-51e1-4bab-a8b8-354fe1535287"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6805c827484b959b5ecda781",
+          "title": "DELETE payment method",
+          "entity": "ecommerce-payment-method",
+          "path_file": "json/response/6805c827484b959b5ecda781.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "a2ee17da-d03d-4e51-92cf-1b2c759f46e1",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "0f1ce1b4-073d-4f4b-8543-d9148710d04a"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      },
+      {
+        "notification": {},
+        "response": {},
+        "query_validate": {},
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

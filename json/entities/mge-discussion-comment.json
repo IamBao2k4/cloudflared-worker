@@ -1,0 +1,90 @@
+{
+  "_id": "6752c64565017d942f759585",
+  "title": "mge discussion comment",
+  "mongodb_collection_name": "mge-discussion-comment",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "content": {
+        "title": "Content",
+        "type": "string",
+        "widget": "longAnswer",
+        "customRole": "textarea",
+        "description": "Nội dung của bình luận, có thể là văn bản mà người dùng nhập vào",
+        "min": 2,
+        "max": 5000
+      },
+      "attachments": {
+        "title": "Attachments",
+        "type": "string",
+        "widget": "multipleFiles",
+        "description": "ID liên kết đến file đính kèm của bình luận (nếu có), trỏ đến collection files."
+      },
+      "discussion": {
+        "title": "Discussion",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-discussions",
+          "_id": "mge-discussions",
+          "type": "n-1"
+        },
+        "description": "ID của bài thảo luận mà bình luận thuộc về, liên kết đến collection discussion.",
+        "filter": true
+      },
+      "parent_id": {
+        "title": "parent_id",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-discussion-comment",
+          "_id": "mge-discussion-comment",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "ebc9ac39-19f4-43a9-bafc-4272232c3c1b"
+          }
+        }
+      }
+    },
+    "required": [
+      "content",
+      "discussion"
+    ]
+  },
+  "ui_schema": {
+    "content": {
+      "ui:widget": "textarea"
+    },
+    "attachments": {
+      "ui:widget": "multipleFiles"
+    },
+    "discussion": {
+      "ui:widget": "relation"
+    },
+    "parent_id": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "content",
+      "attachments",
+      "discussion",
+      "parent_id"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": true,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "entity_group": null,
+  "created_at": "2024-12-06T09:39:17.967Z",
+  "__v": 0,
+  "use_seo_path": false,
+  "use_parent_delete_childs": true
+}

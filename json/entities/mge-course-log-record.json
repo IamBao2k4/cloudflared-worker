@@ -1,0 +1,198 @@
+{
+  "_id": "68109de77cff9ff0d0ecbb93",
+  "title": "mge course log record",
+  "mongodb_collection_name": "mge-course-log-record",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "from": {
+        "title": "from",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "entity",
+          "entity": "entity",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "00dcf495-7d5f-42c5-b33b-d138d8ab6447"
+          }
+        }
+      },
+      "type": {
+        "title": "type",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "lesson_completed",
+            "value": "lesson_completed"
+          },
+          {
+            "key": "course_joined",
+            "value": "course_joined"
+          },
+          {
+            "key": "course_invitation_approved",
+            "value": "course_invitation_approved"
+          },
+          {
+            "key": "course_completed",
+            "value": "course_completed"
+          }
+        ]
+      },
+      "value_replace": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "title": "title",
+              "type": "string",
+              "widget": "shortAnswer"
+            },
+            "value": {
+              "title": "value",
+              "type": "string",
+              "widget": "shortAnswer"
+            },
+            "entity_type": {
+              "widget": "select",
+              "returnValue": 2,
+              "choices": [
+                {
+                  "key": "mge-courses",
+                  "value": "mge-courses"
+                },
+                {
+                  "key": "mge-lessons",
+                  "value": "mge-lessons"
+                },
+                {
+                  "key": "mge-exams",
+                  "value": "mge-exams"
+                },
+                {
+                  "key": "mge-user-exam-result",
+                  "value": "mge-user-exam-result"
+                },
+                {
+                  "key": "mge-discussions",
+                  "value": "mge-discussions"
+                },
+                {
+                  "key": "user-tenant-profile",
+                  "value": "user-tenant-profile"
+                },
+                {
+                  "key": "mge-learning-path",
+                  "value": "mge-learning-path"
+                },
+                {
+                  "key": "mge-user-learning-path",
+                  "value": "mge-user-learning-path"
+                }
+              ],
+              "default": [],
+              "allowNull": false,
+              "isMultiple": false,
+              "title": "entity_type",
+              "type": "string"
+            },
+            "entity_id": {
+              "title": "entity_id",
+              "type": "string",
+              "widget": "shortAnswer"
+            }
+          },
+          "required": []
+        },
+        "title": "value_replace",
+        "type": "array"
+      },
+      "course": {
+        "title": "course",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "entity",
+          "entity": "entity",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "23c49295-20fe-49e7-931a-49a1ed7e7569"
+          }
+        },
+        "filter": true
+      }
+    },
+    "required": [
+      "course"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "from": {
+      "ui:widget": "relation"
+    },
+    "type": {
+      "ui:widget": "select"
+    },
+    "value_replace": {
+      "items": {
+        "title": {
+          "ui:widget": "shortAnswer"
+        },
+        "value": {
+          "ui:widget": "shortAnswer"
+        },
+        "entity_type": {
+          "ui:widget": "select"
+        },
+        "entity_id": {
+          "ui:widget": "shortAnswer"
+        },
+        "ui:order": [
+          "title",
+          "value",
+          "entity_type",
+          "entity_id"
+        ]
+      }
+    },
+    "course": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "title",
+      "from",
+      "type",
+      "value_replace",
+      "course"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-04-29T09:37:43.452Z",
+  "__v": 0,
+  "id": "68109de77cff9ff0d0ecbb93"
+}

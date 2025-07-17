@@ -1,0 +1,323 @@
+{
+  "_id": "68188ea9753574930d6110a1",
+  "title": "mge tweet social file",
+  "mongodb_collection_name": "mge-tweet-social-file",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "slug": {
+        "title": "slug",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "depend_field": "root_title",
+        "filter": true
+      },
+      "short_description": {
+        "title": "short_description",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "featured_image": {
+        "title": "featured_image",
+        "type": "string",
+        "widget": "file"
+      },
+      "attachments": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "attachment": {
+              "widget": "shortAnswer",
+              "title": "attachment",
+              "type": "string"
+            },
+            "type": {
+              "title": "type",
+              "type": "string",
+              "widget": "select",
+              "choices": [
+                {
+                  "key": "PDF",
+                  "value": "pdf"
+                },
+                {
+                  "key": "DOCX",
+                  "value": "docx"
+                },
+                {
+                  "key": "PPTX",
+                  "value": "pptx"
+                },
+                {
+                  "key": "XLSX",
+                  "value": "xlsx"
+                },
+                {
+                  "key": "PNG",
+                  "value": "png"
+                },
+                {
+                  "key": "JPG",
+                  "value": "jpg"
+                },
+                {
+                  "key": "MP4",
+                  "value": "mp4"
+                }
+              ]
+            }
+          },
+          "required": []
+        },
+        "title": "attachments",
+        "type": "array",
+        "filter": true
+      },
+      "social_group": {
+        "title": "social_group",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group",
+          "_id": "mge-group",
+          "type": "n-1"
+        },
+        "filter": true
+      },
+      "categories": {
+        "title": "categories",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group-category",
+          "_id": "mge-group-category",
+          "type": "n-1"
+        }
+      },
+      "tag": {
+        "title": "tag",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-social-tag",
+          "_id": "mge-social-tag",
+          "type": "n-1"
+        }
+      },
+      "approve_by": {
+        "title": "approved_by",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "4f13cae0-0104-4d59-b0cd-d8cc14368066"
+          }
+        }
+      },
+      "approved_at": {
+        "title": "approved_at",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": false,
+        "field": "single",
+        "mode": "dateTime"
+      },
+      "comment_off": {
+        "title": "comment_off",
+        "type": "string",
+        "default": false,
+        "widget": "boolean"
+      },
+      "like_off": {
+        "title": "like_off",
+        "type": "string",
+        "default": false,
+        "widget": "boolean"
+      },
+      "status": {
+        "title": "status",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "ACTIVE",
+            "value": "active"
+          },
+          {
+            "key": "DELETED",
+            "value": "deleted"
+          },
+          {
+            "key": "APPROVE",
+            "value": "approve"
+          },
+          {
+            "key": "HIDDEN",
+            "value": "hidden"
+          },
+          {
+            "key": "DRAFT",
+            "value": "draft"
+          },
+          {
+            "key": "ARCHIVE",
+            "value": "archive"
+          },
+          {
+            "key": "WAITING",
+            "value": "waiting"
+          },
+          {
+            "key": "REJECT",
+            "value": "reject"
+          },
+          {
+            "key": "SEND TO REVIEW",
+            "value": "send_to_review"
+          }
+        ]
+      },
+      "report_tweet_off": {
+        "title": "report_tweet_off",
+        "type": "string",
+        "default": false,
+        "widget": "boolean"
+      },
+      "report_comment_off": {
+        "title": "report_comment_off",
+        "type": "string",
+        "default": false,
+        "widget": "boolean"
+      },
+      "tweet_waiting_time": {
+        "title": "tweet_waiting_time",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": false,
+        "field": "single",
+        "mode": "dateTime"
+      }
+    },
+    "required": [
+      "title",
+      "slug",
+      "attachments",
+      "social_group"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "short_description": {
+      "ui:widget": "shortAnswer"
+    },
+    "featured_image": {
+      "ui:widget": "file"
+    },
+    "attachments": {
+      "items": {
+        "attachment": {
+          "ui:widget": "shortAnswer"
+        },
+        "type": {
+          "ui:widget": "select"
+        },
+        "ui:order": [
+          "attachment",
+          "type"
+        ]
+      }
+    },
+    "social_group": {
+      "ui:widget": "relation"
+    },
+    "categories": {
+      "ui:widget": "relation"
+    },
+    "tag": {
+      "ui:widget": "relation"
+    },
+    "approve_by": {
+      "ui:widget": "relation"
+    },
+    "approved_at": {
+      "ui:widget": "dateTime"
+    },
+    "comment_off": {
+      "ui:widget": "boolean"
+    },
+    "like_off": {
+      "ui:widget": "boolean"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "report_tweet_off": {
+      "ui:widget": "boolean"
+    },
+    "report_comment_off": {
+      "ui:widget": "boolean"
+    },
+    "tweet_waiting_time": {
+      "ui:widget": "dateTime"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "short_description",
+      "featured_image",
+      "attachments",
+      "social_group",
+      "categories",
+      "tag",
+      "approve_by",
+      "approved_at",
+      "comment_off",
+      "like_off",
+      "status",
+      "report_tweet_off",
+      "report_comment_off",
+      "tweet_waiting_time"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": [
+    "674e8bdf2f536fda4192c8e1"
+  ],
+  "entity_setting": {
+    "merge_collection": "mge-tweet",
+    "type": "file"
+  },
+  "created_at": "2025-05-05T10:10:49.777Z",
+  "__v": 0,
+  "type": "file"
+}

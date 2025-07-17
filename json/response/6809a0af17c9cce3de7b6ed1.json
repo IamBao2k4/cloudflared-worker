@@ -1,0 +1,109 @@
+{
+  "_id": "6809a0af17c9cce3de7b6ed1",
+  "title": "get detail course 2",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "67529c0665017d942f7592d1"
+  ],
+  "categories": [],
+  "queryAdvance": "[\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"tenant_id\": \"@header:x-tenant-id\",\n      \"$or\": [\n        {\n          \"_id\": \"@param:_id\"\n        },\n        {\n          \"slug\": \"@param:slug\"\n        }\n      ]\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"media\",\n      \"let\": {\n        \"featuredImageId\": {\n          \"$arrayElemAt\": [\n            \"$cover_image\",\n            0\n          ]\n        }\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$eq\": [\n                \"$_id\",\n                {\n                  \"$toObjectId\": \"$$featuredImageId\"\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"path\": {\n              \"$concat\": [\n                {\n                  \"$cond\": [\n                    {\n                      \"$eq\": [\n                        \"minio\",\n                        \"@app_settings:storage_type\"\n                      ]\n                    },\n                    \"@app_settings:minio.public\",\n                    \"@app_settings:doSpace.public\"\n                  ]\n                },\n                \"/\",\n                \"$disk\",\n                \"/\",\n                \"$filename\"\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"cover_image\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-course-member\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"course\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"status\": \"joined\"\n          }\n        }\n      ],\n      \"as\": \"group_members\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"member_count\": {\n        \"$size\": \"$group_members\"\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"category\": {\n        \"$map\": {\n          \"input\": \"$category\",\n          \"as\": \"u\",\n          \"in\": {\n            \"$toObjectId\": \"$$u\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-categories\",\n      \"localField\": \"category\",\n      \"foreignField\": \"_id\",\n      \"as\": \"category\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"user-tenant-profile\",\n      \"localField\": \"created_by\",\n      \"foreignField\": \"user\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"full_name\": {\n              \"$concat\": [\n                \"$profile.course.last_name\",\n                \" \",\n                \"$profile.course.first_name\"\n              ]\n            }\n          }\n        },\n        {\n          \"$unwind\": {\n            \"path\": \"$user\",\n            \"preserveNullAndEmptyArrays\": true\n          }\n        },\n        {\n          \"$project\": {\n            \"_id\": \"$user\",\n            \"full_name\": 1,\n            \"featured_image\": \"$profile.course.featured_image\"\n          }\n        }\n      ],\n      \"as\": \"user\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-course-member\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"course\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"user\": \"@jwt:user.id\",\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        }\n      ],\n      \"as\": \"member_status\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"tenant_id\": {\n        \"$toObjectId\": \"$tenant_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"tenant\",\n      \"localField\": \"tenant_id\",\n      \"foreignField\": \"_id\",\n      \"as\": \"tenant_info\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"joined\": {\n        \"$cond\": {\n          \"if\": {\n            \"$or\": [\n              {\n                \"$eq\": [\n                  \"$member_status.status\",\n                  [\n                    \"joined\"\n                  ]\n                ]\n              },\n              {\n                \"$eq\": [\n                  \"$member_status.status\",\n                  [\n                    [\n                      \"joined\"\n                    ]\n                  ]\n                ]\n              }\n            ]\n          },\n          \"then\": true,\n          \"else\": false\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-course-member\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"course\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"user\": \"@jwt:user.id\",\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$lookup\": {\n            \"from\": \"user-tenant-profile\",\n            \"localField\": \"user\",\n            \"foreignField\": \"user\",\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"tenant_id\": \"@header:x-tenant-id\"\n                }\n              },\n              {\n                \"$addFields\": {\n                  \"_id\": {\n                    \"$toString\": \"$_id\"\n                  }\n                }\n              },\n              {\n                \"$lookup\": {\n                  \"from\": \"user-tenant-level-mapping\",\n                  \"localField\": \"_id\",\n                  \"foreignField\": \"user\",\n                  \"as\": \"user_tenant_level\"\n                }\n              }\n            ],\n            \"as\": \"tenant_level_info\"\n          }\n        }\n      ],\n      \"as\": \"tenant_member_status\"\n    }\n  },\n  {\n    \"$unwind\": {\n      \"path\": \"$tenant_member_status\",\n      \"preserveNullAndEmptyArrays\": true\n    }\n  },\n  {\n    \"$unwind\": {\n      \"path\": \"$tenant_member_status.tenant_level_info\",\n      \"preserveNullAndEmptyArrays\": true\n    }\n  },\n  {\n    \"$unwind\": {\n      \"path\": \"$tenant_member_status.tenant_level_info.user_tenant_level\",\n      \"preserveNullAndEmptyArrays\": true\n    }\n  },\n  {\n    \"$unwind\": {\n      \"path\": \"$tenant_member_status.tenant_level_info.user_tenant_level.tenant_level\",\n      \"preserveNullAndEmptyArrays\": true\n    }\n  },\n  {\n    \"$unwind\": {\n      \"path\": \"$tenant_member_status.role\",\n      \"preserveNullAndEmptyArrays\": true\n    }\n  },\n  {\n    \"$unwind\": {\n      \"path\": \"$tenant_info\",\n      \"preserveNullAndEmptyArrays\": true\n    }\n  },\n{\n  \"$addFields\": {\n    \"tenant_role\": \"$tenant_member_status.tenant_level_info.user_tenant_level.tenant_level\"\n  }\n},\n{\n  \"$addFields\": {\n    \"user_permission.can_access_admin_dashboard\": {\n      \"$or\":[\n        {\"$in\": [\n        \"$tenant_role\",\n        { \"$ifNull\": [\"$tenant_info.course_setting.full_permission\", []] }\n      ]\n        },\n          {\n            \"$eq\": [\n              \"$tenant_member_status.role\",\n              \"instructor\"\n            ]\n          },\n          {\n            \"$eq\": [\n              \"$tenant_member_status.role\",\n              \"assistant\"\n            ]\n          }\n        ]\n    }\n  }\n},\n  {\n    \"$lookup\": {\n      \"from\": \"mge-chapters\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"course\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"_id\": {\n              \"$toString\": \"$_id\"\n            }\n          }\n        },\n        {\n          \"$lookup\": {\n            \"from\": \"mge-lessons\",\n            \"localField\": \"_id\",\n            \"foreignField\": \"chapters\",\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"tenant_id\": \"@header:x-tenant-id\",\n                  \"status\": \"active\"\n                }\n              },\n              {\n                \"$addFields\": {\n                  \"_id\": {\n                    \"$toString\": \"$_id\"\n                  }\n                }\n              },\n              {\n                \"$lookup\": {\n                  \"from\": \"mge-course-user-progress\",\n                  \"localField\": \"_id\",\n                  \"foreignField\": \"lesson\",\n                  \"pipeline\": [\n                    {\n                      \"$match\": {\n                        \"tenant_id\": \"@header:x-tenant-id\",\n                        \"user\": \"@jwt:user.id\"\n                      }\n                    }\n                  ],\n                  \"as\": \"is_finished\"\n                }\n              },\n              {\n                \"$addFields\": {\n                  \"is_finished\": {\n                    \"$cond\": {\n                      \"if\": {\n                        \"$gt\": [\n                          {\n                            \"$size\": \"$is_finished\"\n                          },\n                          0\n                        ]\n                      },\n                      \"then\": true,\n                      \"else\": false\n                    }\n                  }\n                }\n              }\n            ],\n            \"as\": \"lessons\"\n          }\n        },\n        {\n          \"$lookup\": {\n            \"from\": \"mge-exams\",\n            \"localField\": \"_id\",\n            \"foreignField\": \"chapters\",\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"tenant_id\": \"@header:x-tenant-id\"\n                }\n              },\n              {\n                \"$addFields\": {\n                  \"_id\": {\n                    \"$toString\": \"$_id\"\n                  }\n                }\n              },\n              {\n                \"$lookup\": {\n                  \"from\": \"mge-course-user-progress\",\n                  \"localField\": \"_id\",\n                  \"foreignField\": \"exam\",\n                  \"pipeline\": [\n                    {\n                      \"$match\": {\n                        \"tenant_id\": \"@header:x-tenant-id\",\n                        \"user\": \"@jwt:user.id\"\n                      }\n                    }\n                  ],\n                  \"as\": \"is_finished\"\n                }\n              },\n              {\n                \"$addFields\": {\n                  \"is_finished\": {\n                    \"$cond\": {\n                      \"if\": {\n                        \"$gt\": [\n                          {\n                            \"$size\": \"$is_finished\"\n                          },\n                          0\n                        ]\n                      },\n                      \"then\": true,\n                      \"else\": false\n                    }\n                  }\n                }\n              }\n            ],\n            \"as\": \"exams\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"list\": {\n              \"$concatArrays\": [\n                {\n                  \"$map\": {\n                    \"input\": \"$lessons\",\n                    \"as\": \"lesson\",\n                    \"in\": {\n                      \"$mergeObjects\": [\n                        \"$$lesson\",\n                        {\n                          \"posttype\": \"lessons\"\n                        }\n                      ]\n                    }\n                  }\n                },\n                {\n                  \"$map\": {\n                    \"input\": \"$exams\",\n                    \"as\": \"exam\",\n                    \"in\": {\n                      \"$mergeObjects\": [\n                        \"$$exam\",\n                        {\n                          \"posttype\": \"exams\"\n                        }\n                      ]\n                    }\n                  }\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"list\": {\n              \"$sortArray\": {\n                \"input\": \"$list\",\n                \"sortBy\": {\n                  \"position\": 1\n                }\n              }\n            }\n          }\n        }\n      ],\n      \"as\": \"chapters\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-user-rating\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"course\",\n      \"pipeline\": [\n        {\n          \"$group\": {\n            \"_id\": \"$rating_score\",\n            \"count\": {\n              \"$sum\": 1\n            }\n          }\n        },\n        {\n          \"$project\": {\n            \"_id\": 0,\n            \"rating_score\": \"$_id\",\n            \"count\": 1\n          }\n        },\n        {\n          \"$sort\": {\n            \"rating_score\": 1\n          }\n        }\n      ],\n      \"as\": \"rating_detail\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-user-rating\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"course\",\n      \"as\": \"rating_info\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"rating_count\": {\n        \"$size\": \"$rating_info\"\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"title\": 1,\n      \"slug\": 1,\n      \"short_description\": 1,\n      \"cover_image\": 1,\n      \"status\": 1,\n      \"contains_course\": 1,\n      \"objectives\": 1,\n      \"objects\": 1,\n      \"requests\": 1,\n      \"category._id\": 1,\n      \"category.title\": 1,\n      \"category.slug\": 1,\n      \"category.tenant_id\": 1,\n      \"user\": 1,\n      \"created_by\": 1,\n      \"created_at\": 1,\n      \"updated_at\": 1,\n      \"updated_by\": 1,\n      \"tenant_id\": 1,\n      \"long_description\": 1,\n      \"permissions\": 1,\n      \"type\": 1,\n      \"member_count\": 1,\n      \"member_status\": 1,\n      \"joined\": 1,\n      \"chapters._id\": 1,\n      \"chapters.title\": 1,\n      \"chapters.slug\": 1,\n      \"chapters.list._id\": 1,\n      \"chapters.list.title\": 1,\n      \"chapters.list.slug\": 1,\n      \"chapters.list.lesson_type\": 1,\n      \"chapters.list.time_learning\": 1,\n      \"chapters.list.resources.title\": 1,\n      \"chapters.list.resources.path\": 1,\n      \"chapters.list.is_finished\": 1,\n      \"chapters.list.testing_time\": 1,\n      \"chapters.list.posttype\": 1,\n      \"rating_detail\": 1,\n      \"rating_count\": 1,\n      \"user_permission\": 1\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "slug",
+      "value": "slug"
+    },
+    {
+      "key": "short_description",
+      "value": "short_description"
+    },
+    {
+      "key": "long_description",
+      "value": "long_description"
+    },
+    {
+      "key": "cover_image",
+      "value": "cover_image"
+    },
+    {
+      "key": "status",
+      "value": "status"
+    },
+    {
+      "key": "contains_course",
+      "value": "contains_course"
+    },
+    {
+      "key": "objectives",
+      "value": "objectives"
+    },
+    {
+      "key": "objects",
+      "value": "objects"
+    },
+    {
+      "key": "requests",
+      "value": "requests"
+    },
+    {
+      "key": "category",
+      "value": "category"
+    },
+    {
+      "key": "type",
+      "value": "type"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "_id",
+      "key": "_id"
+    },
+    {
+      "value": "slug",
+      "key": "slug"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ],
+  "id": "6809a0af17c9cce3de7b6ed1"
+}

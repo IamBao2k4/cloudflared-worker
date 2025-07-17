@@ -1,0 +1,45 @@
+{
+  "_id": "675935944670a4882df4fdb1",
+  "title": "is-group-public",
+  "entity": [
+    "6747ef07c47463d88f8c5ab1"
+  ],
+  "data": {
+    "id": "c3f47c36-e278-4eba-be9c-7fdf51adfde6",
+    "rules": [
+      {
+        "id": "fd0da56f-51a3-40c9-838b-eb1884c27702",
+        "field": "mge-group._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-group._id:param.group_id"
+      },
+      {
+        "id": "5219415e-fa9f-4124-98d4-7e8dd7d4ae35",
+        "field": "mge-group.status",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "active"
+      },
+      {
+        "id": "acccdde7-2bd4-465b-8321-8298855783b6",
+        "field": "mge-group.type",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "public"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"mge-group._id\":\"$mge-group._id:param.group_id\"},{\"mge-group.status\":\"active\"},{\"mge-group.type\":\"public\"}]}",
+  "params": [],
+  "headers": [],
+  "body": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "note": "",
+  "documents": []
+}

@@ -1,0 +1,21 @@
+{
+  "_id": "6772c07401dfc8643f077e14",
+  "title": "is-the-author-of-tweet",
+  "note": "",
+  "entity": [
+    "6747ef07c47463d88f8c5ab1"
+  ],
+  "advance": "[\n  {\n    \"$match\": {\n      \"_id\": { \"$exists\": false }\n    }\n  },\n  {\n    \"$unionWith\": {\n      \"coll\": \"mge-tweet-social-image\",\n      \"pipeline\": [\n        {\n          \"$addFields\": {\n            \"type\": \"images\"\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"$unionWith\": {\n      \"coll\": \"mge-tweet-social-videos\",\n      \"pipeline\": [\n        {\n          \"$addFields\": {\n            \"type\": \"videos\"\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"$unionWith\": {\n      \"coll\": \"mge-tweet-social-news\",\n      \"pipeline\": [\n        {\n          \"$addFields\": {\n            \"type\": \"news\"\n          }\n        }\n      ]\n    }\n  },\n    {\n    \"$unionWith\": {\n      \"coll\": \"mge-tweet-social-votes\",\n      \"pipeline\": [\n        {\n          \"$addFields\": {\n            \"type\": \"votes\"\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"created_by\":\"@jwt:user.id\",\n      \"_id\":\"@param:_id\"\n    }\n  }\n]",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "data": {
+    "id": "2649953a-0b4d-4c40-ae71-dfd71bf5d2d1",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "documents": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "required": []
+}

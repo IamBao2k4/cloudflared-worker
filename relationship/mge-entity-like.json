@@ -1,0 +1,9 @@
+[
+  {
+    "name": "social_group",
+    "targetTable": "mge-group",
+    "localField": "social_group",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

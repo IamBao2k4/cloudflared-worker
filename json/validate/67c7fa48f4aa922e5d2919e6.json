@@ -1,0 +1,39 @@
+{
+  "_id": "67c7fa48f4aa922e5d2919e6",
+  "title": "is-user-member-in-course",
+  "note": "",
+  "entity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "data": {
+    "id": "32cb8bb0-5f3a-46ca-80bc-65f92a37f0e5",
+    "rules": [
+      {
+        "id": "31c769d1-83e3-4ba1-ac5b-39ca242e5926",
+        "field": "mge-course-member.course",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-course-member.course:param.course_id"
+      },
+      {
+        "id": "4f9ba8b9-20bb-4c1c-9ee6-a2b29efcc5c9",
+        "field": "mge-course-member.user",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-course-member.user:jwt.user@id"
+      },
+      {
+        "id": "45cd8abe-989d-49cd-b4e4-a33a98644ce9",
+        "field": "mge-course-member.role",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "member"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"mge-course-member.course\":\"$mge-course-member.course:param.course_id\"},{\"mge-course-member.user\":\"$mge-course-member.user:jwt.user@id\"},{\"mge-course-member.role\":\"member\"}]}",
+  "required": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

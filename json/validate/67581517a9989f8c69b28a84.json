@@ -1,0 +1,30 @@
+{
+  "_id": "67581517a9989f8c69b28a84",
+  "title": "is-user-has-permission-create-group",
+  "entity": [
+    "6740251baefaffc3e4662e6b"
+  ],
+  "data": {
+    "id": "7cda444c-b668-4167-ba4c-ea6f7e1cd4da",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "advance": "[\r\n  {\r\n    \"$addFields\": {\r\n      \"id\": {\r\n        \"$toString\": \"$_id\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$match\": {\r\n      \"id\": \"@header:x-tenant-id\"\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"user-tenant-level-mapping\",\r\n      \"localField\": \"mge_setting.setting_permissions.setting_group_create\",\r\n      \"foreignField\": \"tenant_level\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$match\": {\r\n            \"tenant_id\": \"@header:x-tenant-id\"\r\n          }\r\n        },\r\n        {\r\n          \"$addFields\": {\r\n            \"user\": {\r\n              \"$map\": {\r\n                \"input\": \"$user\",\r\n                \"as\": \"u\",\r\n                \"in\": {\r\n                  \"$toObjectId\": \"$$u\"\r\n                }\r\n              }\r\n            }\r\n          }\r\n        },\r\n        {\r\n          \"$lookup\": {\r\n            \"from\": \"user-tenant-profile\",\r\n            \"localField\": \"user\",\r\n            \"foreignField\": \"_id\",\r\n            \"pipeline\": [\r\n              {\r\n                \"$match\": {\r\n                  \"user\": \"@jwt:user.id\"\r\n                }\r\n              }\r\n            ],\r\n            \"as\": \"user_info\"\r\n          }\r\n        },\r\n        {\r\n          \"$match\": {\r\n            \"user_info\": {\r\n              \"$ne\": []\r\n            }\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"user_tenant_mapping\"\r\n    }\r\n  },\r\n  {\r\n    \"$match\": {\r\n      \"user_tenant_mapping\": {\r\n        \"$ne\": []\r\n      }\r\n    }\r\n  }\r\n]",
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "params": [],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "body": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "logged": false,
+  "note": "",
+  "documents": []
+}

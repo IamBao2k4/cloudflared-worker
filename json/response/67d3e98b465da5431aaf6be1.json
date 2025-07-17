@@ -1,0 +1,14 @@
+{
+  "_id": "67d3e98b465da5431aaf6be1",
+  "title": "create tweet news",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "67c66d92cb2d3f0de04bccc1"
+  ],
+  "queryAdvance": "{\r\n  \"title\": 1,\r\n  \"slug\": 0,\r\n  \"featured_image\": 0,\r\n  \"short_description\": 0,\r\n  \"long_description\": 0,\r\n  \"category\": 0,\r\n  \"status\": \"active,deleted,draft,hidden,archive,waiting\",\r\n  \"approve_at\": 0,\r\n  \"approve_by\": 0,\r\n  \"type\":\"news\"\r\n}",
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb",
+  "documents": []
+}

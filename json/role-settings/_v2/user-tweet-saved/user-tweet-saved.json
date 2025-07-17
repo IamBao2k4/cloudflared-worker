@@ -1,0 +1,46 @@
+{
+  "user-tweet-saved": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6784ef448145c207b78a993e",
+          "title": "get list tweet saved (all)",
+          "entity": "mge-tweet",
+          "path_file": "json/response/6784ef448145c207b78a993e.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "c5b9ec95-a5da-49d9-ae4f-c5bcab473d9f",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            }
+          ],
+          "id": "8404a01c-015d-4628-85ac-545e52563645"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "course-statistic": {},
+  "get-detail": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6820920fa8a8906b8fa87546",
+          "title": "get detail course statics",
+          "entity": "mge-course-statistic",
+          "path_file": "json/response/6820920fa8a8906b8fa87546.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "4765b1fe-d95a-488b-a402-22c67572f918",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678636df6d9b09071159c329"
+            }
+          ],
+          "id": "0da0d94f-4cf9-4ead-a62a-0ecbd999491b"
+        },
+        "list_validate": [
+          {
+            "_id": "678636df6d9b09071159c329",
+            "title": "is-course-instructor or course-assistant",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/678636df6d9b09071159c329.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6820920fa8a8906b8fa87546",
+          "title": "get detail course statics",
+          "entity": "mge-course-statistic",
+          "path_file": "json/response/6820920fa8a8906b8fa87546.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "d007b48f-c11c-41f7-9407-9bc8d35673a3"
+        },
+        "list_validate": [
+          {
+            "_id": "678636df6d9b09071159c329",
+            "title": "is-course-instructor or course-assistant",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/678636df6d9b09071159c329.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

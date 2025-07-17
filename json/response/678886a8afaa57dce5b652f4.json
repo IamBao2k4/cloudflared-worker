@@ -1,0 +1,18 @@
+{
+  "_id": "678886a8afaa57dce5b652f4",
+  "title": "create discussions",
+  "note": "",
+  "method": "post",
+  "queryAdvance": "{\n  \"content\":1,\n  \"attachments\":0,\n  \"course\":\"@param:course_id\",\n  \"topic\":\"@param:topic\"\n}",
+  "outputEntity": [
+    "6752bcd265017d942f759541"
+  ],
+  "data": {
+    "id": "65049315-227b-4a0b-9a13-bf2aef83f81f",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

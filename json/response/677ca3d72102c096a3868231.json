@@ -1,0 +1,18 @@
+{
+  "_id": "677ca3d72102c096a3868231",
+  "title": "tag/create tag",
+  "outputEntity": [
+    "67590fed9b0285b4f6be778d"
+  ],
+  "queryAdvance": "{\n  \"name\":1,\n  \"slug\":1\n}",
+  "note": "",
+  "method": "post",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "body": null,
+  "categories": null,
+  "documents": [],
+  "headers": null,
+  "params": null
+}

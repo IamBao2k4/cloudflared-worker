@@ -1,0 +1,67 @@
+{
+  "_id": "67b60e53daf8793d547d82d3",
+  "title": "mge tweet pin",
+  "mongodb_collection_name": "mge-tweet-pin",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "tweet": {
+        "title": "tweet",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "position": {
+        "title": "position",
+        "type": "string",
+        "widget": "numberInput",
+        "filter": true
+      },
+      "social_group": {
+        "title": "social_group",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group",
+          "_id": "mge-group",
+          "type": "n-1"
+        },
+        "filter": true
+      }
+    },
+    "required": [
+      "tweet",
+      "position"
+    ]
+  },
+  "ui_schema": {
+    "tweet": {
+      "ui:widget": "shortAnswer"
+    },
+    "position": {
+      "ui:widget": "numberInput"
+    },
+    "social_group": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "tweet",
+      "position",
+      "social_group"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-02-19T17:01:07.357Z",
+  "__v": 0
+}

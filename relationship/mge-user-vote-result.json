@@ -1,0 +1,9 @@
+[
+  {
+    "name": "tweet_id",
+    "targetTable": "mge-tweet-social-votes",
+    "localField": "tweet_id",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  }
+]

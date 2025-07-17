@@ -1,0 +1,10 @@
+{
+  "_id": "67c51934cb2d3f0de0495ae4",
+  "title": "user-joined-group (no except group pause)",
+  "note": "",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "advance": "[ \n  {\n    \"$match\": {  \n      \"user\": \"@jwt:user.id\",\n      \"status\": \"joined\",\n      \"$or\":[\n        {\"social_group\": \"@param:group_id\"},\n        {\"social_group\":\"@param:_id\"},\n        {\"social_group\":\"@body:social_group\"}\n        ]\n      \n    }\n  },\n    {\n        \"$addFields\": {\n            \"social_group_as_objectId\": {\n                \"$map\": {\n                    \"input\": \"$social_group\",\n                    \"as\": \"sg\",\n                    \"in\": { \"$toObjectId\": \"$$sg\" }\n                }\n            }\n        }\n    },\n    {\n        \"$lookup\": {\n            \"from\": \"mge-group\",\n            \"localField\": \"social_group_as_objectId\",\n            \"foreignField\": \"_id\",\n            \"as\": \"group_data\"\n        }\n    },\n    {\n        \"$match\": {\n            \"group_data\": { \"$ne\": [] }\n        }\n    }\n\n ]",
+  "tenant_id": "674028d2611a654e763a73e8"
+}

@@ -1,0 +1,9 @@
+[
+  {
+    "name": "category",
+    "targetTable": "mge-categories",
+    "localField": "category",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

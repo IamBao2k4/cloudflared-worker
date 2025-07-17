@@ -1,0 +1,16 @@
+[
+  {
+    "name": "members",
+    "targetTable": "entity",
+    "localField": "members",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "course",
+    "targetTable": "mge-courses",
+    "localField": "course",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "_id": "677b4aa0f99e7327567de18d",
+  "title": "Get sub comments of comment ( use comment id )",
+  "outputEntity": [
+    "6764e3926e57acaf6815ab97"
+  ],
+  "note": "",
+  "method": "get-detail",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "body": null,
+  "documents": [],
+  "headers": null,
+  "params": null,
+  "queryAdvance": "[\n    {\n        \"$addFields\": {\n            \"id\": { \"$toString\": \"$_id\" }\n        }\n    },\n    {\n        \"$match\": {\n            \"id\": \"@param:comment_id\"\n        }\n    },\n    {\n        \"$lookup\": {\n            \"from\": \"mge-tweet-comment\",\n            \"let\": { \"id\": \"$id\" },\n            \"pipeline\": [\n                {\n                    \"$match\": {\n                        \"$expr\": {\n                            \"$eq\": [[\"$$id\"], \"$parent_id\"]\n                        }\n                    }\n                },\n                {\n                    \"$addFields\": {\n                        \"id\": { \"$toString\": \"$_id\" }\n                    }\n                },\n                {\n                    \"$lookup\": {\n                        \"from\": \"mge-tweet-comment\",\n                        \"let\": { \"id\": \"$id\" },\n                        \"pipeline\": [\n                            {\n                                \"$match\": {\n                                    \"$expr\": {\n                                        \"$eq\": [[\"$$id\"], \"$parent_id\"]\n                                    }\n                                }\n                            },\n                            {\n                                \"$addFields\": {\n                                    \"id\": { \"$toString\": \"$_id\" }\n                                }\n                            }\n                        ],\n                        \"as\": \"sub_comments\"\n                    }\n                },\n                {\n                    \"$addFields\": {\n                        \"sub_comment_quantity\": { \"$size\": \"$sub_comments\" }\n                    }\n                }\n            ],\n            \"as\": \"sub_comments\"\n        }\n    },\n    {\n        \"$addFields\": {\n            \"sub_comment_quantity\": { \"$size\": \"$sub_comments\" }\n        }\n    },\n    {\n        \"$facet\": {\n            \"meta_data\": [\n                {\n                    \"$count\": \"count\"\n                },\n                {\n                    \"$addFields\": {\n                        \"skip\": \"@param:skip\",\n                        \"limit\": \"@param:limit\"\n                    }\n                }\n            ],\n            \"data\": [\n                {\n                    \"$skip\": \"@param:skip\"\n                },\n                {\n                    \"$limit\": \"@param:limit\"\n                }\n            ]\n        }\n    }\n]"
+}

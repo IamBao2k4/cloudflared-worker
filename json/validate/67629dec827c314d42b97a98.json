@@ -1,0 +1,76 @@
+{
+  "_id": "67629dec827c314d42b97a98",
+  "title": "is-user-collection-is-mine",
+  "note": "",
+  "entity": [
+    "675b99f99279b9d81247c3ba"
+  ],
+  "data": {
+    "id": "08d0b484-bbe7-4f42-a9fe-ad3d03f4e1c2",
+    "rules": [
+      {
+        "id": "4ed5ff4b-d678-4a3a-ad5a-0c99b27d472b",
+        "rules": [
+          {
+            "id": "4de886e4-befd-4ac5-8054-39ef3c227f59",
+            "field": "mge-user-collections._id",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-user-collections._id:param.collection_id"
+          },
+          {
+            "id": "1811967e-dc5f-4dfb-a1a7-04d72ea909b4",
+            "field": "mge-user-collections._id",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-user-collections._id:param._id"
+          },
+          {
+            "id": "7b0448ab-527f-4c02-a919-21b84c1299b2",
+            "field": "mge-user-collections._id",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-user-collections._id:body.user_collection"
+          },
+          {
+            "id": "a18c5e53-60fc-469b-8440-372ef9578c89",
+            "field": "mge-user-collections._id",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-user-collections._id:param.user_collection_id"
+          },
+          {
+            "id": "606ea49b-589a-4ea5-9157-4b91989f2cca",
+            "field": "mge-user-collections._id",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-user-collections._id:body._id"
+          }
+        ],
+        "combinator": "or",
+        "not": false
+      },
+      {
+        "id": "a32d8f91-1b74-4b39-b658-0110a4240801",
+        "field": "mge-user-collections.created_by",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-user-collections.created_by:jwt.user@id"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$or\":[{\"mge-user-collections._id\":\"$mge-user-collections._id:param.collection_id\"},{\"mge-user-collections._id\":\"$mge-user-collections._id:param._id\"},{\"mge-user-collections._id\":\"$mge-user-collections._id:body.user_collection\"},{\"mge-user-collections._id\":\"$mge-user-collections._id:param.user_collection_id\"},{\"mge-user-collections._id\":\"$mge-user-collections._id:body._id\"}]},{\"mge-user-collections.created_by\":\"$mge-user-collections.created_by:jwt.user@id\"}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "advance": "",
+  "body": null,
+  "headers": null,
+  "logged": false,
+  "params": null,
+  "pre": null
+}

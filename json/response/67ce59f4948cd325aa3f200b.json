@@ -1,0 +1,30 @@
+{
+  "_id": "67ce59f4948cd325aa3f200b",
+  "title": "get list tweet active(all)",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "67c66d92cb2d3f0de04bccc1"
+  ],
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb",
+  "documents": [],
+  "queryAdvance": "[\n  \"$match\":{\n    \"status\":\"active\",\n    \"tenant_id\":\"@header:x-tenant-id\"\n  },\n  {\n    \"$skip\":0\n  },\n  {\n    \"$limit\":200\n  },\n  {\n    \"$addfields\":{\n      \"_id\":{\n        \"$toString\":\"$_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\":{\n      \"from\":\"media\",\n      \"let\":{\n        \"featuredImageId\":{\n          \"$arrayElemAt\":[\n            \"featured_image\",0\n            ]\n        }\n      },\n      \"pipeline\":[{\n        \"$match\":{\n          \"$expr\":{\n            \"$eq\":[\n              \"$_id\",\n              {\n                \"$toObjectId\":\"$$featuredImageId\"\n              }\n            ]\n          }\n        }\n      },\n      {\n          \"$addFields\": {\n            \"path\": {\n              \"$concat\": [\n                {\n                  \"$cond\": [\n                    {\n                      \"$eq\": [\n                        \"minio\",\n                        \"@app_settings:storage_type\"\n                      ]\n                    },\n                    \"@app_settings:minio.public\",\n                    \"@app_settings:doSpace.public\"\n                  ]\n                },\n                \"/\",\n                \"$disk\",\n                \"/\",\n                \"$filename\"\n              ]\n            }\n          }\n        }],\n        \"as\": \"featured_image\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"user\": {\n        \"$toObjectId\": \"$created_by\"\n      }\n    }\n  },\n  {\n     \"$lookup\": {\n      \"from\": \"user\",\n      \"localField\": \"user\",\n      \"foreignField\": \"_id\",\n      \"pipeline\": [\n        {\n          \"$lookup\": {\n            \"from\": \"media\",\n            \"let\": {\n              \"featuredImageId\": {\n                \"$arrayElemAt\": [\n                  \"$featured_image\",\n                  0\n                ]\n              }\n            },\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"$expr\": {\n                    \"$eq\": [\n                      \"$_id\",\n                      {\n                        \"$toObjectId\": \"$$featuredImageId\"\n                      }\n                    ]\n                  }\n                }\n              },\n              {\n                \"$addFields\": {\n                  \"path\": {\n                    \"$concat\": [\n                      {\n                        \"$cond\": [\n                          {\n                            \"$eq\": [\n                              \"minio\",\n                              \"@app_settings:storage_type\"\n                            ]\n                          },\n                          \"@app_settings:minio.public\",\n                          \"@app_settings:doSpace.public\"\n                        ]\n                      },\n                      \"/\",\n                      \"$disk\",\n                      \"/\",\n                      \"$filename\"\n                    ]\n                  }\n                }\n              }\n            ],\n            \"as\": \"featured_image\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"full_name\": {\n              \"$concat\": [\n                \"$last_name\",\n                \" \",\n                \"$first_name\"\n              ]\n            }\n          }\n        },\n        {\n          \"$project\": {\n            \"full_name\": 1,\n            \"featured_image\": 1\n          }\n        }\n      ],\n      \"as\": \"user\"\n    }\n  },\n  {\n    {\n    \"$lookup\": {\n      \"from\": \"mge-listing-tweet-saved\",\n      \"let\": {\n        \"currentId\": \"$_id\",\n        \"userId\": \"@jwt:user.id\"\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$and\": [\n                {\n                  \"$eq\": [\n                    \"$tweet_id\",\n                    \"$$currentId\"\n                  ]\n                },\n                {\n                  \"$eq\": [\n                    \"$created_by\",\n                    \"$$userId\"\n                  ]\n                }\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"saved_info\"\n    }\n  },\n{\n    \"$addFields\": {\n      \"saved\": {\n        \"$cond\": {\n          \"if\": {\n            \"$gt\": [\n              {\n                \"$size\": \"$saved_info\"\n              },\n              0\n            ]\n          },\n          \"then\": true,\n          \"else\": false\n        }\n      }\n    }\n  },\n {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ]
+}

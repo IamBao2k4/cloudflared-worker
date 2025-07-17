@@ -1,0 +1,446 @@
+{
+  "_id": "67c6ccd9412d5b4c1e2bf08c",
+  "title": "mge listing project",
+  "mongodb_collection_name": "mge-listing-project",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "slug": {
+        "title": "slug",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "depend_field": "root_title"
+      },
+      "list_image": {
+        "title": "list_image",
+        "type": "string",
+        "widget": "multipleFiles"
+      },
+      "tag": {
+        "title": "tag",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-listing-tag",
+          "_id": "mge-listing-tag",
+          "type": "n-1"
+        }
+      },
+      "category": {
+        "title": "category",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-listing-category",
+          "_id": "mge-listing-category",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "851bbb86-1f5d-4f8b-8882-db66a204e410"
+          }
+        }
+      },
+      "overview_static": {
+        "title": "overview_static",
+        "type": "object",
+        "properties": {
+          "apartment": {
+            "title": "apartment",
+            "type": "string",
+            "widget": "numberInput",
+            "description": "Số căn hộ"
+          },
+          "acreage": {
+            "title": "acreage",
+            "type": "string",
+            "widget": "numberInput",
+            "description": "Diện tích",
+            "filter": true,
+            "default": "0"
+          },
+          "tower": {
+            "title": "tower",
+            "type": "string",
+            "widget": "numberInput",
+            "description": "Số tòa"
+          },
+          "site_area": {
+            "widget": "shortAnswer",
+            "title": "site_area",
+            "type": "string",
+            "description": "Quy mô"
+          },
+          "building_density": {
+            "title": "building_density",
+            "type": "string",
+            "widget": "shortAnswer",
+            "description": "Mật độ xây dựng"
+          },
+          "price": {
+            "title": "price",
+            "type": "string",
+            "widget": "numberInput",
+            "filter": true,
+            "default": "0"
+          }
+        },
+        "required": []
+      },
+      "long_description": {
+        "title": "long_description",
+        "type": "string",
+        "widget": "textarea",
+        "customRole": "textarea"
+      },
+      "amenity_facility": {
+        "title": "amenity_facility",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "Trung tâm thương mại",
+            "value": "shopping_mall"
+          },
+          {
+            "key": "Siêu thị, cửa hàng tiện lợi",
+            "value": "supermarket_convenience_stores"
+          },
+          {
+            "key": "Shophouse",
+            "value": "shophouse"
+          },
+          {
+            "key": "Nhà hàng, quán cà phê",
+            "value": "restaurants_coffee_shops"
+          },
+          {
+            "key": "Hồ bơi người lớn, hồ bơi trẻ em",
+            "value": "swimming_pool"
+          },
+          {
+            "key": "Khu vui chơi trẻ em",
+            "value": "children_playground"
+          },
+          {
+            "key": "Phòng gym, yoga",
+            "value": "gym_yoga"
+          },
+          {
+            "key": "Spa, massage",
+            "value": "spa_massage"
+          },
+          {
+            "key": "Rạp chiếu phim",
+            "value": "cinema"
+          },
+          {
+            "key": "Khu BBQ, tiệc ngoài trời",
+            "value": "bbq_outdoor_area"
+          },
+          {
+            "key": "Trường học",
+            "value": "school"
+          },
+          {
+            "key": "Bệnh viện, phòng khám",
+            "value": "hospital"
+          },
+          {
+            "key": "Bãi đỗ xe",
+            "value": "parking_car"
+          },
+          {
+            "key": "Hệ thống an ninh",
+            "value": "security"
+          },
+          {
+            "key": "Khu sinh hoạt",
+            "value": "community"
+          },
+          {
+            "key": "Đường dạo bộ, chạy bộ",
+            "value": "walking_street"
+          },
+          {
+            "key": "Sân thể thao",
+            "value": "sport_area"
+          },
+          {
+            "key": "Công viên, khu vui chơi công cộng",
+            "value": "park_playground"
+          },
+          {
+            "key": "Trung tâm hành chính",
+            "value": "administrative_center"
+          },
+          {
+            "key": "Trạm xe buýt, ga tàu, bến xe",
+            "value": "bus_station"
+          },
+          {
+            "key": "Đường cao tốc",
+            "value": "hightway"
+          },
+          {
+            "key": "Hệ thống PCCC",
+            "value": "pccc_systems"
+          },
+          {
+            "key": "ATM & Ngân hàng",
+            "value": "atm_banks"
+          },
+          {
+            "key": "Lối thoát hiểm",
+            "value": "exit_way"
+          },
+          {
+            "key": "Sân bay quốc tế, sân bay nội địa",
+            "value": "Sân bay quốc tế, sân bay nội địa"
+          },
+          {
+            "key": "Thang máy",
+            "value": "elevator"
+          },
+          {
+            "key": "Lễ tân",
+            "value": "receptionist"
+          },
+          {
+            "key": "HT Điều hòa",
+            "value": "ac_system"
+          },
+          {
+            "key": "Coffee",
+            "value": "coffee"
+          },
+          {
+            "key": "Sân tennis",
+            "value": "tenis_area"
+          },
+          {
+            "key": "Sân bóng rổ",
+            "value": "basketball_area"
+          },
+          {
+            "key": "Sân cầu lông",
+            "value": "badminton_area"
+          }
+        ],
+        "isMultiple": true,
+        "description": "Tiện ích"
+      },
+      "address": {
+        "title": "address",
+        "type": "object",
+        "properties": {
+          "city": {
+            "widget": "shortAnswer",
+            "title": "city",
+            "type": "string"
+          },
+          "district": {
+            "widget": "shortAnswer",
+            "title": "district",
+            "type": "string"
+          },
+          "ward": {
+            "widget": "shortAnswer",
+            "title": "ward",
+            "type": "string"
+          },
+          "street": {
+            "title": "street",
+            "type": "string",
+            "widget": "shortAnswer"
+          },
+          "full_address": {
+            "title": "full_address",
+            "type": "string",
+            "widget": "shortAnswer"
+          }
+        },
+        "required": []
+      },
+      "status": {
+        "title": "status",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "ACTIVE",
+            "value": "active"
+          },
+          {
+            "key": "DELETED",
+            "value": "deleted"
+          },
+          {
+            "key": "APPROVE",
+            "value": "approve"
+          },
+          {
+            "key": "HIDDEN",
+            "value": "hidden"
+          },
+          {
+            "key": "DRAFT",
+            "value": "draft"
+          },
+          {
+            "key": "ARCHIVE",
+            "value": "archive"
+          },
+          {
+            "key": "WAITING",
+            "value": "waiting"
+          },
+          {
+            "key": "REJECT",
+            "value": "reject"
+          },
+          {
+            "key": "SEND TO REVIEW",
+            "value": "send_to_review"
+          },
+          {
+            "key": "EXPIRE",
+            "value": "expire"
+          }
+        ]
+      },
+      "contact": {
+        "title": "contact",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-listing-contact",
+          "_id": "mge-listing-contact",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "0af743a8-812a-41aa-9ef8-6ed86b667512"
+          }
+        }
+      }
+    },
+    "required": [
+      "title"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "list_image": {
+      "ui:widget": "multipleFiles"
+    },
+    "tag": {
+      "ui:widget": "relation"
+    },
+    "category": {
+      "ui:widget": "relation"
+    },
+    "overview_static": {
+      "apartment": {
+        "ui:widget": "numberInput"
+      },
+      "acreage": {
+        "ui:widget": "numberInput"
+      },
+      "tower": {
+        "ui:widget": "numberInput"
+      },
+      "site_area": {
+        "ui:widget": "shortAnswer"
+      },
+      "building_density": {
+        "ui:widget": "shortAnswer"
+      },
+      "price": {
+        "ui:widget": "numberInput"
+      },
+      "ui:order": [
+        "apartment",
+        "acreage",
+        "tower",
+        "site_area",
+        "building_density",
+        "price"
+      ]
+    },
+    "long_description": {
+      "ui:widget": "textarea"
+    },
+    "amenity_facility": {
+      "ui:widget": "select"
+    },
+    "address": {
+      "city": {
+        "ui:widget": "shortAnswer"
+      },
+      "district": {
+        "ui:widget": "shortAnswer"
+      },
+      "ward": {
+        "ui:widget": "shortAnswer"
+      },
+      "street": {
+        "ui:widget": "shortAnswer"
+      },
+      "full_address": {
+        "ui:widget": "shortAnswer"
+      },
+      "ui:order": [
+        "city",
+        "district",
+        "ward",
+        "street",
+        "full_address"
+      ]
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "contact": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "list_image",
+      "tag",
+      "category",
+      "overview_static",
+      "long_description",
+      "amenity_facility",
+      "address",
+      "status",
+      "contact"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-03-04T09:50:17.982Z",
+  "__v": 0
+}

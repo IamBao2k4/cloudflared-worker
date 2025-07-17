@@ -1,0 +1,80 @@
+{
+  "_id": "6760fea26f97c1a3464764a8",
+  "title": "Get group detail template",
+  "outputEntity": [
+    "6747ef07c47463d88f8c5ab1"
+  ],
+  "queryAdvance": "[\n    {\n        \"$addFields\": {\n            \"_id\": {\n                \"$toString\": \"$_id\"\n            }\n        }\n    },\n    {\n        \"$match\": {\n            \"_id\": \"@param:group_id\",\n            \"tenant_id\":\"@header:x-tenant-id\"\n        }\n    },\n    {\n        \"$lookup\": {\n            \"from\": \"media\",\n            \"let\": {\n                \"featuredImageId\": {\n                    \"$arrayElemAt\": [\n                        \"$cover\",\n                        0\n                    ]\n                }\n            },\n            \"pipeline\": [\n                {\n                    \"$match\": {\n                        \"$expr\": {\n                            \"$eq\": [\n                                \"$_id\",\n                                {\n                                    \"$toObjectId\": \"$$featuredImageId\"\n                                }\n                            ]\n                        }\n                    }\n                },\n                {\n                    \"$addFields\": {\n                        \"path\": {\n                            \"$concat\": [\n                                {\n                                    \"$cond\": [\n                                        {\n                                            \"$eq\": [\n                                                \"minio\",\n                                                \"@app_settings:storage_type\"\n                                            ]\n                                        },\n                                        \"@app_settings:minio.public\",\n                                        \"@app_settings:doSpace.public\"\n                                    ]\n                                },\n                                \"/\",\n                                \"$disk\",\n                                \"/\",\n                                \"$filename\"\n                            ]\n                        }\n                    }\n                }\n            ],\n            \"as\": \"cover\"\n        }\n    },\n    {\n        \"$lookup\": {\n            \"from\": \"mge-group-member\",\n            \"localField\": \"_id\",\n            \"foreignField\": \"social_group\",\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"user\":\"@jwt:user.id\",\n                  \"tenant_id\":\"@header:x-tenant-id\"\n                }\n              }\n              ],\n            \"as\": \"member_status\"\n        }\n    },\n      {\n  \"$addFields\": {\n    \"joined\": {\n      \"$cond\": {\n        \"if\": {\n          \"$or\": [\n            { \"$eq\": [\"$member_status.status\", [\"joined\"]] },\n            { \"$eq\": [\"$member_status.status\", [[\"joined\"]]] }\n          ]\n        },\n        \"then\": true,\n        \"else\": false\n      }\n    }\n  }\n},\n    {\n        \"$lookup\": {\n            \"from\": \"mge-group-member\",\n            \"localField\": \"_id\",\n            \"foreignField\": \"social_group\",\n            \"pipeline\": [\n                {\n                    \"$match\": {\n                      \"status\": \"joined\",\n                      \"tenant_id\":\"@header:x-tenant-id\"\n                    }\n                },\n                {\n                    \"$count\": \"member_count\"\n                }\n            ],\n            \"as\": \"member_count\"\n        }\n    },\n    {\n        \"$addFields\": {\n            \"member_count\": {\n                \"$ifNull\": [\n                    {\n                        \"$arrayElemAt\": [\n                            \"$member_count.member_count\",\n                            0\n                        ]\n                    },\n                    0\n                ]\n            }\n        }\n    },\n    {\n        \"$lookup\": {\n            \"from\": \"mge-tweet-social-news\",\n            \"localField\": \"_id\",\n            \"foreignField\": \"social_group\",\n            \"as\": \"news\"\n        }\n    },\n    {\n        \"$lookup\": {\n            \"from\": \"mge-tweet-social-image\",\n            \"localField\": \"_id\",\n            \"foreignField\": \"social_group\",\n            \"as\": \"images\"\n        }\n    },\n    {\n        \"$lookup\": {\n            \"from\": \"mge-tweet-social-videos\",\n            \"localField\": \"_id\",\n            \"foreignField\": \"social_group\",\n            \"as\": \"videos\"\n        }\n    },\n    {\n        \"$lookup\": {\n            \"from\": \"mge-tweet-social-votes\",\n            \"localField\": \"_id\",\n            \"foreignField\": \"social_group\",\n            \"as\": \"votes\"\n        }\n    },\n    {\n        \"$addFields\": {\n            \"tweet_avaliable\": {\n                \"$or\": [\n                    {\n                        \"$gt\": [\n                            {\n                                \"$size\": \"$news\"\n                            },\n                            0\n                        ]\n                    },\n                    {\n                        \"$gt\": [\n                            {\n                                \"$size\": \"$images\"\n                            },\n                            0\n                        ]\n                    },\n                    {\n                        \"$gt\": [\n                            {\n                                \"$size\": \"$videos\"\n                            },\n                            0\n                        ]\n                    },\n                    {\n                        \"$gt\": [\n                            {\n                                \"$size\": \"$votes\"\n                            },\n                            0\n                        ]\n                    }\n                ]\n            }\n        }\n    },\n    {\n        \"$addFields\": {\n            \"tweet_count\": {\n                \"$add\": [\n                    {\n                        \"$size\": \"$news\"\n                    },\n                    {\n                        \"$size\": \"$images\"\n                    },\n                    {\n                        \"$size\": \"$videos\"\n                    },\n                    {\n                        \"$size\": \"$votes\"\n                    }\n                ]\n            }\n        }\n    },\n    {\n        \"$project\": {\n            \"news\": 0,\n            \"votes\": 0,\n            \"videos\": 0,\n            \"images\": 0\n        }\n    },\n    {\n        \"$facet\": {\n            \"meta_data\": [\n                {\n                    \"$count\": \"count\"\n                },\n                {\n                    \"$addFields\": {\n                        \"skip\": \"@param:skip\",\n                        \"limit\": \"@param:limit\"\n                    }\n                }\n            ],\n            \"data\": [\n                {\n                    \"$skip\": \"@param:skip\"\n                },\n                {\n                    \"$limit\": \"@param:limit\"\n                }\n            ]\n        }\n    }\n]",
+  "note": "",
+  "method": "get-detail",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "params": [
+    {
+      "value": {
+        "key": "",
+        "value": "group_id",
+        "description": ""
+      },
+      "key": {
+        "key": "",
+        "value": "group_id",
+        "description": ""
+      }
+    },
+    {
+      "value": {
+        "key": "",
+        "value": "",
+        "description": ""
+      },
+      "key": {
+        "key": "",
+        "value": "",
+        "description": ""
+      }
+    },
+    {
+      "value": "_id",
+      "key": "_id"
+    },
+    {
+      "value": "group_id",
+      "key": "group_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ],
+  "body": [
+    {
+      "value": "social_group",
+      "key": "social_group"
+    }
+  ],
+  "headers": [
+    {
+      "value": "user.id",
+      "key": "user.id"
+    },
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "categories": [],
+  "data": {
+    "id": "7029c999-05ae-464f-a2f4-3a711922c74d",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "cache_time": ""
+}

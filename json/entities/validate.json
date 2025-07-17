@@ -1,0 +1,200 @@
+{
+  "_id": "6729dfa71f95e711035156a3",
+  "title": "Validate",
+  "mongodb_collection_name": "validate",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "description": "Nhập title",
+        "filter": true
+      },
+      "logged": {
+        "title": "Logged",
+        "type": "string",
+        "widget": "boolean",
+        "filter": true,
+        "description": "Kiểm tra đã login chưa?"
+      },
+      "note": {
+        "type": "string",
+        "widget": "shortAnswer",
+        "title": "Note",
+        "description": "Thêm thông tin ghi chú"
+      },
+      "entity": {
+        "title": "Entity",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "entity",
+          "_id": "entity",
+          "filter": [],
+          "type": "1-n"
+        },
+        "description": "Chọn entity",
+        "filter": true
+      },
+      "data": {
+        "title": "Data",
+        "type": "string",
+        "widget": "condition",
+        "description": "Config data validate",
+        "fieldRelation": "entity",
+        "typeUI": "validate"
+      },
+      "advance": {
+        "title": "Advance",
+        "type": "string",
+        "widget": "function"
+      },
+      "required": {
+        "title": "Required",
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Field require",
+        "filter": false,
+        "hidden": true,
+        "widget": "array"
+      },
+      "queryMongodb": {
+        "title": "Query Mongodb",
+        "type": "string",
+        "widget": "function",
+        "description": "Format query",
+        "hidden": true
+      },
+      "pre": {
+        "title": "Pre",
+        "type": "string",
+        "widget": "condition"
+      },
+      "params": {
+        "title": "Params",
+        "type": "array",
+        "items": {
+          "type": "object"
+        },
+        "hidden": true
+      },
+      "headers": {
+        "title": "Headers",
+        "type": "array",
+        "items": {
+          "type": "object"
+        },
+        "hidden": true
+      },
+      "body": {
+        "title": "Body",
+        "type": "array",
+        "items": {
+          "type": "object"
+        },
+        "hidden": true
+      },
+      "documents": {
+        "title": "Documents",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "documents",
+          "_id": "documents",
+          "type": "n-1"
+        }
+      },
+      "error_code": {
+        "title": "Error Code",
+        "type": "string",
+        "widget": "shortAnswer",
+        "hidden": true
+      },
+      "categories": {
+        "title": "Categories",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "categories-validate",
+          "_id": "categories-validate",
+          "type": "n-1"
+        },
+        "description": "Chọn categories cho validate",
+        "filter": true
+      }
+    },
+    "required": [
+      "title"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "logged": {
+      "ui:widget": "boolean"
+    },
+    "note": {
+      "ui:widget": "shortAnswer"
+    },
+    "entity": {
+      "ui:widget": "relation"
+    },
+    "data": {
+      "ui:widget": "condition"
+    },
+    "advance": {
+      "ui:widget": "function"
+    },
+    "queryMongodb": {
+      "ui:widget": "function"
+    },
+    "pre": {
+      "ui:widget": "condition"
+    },
+    "documents": {
+      "ui:widget": "relation"
+    },
+    "error_code": {
+      "ui:widget": "shortAnswer"
+    },
+    "categories": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "title",
+      "logged",
+      "note",
+      "entity",
+      "data",
+      "advance",
+      "required",
+      "queryMongodb",
+      "pre",
+      "params",
+      "headers",
+      "body",
+      "documents",
+      "error_code",
+      "categories"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "created_at": "2024-11-05T09:04:39.059Z",
+  "__v": 0,
+  "entity_group": null,
+  "use_parent_delete_childs": false,
+  "use_seo_path": false
+}

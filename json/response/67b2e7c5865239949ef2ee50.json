@@ -1,0 +1,24 @@
+{
+  "_id": "67b2e7c5865239949ef2ee50",
+  "title": "get list user's tenant",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "6740251baefaffc3e4662e6b"
+  ],
+  "queryAdvance": "[\n  {\n    \"$addFields\": {\n      \"id\": { \"$toString\": \"$_id\" }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"user-tenant-level-mapping\",\n      \"localField\": \"id\",\n      \"foreignField\": \"tenant_id\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"user\": \"@jwt:user.id\"\n          }\n        }\n      ],\n      \"as\": \"userTenantMapping\"\n    }\n  },\n  {\n    \"$match\": {\n      \"$or\": [\n        { \"type\": \"public\" },\n        { \"userTenantMapping\": { \"$ne\": [] } }\n      ]\n    }\n  },\n  {\n    \"$addFields\": {\n      \"mge_setting.color\": {\n        \"$cond\": {\n          \"if\": { \"$isArray\": \"$mge_setting.color\" },\n          \"then\": {\n            \"$map\": {\n              \"input\": \"$mge_setting.color\",\n              \"as\": \"c\",\n              \"in\": { \"$toObjectId\": \"$$c\" }\n            }\n          },\n          \"else\": { \"$toObjectId\": \"$mge_setting.color\" }\n        }\n      },\n      \"mge_setting.logo\": {\n        \"$cond\": {\n          \"if\": { \"$isArray\": \"$mge_setting.logo\" },\n          \"then\": {\n            \"$map\": {\n              \"input\": \"$mge_setting.logo\",\n              \"as\": \"l\",\n              \"in\": { \"$toObjectId\": \"$$l\" }\n            }\n          },\n          \"else\": { \"$toObjectId\": \"$mge_setting.logo\" }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"media\",\n      \"localField\": \"mge_setting.color\",\n      \"foreignField\": \"_id\",\n      \"pipeline\": [\n        {\n          \"$addFields\": {\n            \"path\": {\n              \"$concat\": [\n                {\n                  \"$cond\": [\n                    { \"$eq\": [ \"minio\", \"digital\" ] },\n                    \"https://minio.mangoads.com.vn\",\n                    \"https://mgs-storage.sgp1.digitaloceanspaces.com\"\n                  ]\n                },\n                \"/\",\n                \"$disk\",\n                \"/\",\n                \"$filename\"\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"mge_setting.color\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"media\",\n      \"localField\": \"mge_setting.logo\",\n      \"foreignField\": \"_id\",\n      \"pipeline\": [\n        {\n          \"$addFields\": {\n            \"path\": {\n              \"$concat\": [\n                {\n                  \"$cond\": [\n                    { \"$eq\": [ \"minio\", \"digital\" ] },\n                    \"https://minio.mangoads.com.vn\",\n                    \"https://mgs-storage.sgp1.digitaloceanspaces.com\"\n                  ]\n                },\n                \"/\",\n                \"$disk\",\n                \"/\",\n                \"$filename\"\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"mge_setting.logo\"\n    }\n  },\n  {\n    \"$project\": {\n      \"userTenantMapping\": 0\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]\n",
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ]
+}

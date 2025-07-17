@@ -1,0 +1,227 @@
+{
+  "_id": "6752a70b65017d942f75941d",
+  "title": "mge lessons",
+  "mongodb_collection_name": "mge-lessons",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "widget": "shortAnswer",
+        "title": "title",
+        "type": "string",
+        "filter": true
+      },
+      "slug": {
+        "title": "Slug",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "description": "Đường dẫn URL ngắn gọn của bài giảng, tự động sinh từ title",
+        "depend_field": "root_title",
+        "filter": true
+      },
+      "time_learning": {
+        "title": "Time Learning",
+        "type": "string",
+        "widget": "numberInput",
+        "description": "Thời lượng học bài giảng (tính bằng phút).",
+        "min": 0
+      },
+      "chapters": {
+        "title": "Chapters",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-chapters",
+          "_id": "mge-chapters",
+          "type": "n-1"
+        },
+        "description": "ID của chương mà bài giảng thuộc về. Không bắt buộc nếu bài giảng độc lập"
+      },
+      "lesson_type": {
+        "title": "Lesson Type",
+        "type": "string",
+        "widget": "select",
+        "description": "Loại bài giảng: video, file, hoặc soạn thảo trực tiếp",
+        "choices": [
+          {
+            "key": "Text",
+            "value": "text"
+          },
+          {
+            "key": "Video",
+            "value": "video"
+          },
+          {
+            "key": "File",
+            "value": "file"
+          }
+        ],
+        "filter": true
+      },
+      "video_url": {
+        "type": "string",
+        "widget": "shortAnswer",
+        "title": "Video URL",
+        "description": "URL video bài giảng (nếu lesson_type là video)"
+      },
+      "video_file": {
+        "title": "Video File",
+        "type": "string",
+        "widget": "file"
+      },
+      "files": {
+        "title": "Files",
+        "type": "string",
+        "widget": "multipleFiles",
+        "description": "Danh sách tệp hoặc tài liệu đính kèm (nếu lesson_type là file)."
+      },
+      "lesson_content": {
+        "title": "Lesson Content",
+        "type": "string",
+        "widget": "longAnswer",
+        "customRole": "texteditor",
+        "description": "Nội dung bài giảng (nếu lesson_type là soạn thảo trực tiếp)"
+      },
+      "course": {
+        "title": "Course",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-courses",
+          "_id": "mge-courses",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "aa8ea7ca-7493-4432-907e-033f14816166"
+          }
+        },
+        "description": "ID của khóa học mà bài giảng này thuộc về"
+      },
+      "resources": {
+        "title": "Resources",
+        "type": "string",
+        "widget": "multipleFiles",
+        "description": "Danh sách tệp file tài nguyên cho bài giảng"
+      },
+      "status": {
+        "title": "Status",
+        "type": "string",
+        "widget": "select",
+        "description": "Trạng thái của bài giảng",
+        "choices": [
+          {
+            "key": "Active",
+            "value": "active"
+          },
+          {
+            "key": "Archived",
+            "value": "archived"
+          },
+          {
+            "key": "Draft",
+            "value": "draft"
+          },
+          {
+            "key": "Send to review",
+            "value": "send_to_review"
+          },
+          {
+            "key": "Approved",
+            "value": "approved"
+          },
+          {
+            "key": "Rejected",
+            "value": "rejected"
+          }
+        ]
+      },
+      "position": {
+        "type": "string",
+        "widget": "numberInput",
+        "title": "position",
+        "description": "Thứ tự của bài giảng trong chương hoặc danh sách bài giảng",
+        "default": "0"
+      }
+    },
+    "required": [
+      "title",
+      "slug",
+      "lesson_type",
+      "course",
+      "status"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "time_learning": {
+      "ui:widget": "numberInput"
+    },
+    "chapters": {
+      "ui:widget": "relation"
+    },
+    "lesson_type": {
+      "ui:widget": "select"
+    },
+    "video_url": {
+      "ui:widget": "shortAnswer"
+    },
+    "video_file": {
+      "ui:widget": "file"
+    },
+    "files": {
+      "ui:widget": "multipleFiles"
+    },
+    "lesson_content": {
+      "ui:widget": "textarea"
+    },
+    "course": {
+      "ui:widget": "relation"
+    },
+    "resources": {
+      "ui:widget": "multipleFiles"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "position": {
+      "ui:widget": "numberInput"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "time_learning",
+      "chapters",
+      "lesson_type",
+      "video_url",
+      "video_file",
+      "files",
+      "lesson_content",
+      "course",
+      "resources",
+      "status",
+      "position"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "entity_group": [
+    "677f8ef04bac6329557659ef"
+  ],
+  "created_at": "2024-12-06T07:26:03.295Z",
+  "__v": 0,
+  "use_seo_path": false,
+  "use_parent_delete_childs": false
+}

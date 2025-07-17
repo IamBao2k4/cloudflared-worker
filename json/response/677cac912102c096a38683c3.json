@@ -1,0 +1,26 @@
+{
+  "_id": "677cac912102c096a38683c3",
+  "title": "get list social tag",
+  "outputEntity": [
+    "67590fed9b0285b4f6be778d"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"tenant_id\":\"@header:x-tenant-id\"\n    }\n  },\n  {\n    \"$sort\": {\n      \"created_at\": -1\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "note": "",
+  "method": "get-list",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "cache_time": "",
+  "categories": [],
+  "documents": [],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ]
+}

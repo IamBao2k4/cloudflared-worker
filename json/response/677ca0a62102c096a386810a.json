@@ -1,0 +1,16 @@
+{
+  "_id": "677ca0a62102c096a386810a",
+  "title": "update user info",
+  "outputEntity": [
+    "6749933810905d9ddbd0104b"
+  ],
+  "queryAdvance": "{\n  \"username\":0,\n  \"email\":0,\n  \"first_name\":0,\n  \"last_name\":0,\n  \"featured_image\":0,\n  \"cover\":0,\n  \"phone\":0,\n  \"birthday\":0,\n  \"description\":0\n}",
+  "note": "",
+  "method": "put",
+  "documents": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "cache_time": "",
+  "categories": []
+}

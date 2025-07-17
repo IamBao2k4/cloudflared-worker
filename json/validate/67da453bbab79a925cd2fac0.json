@@ -1,0 +1,56 @@
+{
+  "_id": "67da453bbab79a925cd2fac0",
+  "title": "is-user-status-pending",
+  "note": "",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "advance": "",
+  "data": {
+    "id": "4381e58b-62d5-4303-acf7-251cb1ac4191",
+    "rules": [
+      {
+        "id": "7eca0170-c163-45d5-8802-e79d3a676a92",
+        "field": "mge-group-member.status",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "pending"
+      },
+      {
+        "id": "41d3d4dc-1517-4da9-b9c8-3bac1fa91ac7",
+        "rules": [
+          {
+            "id": "2e9a966b-9b35-4b7d-8795-9845baa8666b",
+            "field": "mge-group-member._id",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "_id"
+          },
+          {
+            "id": "c0c4552e-4498-446d-87a0-6c9797cf0c96",
+            "field": "mge-group-member._id",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-group-member._id:body._id"
+          },
+          {
+            "id": "4a996ba4-4948-4a3d-b58f-513a49c82d16",
+            "field": "mge-group-member.user",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-group-member.user:body.user"
+          }
+        ],
+        "combinator": "or",
+        "not": false
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"mge-group-member.status\":\"pending\"},{\"$or\":[{\"mge-group-member._id\":\"_id\"},{\"mge-group-member._id\":\"$mge-group-member._id:body._id\"},{\"mge-group-member.user\":\"$mge-group-member.user:body.user\"}]}]}",
+  "required": [],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "categories": [],
+  "id": "67da453bbab79a925cd2fac0"
+}

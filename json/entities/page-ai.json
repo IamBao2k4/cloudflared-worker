@@ -1,0 +1,59 @@
+{
+  "_id": "6743fba64633668aab2b41e1",
+  "title": "page ai",
+  "mongodb_collection_name": "page-ai",
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": true,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "created_at": "2024-11-25T04:23:02.171Z",
+  "__v": 0,
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "description": {
+        "title": "Description",
+        "type": "string",
+        "widget": "textarea",
+        "customRole": "textarea"
+      },
+      "slug": {
+        "title": "Slug",
+        "type": "string",
+        "widget": "shortAnswer"
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "description": {
+      "ui:widget": "textarea"
+    },
+    "slug": {
+      "ui:widget": "shortAnswer"
+    },
+    "ui:order": [
+      "title",
+      "description",
+      "slug"
+    ]
+  },
+  "entity_group": null,
+  "use_parent_delete_childs": false,
+  "use_seo_path": false,
+  "id": "6743fba64633668aab2b41e1"
+}

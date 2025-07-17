@@ -1,0 +1,172 @@
+{
+  "_id": "67a0307c545d084698a9aaee",
+  "title": "Notification",
+  "mongodb_collection_name": "notification",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "description": "Nhập title",
+        "filter": true
+      },
+      "title_input": {
+        "title": "title_input",
+        "type": "string",
+        "widget": "shortAnswer",
+        "description": "Dùng @user.name hoặc @group.name để map vào title_input để hiện bên fe"
+      },
+      "advance": {
+        "title": "Advance",
+        "type": "string",
+        "widget": "function",
+        "description": "*Mặc định là sẽ truy cập vào collection User."
+      },
+      "type": {
+        "title": "type",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "SOCIAL_TWEET_GROUP_APPROVE",
+            "value": "SOCIAL_TWEET_GROUP_APPROVE"
+          },
+          {
+            "key": "SOCIAL_REPORT_GROUP",
+            "value": "SOCIAL_REPORT_GROUP"
+          },
+          {
+            "key": "SOCIAL_USER_REQUEST_JOIN_GROUP",
+            "value": "SOCIAL_USER_REQUEST_JOIN_GROUP"
+          },
+          {
+            "key": "SOCIAL_TWEET_LIKED",
+            "value": "SOCIAL_TWEET_LIKED"
+          },
+          {
+            "key": "SOCIAL_TWEET_COMMENTED",
+            "value": "SOCIAL_TWEET_COMMENTED"
+          },
+          {
+            "key": "SOCIAL_TWEET_COMMENT_LIKED",
+            "value": "SOCIAL_TWEET_COMMENT_LIKED"
+          },
+          {
+            "key": "SOCIAL_TWEET_COMMENT_REPLIED",
+            "value": "SOCIAL_TWEET_COMMENT_REPLIED"
+          },
+          {
+            "key": "SOCIAL_USER_TWEET_APPROVED",
+            "value": "SOCIAL_USER_TWEET_APPROVED"
+          },
+          {
+            "key": "SOCIAL_TWEET_WAITING_ACTIVE",
+            "value": "SOCIAL_TWEET_WAITING_ACTIVE"
+          },
+          {
+            "key": "SOCIAL_REQUEST_JOIN_GROUP_APPROVED",
+            "value": "SOCIAL_REQUEST_JOIN_GROUP_APPROVED"
+          },
+          {
+            "key": "SOCIAL_NEW_TWEET_ACTIVE",
+            "value": "SOCIAL_NEW_TWEET_ACTIVE"
+          },
+          {
+            "key": "SOCIAL_NOTI_USER_FOLLOWED",
+            "value": "SOCIAL_NOTI_USER_FOLLOWED"
+          },
+          {
+            "key": "SOCIAL_GROUP_TRANSFER_OWNER",
+            "value": "SOCIAL_GROUP_TRANSFER_OWNER"
+          },
+          {
+            "key": "SOCIAL_GROUP_INVITED_MANAGER",
+            "value": "SOCIAL_GROUP_INVITED_MANAGER"
+          },
+          {
+            "key": "SOCIAL_GROUP_ADDED_MEMBER",
+            "value": "SOCIAL_GROUP_ADDED_MEMBER"
+          },
+          {
+            "key": "COURSE_USER_REQUEST_JOIN_COURSE",
+            "value": "COURSE_USER_REQUEST_JOIN_COURSE"
+          },
+          {
+            "key": "COURSE_COMMENTED",
+            "value": "COURSE_COMMENTED"
+          },
+          {
+            "key": "COURSE_ADDED_MEMBER",
+            "value": "COURSE_ADDED_MEMBER"
+          },
+          {
+            "key": "COURSE_REQUEST_JOIN_SUCCESS",
+            "value": "COURSE_REQUEST_JOIN_SUCCESS"
+          },
+          {
+            "key": "COURSE_LEARN_FINISHED",
+            "value": "COURSE_LEARN_FINISHED"
+          },
+          {
+            "key": "COURSE_USER_COMMENTED",
+            "value": "COURSE_USER_COMMENTED"
+          },
+          {
+            "key": "COURSE_USER_LIKED_DISCUSSION",
+            "value": "COURSE_USER_LIKED_DISCUSSION"
+          },
+          {
+            "key": "COURSE_USER_RATING",
+            "value": "COURSE_USER_RATING"
+          },
+          {
+            "key": "COURSE_RATING_REPLY",
+            "value": "COURSE_RATING_REPLY"
+          }
+        ]
+      }
+    },
+    "required": [
+      "title",
+      "title_input",
+      "advance",
+      "type"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "title_input": {
+      "ui:widget": "shortAnswer"
+    },
+    "advance": {
+      "ui:widget": "function"
+    },
+    "type": {
+      "ui:widget": "select"
+    },
+    "ui:order": [
+      "title",
+      "title_input",
+      "advance",
+      "type"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-02-03T02:57:00.209Z",
+  "__v": 0
+}

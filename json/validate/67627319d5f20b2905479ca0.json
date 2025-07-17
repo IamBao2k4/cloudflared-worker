@@ -1,0 +1,21 @@
+{
+  "_id": "67627319d5f20b2905479ca0",
+  "title": "is tweet-approve-mode-false",
+  "note": "",
+  "entity": [
+    "6747ef07c47463d88f8c5ab1"
+  ],
+  "data": {
+    "id": "a16d750e-eccf-4b9d-b583-07ac3ae921a3",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "advance": "[\n    {\n        \"$addFields\": {\n            \"idAsString\": { \"$toString\": \"$_id\" }\n        }\n    }, \n  {\n        \"$match\": {\n            \"idAsString\": \"@param:group_id\" }\n        \n    },\n    {\n        \"$match\": {\n            \"permissions.tweet_approve_mode\": false\n        }\n    },\n    {\n        \"$project\": {\n            \"_id\": 1,\n            \"name\": 1,\n            \"slug\": 1,\n            \"description\": 1,\n            \"permissions\": {\n                \"tweet_approve_mode\": 1\n            }\n        }\n    }\n]",
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": []
+}

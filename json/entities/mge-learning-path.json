@@ -1,0 +1,158 @@
+{
+  "_id": "68062af5beb73c2d42c97dc5",
+  "title": "mge learning path",
+  "mongodb_collection_name": "mge-learning-path",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "slug": {
+        "title": "slug",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "depend_field": "root_title",
+        "filter": true
+      },
+      "featured_image": {
+        "title": "featured_image",
+        "type": "string",
+        "widget": "file"
+      },
+      "department": {
+        "title": "department",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-department",
+          "_id": "mge-department",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "825d11c9-7254-4e3f-ab54-55587442c1b7"
+          }
+        }
+      },
+      "team": {
+        "title": "team",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-team",
+          "_id": "mge-team",
+          "type": "n-1"
+        }
+      },
+      "job_position": {
+        "title": "job_position",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-job-position",
+          "_id": "mge-job-position",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "1f111fb7-9736-4cad-b4e1-a6a81182c399"
+          }
+        }
+      },
+      "course": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "course": {
+              "title": "course",
+              "type": "string",
+              "widget": "relation",
+              "typeRelation": {
+                "title": "mge-courses",
+                "_id": "mge-courses",
+                "type": "n-1"
+              }
+            },
+            "position": {
+              "title": "position",
+              "type": "string",
+              "widget": "numberInput"
+            }
+          },
+          "required": [
+            "course"
+          ]
+        },
+        "title": "course",
+        "type": "array"
+      }
+    },
+    "required": [
+      "title",
+      "slug"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "featured_image": {
+      "ui:widget": "file"
+    },
+    "department": {
+      "ui:widget": "relation"
+    },
+    "team": {
+      "ui:widget": "relation"
+    },
+    "job_position": {
+      "ui:widget": "relation"
+    },
+    "course": {
+      "items": {
+        "course": {
+          "ui:widget": "relation"
+        },
+        "position": {
+          "ui:widget": "numberInput"
+        },
+        "ui:order": [
+          "course",
+          "position"
+        ]
+      }
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "featured_image",
+      "department",
+      "team",
+      "job_position",
+      "course"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-04-21T11:24:37.477Z",
+  "__v": 0,
+  "id": "68062af5beb73c2d42c97dc5",
+  "unique_keys": ""
+}

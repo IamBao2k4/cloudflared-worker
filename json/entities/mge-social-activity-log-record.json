@@ -1,0 +1,207 @@
+{
+  "_id": "67e8fd95e6cc2bbdc8510f67",
+  "title": "mge social activity log record",
+  "mongodb_collection_name": "mge-social-activity-log-record",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "parent_type": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "Lịch sử tìm kiểm",
+            "value": "search_history"
+          },
+          {
+            "key": "Tương tác bài viết",
+            "value": "tweet_engagement"
+          },
+          {
+            "key": "Tương tác nhóm",
+            "value": "group_engagement"
+          },
+          {
+            "key": "Bạn bè",
+            "value": "friends"
+          }
+        ],
+        "default": [],
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "parent_type",
+        "type": "string"
+      },
+      "type": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "KEYWORD_SEARCHED",
+            "value": "KEYWORD_SEARCHED"
+          },
+          {
+            "key": "TWEET_LIKED",
+            "value": "TWEET_LIKED"
+          },
+          {
+            "key": "TWEET_POSTED",
+            "value": "TWEET_POSTED"
+          },
+          {
+            "key": "TWEET_APPROVED",
+            "value": "TWEET_APPROVED"
+          },
+          {
+            "key": "COMMENT_LIKED",
+            "value": "COMMENT_LIKED"
+          },
+          {
+            "key": "COMMENT_POSTED",
+            "value": "COMMENT_POSTED"
+          },
+          {
+            "key": "COMMENT_REPLIED",
+            "value": "COMMENT_REPLIED"
+          },
+          {
+            "key": "TWEET_REPORTED",
+            "value": "TWEET_REPORTED"
+          },
+          {
+            "key": "TWEET_SAVED",
+            "value": "TWEET_SAVED"
+          },
+          {
+            "key": "MEMBER_JOINED",
+            "value": "MEMBER_JOINED"
+          },
+          {
+            "key": "MEMBER_APPROVED",
+            "value": "MEMBER_APPROVED"
+          },
+          {
+            "key": "MEMBER_LEFT",
+            "value": "MEMBER_LEFT"
+          },
+          {
+            "key": "FOLLOWED",
+            "value": "FOLLOWED"
+          }
+        ],
+        "default": [],
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "type",
+        "type": "string"
+      },
+      "from": {
+        "title": "from",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "b64b2b3c-ecb3-4f74-896b-60f4250c6af1"
+          }
+        },
+        "filter": true
+      },
+      "value_replace": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "title": "title",
+              "type": "string",
+              "widget": "shortAnswer"
+            },
+            "_id": {
+              "title": "_id",
+              "type": "string",
+              "widget": "shortAnswer"
+            },
+            "value": {
+              "title": "value",
+              "type": "string",
+              "widget": "shortAnswer"
+            }
+          },
+          "required": []
+        },
+        "title": "value_replace",
+        "type": "array"
+      }
+    },
+    "required": [
+      "title",
+      "parent_type",
+      "type",
+      "from",
+      "value_replace"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "parent_type": {
+      "ui:widget": "select"
+    },
+    "type": {
+      "ui:widget": "select"
+    },
+    "from": {
+      "ui:widget": "relation"
+    },
+    "value_replace": {
+      "items": {
+        "title": {
+          "ui:widget": "shortAnswer"
+        },
+        "_id": {
+          "ui:widget": "shortAnswer"
+        },
+        "value": {
+          "ui:widget": "shortAnswer"
+        },
+        "ui:order": [
+          "title",
+          "_id",
+          "value"
+        ]
+      }
+    },
+    "ui:order": [
+      "title",
+      "parent_type",
+      "type",
+      "from",
+      "value_replace"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-03-30T08:15:17.888Z",
+  "__v": 0
+}

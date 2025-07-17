@@ -1,0 +1,9 @@
+[
+  {
+    "name": "frames",
+    "targetTable": "figma-frame",
+    "localField": "frames",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  }
+]

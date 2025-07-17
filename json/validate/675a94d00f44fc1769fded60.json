@@ -1,0 +1,30 @@
+{
+  "_id": "675a94d00f44fc1769fded60",
+  "title": "is-user-has-permission-update-group-categories",
+  "logged": true,
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "data": {
+    "id": "8124f774-43dd-4b46-ace5-ae219d9d1ce4",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "advance": "[\n  {\n    \"$addFields\": {\n      \"social_group_object_id\": {\n        \"$map\": {\n          \"input\": \"$social_group\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"user\": \"@jwt:user.id\",\n      \"social_group\": \"@param:group_id\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group\",\n      \"localField\": \"social_group_object_id\",\n      \"foreignField\": \"_id\",\n      \"as\": \"group_info\"\n    }\n  },\n    {\n    \"$addFields\": {\n      \"group_info\": { \"$arrayElemAt\": [\"$group_info\", 0] }\n    }\n  },\n{\n  \"$addFields\": {\n    \"can_update_group_category\": {\n      \"$cond\": {\n        \"if\": {\n          \"$gt\": [\n            { \"$size\": { \"$setIntersection\": [\"$role\", \"$group_info.permissions.group_category_update\"] } },\n            0\n          ]\n        },\n        \"then\": true,\n        \"else\": false\n      }\n    }\n  }\n},\n  { \"$match\": { \"can_update_group_category\": true } }\n]",
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    }
+  ],
+  "headers": [],
+  "body": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "note": ""
+}

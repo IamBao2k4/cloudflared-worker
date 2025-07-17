@@ -1,0 +1,18 @@
+{
+  "_id": "67a5aebab45a45be2aa97034",
+  "title": "delete course rating",
+  "note": "",
+  "cache_time": "",
+  "method": "delete",
+  "outputEntity": [
+    "6780ca7ca78c4e63fee5ab77"
+  ],
+  "data": {
+    "id": "79a4b69e-88d5-47e8-a978-7b095c5c455c",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

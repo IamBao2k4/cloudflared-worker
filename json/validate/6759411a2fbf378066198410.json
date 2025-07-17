@@ -1,0 +1,78 @@
+{
+  "_id": "6759411a2fbf378066198410",
+  "title": "is-group-manager or group-owner",
+  "logged": true,
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "data": {
+    "id": "80259b2f-0999-4576-baff-a9bc2dd53d02",
+    "rules": [
+      {
+        "id": "02f939da-0359-4fb2-ab4e-de148b695070",
+        "field": "mge-group-member.user",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-group-member.user:jwt.user@id"
+      },
+      {
+        "id": "2f08f7bf-2a90-4988-9ed4-a5edb85f2ebf",
+        "rules": [
+          {
+            "id": "1ad428fc-34fd-4e56-9c71-4df617965ab1",
+            "field": "mge-group-member.social_group",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-group-member.social_group:param.group_id"
+          },
+          {
+            "id": "f4668a4f-ea47-4382-b779-cb6920f7a2ce",
+            "field": "mge-group-member.social_group",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-group-member.social_group:param._id"
+          }
+        ],
+        "combinator": "or",
+        "not": false
+      },
+      {
+        "id": "20ba6476-372a-4f99-93ea-6e93eea34228",
+        "rules": [
+          {
+            "id": "c71ad7c7-b4af-483a-8c0f-1cbe93626b21",
+            "field": "mge-group-member.role",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "owner"
+          },
+          {
+            "id": "28b7f214-f904-426c-8466-20e0b7a4541f",
+            "field": "mge-group-member.role",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "manager"
+          }
+        ],
+        "combinator": "or",
+        "not": false
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"mge-group-member.user\":\"$mge-group-member.user:jwt.user@id\"},{\"$or\":[{\"mge-group-member.social_group\":\"$mge-group-member.social_group:param.group_id\"},{\"mge-group-member.social_group\":\"$mge-group-member.social_group:param._id\"}]},{\"$or\":[{\"mge-group-member.role\":\"owner\"},{\"mge-group-member.role\":\"manager\"}]}]}",
+  "params": [],
+  "headers": [],
+  "body": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "note": "",
+  "documents": [],
+  "advance": "",
+  "pre": null,
+  "categories": null,
+  "error_code": null
+}

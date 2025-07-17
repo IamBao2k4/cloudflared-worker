@@ -1,0 +1,18 @@
+{
+  "_id": "67d276ceb6962f9420f4114a",
+  "title": "is-group-in-tenant",
+  "note": "",
+  "entity": [
+    "6747ef07c47463d88f8c5ab1"
+  ],
+  "advance": "[\r\n  {\r\n    \"$addFields\": {\r\n      \"id\": {\r\n        \"$toString\": \"$_id\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$match\":{\r\n      \"id\":\"@param:group_id\",\r\n      \"tenant_id\":\"@header:x-tenant-id\"\r\n    }\r\n  }\r\n]",
+  "data": {
+    "id": "9bb30300-aab9-43ae-8d56-f1608670268e",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "required": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

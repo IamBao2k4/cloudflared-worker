@@ -1,0 +1,35 @@
+{
+  "_id": "675ba2b39279b9d81247c724",
+  "title": "is-group-active",
+  "note": "Check group có active không",
+  "entity": [
+    "6747ef07c47463d88f8c5ab1"
+  ],
+  "data": {
+    "id": "46cb22c2-1185-4086-9403-694bd25a9e60",
+    "rules": [
+      {
+        "id": "ff62d456-bd75-4283-b0bc-0d85e1238799",
+        "field": "mge-group._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-group._id:param.group_id"
+      },
+      {
+        "id": "3f2c879b-3501-41c3-9ce3-e239260b6c24",
+        "field": "mge-group.status",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "active"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"mge-group._id\":\"$mge-group._id:param.group_id\"},{\"mge-group.status\":\"active\"}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": []
+}

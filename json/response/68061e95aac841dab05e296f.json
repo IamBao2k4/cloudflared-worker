@@ -1,0 +1,35 @@
+{
+  "_id": "68061e95aac841dab05e296f",
+  "title": "GET danh sách coupon",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "6801cba8887875ca1b8c4a3d"
+  ],
+  "categories": [],
+  "queryAdvance": "[\n\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "restricted": [
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "6801bf1b887875ca1b8c3ee4"
+}

@@ -1,0 +1,36 @@
+{
+  "_id": "68061f47aac841dab05e29a6",
+  "title": "CREATE coupon",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "6801cba8887875ca1b8c4a3d"
+  ],
+  "categories": [],
+  "queryAdvance": "{\n  \"price_rule\": 1,\n  \"code\": 1,\n  \"status\": 1\n}",
+  "restricted": [
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "6801bf1b887875ca1b8c3ee4",
+  "documents": []
+}

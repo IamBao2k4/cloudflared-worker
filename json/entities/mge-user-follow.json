@@ -1,0 +1,73 @@
+{
+  "_id": "67611eb5deb9ba00adac5876",
+  "title": "mge user follow",
+  "mongodb_collection_name": "mge-user-follow",
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2024-12-17T06:48:21.216Z",
+  "__v": 0,
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "from": {
+        "title": "from",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "8f54b6c0-1ef3-4b6e-9855-1b01f661dec9"
+          }
+        },
+        "filter": true
+      },
+      "to": {
+        "title": "to",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "8f54b6c0-1ef3-4b6e-9855-1b01f661dec9"
+          }
+        },
+        "filter": true
+      }
+    },
+    "required": [
+      "from",
+      "to"
+    ]
+  },
+  "ui_schema": {
+    "from": {
+      "ui:widget": "relation"
+    },
+    "to": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "from",
+      "to"
+    ]
+  },
+  "unique_keys": "[\r\n  {\r\n    \"from\": 1,\r\n    \"to\": 1\r\n  }\r\n]",
+  "use_parent_delete_childs": false
+}

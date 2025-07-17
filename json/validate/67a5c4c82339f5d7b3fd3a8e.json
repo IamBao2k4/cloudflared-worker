@@ -1,0 +1,32 @@
+{
+  "_id": "67a5c4c82339f5d7b3fd3a8e",
+  "title": "user-has-status-reject-in-group",
+  "note": "",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "data": {
+    "id": "7d1f1c0b-3c78-4661-b8b7-61b59aee281d",
+    "rules": [
+      {
+        "id": "c77c40f9-4ab0-47f7-8c2c-cd2c526980fb",
+        "field": "mge-group-member._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-group-member._id:param._id"
+      },
+      {
+        "id": "f55331fb-7795-4641-9840-2af971fb8adc",
+        "field": "mge-group-member.status",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "reject"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"mge-group-member._id\":\"$mge-group-member._id:param._id\"},{\"mge-group-member.status\":\"reject\"}]}",
+  "required": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

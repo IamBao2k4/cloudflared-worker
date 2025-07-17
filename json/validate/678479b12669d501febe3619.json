@@ -1,0 +1,12 @@
+{
+  "_id": "678479b12669d501febe3619",
+  "title": "is-user-be-owner-or-manager-through-comment",
+  "note": "",
+  "entity": [
+    "6764e4046e57acaf6815ab9f"
+  ],
+  "advance": "[\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"_id\":\"@param:_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"document_id\": {\n        \"$toObjectId\": \"$document_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-tweet-comment\",\n      \"localField\": \"document_id\",\n      \"foreignField\": \"_id\",\n      \"as\": \"comment_info\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group-member\",\n      \"localField\": \"comment_info.social_group\",\n      \"foreignField\": \"social_group\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"user\": \"@jwt:user.id\",\n            \"$or\": [\n              { \"role\": \"owner\" },\n              { \"role\": \"manager\" }\n            ]\n          }\n        }\n      ],\n      \"as\": \"memberStatus\"\n    }\n  },\n  {\n    \"$match\": {\n      \"memberStatus\": { \"$ne\": [] }\n    }\n  }\n]",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

@@ -1,0 +1,19 @@
+{
+  "_id": "675fe9a75a1356463269cdcc",
+  "title": "Create group",
+  "outputEntity": [
+    "6747ef07c47463d88f8c5ab1"
+  ],
+  "queryAdvance": "{\n  \"cover\":0,\n  \"title\":1,\n  \"slug\":1,\n  \"desctiption\":0,\n  \"type\":1,\n  \"status\":1\n}",
+  "note": "Thêm restricted field",
+  "method": "post",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "body": null,
+  "headers": null,
+  "params": null,
+  "categories": [],
+  "cache_time": ""
+}

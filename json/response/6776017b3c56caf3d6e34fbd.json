@@ -1,0 +1,46 @@
+{
+  "_id": "6776017b3c56caf3d6e34fbd",
+  "title": "unfollow user",
+  "outputEntity": [
+    "67611eb5deb9ba00adac5876"
+  ],
+  "note": "",
+  "method": "delete",
+  "documents": [
+    {
+      "_id": "677601273c56caf3d6e34f96",
+      "title": "Unfollow user",
+      "long_description": "<div dir=\"ltr\" align=\"left\">\n<table style=\"width: 37.6902%;\"><colgroup><col style=\"width: 22.3339%;\" width=\"134\"><col style=\"width: 77.6687%;\" width=\"466\"></colgroup>\n<tbody>\n<tr>\n<td>\n<p dir=\"ltr\">API URL</p>\n</td>\n<td>\n<p dir=\"ltr\">/user/:id/unfollow</p>\n</td>\n</tr>\n<tr>\n<td>\n<p dir=\"ltr\">Method</p>\n</td>\n<td>\n<p dir=\"ltr\">DELETE</p>\n</td>\n</tr>\n<tr>\n<td>\n<p dir=\"ltr\">Parameter</p>\n</td>\n<td>\n<p dir=\"ltr\">userID (*) người theo d&otilde;i, userID người muốn hủy theo d&otilde;i (*)</p>\n</td>\n</tr>\n<tr>\n<td>\n<p dir=\"ltr\">Validation 1</p>\n</td>\n<td>\n<p dir=\"ltr\">X&aacute;c thực user đ&atilde; login chưa?</p>\n</td>\n</tr>\n<tr>\n<td>\n<p dir=\"ltr\">Validation 2</p>\n</td>\n<td>\n<p dir=\"ltr\">X&aacute;c thực user vẫn đang active?</p>\n</td>\n</tr>\n<tr>\n<td>\n<p dir=\"ltr\">Response</p>\n</td>\n<td>\n<p dir=\"ltr\">Bảng truy xuất: user_follow</p>\n<ul>\n<li dir=\"ltr\" aria-level=\"1\">\n<p dir=\"ltr\" role=\"presentation\">X&oacute;a 1 document với field to = userID người muốn hủy theo d&otilde;i, field from = userID người theo d&otilde;i</p>\n</li>\n</ul>\n</td>\n</tr>\n</tbody>\n</table>\n</div>\n<p>&nbsp;</p>",
+      "locale": null,
+      "locale_id": null,
+      "created_at": "2025-01-02T09:59:51.000Z",
+      "created_by": [
+        {
+          "_id": "6711e8a47b45b2974bd6133c",
+          "username": "admin2024@gmail.com",
+          "featured_image": [
+            "676d115c4ec833ce93a08367"
+          ],
+          "first_name": "Admin",
+          "last_name": "Super"
+        }
+      ],
+      "updated_at": "2025-01-02T09:59:51.000Z",
+      "updated_by": [
+        {
+          "_id": "6711e8a47b45b2974bd6133c",
+          "username": "admin2024@gmail.com",
+          "featured_image": [
+            "676d115c4ec833ce93a08367"
+          ],
+          "first_name": "Admin",
+          "last_name": "Super"
+        }
+      ],
+      "tenant_id": "674028d2611a654e763a73e8"
+    }
+  ],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

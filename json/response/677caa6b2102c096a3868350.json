@@ -1,0 +1,13 @@
+{
+  "_id": "677caa6b2102c096a3868350",
+  "title": "update social tag",
+  "outputEntity": [
+    "67590fed9b0285b4f6be778d"
+  ],
+  "queryAdvance": "{\n  \"name\":0,\n  \"slug\":0\n}",
+  "note": "",
+  "method": "put",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

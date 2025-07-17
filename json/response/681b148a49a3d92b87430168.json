@@ -1,0 +1,57 @@
+{
+  "_id": "681b148a49a3d92b87430168",
+  "title": "get detail course tenant statistic",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "6740251baefaffc3e4662e6b"
+  ],
+  "categories": [],
+  "queryAdvance": "[\r\n    {\r\n    \"$addFields\": {\r\n      \"tenant_id\": {\r\n        \"$toString\": \"$_id\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$match\":{\r\n      \"tenant_id\":\"@header:x-tenant-id\"\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-courses\",\r\n      \"localField\": \"tenant_id\",\r\n      \"foreignField\": \"tenant_id\",\r\n      \"as\": \"total_course\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"total_course\": {\r\n        \"$size\": \"$total_course\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-courses\",\r\n      \"localField\": \"tenant_id\",\r\n      \"foreignField\": \"tenant_id\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$match\": {\r\n            \"status\": \"active\"\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"total_course_active\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"total_course_active\": {\r\n        \"$size\": \"$total_course_active\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-courses\",\r\n      \"localField\": \"tenant_id\",\r\n      \"foreignField\": \"tenant_id\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$match\": {\r\n            \"status\": \"inactive\"\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"total_course_inactive\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"total_course_inactive\": {\r\n        \"$size\": \"$total_course_inactive\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"user-tenant-profile\",\r\n      \"localField\": \"tenant_id\",\r\n      \"foreignField\": \"tenant_id\",\r\n      \"as\": \"total_tenant_user\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"total_tenant_user\": {\r\n        \"$size\": \"$total_tenant_user\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-user-learning-path\",\r\n      \"localField\": \"tenant_id\",\r\n      \"foreignField\": \"tenant_id\",\r\n      \"as\": \"total_learning_path\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"total_learning_path\": {\r\n        \"$size\": \"$total_learning_path\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"user-tenant-profile\",\r\n      \"localField\": \"tenant_id\",\r\n      \"foreignField\": \"tenant_id\",\r\n      \"pipeline\":[\r\n        {\r\n          \"$match\":{\r\n            \"is_active\":true\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"user_metrics\"\r\n    }\r\n  },\r\n  {\r\n    \"$project\": {\r\n      \"_id\": 1,\r\n      \"total_course\": 1,\r\n      \"total_course_active\": 1,\r\n      \"total_course_inactive\": 1,\r\n      \"total_tenant_user\": 1,\r\n      \"total_learning_path\": 1,\r\n      \"user_metrics.user\":1\r\n    }\r\n  }\r\n]",
+  "restricted": [
+    {
+      "key": "total_course",
+      "value": "total_course"
+    },
+    {
+      "key": "total_course_active",
+      "value": "total_course_active"
+    },
+    {
+      "key": "total_course_inactive",
+      "value": "total_course_inactive"
+    },
+    {
+      "key": "total_tenant_user",
+      "value": "total_tenant_user"
+    },
+    {
+      "key": "total_learning_path",
+      "value": "total_learning_path"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "id": "681b148a49a3d92b87430168",
+  "documents": []
+}

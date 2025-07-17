@@ -1,0 +1,16 @@
+[
+  {
+    "name": "discussion",
+    "targetTable": "mge-discussions",
+    "localField": "discussion",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "parent_id",
+    "targetTable": "mge-discussion-comment",
+    "localField": "parent_id",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

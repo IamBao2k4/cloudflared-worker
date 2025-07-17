@@ -1,0 +1,170 @@
+{
+  "_id": "681880e1753574930d610b3b",
+  "title": "mge course coupon",
+  "mongodb_collection_name": "mge-course-coupon",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "description": {
+        "title": "description",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "discount_code": {
+        "title": "discount_code",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "discount_type": {
+        "title": "discount_type",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "Phần trăm",
+            "value": "percentage"
+          },
+          {
+            "key": "Số tiền cố định",
+            "value": "fixed"
+          }
+        ]
+      },
+      "discount_value": {
+        "title": "discount_value",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "minimum_spend": {
+        "title": "minimum_spend",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "maximum_discount": {
+        "title": "maximum_discount",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "usage_limit": {
+        "title": "usage_limit",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "usage_count": {
+        "title": "usage_count",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "start_date": {
+        "title": "start_date",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": false,
+        "field": "single",
+        "mode": "dateTime"
+      },
+      "end_date": {
+        "title": "end_date",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": false,
+        "field": "single",
+        "mode": "dateTime"
+      },
+      "status": {
+        "title": "status",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "active",
+            "value": "active"
+          },
+          {
+            "key": "inactive",
+            "value": "inactive"
+          }
+        ],
+        "default": "active"
+      }
+    },
+    "required": [
+      "title"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "description": {
+      "ui:widget": "shortAnswer"
+    },
+    "discount_code": {
+      "ui:widget": "shortAnswer"
+    },
+    "discount_type": {
+      "ui:widget": "select"
+    },
+    "discount_value": {
+      "ui:widget": "numberInput"
+    },
+    "minimum_spend": {
+      "ui:widget": "numberInput"
+    },
+    "maximum_discount": {
+      "ui:widget": "numberInput"
+    },
+    "usage_limit": {
+      "ui:widget": "numberInput"
+    },
+    "usage_count": {
+      "ui:widget": "numberInput"
+    },
+    "start_date": {
+      "ui:widget": "dateTime"
+    },
+    "end_date": {
+      "ui:widget": "dateTime"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "ui:order": [
+      "title",
+      "description",
+      "discount_code",
+      "discount_type",
+      "discount_value",
+      "minimum_spend",
+      "maximum_discount",
+      "usage_limit",
+      "usage_count",
+      "start_date",
+      "end_date",
+      "status"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-05-05T09:12:01.028Z",
+  "__v": 0
+}

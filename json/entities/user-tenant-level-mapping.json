@@ -1,0 +1,71 @@
+{
+  "_id": "6757b1998659c9e98a2f1e2b",
+  "title": "user tenant level mapping",
+  "mongodb_collection_name": "user-tenant-level-mapping",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "user": {
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "user-tenant-profile",
+          "_id": "user-tenant-profile",
+          "type": "n-1"
+        },
+        "filter": true,
+        "title": "user"
+      },
+      "tenant_level": {
+        "title": "Tenant Level",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "user-tenant-level",
+          "_id": "user-tenant-level",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "01711221-6eea-477e-ba58-d41064731d07"
+          }
+        },
+        "filter": true
+      }
+    },
+    "required": [
+      "user",
+      "tenant_level"
+    ]
+  },
+  "ui_schema": {
+    "user": {
+      "ui:widget": "relation"
+    },
+    "tenant_level": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "user",
+      "tenant_level"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "entity_group": null,
+  "created_at": "2024-12-10T03:12:25.819Z",
+  "__v": 0,
+  "settings": {
+    "title": "user"
+  },
+  "unique_keys": "[\n  {\n    \"user\": 1,\n    \"tenant_id\": 1\n  }\n]",
+  "use_seo_path": false,
+  "use_parent_delete_childs": false
+}

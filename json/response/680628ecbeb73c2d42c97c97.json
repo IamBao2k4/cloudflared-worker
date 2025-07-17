@@ -1,0 +1,35 @@
+{
+  "_id": "680628ecbeb73c2d42c97c97",
+  "title": "CREATE order",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "6805b058f4d18535c7e63656"
+  ],
+  "categories": [],
+  "queryAdvance": "{\n  \"order_number\": 1,\n  \"customer\": 1,\n  \"payment_status\": 1,\n  \"currency\": 1,\n  \"subtotal\": 1,\n  \"tax_amount\": 1,\n  \"shipping_amount\": 1,\n  \"discount_amount\": 1,\n  \"total_price\": 1,\n  \"order_status\": 1,\n  \"shipping_address\": {\n    \"full_name\": 1,\n    \"phone\": 1,\n    \"email\": 1,\n    \"address\": 1,\n    \"city\": 1,\n    \"state\": 1,\n    \"country\": 1\n  },\n  \"fulfillments\": [\n    {\n      \"fulfillment_id\": 1,\n      \"tracking_number\": 1,\n      \"carrier\": 1,\n      \"status\": 1,\n      \"shipped_at\": 1,\n      \"delivered_at\": 1,\n      \"shipper_info\": {\n        \"full_name\": 1,\n        \"phone\": 1,\n        \"staff_code\": 1\n      }\n    }\n  ],\n  \"applied_discounts\": [\n    {\n      \"discount_code\": 1,\n      \"code_value\": 1,\n      \"price_rule\": 1,\n      \"discount_type\": 1,\n      \"value\": 1,\n      \"amount\": 1,\n      \"applied_at\": 1\n    }\n  ]\n}",
+  "restricted": [
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "6801bf1b887875ca1b8c3ee4"
+}

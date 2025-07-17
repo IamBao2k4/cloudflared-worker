@@ -1,0 +1,26 @@
+{
+  "_id": "6788871dafaa57dce5b65321",
+  "title": "create topic",
+  "note": "",
+  "method": "post",
+  "queryAdvance": "{\n  \"title\": 1,\n  \"course\": \"@param:course_id\",\n  \"content\":0\n}",
+  "outputEntity": [
+    "6752bd9c65017d942f75955a"
+  ],
+  "data": {
+    "id": "4f5915fd-c421-4134-afd6-ce38b9810a4c",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "cache_time": "",
+  "documents": [],
+  "params": [
+    {
+      "value": "course_id",
+      "key": "course_id"
+    }
+  ]
+}

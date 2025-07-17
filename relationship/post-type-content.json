@@ -1,0 +1,9 @@
+[
+  {
+    "name": "post_type",
+    "targetTable": "post-type",
+    "localField": "post_type",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  }
+]

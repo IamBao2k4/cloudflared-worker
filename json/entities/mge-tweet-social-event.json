@@ -1,0 +1,294 @@
+{
+  "_id": "681ad170fa59b263ad3e2fa4",
+  "title": "mge tweet social event",
+  "mongodb_collection_name": "mge-tweet-social-event",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "slug": {
+        "widget": "UriKeyGen",
+        "title": "slug",
+        "type": "string",
+        "depend_field": "root_title"
+      },
+      "short_description": {
+        "title": "short_description",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "featured_image": {
+        "title": "featured_image",
+        "type": "string",
+        "widget": "file"
+      },
+      "social_group": {
+        "title": "social_group",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group",
+          "_id": "mge-group",
+          "type": "n-1"
+        }
+      },
+      "categories": {
+        "title": "categories",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group-category",
+          "_id": "mge-group-category",
+          "type": "n-1"
+        }
+      },
+      "tag": {
+        "title": "tag",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-social-tag",
+          "_id": "mge-social-tag",
+          "type": "n-1"
+        }
+      },
+      "approved_by": {
+        "title": "approved_by",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "n-1"
+        }
+      },
+      "approved_at": {
+        "title": "approved_at",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": false,
+        "field": "single",
+        "mode": "dateTime"
+      },
+      "comment_off": {
+        "title": "comment_off",
+        "type": "string",
+        "default": false,
+        "widget": "boolean"
+      },
+      "like_off": {
+        "title": "like_off",
+        "type": "string",
+        "default": false,
+        "widget": "boolean"
+      },
+      "status": {
+        "title": "status",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "ACTIVE",
+            "value": "active"
+          },
+          {
+            "key": "DELETED",
+            "value": "deleted"
+          },
+          {
+            "key": "APPROVE",
+            "value": "approve"
+          },
+          {
+            "key": "HIDDEN",
+            "value": "hidden"
+          },
+          {
+            "key": "DRAFT",
+            "value": "draft"
+          },
+          {
+            "key": "ARCHIVE",
+            "value": "archive"
+          },
+          {
+            "key": "WAITING",
+            "value": "waiting"
+          },
+          {
+            "key": "REJECT",
+            "value": "reject"
+          },
+          {
+            "key": "SEND TO REVIEW",
+            "value": "send_to_review"
+          }
+        ]
+      },
+      "tweet_waiting_time": {
+        "title": "tweet_waiting_time",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": false,
+        "field": "single",
+        "mode": "dateTime"
+      },
+      "event_start_time": {
+        "title": "event_start_time",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": false,
+        "field": "single",
+        "mode": "dateTime"
+      },
+      "event_end_time": {
+        "title": "event_end_time",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": false,
+        "field": "single",
+        "mode": "dateTime"
+      },
+      "event_type": {
+        "title": "event_type",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "online",
+            "value": "online"
+          },
+          {
+            "key": "offline",
+            "value": "offline"
+          }
+        ]
+      },
+      "event_location": {
+        "title": "event_location",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "event_link": {
+        "title": "event_link",
+        "type": "string",
+        "widget": "shortAnswer"
+      }
+    },
+    "required": [
+      "title",
+      "slug"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "short_description": {
+      "ui:widget": "shortAnswer"
+    },
+    "featured_image": {
+      "ui:widget": "file"
+    },
+    "social_group": {
+      "ui:widget": "relation"
+    },
+    "categories": {
+      "ui:widget": "relation"
+    },
+    "tag": {
+      "ui:widget": "relation"
+    },
+    "approved_by": {
+      "ui:widget": "relation"
+    },
+    "approved_at": {
+      "ui:widget": "dateTime"
+    },
+    "comment_off": {
+      "ui:widget": "boolean"
+    },
+    "like_off": {
+      "ui:widget": "boolean"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "tweet_waiting_time": {
+      "ui:widget": "dateTime"
+    },
+    "event_start_time": {
+      "ui:widget": "dateTime"
+    },
+    "event_end_time": {
+      "ui:widget": "dateTime"
+    },
+    "event_type": {
+      "ui:widget": "select"
+    },
+    "event_location": {
+      "ui:widget": "shortAnswer"
+    },
+    "event_link": {
+      "ui:widget": "shortAnswer"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "short_description",
+      "featured_image",
+      "social_group",
+      "categories",
+      "tag",
+      "approved_by",
+      "approved_at",
+      "comment_off",
+      "like_off",
+      "status",
+      "tweet_waiting_time",
+      "event_start_time",
+      "event_end_time",
+      "event_type",
+      "event_location",
+      "event_link"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": [
+    "674e8bdf2f536fda4192c8e1"
+  ],
+  "entity_setting": {
+    "merge_collection": "mge-tweet",
+    "type": "event"
+  },
+  "created_at": "2025-05-07T03:20:16.100Z",
+  "__v": 0,
+  "type": "event",
+  "id": "681ad170fa59b263ad3e2fa4"
+}

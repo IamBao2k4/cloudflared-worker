@@ -1,0 +1,213 @@
+{
+  "shipping-methods": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6807684efa0fd1ce85988eba",
+          "title": "GET danh sách shipping",
+          "entity": "ecommerce-shipping",
+          "path_file": "json/response/6807684efa0fd1ce85988eba.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "13c9b77a-e2f2-4600-a9bb-afec8b2fc21e",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6801d00a887875ca1b8c4c90"
+            }
+          ],
+          "id": "73d63dec-4a99-4e00-a0c2-5e9af2d3946d"
+        },
+        "list_validate": [
+          {
+            "_id": "6801d00a887875ca1b8c4c90",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6801d00a887875ca1b8c4c90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-detail": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "68076890fa0fd1ce85988ee1",
+          "title": "GET chi tiết",
+          "entity": "ecommerce-shipping",
+          "path_file": "json/response/68076890fa0fd1ce85988ee1.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "000bb16c-d18a-42a4-85f8-2191bd315520",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "43c8fd4f-3a52-4c2d-ad5f-6d241e5c46db"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "680768e3fa0fd1ce85988ee6",
+          "title": "CREATE shipping",
+          "entity": "ecommerce-shipping",
+          "path_file": "json/response/680768e3fa0fd1ce85988ee6.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "ce0da372-5541-4c06-9522-7fcecfaec475",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "47977ced-6349-4c5c-b96f-e98a4bf1a7f6"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6807691dfa0fd1ce85988ef6",
+          "title": "UPDATE shipping",
+          "entity": "ecommerce-shipping",
+          "path_file": "json/response/6807691dfa0fd1ce85988ef6.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "f0a25e63-52f1-45e1-a38c-23abca80d71b",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "37d1b032-ac50-4dae-8df5-fc7e2a36a764"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {},
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "4365d65b-512e-4855-a534-9f6bfceb2c68",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "ee751577-bf68-4b0f-9366-47ae90866662"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

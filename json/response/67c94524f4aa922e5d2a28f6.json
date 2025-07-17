@@ -1,0 +1,12 @@
+{
+  "_id": "67c94524f4aa922e5d2a28f6",
+  "title": "delete category",
+  "note": "",
+  "cache_time": "",
+  "method": "delete",
+  "outputEntity": [
+    "67c6b37acb2d3f0de04c762e"
+  ],
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb"
+}

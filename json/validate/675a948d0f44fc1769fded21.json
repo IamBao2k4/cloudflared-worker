@@ -1,0 +1,30 @@
+{
+  "_id": "675a948d0f44fc1769fded21",
+  "title": "is-user-has-permission-create-group-categories",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "data": {
+    "id": "d63725b6-2a4c-423d-b549-2d732649eeff",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "advance": "[\n  {\n    \"$match\": {\n      \"user\": \"@jwt:user.id\",\n      \"social_group\": \"@params:group_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"social_group\": {\n        \"$map\": {\n          \"input\": \"$social_group\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group\",\n      \"localField\": \"social_group\",\n      \"foreignField\": \"_id\",\n      \"as\": \"group_info\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"group_info\": { \"$arrayElemAt\": [\"$group_info\", 0] }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"can_create_group_category\": {\n        \"$gt\": [\n          { \n            \"$size\": {\n              \"$setIntersection\": [\n                \"$role\", \n                \"$group_info.permissions.group_category_create\"\n              ]\n            }\n          },\n          0\n        ]\n      }\n    }\n  },\n  { \"$match\": { \"can_create_group_category\": true } }\n]",
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    }
+  ],
+  "headers": [],
+  "body": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "logged": true,
+  "documents": [],
+  "note": ""
+}

@@ -1,0 +1,12 @@
+{
+  "_id": "676d1c944ec833ce93a08614",
+  "title": "Delete group's member",
+  "outputEntity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "note": "",
+  "method": "delete",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

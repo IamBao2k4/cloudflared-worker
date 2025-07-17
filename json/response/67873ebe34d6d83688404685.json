@@ -1,0 +1,67 @@
+{
+  "_id": "67873ebe34d6d83688404685",
+  "title": "create exam",
+  "outputEntity": [
+    "6752ad7665017d942f759440"
+  ],
+  "queryAdvance": "{\n  \"title\": 1,\n  \"slug\": 1,\n  \"chapters\": 0,\n  \"course\": \"@param:course_id\",\n  \"exam_type\": \"multiple_choice,essay\",\n  \"essay_content\": 0,\n  \"essay_files\": 0,\n  \"testing_time\": 0,\n  \"test_opening_time\": 0,\n  \"test_closing_time\": 0,\n  \"member_retries_allowed\": 0,\n  \"minium_passing_score\": 0,\n  \"show_answer\": \"true,false\",\n  \"shuffle_question\": \"true,false\",\n  \"shuffle_answer\": \"true,false\",\n  \"return_previous_question\": \"true,false\",\n  \"score_scale\": \"10,100,100%\",\n  \"time_limit_mode\": \"false,true\",\n  \"questions\": [\n    {\n      \"_id\": 0,\n      \"title\": 0,\n      \"question_type\": 0,\n      \"answer\": [\n        {\n          \"id\": 0,\n          \"content\": 0,\n          \"is_correct\": 0,\n          \"position\": 0\n        }\n      ],\n      \"score\": 0\n    }\n  ],\n  \"is_final_exam\": \"false,true\"\n}",
+  "note": "",
+  "method": "post",
+  "categories": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "params": [
+    {
+      "value": "course_id",
+      "key": "course_id"
+    }
+  ],
+  "cache_time": "",
+  "body": [
+    {
+      "value": "category",
+      "key": "category"
+    }
+  ],
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "chapters",
+      "value": "chapters"
+    },
+    {
+      "key": "course",
+      "value": "course"
+    },
+    {
+      "key": "exam_type",
+      "value": "exam_type"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "id": "67873ebe34d6d83688404685"
+}

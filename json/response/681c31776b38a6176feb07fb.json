@@ -1,0 +1,72 @@
+{
+  "_id": "681c31776b38a6176feb07fb",
+  "title": "get list page ai",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "6743fba64633668aab2b41e1"
+  ],
+  "categories": [],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"tenant_id\": \"@header:x-tenant-id\"\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$or\": [\n          {\n            \"$eq\": [\n              \"@param:search\",\n              null\n            ]\n          },\n          {\n            \"$regexMatch\": {\n              \"input\": \"$title\",\n              \"regex\": \"@param:search\",\n              \"options\": \"i\"\n            }\n          },\n          {\n            \"$regexMatch\": {\n              \"input\": \"$slug\",\n              \"regex\": \"@param:search\",\n              \"options\": \"i\"\n            }\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "headers": [
+    {
+      "value": "x-teant-id",
+      "key": "x-teant-id"
+    },
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "title",
+      "key": "title"
+    },
+    {
+      "value": "search_slug",
+      "key": "search_slug"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "slug",
+      "key": "slug"
+    }
+  ]
+}

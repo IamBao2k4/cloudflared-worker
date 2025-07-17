@@ -1,0 +1,46 @@
+{
+  "user-tweet-liked": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6784ada78145c207b78a9279",
+          "title": "get list user's tweet liked",
+          "entity": "mge-group",
+          "path_file": "json/response/6784ada78145c207b78a9279.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "5eb4174d-89ef-41c5-819b-78f790bba47c",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            }
+          ],
+          "id": "0567aa7e-d8b2-409a-b192-db66e1572609"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

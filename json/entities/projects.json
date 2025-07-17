@@ -1,0 +1,71 @@
+{
+  "_id": "683c02d8cb25a1155bd017b1",
+  "title": "Projects",
+  "mongodb_collection_name": "projects",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string",
+        "widget": "shortAnswer",
+        "title": "Title",
+        "filter": true
+      },
+      "env": {
+        "type": "string",
+        "widget": "shortAnswer",
+        "title": "Env",
+        "filter": true
+      },
+      "user": {
+        "type": "string",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "cd05ee07-e000-4b27-91ad-8cf4654978fd"
+          }
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "User",
+        "filter": true
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "env": {
+      "ui:widget": "shortAnswer"
+    },
+    "user": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "title",
+      "env",
+      "user"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-06-01T07:35:52.362Z",
+  "__v": 0,
+  "id": "683c02d8cb25a1155bd017b1"
+}

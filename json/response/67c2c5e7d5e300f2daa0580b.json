@@ -1,0 +1,13 @@
+{
+  "_id": "67c2c5e7d5e300f2daa0580b",
+  "title": "update question",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "6752b83a65017d942f759501"
+  ],
+  "queryAdvance": "{\n  \"title\":0,\n  \"question_type\":\"multiple_choice,check_box,true_false,fill_in_blank\",\n  \"answer\": [{\n    \"id\": \"$id()\",\n    \"content\":0,\n    \"is_correct\":0,\n    \"position\":0\n  }],\n  \"level\":\"easy,medium,difficult\",\n  \"category\":0,\n  \"score\":0\n}",
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

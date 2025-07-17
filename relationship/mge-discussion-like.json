@@ -1,0 +1,9 @@
+[
+  {
+    "name": "discussion",
+    "targetTable": "mge-discussions",
+    "localField": "discussion",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

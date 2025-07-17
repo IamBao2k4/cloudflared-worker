@@ -1,0 +1,16 @@
+[
+  {
+    "name": "members",
+    "targetTable": "user",
+    "localField": "members",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "api",
+    "targetTable": "role-settings",
+    "localField": "api",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

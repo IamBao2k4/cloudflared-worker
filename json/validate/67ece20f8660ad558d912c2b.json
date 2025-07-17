@@ -1,0 +1,10 @@
+{
+  "_id": "67ece20f8660ad558d912c2b",
+  "title": "User có được phép thêm thành viên vào nhóm không?",
+  "note": "",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "advance": "[\r\n  {\r\n    \"$addFields\": {\r\n      \"social_group_object_id\": {\r\n        \"$map\": {\r\n          \"input\": \"$social_group\",\r\n          \"as\": \"sg\",\r\n          \"in\": {\r\n            \"$toObjectId\": \"$$sg\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$match\": {\r\n      \"user\": \"@jwt:user.id\",\r\n      \"social_group\": \"@param:group_id\"\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-group\",\r\n      \"localField\": \"social_group_object_id\",\r\n      \"foreignField\": \"_id\",\r\n      \"as\": \"group_info\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"group_info\": {\r\n        \"$arrayElemAt\": [\r\n          \"$group_info\",\r\n          0\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"can_add_member\": {\r\n        \"$cond\": {\r\n          \"if\": {\r\n            \"$gt\": [\r\n              {\r\n                \"$size\": {\r\n                  \"$setIntersection\": [\r\n                    \"$role\",\r\n                    \"$group_info.permissions.group_member_add\"\r\n                  ]\r\n                }\r\n              },\r\n              0\r\n            ]\r\n          },\r\n          \"then\": true,\r\n          \"else\": false\r\n        }\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$match\": {\r\n      \"can_add_member\": true\r\n    }\r\n  }\r\n]",
+  "tenant_id": "674028d2611a654e763a73e8"
+}

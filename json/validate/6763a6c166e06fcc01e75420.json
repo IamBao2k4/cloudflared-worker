@@ -1,0 +1,35 @@
+{
+  "_id": "6763a6c166e06fcc01e75420",
+  "title": "is-tenant-private",
+  "note": "",
+  "entity": [
+    "6740251baefaffc3e4662e6b"
+  ],
+  "data": {
+    "id": "eaa9e328-fc2a-43d0-bec3-0163df276f82",
+    "rules": [
+      {
+        "id": "b17abf8e-78f7-4df4-a125-d77c6e5f0f2f",
+        "field": "tenant._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$tenant._id:header.x-tenant-id"
+      },
+      {
+        "id": "27dfefa2-5ef8-44ee-b515-26c95eb96376",
+        "field": "tenant.type",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "private"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"tenant._id\":\"$tenant._id:header.x-tenant-id\"},{\"tenant.type\":\"private\"}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": []
+}

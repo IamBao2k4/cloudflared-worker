@@ -1,0 +1,77 @@
+{
+  "_id": "67a9ae4bb6350baa12246daf",
+  "title": "categories block image",
+  "mongodb_collection_name": "categories-block-image",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "slug": {
+        "title": "Slug",
+        "type": "string",
+        "widget": "UriKeyGen"
+      },
+      "parent_id": {
+        "title": "Parent ID",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "categories-block-image",
+          "id": "categories-block-image",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "2a239487-bcbd-4602-b2de-5157e9b01635"
+          },
+          "type": "n-1"
+        }
+      },
+      "description": {
+        "title": "description",
+        "type": "string",
+        "widget": "shortAnswer"
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "parent_id": {
+      "ui:widget": "relation"
+    },
+    "description": {
+      "ui:widget": "shortAnswer"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "parent_id",
+      "description"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": true,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-02-10T07:44:11.064Z",
+  "__v": 0,
+  "id": "67a9ae4bb6350baa12246daf"
+}

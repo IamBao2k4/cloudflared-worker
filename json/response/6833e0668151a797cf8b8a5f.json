@@ -1,0 +1,57 @@
+{
+  "_id": "6833e0668151a797cf8b8a5f",
+  "title": "update user end learning time",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "categories": [],
+  "queryAdvance": "{\n  \"end_learning_time\": 0\n}",
+  "restricted": [
+    {
+      "key": "course",
+      "value": "course"
+    },
+    {
+      "key": "user",
+      "value": "user"
+    },
+    {
+      "key": "status",
+      "value": "status"
+    },
+    {
+      "key": "role",
+      "value": "role"
+    },
+    {
+      "key": "is_finished",
+      "value": "is_finished"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "id": "6833e0668151a797cf8b8a5f",
+  "documents": []
+}

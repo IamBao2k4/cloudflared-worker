@@ -1,0 +1,37 @@
+{
+  "_id": "676a7019a188bea5e073db22",
+  "title": "Get list user's collections",
+  "outputEntity": [
+    "675b99f99279b9d81247c3ba"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"created_by\": \"@jwt:user.id\",\n      \"tenant_id\": \"@header:x-tenant-id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-tweet-saved\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"user_collection\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"created_by\": \"@jwt:user.id\",\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"tweet_id\": {\n              \"$toObjectId\": \"$tweet_id\"\n            }\n          }\n        },\n        {\n          \"$lookup\": {\n            \"from\": \"mge-tweet\",\n            \"localField\": \"tweet_id\",\n            \"foreignField\": \"_id\",\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"status\": \"active\",\n                  \"tenant_id\": \"@header:x-tenant-id\"\n                }\n              }\n            ],\n            \"as\": \"is_active\"\n          }\n        },\n        {\n          \"$match\": {\n            \"is_active\": {\n              \"$ne\": []\n            }\n          }\n        }\n      ],\n      \"as\": \"tweet_saved\"\n    }\n  },\n  {\n    \"$unionWith\": {\n      \"coll\": \"mge-tweet-saved\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$or\": [\n              {\n                \"user_collection\": {\n                  \"$exists\": false\n                }\n              },\n              {\n                \"user_collection\": null\n              },\n              {\n                \"user_collection\": {\n                  \"$size\": 0\n                }\n              }\n            ],\n            \"tenant_id\": \"@header:x-tenant-id\",\n            \"created_by\": \"@jwt:user.id\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"tweet_id\": {\n              \"$toObjectId\": \"$tweet_id\"\n            }\n          }\n        },\n        {\n          \"$lookup\": {\n            \"from\": \"mge-tweet\",\n            \"localField\": \"tweet_id\",\n            \"foreignField\": \"_id\",\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"status\": \"active\",\n                  \"tenant_id\": \"@header:x-tenant-id\"\n                }\n              }\n            ],\n            \"as\": \"is_active\"\n          }\n        },\n        {\n          \"$match\": {\n            \"is_active\": {\n              \"$ne\": []\n            }\n          }\n        },\n        {\n          \"$group\": {\n            \"_id\": \"$created_by\",\n            \"tweet_saved\": {\n              \"$push\": \"$$ROOT\"\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"title\": \"Xem sau\",\n            \"position\": 0,\n            \"is_root\": true\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"$addFields\": {\n      \"tweet_count\": {\n        \"$size\": \"$tweet_saved\"\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"title\": 1,\n      \"tweet_count\": 1,\n      \"featured_image\": 1,\n      \"tweet_saved\": 1,\n      \"position\": 1,\n      \"is_root\": 1\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$or\": [\n          {\n            \"$eq\": [\n              \"@param:title\",\n              null\n            ]\n          },\n          {\n            \"$regexMatch\": {\n              \"input\": \"$title\",\n              \"regex\": \"@param:title\",\n              \"options\": \"i\"\n            }\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$sort\": {\n      \"position\": 1\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "note": "",
+  "method": "get-list",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "body": null,
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "title",
+      "key": "title"
+    }
+  ],
+  "cache_time": "",
+  "categories": []
+}

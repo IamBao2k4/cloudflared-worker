@@ -1,0 +1,9 @@
+[
+  {
+    "name": "items[].productId",
+    "targetTable": "products",
+    "localField": "items[].productId",
+    "foreignField": "_id",
+    "type": "one-to-one"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "_id": "67e26c90fa021b57b9727e6e",
+  "is_active": true,
+  "meta_data": {},
+  "title": "[Quản lý] Thảo luận về khóa học",
+  "title_input": "[@main_result:created_by.full_name] đã thảo luận về bài học trong khóa học [@main_result:course.title]",
+  "advance": "{\r\n  \"collection_name_find_user_to\": \"mge-course-member\",\r\n  \"field_get_id\": \"user\",\r\n  \"query_pipeline\": [\r\n    {\r\n      \"$match\": {\r\n        \"course\": \"@main_result:course._id\",\r\n        \"status\": \"joined\",\r\n        \"role\": \"instructor\"\r\n      }\r\n    }\r\n  ]\r\n}",
+  "type": "COURSE_COMMENTED",
+  "blocks": {},
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

@@ -1,0 +1,23 @@
+{
+  "_id": "6787117f5ca6233671cb09e8",
+  "title": "is-has-permission-to-manage-lesson-send-to-review",
+  "note": "",
+  "entity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "advance": "[\n    {\n    \"$match\": {\n      \"user\": \"@jwt:user.id\",\n      \"course\": \"@params:course_id\"\n    }\n  },\n    {\n    \"$addFields\": {\n      \"course\": {\n        \"$map\": {\n          \"input\": \"$course\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-courses\",\n      \"localField\": \"course\",\n      \"foreignField\": \"_id\",\n      \"as\": \"group_info\"\n    }\n  },\n   {\n    \"$addFields\": {\n      \"can_update_group_info\": {\n        \"$anyElementTrue\": {\n          \"$map\": {\n            \"input\": { \n              \"$ifNull\": [\n                { \"$arrayElemAt\": [\"$group_info.permissions.course_lesson_approve\", 0] }, \n                []\n              ] \n            },\n            \"as\": \"permission\",\n            \"in\": { \"$eq\": [\"$$permission\", \"$role\"] }\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"can_update_group_info\": true\n    }\n  }\n]",
+  "body": null,
+  "categories": null,
+  "data": null,
+  "documents": null,
+  "error_code": null,
+  "headers": null,
+  "logged": null,
+  "params": null,
+  "pre": null,
+  "queryMongodb": null,
+  "required": null
+}

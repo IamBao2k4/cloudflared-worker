@@ -1,0 +1,79 @@
+{
+  "_id": "68077a74fa0fd1ce8598958b",
+  "title": "get detail learning path",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "68062af5beb73c2d42c97dc5"
+  ],
+  "categories": [],
+  "queryAdvance": "[\n  {\n    \"$addFields\": {\n      \"id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"tenant_id\": \"@header:x-tenant-id\",\n      \"$or\": [{ \"id\": \"@param:_id\" }, { \"slug\": \"@param:slug\" }]\n    }\n  },\n  // Unwind course array để xử lý từng element\n  {\n    \"$unwind\": {\n      \"path\": \"$course\",\n      \"includeArrayIndex\": \"courseIndex\"\n    }\n  },\n  // Lookup course details\n  {\n    \"$lookup\": {\n      \"from\": \"mge-courses\",\n      \"localField\": \"course.course\",\n      \"foreignField\": \"id\",\n      \"pipeline\": [\n        {\n          \"$lookup\": {\n            \"from\": \"media\",\n            \"let\": { \"coverImageId\": { \"$arrayElemAt\": [\"$cover_image\", 0] } },\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"$expr\": {\n                    \"$eq\": [\"$_id\", { \"$toObjectId\": \"$$coverImageId\" }]\n                  }\n                }\n              },\n              {\n                \"$addFields\": {\n                  \"path\": {\n                    \"$concat\": [\n                      {\n                        \"$cond\": [\n                          { \"$eq\": [\"minio\", \"@app_settings:storage_type\"] },\n                          \"@app_settings:minio.public\",\n                          \"@app_settings:doSpace.public\"\n                        ]\n                      },\n                      \"/\",\n                      \"$disk\",\n                      \"/\",\n                      \"$filename\"\n                    ]\n                  }\n                }\n              }\n            ],\n            \"as\": \"cover_image\"\n          }\n        },\n        {\n          \"$lookup\": {\n            \"from\": \"mge-course-user-progress\",\n            \"localField\": \"id\",\n            \"foreignField\": \"course\",\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"user\": \"@jwt:user.id\"\n                }\n              }\n            ],\n            \"as\": \"finished_count\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"finished_count\": {\n              \"$size\": \"$finished_count\"\n            }\n          }\n        },\n        {\n          \"$lookup\": {\n            \"from\": \"mge-lessons\",\n            \"localField\": \"id\",\n            \"foreignField\": \"course\",\n            \"as\": \"lesson_count\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"lesson_count\": {\n              \"$size\": \"$lesson_count\"\n            }\n          }\n        },\n        {\n          \"$lookup\": {\n            \"from\": \"mge-exams\",\n            \"localField\": \"id\",\n            \"foreignField\": \"course\",\n            \"as\": \"exam_count\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"exam_count\": {\n              \"$size\": \"$exam_count\"\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"content_count\": {\n              \"$add\": [\"$lesson_count\", \"$exam_count\"]\n            }\n          }\n        }\n      ],\n      \"as\": \"courseDetails\"\n    }\n  },\n  // Merge course details với position\n  {\n    \"$addFields\": {\n      \"course.courseData\": { \"$arrayElemAt\": [\"$courseDetails\", 0] },\n      // Giữ lại position ban đầu\n      \"course.position\": \"$course.position\"\n    }\n  },\n  // Group lại thành array\n  {\n    \"$group\": {\n      \"_id\": \"$_id\",\n      \"title\": { \"$first\": \"$title\" },\n      \"slug\": { \"$first\": \"$slug\" },\n      \"department\": { \"$first\": \"$department\" },\n      \"team\": { \"$first\": \"$team\" },\n      \"locale\": { \"$first\": \"$locale\" },\n      \"locale_id\": { \"$first\": \"$locale_id\" },\n      \"created_at\": { \"$first\": \"$created_at\" },\n      \"created_by\": { \"$first\": \"$created_by\" },\n      \"updated_at\": { \"$first\": \"$updated_at\" },\n      \"updated_by\": { \"$first\": \"$updated_by\" },\n      \"tenant_id\": { \"$first\": \"$tenant_id\" },\n      \"id\": { \"$first\": \"$id\" },\n      \"course\": {\n        \"$push\": {\n          \"course\": \"$course.courseData\",\n          \"position\": \"$course.position\"\n        }\n      }\n    }\n  },\n  // Sort course array by position\n  {\n    \"$addFields\": {\n      \"course\": {\n        \"$sortArray\": {\n          \"input\": \"$course\",\n          \"sortBy\": { \"position\": 1 }\n        }\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"title\": 1,\n      \"slug\": 1,\n      \"department\": 1,\n      \"team\": 1,\n      \"job_position\": 1,\n      \"course.course.title\": 1,\n      \"course.course.slug\": 1,\n      \"course.course.cover_image\": 1,\n      \"course.course.finished_count\": 1,\n      \"course.course.content_count\": 1,\n      \"course.position\": 1,\n      \"course.course._id\": 1\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]\n",
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "slug",
+      "value": "slug"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    },
+    {
+      "value": "x-tenant_id",
+      "key": "x-tenant_id"
+    }
+  ],
+  "params": [
+    {
+      "value": "learning_path_id",
+      "key": "learning_path_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "_id",
+      "key": "_id"
+    },
+    {
+      "value": "slug",
+      "key": "slug"
+    }
+  ],
+  "postQueryAdvance": "",
+  "preQueryAdvance": "",
+  "id": "68077a74fa0fd1ce8598958b"
+}

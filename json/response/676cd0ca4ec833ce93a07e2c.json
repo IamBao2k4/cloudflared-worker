@@ -1,0 +1,40 @@
+{
+  "_id": "676cd0ca4ec833ce93a07e2c",
+  "title": "Get list group's members with status is pending",
+  "outputEntity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"social_group\": \"@param:group_id\",\n      \"status\": \"pending\",\n      \"tenant_id\": \"@header:x-tenant-id\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"user-tenant-profile\",\n      \"localField\": \"user\",\n      \"foreignField\": \"user\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"full_name\": {\n              \"$concat\": [\n                \"$profile.last_name\",\n                \" \",\n                \"$profile.first_name\"\n              ]\n            }\n          }\n        },\n        {\n          \"$project\": {\n            \"_id\": \"$user\",\n            \"full_name\": 1,\n            \"featured_image\": \"$profile.social.featured_image\"\n          }\n        }\n      ],\n      \"as\": \"user\"\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$or\": [\n          {\n            \"$eq\": [\n              \"@param:title\",\n              null\n            ]\n          },\n          {\n            \"$regexMatch\": {\n              \"input\": \"$user.full_name\",\n              \"regex\": \"@param:title\",\n              \"options\": \"i\"\n            }\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "note": "",
+  "method": "get-list",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "cache_time": "",
+  "categories": [],
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "title",
+      "key": "title"
+    }
+  ],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ]
+}

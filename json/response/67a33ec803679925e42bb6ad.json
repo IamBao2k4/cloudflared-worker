@@ -1,0 +1,20 @@
+{
+  "_id": "67a33ec803679925e42bb6ad",
+  "title": "create course rating",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "6780ca7ca78c4e63fee5ab77"
+  ],
+  "queryAdvance": "{\n  \"rating_score\":\"1,2,3,4,5\",\n  \"content\":0,\n  \"images\":0,\n  \"course\":\"@param:course_id\"\n}",
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "params": [
+    {
+      "value": "course_id",
+      "key": "course_id"
+    }
+  ]
+}

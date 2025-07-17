@@ -1,0 +1,30 @@
+[
+  {
+    "name": "user_def",
+    "targetTable": "user",
+    "localField": "user_def",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "tools",
+    "targetTable": "mcp-tool",
+    "localField": "tools",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "resources",
+    "targetTable": "mcp-resource",
+    "localField": "resources",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "prompt",
+    "targetTable": "mcp-prompt",
+    "localField": "prompt",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  }
+]

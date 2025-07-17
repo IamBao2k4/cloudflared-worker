@@ -1,0 +1,82 @@
+{
+  "_id": "67cac1a30080deb843b97116",
+  "title": "delete tweet",
+  "note": "",
+  "cache_time": "",
+  "method": "delete",
+  "outputEntity": [
+    "67c66d92cb2d3f0de04bccc1"
+  ],
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "slug",
+      "value": "slug"
+    },
+    {
+      "key": "list_image",
+      "value": "list_image"
+    },
+    {
+      "key": "short_description",
+      "value": "short_description"
+    },
+    {
+      "key": "long_description",
+      "value": "long_description"
+    },
+    {
+      "key": "featured_image",
+      "value": "featured_image"
+    },
+    {
+      "key": "category",
+      "value": "category"
+    },
+    {
+      "key": "status",
+      "value": "status"
+    },
+    {
+      "key": "approve_at",
+      "value": "approve_at"
+    },
+    {
+      "key": "approve_by",
+      "value": "approve_by"
+    },
+    {
+      "key": "expire_at",
+      "value": "expire_at"
+    },
+    {
+      "key": "reject_reason",
+      "value": "reject_reason"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb"
+}

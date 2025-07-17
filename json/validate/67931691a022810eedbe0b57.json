@@ -1,0 +1,18 @@
+{
+  "_id": "67931691a022810eedbe0b57",
+  "title": "is-user-role-instructor-or-assistant-through-discussion-comment",
+  "note": "",
+  "entity": [
+    "6752c64565017d942f759585"
+  ],
+  "data": {
+    "id": "99f8d782-b26c-4247-a103-58979841a899",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "required": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "advance": "[\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"_id\":\"@param:_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"discussion\": {\n        \"$map\": {\n          \"input\": \"$discussion\",\n          \"as\": \"u\",\n          \"in\": {\n            \"$toObjectId\": \"$$u\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-discussions\",\n      \"localField\": \"discussion\",\n      \"foreignField\": \"_id\",\n      \"as\": \"discussion_info\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-course-member\",\n      \"localField\": \"discussion_info.course\",\n      \"foreignField\": \"course\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"user\": \"@jwt:user.id\",\n            \"$or\": [\n              { \"role\": \"instructor\" },\n              { \"role\": \"assistant\" }\n            ]\n          }\n        }\n      ],\n      \"as\": \"memberStatus\"\n    }\n  },\n  {\n    \"$match\": {\n      \"memberStatus\": { \"$ne\": [] }\n    }\n  }\n]"
+}

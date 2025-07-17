@@ -1,0 +1,100 @@
+{
+  "_id": "682c57f245a2636674cc3f25",
+  "title": "AI Agent Website Structure",
+  "mongodb_collection_name": "ai-agent-website-structure",
+  "json_schema": {
+    "type": "object",
+    "expanded": true,
+    "properties": {
+      "newInput2": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "name",
+              "type": "string",
+              "widget": "shortAnswer"
+            },
+            "purpose": {
+              "widget": "longAnswer",
+              "customRole": "textarea",
+              "title": "purpose",
+              "type": "string"
+            }
+          },
+          "required": []
+        },
+        "title": "sitemap",
+        "type": "array"
+      },
+      "pages ": {
+        "title": "pages ",
+        "type": "string",
+        "widget": "textarea",
+        "customRole": "textarea",
+        "description": "Individual pages that make up the website"
+      },
+      "newInput1": {
+        "title": "templates",
+        "type": "string",
+        "widget": "textarea",
+        "customRole": "textarea",
+        "description": "Collection of reusable page templates that define the structure of different page types"
+      },
+      "content_type": {
+        "title": "content_type",
+        "type": "string",
+        "widget": "textarea",
+        "customRole": "textarea",
+        "description": "Definition of structured content types used throughout the website"
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "newInput2": {
+      "items": {
+        "name": {
+          "ui:widget": "shortAnswer"
+        },
+        "purpose": {
+          "ui:widget": "longAnswer"
+        },
+        "ui:order": [
+          "name",
+          "purpose"
+        ]
+      }
+    },
+    "pages ": {
+      "ui:widget": "textarea"
+    },
+    "newInput1": {
+      "ui:widget": "textarea"
+    },
+    "content_type": {
+      "ui:widget": "textarea"
+    },
+    "ui:order": [
+      "newInput2",
+      "pages ",
+      "newInput1",
+      "content_type"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-05-20T10:22:42.565Z",
+  "__v": 0,
+  "id": "682c57f245a2636674cc3f25"
+}

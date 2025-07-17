@@ -1,0 +1,9 @@
+{
+  "_id": "67fc7c1136ac50fe56067311",
+  "title": "check-user-exam-attempt-limit",
+  "note": "Kiểm tra xem người dùng đã đạt đến giới hạn số lần làm bài kiểm tra cho phép hay chưa",
+  "entity": "6749933810905d9ddbd0104b",
+  "logged": true,
+  "advance": "[\n  {\n    \"$lookup\": {\n      \"from\": \"mge-user-exam-result\",\n      \"let\": { \"user_id\": { \"$toObjectId\": \"@jwt:user.id\" }, \"exam_id\": { \"$toObjectId\": \"@param:exam_id\" } },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$and\": [\n                { \"$eq\": [\"$created_by\", \"$$user_id\"] },\n                { \"$eq\": [\"$exam\", \"$$exam_id\"] }\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"exam_attempts\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-exams\",\n      \"let\": { \"exam_id\": { \"$toObjectId\": \"@param:exam_id\" } },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": { \"$eq\": [\"$_id\", \"$$exam_id\"] }\n          }\n        }\n      ],\n      \"as\": \"exam_info\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"exam_info\": { \"$arrayElemAt\": [\"$exam_info\", 0] },\n      \"attempts_count\": { \"$size\": \"$exam_attempts\" },\n      \"max_attempts\": { \"$ifNull\": [{ \"$toInt\": { \"$arrayElemAt\": [\"$exam_info.member_retries_allowed\", 0] } }, 1] }\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$lt\": [\"$attempts_count\", \"$max_attempts\"]\n      }\n    }\n  }\n]",
+  "tenant_id": "674028d2611a654e763a73e8"
+}

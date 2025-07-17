@@ -1,0 +1,30 @@
+[
+  {
+    "name": "mge_setting.setting_permissions.setting_group_create",
+    "targetTable": "user-tenant-level",
+    "localField": "mge_setting.setting_permissions.setting_group_create",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "settings.entities",
+    "targetTable": "entity",
+    "localField": "settings.entities",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "course_setting.create_course",
+    "targetTable": "user-tenant-level",
+    "localField": "course_setting.create_course",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "course_setting.create_question",
+    "targetTable": "user-tenant-level",
+    "localField": "course_setting.create_question",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

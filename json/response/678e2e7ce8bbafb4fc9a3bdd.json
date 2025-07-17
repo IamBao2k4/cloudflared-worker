@@ -1,0 +1,17 @@
+{
+  "_id": "678e2e7ce8bbafb4fc9a3bdd",
+  "title": "delete discussion",
+  "note": "",
+  "method": "delete",
+  "outputEntity": [
+    "6752bcd265017d942f759541"
+  ],
+  "data": {
+    "id": "da8d756f-f62a-4e95-a6ef-fcca1aa93f19",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

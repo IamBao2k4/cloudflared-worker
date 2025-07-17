@@ -1,0 +1,98 @@
+{
+  "_id": "67c6b531cb2d3f0de04c7a00",
+  "title": "mge listing user",
+  "mongodb_collection_name": "mge-listing-user",
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-03-04T08:09:21.439Z",
+  "__v": 0,
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "username": {
+        "title": "username",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "email": {
+        "title": "email",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "phone": {
+        "title": "phone",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "avatar": {
+        "title": "avatar",
+        "type": "string",
+        "widget": "file"
+      },
+      "password": {
+        "widget": "shortAnswer",
+        "title": "password",
+        "type": "string"
+      },
+      "role_system": {
+        "title": "role_system",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "user",
+            "value": "user"
+          },
+          {
+            "key": "admin",
+            "value": "admin"
+          }
+        ]
+      }
+    },
+    "required": [
+      "username",
+      "email"
+    ]
+  },
+  "ui_schema": {
+    "username": {
+      "ui:widget": "shortAnswer"
+    },
+    "email": {
+      "ui:widget": "shortAnswer"
+    },
+    "phone": {
+      "ui:widget": "numberInput"
+    },
+    "avatar": {
+      "ui:widget": "file"
+    },
+    "password": {
+      "ui:widget": "shortAnswer"
+    },
+    "role_system": {
+      "ui:widget": "select"
+    },
+    "ui:order": [
+      "username",
+      "email",
+      "phone",
+      "avatar",
+      "password",
+      "role_system"
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "_id": "6793107ef19c9b4d4de97a61",
+  "title": "get list discussion sub comments",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "6752c64565017d942f759585"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"parent_id\": \"@param:discussion_comment_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-discussion-comment\",\n      \"let\": {\n        \"id\": \"$id\"\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$eq\": [\n                [\n                  \"$$id\"\n                ],\n                \"$parent_id\"\n              ]\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"id\": {\n              \"$toString\": \"$_id\"\n            }\n          }\n        }\n      ],\n      \"as\": \"sub_comments\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"sub_comment_quantity\": {\n        \"$size\": \"$sub_comments\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"user-tenant-profile\",\n      \"localField\": \"created_by\",\n      \"foreignField\": \"user\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"full_name\": {\n              \"$concat\": [\n                \"$profile.last_name\",\n                \" \",\n                \"$profile.first_name\"\n              ]\n            }\n          }\n        },\n        {\n          \"$unwind\": {\n            \"path\": \"$user\",\n            \"preserveNullAndEmptyArrays\": true\n          }\n        },\n        {\n          \"$project\": {\n            \"_id\": \"$user\",\n            \"full_name\": 1,\n            \"featured_image\": \"$profile.course.featured_image\"\n          }\n        }\n      ],\n      \"as\": \"user\"\n    }\n  },\n  {\n    \"$project\": {\n      \"sub_comments\": 0\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-discussion-comment-like\",\n      \"localField\": \"id\",\n      \"foreignField\": \"comment\",\n      \"as\": \"like_info\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"like_count\": {\n        \"$size\": \"$like_info\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-discussion-comment-like\",\n      \"let\": {\n        \"currentId\": \"$id\",\n        \"userId\": \"@jwt:user.id\"\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$and\": [\n                {\n                  \"$eq\": [\n                    \"$comment\",\n                    \"$$currentId\"\n                  ]\n                },\n                {\n                  \"$eq\": [\n                    \"$created_by\",\n                    \"$$userId\"\n                  ]\n                }\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"liked\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"liked\": {\n        \"$cond\": {\n          \"if\": {\n            \"$gt\": [\n              {\n                \"$size\": \"$liked\"\n              },\n              0\n            ]\n          },\n          \"then\": true,\n          \"else\": false\n        }\n      }\n    }\n  },\n  {\n    \"$sort\": {\n      \"created_at\": -1\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\" // Tổng số bản ghi thực sự không chịu ảnh hưởng của skip/limit\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "params": [
+    {
+      "value": "discussion_id",
+      "key": "discussion_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "discussion_comment_id",
+      "key": "discussion_comment_id"
+    }
+  ],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ]
+}

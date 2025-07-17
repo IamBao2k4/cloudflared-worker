@@ -1,0 +1,98 @@
+{
+  "_id": "67ee37ca8660ad558d9217f4",
+  "title": "entity course member example",
+  "mongodb_collection_name": "entity-course-member-example",
+  "unique_keys": "[\r\n  {\r\n    \"user\": 1,\r\n    \"tenant_id\": 1\r\n  }\r\n]",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "user": {
+        "title": "user",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "0a5029cd-38c7-44de-89a4-a9a6cb09d4ff"
+          }
+        },
+        "filter": true
+      },
+      "course": {
+        "title": "course",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "entity",
+          "entity": "entity",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "71c98167-65e0-4a80-8389-ebb5aee36bd6"
+          }
+        },
+        "filter": true
+      },
+      "status": {
+        "title": "status",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "joined",
+            "value": "joined"
+          },
+          {
+            "key": "pending",
+            "value": "pending"
+          },
+          {
+            "key": "left",
+            "value": "left"
+          }
+        ],
+        "filter": true
+      }
+    },
+    "required": [
+      "user",
+      "course",
+      "status"
+    ]
+  },
+  "ui_schema": {
+    "user": {
+      "ui:widget": "relation"
+    },
+    "course": {
+      "ui:widget": "relation"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "ui:order": [
+      "user",
+      "course",
+      "status"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-04-03T07:24:58.437Z",
+  "__v": 0
+}

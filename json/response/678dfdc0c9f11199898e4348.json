@@ -1,0 +1,20 @@
+{
+  "_id": "678dfdc0c9f11199898e4348",
+  "title": "update discussion",
+  "note": "",
+  "method": "put",
+  "queryAdvance": "{\n  \"title\": 0,\n  \"content\": 0,\n  \"attachments\": 0\n}",
+  "outputEntity": [
+    "6752bcd265017d942f759541"
+  ],
+  "data": {
+    "id": "ef31c559-bb04-47ea-a7d4-5f4cb8fcc470",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "cache_time": "",
+  "documents": []
+}

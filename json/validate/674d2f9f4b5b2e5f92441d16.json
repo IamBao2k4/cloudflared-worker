@@ -1,0 +1,48 @@
+{
+  "_id": "674d2f9f4b5b2e5f92441d16",
+  "title": "user-joined-group",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "data": {
+    "id": "fda2799f-6553-4d66-b2bf-b771d02a3993",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "group_id": null,
+  "body": [
+    {
+      "value": "social_group",
+      "key": "social_group"
+    }
+  ],
+  "headers": [
+    {
+      "value": "user.id",
+      "key": "user.id"
+    }
+  ],
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    },
+    {
+      "value": "_id",
+      "key": "_id"
+    }
+  ],
+  "note": "",
+  "advance": "[\n  {\n    \"$match\": {\n      \"user\": \"@jwt:user.id\",\n      \"status\": \"joined\",\n      \"$or\": [\n        {\n          \"social_group\": \"@param:group_id\"\n        },\n        {\n          \"social_group\": \"@param:_id\"\n        },\n        {\n          \"social_group\": \"@body:social_group\"\n        }\n      ]\n    }\n  },\n  {\n    \"$addFields\": {\n      \"social_group_as_objectId\": {\n        \"$map\": {\n          \"input\": \"$social_group\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group\",\n      \"localField\": \"social_group_as_objectId\",\n      \"foreignField\": \"_id\",\n      \"as\": \"group_data\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"status\": \"active\"\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"$match\": {\n      \"group_data\": {\n        \"$ne\": []\n      }\n    }\n  }\n]",
+  "documents": [],
+  "categories": null,
+  "error_code": null,
+  "logged": false,
+  "pre": null
+}

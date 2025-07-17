@@ -1,0 +1,17 @@
+{
+  "_id": "676d12a54ec833ce93a08403",
+  "title": "Update group's member",
+  "outputEntity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "queryAdvance": "{\n\"user\":\"@param:user_id\",\n\"status\":0,\n\"role\":0\n}",
+  "note": "",
+  "method": "put",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "body": null,
+  "headers": null,
+  "params": null
+}

@@ -1,0 +1,86 @@
+{
+  "_id": "678490f8f143e1be3763d42f",
+  "title": "get list report's reason",
+  "outputEntity": [
+    "674eaf8ac43906b58198de5e"
+  ],
+  "queryAdvance": "[\n\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "note": "",
+  "method": "get-list",
+  "categories": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "body": null,
+  "documents": [],
+  "headers": null,
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "post_type",
+      "key": "post_type"
+    }
+  ],
+  "cache_time": "",
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "mongodb_collection_name",
+      "value": "mongodb_collection_name"
+    },
+    {
+      "key": "entity_group",
+      "value": "entity_group"
+    },
+    {
+      "key": "unique_keys",
+      "value": "unique_keys"
+    },
+    {
+      "key": "use_parent",
+      "value": "use_parent"
+    },
+    {
+      "key": "use_locale",
+      "value": "use_locale"
+    },
+    {
+      "key": "use_block",
+      "value": "use_block"
+    },
+    {
+      "key": "use_seo_path",
+      "value": "use_seo_path"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ]
+}

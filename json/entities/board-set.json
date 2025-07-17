@@ -1,0 +1,212 @@
+{
+  "_id": "6788e31ddb1c53ad4c609362",
+  "title": "BOARD SET",
+  "mongodb_collection_name": "board-set",
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": true,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-01-16T10:44:45.480Z",
+  "__v": 0,
+  "json_schema": {
+    "type": "object",
+    "required": [
+      "title"
+    ],
+    "properties": {
+      "title": {
+        "title": "Title",
+        "description": "Nhập thông tin tiêu đề",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "mongodb_collection_name": {
+        "title": "Mongodb Collection Name",
+        "description": "Nhập thông tin tên collection trong mongodb",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "filter": true,
+        "depend_field": "root_title"
+      },
+      "entity_group": {
+        "title": "Entity Group",
+        "description": "Nhập thông tin entity group",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "entity-group",
+          "_id": "entity-group",
+          "type": "n-1"
+        },
+        "filter": true
+      },
+      "unique_keys": {
+        "title": "Index",
+        "description": "Nhập thông tin index",
+        "type": "string",
+        "widget": "function",
+        "filter": true
+      },
+      "use_parent": {
+        "title": "Use Parent",
+        "description": "Nhập thông tin có sử dụng parent hay không",
+        "type": "string",
+        "widget": "boolean",
+        "filter": true
+      },
+      "use_parent_delete_childs": {
+        "title": "use_parent_delete_childs",
+        "type": "string",
+        "default": false,
+        "widget": "boolean"
+      },
+      "use_locale": {
+        "title": "Use Locale",
+        "description": "Nhập thông tin có sử dụng locale hay không",
+        "type": "string",
+        "widget": "boolean",
+        "filter": true
+      },
+      "use_block": {
+        "title": "Use Block",
+        "description": "Nhập thông tin có sử dụng block hay không",
+        "type": "string",
+        "widget": "boolean",
+        "filter": true
+      },
+      "use_seo_path": {
+        "title": "Use Seo path",
+        "description": "Nhập thông tin có sử dụng seo path",
+        "type": "string",
+        "widget": "boolean",
+        "filter": true
+      },
+      "is_active": {
+        "title": "Active",
+        "type": "string",
+        "widget": "numberInput",
+        "objectKey": "is_active",
+        "hidden": true
+      },
+      "published_start": {
+        "title": "Published Start",
+        "type": "string",
+        "widget": "shortAnswer",
+        "objectKey": "published_start",
+        "hidden": true
+      },
+      "published_end": {
+        "title": "Published End",
+        "type": "string",
+        "widget": "shortAnswer",
+        "objectKey": "published_end",
+        "hidden": true
+      },
+      "json_schema": {
+        "type": "string",
+        "title": "Json",
+        "hidden": true
+      },
+      "ui_schema": {
+        "type": "string",
+        "title": "Json",
+        "hidden": true
+      },
+      "settings": {
+        "type": "string",
+        "title": "Json",
+        "hidden": true
+      },
+      "languages": {
+        "title": "Languages",
+        "description": "Nhập thông tin có sử dụng locale hay không",
+        "type": "string",
+        "widget": "shortaAnswer",
+        "hidden": true
+      },
+      "webhooks": {
+        "title": "Webhooks",
+        "type": "string",
+        "widget": "webhooks",
+        "objectKey": "webhooks",
+        "hidden": true
+      },
+      "type": {
+        "title": "type",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "parent_id": {
+        "title": "Parent ID",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "board-set",
+          "id": "board-set"
+        }
+      }
+    }
+  },
+  "ui_schema": {
+    "mongodb_collection_name": {
+      "ui:widget": "UriKeyGen"
+    },
+    "entity_group": {
+      "ui:widget": "relation"
+    },
+    "unique_keys": {
+      "ui:widget": "function"
+    },
+    "use_parent": {
+      "ui:widget": "boolean"
+    },
+    "use_parent_delete_childs": {
+      "ui:widget": "boolean"
+    },
+    "use_locale": {
+      "ui:widget": "boolean"
+    },
+    "use_block": {
+      "ui:widget": "boolean"
+    },
+    "use_seo_path": {
+      "ui:widget": "boolean"
+    },
+    "type": {
+      "ui:widget": "shortAnswer"
+    },
+    "ui:order": [
+      "title",
+      "mongodb_collection_name",
+      "entity_group",
+      "unique_keys",
+      "use_parent",
+      "use_parent_delete_childs",
+      "use_locale",
+      "use_block",
+      "use_seo_path",
+      "is_active",
+      "published_start",
+      "published_end",
+      "json_schema",
+      "ui_schema",
+      "settings",
+      "languages",
+      "webhooks",
+      "type",
+      "parent_id"
+    ],
+    "parent_id": {
+      "ui:widget": "relation"
+    }
+  }
+}

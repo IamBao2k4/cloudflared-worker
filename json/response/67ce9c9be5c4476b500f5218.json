@@ -1,0 +1,13 @@
+{
+  "_id": "67ce9c9be5c4476b500f5218",
+  "title": "get detail category 1",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "67c6b37acb2d3f0de04c762e"
+  ],
+  "queryAdvance": "[\r\n  {\r\n    \"$match\": {\r\n      \"tenant_id\": \"@header:x-tenant-id\",\r\n      \"_id\":\"@param:_id\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"_id\": {\r\n        \"$toString\": \"$_id\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$facet\": {\r\n      \"meta_data\": [\r\n        {\r\n          \"$count\":\"count\"\r\n        },\r\n        {\r\n          \"$addFields\": {\r\n            \"skip\": \"@param:skip\",\r\n            \"limit\": \"@param:limit\"\r\n          }\r\n        }\r\n      ],\r\n      \"data\": [\r\n        {\r\n          \"skip\":\"@param:skip\"\r\n        },\r\n        {\r\n          \"limit\":\"@param:limit\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n\r\n]",
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb"
+}

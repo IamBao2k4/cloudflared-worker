@@ -1,0 +1,13 @@
+{
+  "_id": "67b4bad14cd70d34a3f028fb",
+  "title": "get info tenant ",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "6740251baefaffc3e4662e6b"
+  ],
+  "queryAdvance": "[\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"_id\": \"@header:x-tenant-id\"\n    }\n  },\n  {\n    \"$lookup\": {\n    \"from\": \"media\",\n    \"let\": { \"logoId\": { \"$arrayElemAt\": [ \"$settings.logo\", 0 ] } },\n    \"pipeline\": [\n              {\n                \"$match\": {\n                  \"$expr\": {\n                    \"$eq\": [ \"$_id\", { \"$toObjectId\": \"$$logoId\" } ]\n                  }\n                }\n              },\n              {\n                \"$addFields\": {\n                  \"path\": {\n                    \"$concat\": [\n                      {\n                        \"$cond\": [\n                          { \"$eq\": [ \"minio\", \"@app_settings:storage_type\" ] },\n                          \"@app_settings:minio.public\",\n                          \"@app_settings:doSpace.public\"\n                        ]\n                      },\n                      \"/\",\n                      \"$disk\",\n                      \"/\",\n                      \"$filename\"\n                    ]\n                  }\n                }\n              }\n            ],\n            \"as\": \"settings.logo\"\n          }\n        },\n  {\n    \"$project\":{\n      \"mge_setting\":0,\n      \"course_setting\":0\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        { \"$count\": \"count\" },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        { \"$skip\": \"@param:skip\" },\n        { \"$limit\": \"@param:limit\" }\n      ]\n    }\n  }\n]",
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

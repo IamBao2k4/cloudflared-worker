@@ -1,0 +1,38 @@
+{
+  "_id": "67f5cf2d7c363c642e83dbb3",
+  "title": "get detail discussion",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "6752bcd265017d942f759541"
+  ],
+  "categories": [],
+  "queryAdvance": "[\r\n  {\r\n    \"$addFields\": {\r\n      \"_id\": {\r\n        \"$toString\": \"$_id\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$match\": {\r\n      \"tenant_id\": \"@header:x-tenant-id\",\r\n      \"$or\": [\r\n        {\r\n          \"_id\": \"@param:_id\"\r\n        },\r\n        {\r\n          \"_id\": \"@param:discussion_id\"\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"user-tenant-profile\",\r\n      \"localField\": \"created_by\",\r\n      \"foreignField\": \"user\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$match\": {\r\n            \"tenant_id\": \"@header:x-tenant-id\"\r\n          }\r\n        },\r\n        {\r\n          \"$addFields\": {\r\n            \"full_name\": {\r\n              \"$concat\": [\r\n                \"$profile.last_name\",\r\n                \" \",\r\n                \"$profile.first_name\"\r\n              ]\r\n            }\r\n          }\r\n        },\r\n        {\r\n          \"$unwind\": {\r\n            \"path\": \"$user\",\r\n            \"preserveNullAndEmptyArrays\": true\r\n          }\r\n        },\r\n        {\r\n          \"$project\": {\r\n            \"_id\": \"$user\",\r\n            \"full_name\": 1,\r\n            \"featured_image\": \"$profile.course.featured_image\"\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"user\"\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-discussion-like\",\r\n      \"localField\": \"_id\",\r\n      \"foreignField\": \"discussion\",\r\n      \"as\": \"liked_details\"\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-discussion-like\",\r\n      \"localField\": \"_id\",\r\n      \"foreignField\": \"discussion\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$match\": {\r\n            \"created_by\": \"@jwt:user.id\"\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"liked_info\"\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-discussion-like\",\r\n      \"localField\": \"_id\",\r\n      \"foreignField\": \"discussion\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$match\": {\r\n            \"created_by\": \"@jwt:user.id\"\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"liked\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"liked\": {\r\n        \"$cond\": {\r\n          \"if\": {\r\n            \"$gt\": [\r\n              {\r\n                \"$size\": \"$liked\"\r\n              },\r\n              0\r\n            ]\r\n          },\r\n          \"then\": true,\r\n          \"else\": false\r\n        }\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"like_count\": {\r\n        \"$size\": \"$liked_details\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-discussion-comment\",\r\n      \"localField\": \"_id\",\r\n      \"foreignField\": \"discussion\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$lookup\": {\r\n            \"from\": \"user-tenant-profile\",\r\n            \"localField\": \"created_by\",\r\n            \"foreignField\": \"user\",\r\n            \"pipeline\": [\r\n              {\r\n                \"$match\": {\r\n                  \"tenant_id\": \"@header:x-tenant-id\"\r\n                }\r\n              },\r\n              {\r\n                \"$addFields\": {\r\n                  \"full_name\": {\r\n                    \"$concat\": [\r\n                      \"$profile.last_name\",\r\n                      \" \",\r\n                      \"$profile.first_name\"\r\n                    ]\r\n                  }\r\n                }\r\n              },\r\n              {\r\n                \"$project\": {\r\n                  \"_id\": \"$user\",\r\n                  \"full_name\": 1,\r\n                  \"featured_image\": \"$profile.course.featured_image\"\r\n                }\r\n              }\r\n            ],\r\n            \"as\": \"user\"\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"comment\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"comment_count\": {\r\n        \"$size\": \"$comment\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$project\": {\r\n      \"comment\": 0\r\n    }\r\n  },\r\n  {\r\n    \"$facet\": {\r\n      \"meta_data\": [\r\n        {\r\n          \"$count\": \"count\"\r\n        },\r\n        {\r\n          \"$addFields\": {\r\n            \"skip\": \"@param:skip\",\r\n            \"limit\": \"@param:limit\"\r\n          }\r\n        }\r\n      ],\r\n      \"data\": [\r\n        {\r\n          \"$skip\": \"@param:skip\"\r\n        },\r\n        {\r\n          \"$limit\": \"@param:limit\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n]",
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "_id",
+      "key": "_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "discussion_id",
+      "key": "discussion_id"
+    }
+  ]
+}

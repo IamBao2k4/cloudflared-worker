@@ -1,0 +1,16 @@
+[
+  {
+    "name": "folder",
+    "targetTable": "categories-block-image",
+    "localField": "folder",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "tag",
+    "targetTable": "tags-group-field",
+    "localField": "tag",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

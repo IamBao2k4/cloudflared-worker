@@ -1,0 +1,725 @@
+{
+  "_id": "6747ef07c47463d88f8c5ab1",
+  "title": "mge group",
+  "mongodb_collection_name": "mge-group",
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "created_at": "2024-11-28T04:18:15.740Z",
+  "__v": 0,
+  "json_schema": {
+    "title": "groups",
+    "description": "",
+    "type": "object",
+    "properties": {
+      "cover": {
+        "type": "string",
+        "widget": "file",
+        "title": "Cover",
+        "filter": true
+      },
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "slug": {
+        "title": "Slug",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "filter": true,
+        "depend_field": "root_title"
+      },
+      "description": {
+        "title": "Description",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "type": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "public",
+            "value": "public"
+          },
+          {
+            "key": "private",
+            "value": "private"
+          },
+          {
+            "key": "secret",
+            "value": "secret"
+          }
+        ],
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "Type",
+        "type": "string",
+        "filter": true,
+        "default": "public"
+      },
+      "status": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "active",
+            "value": "active"
+          },
+          {
+            "key": "inactive",
+            "value": "inactive"
+          },
+          {
+            "key": "pause",
+            "value": "pause"
+          }
+        ],
+        "default": [],
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "Status",
+        "type": "string",
+        "filter": true
+      },
+      "permissions": {
+        "title": "Permissions",
+        "type": "object",
+        "description": " Setup permission's group",
+        "properties": {
+          "post_create": {
+            "title": "post_create",
+            "type": "string",
+            "widget": "select",
+            "isMultiple": true,
+            "choices": [
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              },
+              {
+                "key": "owner",
+                "value": "owner"
+              }
+            ],
+            "description": "Ai có quyền tạo bài viết trong nhóm",
+            "default": "owner"
+          },
+          "group_info_update": {
+            "title": "group_info_update",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              },
+              {
+                "key": "owner",
+                "value": "owner"
+              }
+            ],
+            "default": "owner",
+            "isMultiple": true,
+            "description": "Ai có quyền chỉnh sửa thông tin nhóm"
+          },
+          "group_member_update": {
+            "title": "group_member_update",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              },
+              {
+                "key": "owner",
+                "value": "owner"
+              }
+            ],
+            "isMultiple": true,
+            "description": "update là cập nhật trạng thái và role user",
+            "default": "owner"
+          },
+          "group_member_add": {
+            "title": "group_member_add",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "isMultiple": true,
+            "default": "owner"
+          },
+          "group_member_remove": {
+            "title": "group_member_remove",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "isMultiple": true,
+            "default": "owner"
+          },
+          "group_category_create": {
+            "title": "group_category_create",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "isMultiple": true,
+            "default": "owner"
+          },
+          "group_category_update": {
+            "title": "group_category_update",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "isMultiple": true,
+            "default": "owner"
+          },
+          "group_category_delete": {
+            "title": "group_category_delete",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "isMultiple": true,
+            "default": "owner"
+          },
+          "group_menu_item_create": {
+            "type": "string",
+            "widget": "select",
+            "title": "group_menu_item_create",
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "isMultiple": true,
+            "default": "owner"
+          },
+          "group_menu_item_update": {
+            "title": "group_menu_item_update",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "default": "owner",
+            "isMultiple": true
+          },
+          "group_menu_item_delete": {
+            "title": "group_menu_item_delete",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "default": "owner",
+            "isMultiple": true
+          },
+          "tweet_delete": {
+            "widget": "select",
+            "returnValue": 2,
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "allowNull": false,
+            "isMultiple": true,
+            "title": "tweet_delete",
+            "type": "string",
+            "filter": false,
+            "default": "owner"
+          },
+          "group_reports_manage": {
+            "title": "group_reports_manage",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "default": "owner",
+            "isMultiple": true
+          },
+          "group_interface_setting_manage": {
+            "title": "group_interface_setting_manage",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "default": "owner",
+            "isMultiple": true
+          },
+          "tweet_store_create": {
+            "widget": "select",
+            "returnValue": 2,
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "allowNull": false,
+            "isMultiple": true,
+            "title": "tweet_store_create",
+            "type": "string",
+            "default": "owner"
+          },
+          "tweet_store_manage": {
+            "widget": "select",
+            "returnValue": 2,
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "allowNull": false,
+            "isMultiple": true,
+            "title": "tweet_store_manage",
+            "type": "string",
+            "default": "owner"
+          },
+          "tweet_reject_create": {
+            "title": "tweet_reject_create",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "default": "owner",
+            "isMultiple": true
+          },
+          "tweet_reject_manage": {
+            "title": "tweet_reject_manage",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "default": "owner",
+            "isMultiple": true
+          },
+          "tweet_waiting_create": {
+            "title": "tweet_waiting_create",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "default": "owner",
+            "isMultiple": true
+          },
+          "tweet_waiting_manage": {
+            "title": "tweet_waiting_manage",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "default": "owner",
+            "isMultiple": true
+          },
+          "tweet_approve": {
+            "title": "tweet_approve",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "owner",
+                "value": "owner"
+              },
+              {
+                "key": "manager",
+                "value": "manager"
+              },
+              {
+                "key": "member",
+                "value": "member"
+              }
+            ],
+            "default": "owner",
+            "isMultiple": true
+          },
+          "tweet_approve_mode": {
+            "title": "tweet_approve_mode",
+            "type": "string",
+            "widget": "boolean",
+            "default": false
+          },
+          "tweet_edited_approve_mode": {
+            "title": "tweet_edited_approve_mode",
+            "type": "string",
+            "default": false,
+            "widget": "boolean"
+          }
+        },
+        "required": [
+          "post_create",
+          "group_info_update",
+          "group_member_update",
+          "group_member_add",
+          "group_member_remove",
+          "group_category_create",
+          "group_category_update",
+          "group_category_delete",
+          "group_menu_item_create",
+          "group_menu_item_update",
+          "group_menu_item_delete",
+          "tweet_delete",
+          "group_reports_manage",
+          "group_interface_setting_manage",
+          "tweet_store_create",
+          "tweet_store_manage",
+          "tweet_reject_create",
+          "tweet_reject_manage",
+          "tweet_waiting_create",
+          "tweet_waiting_manage",
+          "tweet_approve",
+          "tweet_approve_mode",
+          "tweet_edited_approve_mode"
+        ]
+      }
+    },
+    "required": [
+      "title",
+      "slug",
+      "type",
+      "status"
+    ]
+  },
+  "ui_schema": {
+    "cover": {
+      "ui:widget": "file"
+    },
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "description": {
+      "ui:widget": "shortAnswer"
+    },
+    "type": {
+      "ui:widget": "select"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "permissions": {
+      "post_create": {
+        "ui:widget": "select"
+      },
+      "group_info_update": {
+        "ui:widget": "select"
+      },
+      "group_member_update": {
+        "ui:widget": "select"
+      },
+      "group_member_add": {
+        "ui:widget": "select"
+      },
+      "group_member_remove": {
+        "ui:widget": "select"
+      },
+      "group_category_create": {
+        "ui:widget": "select"
+      },
+      "group_category_update": {
+        "ui:widget": "select"
+      },
+      "group_category_delete": {
+        "ui:widget": "select"
+      },
+      "group_menu_item_create": {
+        "ui:widget": "select"
+      },
+      "group_menu_item_update": {
+        "ui:widget": "select"
+      },
+      "group_menu_item_delete": {
+        "ui:widget": "select"
+      },
+      "tweet_delete": {
+        "ui:widget": "select"
+      },
+      "group_reports_manage": {
+        "ui:widget": "select"
+      },
+      "group_interface_setting_manage": {
+        "ui:widget": "select"
+      },
+      "tweet_store_create": {
+        "ui:widget": "select"
+      },
+      "tweet_store_manage": {
+        "ui:widget": "select"
+      },
+      "tweet_reject_create": {
+        "ui:widget": "select"
+      },
+      "tweet_reject_manage": {
+        "ui:widget": "select"
+      },
+      "tweet_waiting_create": {
+        "ui:widget": "select"
+      },
+      "tweet_waiting_manage": {
+        "ui:widget": "select"
+      },
+      "tweet_approve": {
+        "ui:widget": "select"
+      },
+      "tweet_approve_mode": {
+        "ui:widget": "boolean"
+      },
+      "tweet_edited_approve_mode": {
+        "ui:widget": "boolean"
+      },
+      "ui:order": [
+        "post_create",
+        "group_info_update",
+        "group_member_update",
+        "group_member_add",
+        "group_member_remove",
+        "group_category_create",
+        "group_category_update",
+        "group_category_delete",
+        "group_menu_item_create",
+        "group_menu_item_update",
+        "group_menu_item_delete",
+        "tweet_delete",
+        "group_reports_manage",
+        "group_interface_setting_manage",
+        "tweet_store_create",
+        "tweet_store_manage",
+        "tweet_reject_create",
+        "tweet_reject_manage",
+        "tweet_waiting_create",
+        "tweet_waiting_manage",
+        "tweet_approve",
+        "tweet_approve_mode",
+        "tweet_edited_approve_mode"
+      ]
+    },
+    "ui:order": [
+      "cover",
+      "title",
+      "slug",
+      "description",
+      "type",
+      "status",
+      "permissions"
+    ]
+  },
+  "entity_group": null,
+  "use_seo_path": false,
+  "use_parent_delete_childs": false
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "department",
+    "targetTable": "mge-department",
+    "localField": "department",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "team",
+    "targetTable": "mge-team",
+    "localField": "team",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "job_position",
+    "targetTable": "mge-job-position",
+    "localField": "job_position",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "course[].course",
+    "targetTable": "mge-courses",
+    "localField": "course[].course",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

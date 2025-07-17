@@ -1,0 +1,132 @@
+{
+  "listing-tweet-saved": {},
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67ce8b2fad2f82e8c4bc4c51",
+          "title": "create tweet saved",
+          "entity": "mge-listing-tweet-saved",
+          "path_file": "json/response/67ce8b2fad2f82e8c4bc4c51.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "505d9ec2-b4aa-4625-9e74-cb3fc3a6f1b5",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67c92992f4aa922e5d2a1074"
+            }
+          ],
+          "id": "30b02fcb-dd77-4d04-99f3-11357cbaf9ab"
+        },
+        "list_validate": [
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67ceb51f432ff8076e58b3c5",
+          "title": "delete tweet saved",
+          "entity": "mge-listing-tweet-saved",
+          "path_file": "json/response/67ceb51f432ff8076e58b3c5.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "9985de0d-431b-4463-8948-871e61720760",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67c92992f4aa922e5d2a1074"
+            }
+          ],
+          "id": "4fd31b9f-38ce-46f2-ab87-a34f78312ac5"
+        },
+        "list_validate": [
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67cec408dada26e67e877b07",
+          "title": "get list tweet saved",
+          "entity": "mge-listing-tweet-saved",
+          "path_file": "json/response/67cec408dada26e67e877b07.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "604f090c-0dfb-4f63-9286-848c9e62628c",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67c92992f4aa922e5d2a1074"
+            }
+          ],
+          "id": "963a52fe-8b65-48cd-84cf-6fe8a38360fc"
+        },
+        "list_validate": [
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

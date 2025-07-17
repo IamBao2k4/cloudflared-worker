@@ -1,0 +1,32 @@
+{
+  "_id": "67ea16cd7463d047317d39a8",
+  "title": "is-notification-belongs-to-user",
+  "note": "",
+  "entity": [
+    "67a1b30e1aaf205cfbd70e02"
+  ],
+  "data": {
+    "id": "c02d8a4c-c280-4737-9d2d-7049be813b47",
+    "rules": [
+      {
+        "id": "3e426ed4-5c87-460f-b30c-6b3dec1b26bc",
+        "field": "notification-record._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$notification-record._id:param._id"
+      },
+      {
+        "id": "812fb7d4-a002-417d-a3fb-c7e1449ed596",
+        "field": "notification-record.to",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$notification-record.to:jwt.user@id"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"notification-record._id\":\"$notification-record._id:param._id\"},{\"notification-record.to\":\"$notification-record.to:jwt.user@id\"}]}",
+  "required": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

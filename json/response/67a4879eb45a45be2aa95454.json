@@ -1,0 +1,28 @@
+{
+  "_id": "67a4879eb45a45be2aa95454",
+  "title": "get detail group overview",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "67b6a286606da18e6c1976f1"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"status\": \"active\",\n      \"social_group\": \"@param:group_id\",\n      \"tenant_id\":\"@header:x-tenant-id\"\n    }\n  },\n  {\n    \"$group\": {\n      \"_id\": null,\n      \"post_count\": {\n        \"$sum\": 1\n      }\n    }\n  },\n  {\n    \"$unionWith\": {\n      \"coll\": \"mge-group-member\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"social_group\": \"@param:group_id\",\n            \"status\":\"joined\",\n            \"tenant_id\":\"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$group\": {\n            \"_id\": \"$to\",\n            \"count\": {\n              \"$sum\": 1\n            }\n          }\n        },\n        {\n          \"$project\": {\n            \"_id\": 0,\n            \"count\": 1\n          }\n        },\n        {\n          \"$addFields\": {\n            \"group_member_count\": \"$count\"\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"$group\": {\n      \"_id\": null,\n      \"post_count\": {\n        \"$max\": \"$post_count\"\n      },\n      \"group_member_count\": {\n        \"$max\": \"$group_member_count\"\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"_id\": 0,\n      \"post_count\": {\n        \"$ifNull\": [\n          \"$post_count\",\n          0\n        ]\n      },\n      \"group_member_count\": {\n        \"$ifNull\": [\n          \"$group_member_count\",\n          0\n        ]\n      }\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ]
+}

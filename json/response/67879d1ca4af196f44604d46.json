@@ -1,0 +1,20 @@
+{
+  "_id": "67879d1ca4af196f44604d46",
+  "title": "create question",
+  "note": "",
+  "method": "post",
+  "queryAdvance": "{\n  \"title\":1,\n  \"question_type\":\"multiple_choice,check_box,true_false,fill_in_blank\",\n  \"answer\": [{\n    \"id\": \"$id()\",\n    \"content\":0,\n    \"is_correct\":0,\n    \"position\":0\n  }],\n  \"level\":\"easy,medium,difficult\",\n  \"category\":0,\n  \"score\":0\n}",
+  "outputEntity": [
+    "6752b83a65017d942f759501"
+  ],
+  "data": {
+    "id": "2cd8a1c7-7bef-4d70-b26c-c843a88818c0",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "cache_time": "",
+  "documents": []
+}

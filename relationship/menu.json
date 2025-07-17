@@ -1,0 +1,16 @@
+[
+  {
+    "name": "groupfield",
+    "targetTable": "group-field",
+    "localField": "groupfield",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "parent_id",
+    "targetTable": "menu",
+    "localField": "parent_id",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  }
+]

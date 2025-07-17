@@ -1,0 +1,28 @@
+{
+  "_id": "676e29daa6cfe9167f75ea9c",
+  "title": "create tweet reports",
+  "outputEntity": [
+    "6764e4046e57acaf6815ab9f"
+  ],
+  "queryAdvance": "{\n  \"type\": \"tweet\",\n  \"reason\": 1,\n  \"document_id\": \"@param:tweet_id\",\n  \"social_group\":\"@param:group_id\"\n}",
+  "note": "",
+  "method": "post",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "body": null,
+  "categories": [],
+  "headers": null,
+  "params": [
+    {
+      "value": "tweet_id",
+      "key": "tweet_id"
+    },
+    {
+      "value": "group_id",
+      "key": "group_id"
+    }
+  ],
+  "cache_time": ""
+}

@@ -1,0 +1,251 @@
+{
+  "_id": "6777b517b46e5acc95f40536",
+  "title": "Menu",
+  "mongodb_collection_name": "menu",
+  "json_schema": {
+    "type": "object",
+    "expanded": true,
+    "properties": {
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "expanded": true,
+        "require": false,
+        "description": "Nhập title cho menu",
+        "filter": true
+      },
+      "type": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "URL",
+            "value": "url"
+          },
+          {
+            "key": "Posts",
+            "value": "posts"
+          },
+          {
+            "key": "Pages",
+            "value": "pages"
+          },
+          {
+            "key": "Categories",
+            "value": "categories"
+          }
+        ],
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "Type",
+        "type": "string",
+        "description": "Chọn type cho menu",
+        "expanded": true,
+        "default": "url"
+      },
+      "icon": {
+        "widget": "icon",
+        "title": "Icon",
+        "type": "string",
+        "description": "Chọn icon",
+        "expanded": true
+      },
+      "target": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "Seft",
+            "value": "_self"
+          },
+          {
+            "key": "Blank",
+            "value": "_blank"
+          }
+        ],
+        "default": "_self",
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "Target",
+        "type": "string",
+        "description": "Chọn loại mở page",
+        "expanded": true
+      },
+      "position": {
+        "widget": "numberInput",
+        "title": "Position",
+        "type": "string",
+        "description": "Nhập vị trí"
+      },
+      "parent_id": {
+        "title": "Parent ID",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "menu",
+          "id": "menu",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "4e067217-b6cf-4ffd-b081-a7e5b5a58c42"
+          },
+          "type": "n-1"
+        }
+      }
+    },
+    "required": [],
+    "dependencies": {
+      "type": {
+        "oneOf": [
+          {
+            "properties": {
+              "type": {
+                "enum": [
+                  "url"
+                ]
+              },
+              "url": {
+                "title": "URL",
+                "type": "string",
+                "widget": "shortAnswer",
+                "description": "Nhập url"
+              }
+            },
+            "required": []
+          },
+          {
+            "properties": {
+              "type": {
+                "enum": [
+                  "posts"
+                ]
+              },
+              "posts": {
+                "type": "string",
+                "typeRelation": {
+                  "title": "all-entity",
+                  "entity": "entity",
+                  "type": "1-n"
+                },
+                "widget": "relation",
+                "typeSelect": "multiple",
+                "title": "Posts",
+                "description": "Chọn post",
+                "expanded": true
+              }
+            },
+            "required": []
+          },
+          {
+            "properties": {
+              "type": {
+                "enum": [
+                  "pages"
+                ]
+              },
+              "pages": {
+                "title": "Pages",
+                "type": "string",
+                "widget": "relation",
+                "typeRelation": {
+                  "title": "entity",
+                  "entity": "entity",
+                  "type": "n-1",
+                  "filter": {
+                    "combinator": "and",
+                    "rules": [],
+                    "id": "acc50feb-8c08-4a08-90d5-d67f3176a5fa"
+                  }
+                },
+                "description": "Chọn page"
+              }
+            },
+            "required": []
+          },
+          {
+            "properties": {
+              "type": {
+                "enum": [
+                  "categories"
+                ]
+              },
+              "categories": {
+                "type": "string",
+                "typeRelation": {
+                  "title": "all-entity",
+                  "entity": "entity",
+                  "type": "1-n"
+                },
+                "widget": "relation",
+                "typeSelect": "multiple",
+                "title": "Categories",
+                "description": "Chọn categories",
+                "expanded": true
+              }
+            },
+            "required": []
+          }
+        ]
+      }
+    }
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "type": {
+      "ui:widget": "select"
+    },
+    "url": {
+      "ui:widget": "shortAnswer"
+    },
+    "categories": {
+      "ui:widget": "relation"
+    },
+    "posts": {
+      "ui:widget": "relation"
+    },
+    "pages": {
+      "ui:widget": "relation"
+    },
+    "icon": {
+      "ui:widget": "icon"
+    },
+    "target": {
+      "ui:widget": "select"
+    },
+    "position": {
+      "ui:widget": "numberInput"
+    },
+    "parent_id": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "title",
+      "type",
+      "url",
+      "categories",
+      "posts",
+      "pages",
+      "icon",
+      "target",
+      "position",
+      "parent_id"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": true,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-01-03T09:59:51.102Z",
+  "__v": 0,
+  "use_parent_delete_childs": false
+}

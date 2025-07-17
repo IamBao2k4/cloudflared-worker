@@ -1,0 +1,116 @@
+{
+  "_id": "67860d948dc33c7785c97c97",
+  "title": "get list courses belongs to category",
+  "outputEntity": [
+    "67529b1465017d942f7592b5"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"tenant_id\": \"@header:x-tenant-id\",\n      \"id\": \"@param:category_ids\"\n    }\n  },\n  {\n    \"$graphLookup\": {\n      \"from\": \"mge-categories\",\n      \"startWith\": \"$id\",\n      \"connectFromField\": \"id\",\n      \"connectToField\": \"parent_id\",\n      \"as\": \"descendants\",\n      \"depthField\": \"level\",\n      \"maxDepth\": 100\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-courses\",\n      \"localField\": \"id\",\n      \"foreignField\": \"category\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"status\": \"active\"\n          }\n        }\n      ],\n      \"as\": \"courses_parent\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-courses\",\n      \"localField\": \"descendants.id\",\n      \"foreignField\": \"category\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"status\": \"active\"\n          }\n        }\n      ],\n      \"as\": \"courses_child\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"all_courses\": {\n        \"$concatArrays\": [\n          \"$courses_parent\",\n          \"$courses_child\"\n        ]\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"courses\": {\n        \"$reduce\": {\n          \"input\": \"$all_courses\",\n          \"initialValue\": [],\n          \"in\": {\n            \"$cond\": [\n              {\n                \"$in\": [\n                  \"$$this._id\",\n                  {\n                    \"$map\": {\n                      \"input\": \"$$value\",\n                      \"as\": \"c\",\n                      \"in\": \"$$c._id\"\n                    }\n                  }\n                ]\n              },\n              \"$$value\",\n              {\n                \"$concatArrays\": [\n                  \"$$value\",\n                  [\n                    \"$$this\"\n                  ]\n                ]\n              }\n            ]\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"courses\": 1\n    }\n  },\n  {\n    \"$unwind\": \"$courses\"\n  },\n  {\n    \"$replaceRoot\": {\n      \"newRoot\": \"$courses\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"media\",\n      \"let\": {\n        \"featuredImageId\": {\n          \"$arrayElemAt\": [\n            \"$cover_image\",\n            0\n          ]\n        }\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$eq\": [\n                \"$_id\",\n                {\n                  \"$toObjectId\": \"$$featuredImageId\"\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"path\": {\n              \"$concat\": [\n                {\n                  \"$cond\": [\n                    {\n                      \"$eq\": [\n                        \"minio\",\n                        \"@app_settings:storage_type\"\n                      ]\n                    },\n                    \"@app_settings:minio.public\",\n                    \"@app_settings:doSpace.public\"\n                  ]\n                },\n                \"/\",\n                \"$disk\",\n                \"/\",\n                \"$filename\"\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"cover_image\"\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "note": "",
+  "method": "get-list",
+  "categories": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "body": null,
+  "documents": [],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    },
+    {
+      "value": "x-tenant_id",
+      "key": "x-tenant_id"
+    }
+  ],
+  "params": [
+    {
+      "value": "category",
+      "key": "category"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "category_ids",
+      "key": "category_ids"
+    }
+  ],
+  "cache_time": "",
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "slug",
+      "value": "slug"
+    },
+    {
+      "key": "short_description",
+      "value": "short_description"
+    },
+    {
+      "key": "long_description",
+      "value": "long_description"
+    },
+    {
+      "key": "cover_image",
+      "value": "cover_image"
+    },
+    {
+      "key": "status",
+      "value": "status"
+    },
+    {
+      "key": "contains_course",
+      "value": "contains_course"
+    },
+    {
+      "key": "objectives",
+      "value": "objectives"
+    },
+    {
+      "key": "objects",
+      "value": "objects"
+    },
+    {
+      "key": "requests",
+      "value": "requests"
+    },
+    {
+      "key": "category",
+      "value": "category"
+    },
+    {
+      "key": "type",
+      "value": "type"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "id": "67860d948dc33c7785c97c97"
+}

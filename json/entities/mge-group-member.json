@@ -1,0 +1,150 @@
+{
+  "use_parent_delete_childs": false,
+  "_id": "674810a776462b61b5df8ece",
+  "title": "mge group member",
+  "mongodb_collection_name": "mge-group-member",
+  "json_schema": {
+    "title": "group_member",
+    "description": "",
+    "type": "object",
+    "properties": {
+      "social_group": {
+        "type": "string",
+        "typeRelation": {
+          "title": "mge-group",
+          "_id": "mge-group",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "4013b683-1633-4839-8ba4-1d5795ef3720"
+          },
+          "type": "1-n"
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "Social Group",
+        "filter": true
+      },
+      "user": {
+        "type": "string",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "55668bdc-d62b-46be-98f4-00e7c9bf974d"
+          },
+          "type": "1-n"
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "User",
+        "filter": true
+      },
+      "status": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "joined",
+            "value": "joined"
+          },
+          {
+            "key": "pending",
+            "value": "pending"
+          },
+          {
+            "key": "left",
+            "value": "left"
+          },
+          {
+            "key": "removed",
+            "value": "removed"
+          },
+          {
+            "key": "reject",
+            "value": "reject"
+          }
+        ],
+        "default": "pending",
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "Status",
+        "type": "string",
+        "filter": true
+      },
+      "isFollow": {
+        "title": "Is Follow",
+        "type": "boolean",
+        "widget": "boolean",
+        "filter": true
+      },
+      "role": {
+        "title": "role",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "manager",
+            "value": "manager"
+          },
+          {
+            "key": "member",
+            "value": "member"
+          },
+          {
+            "key": "owner",
+            "value": "owner"
+          }
+        ],
+        "default": "member",
+        "filter": true
+      }
+    },
+    "required": [
+      "social_group",
+      "user",
+      "status",
+      "role"
+    ]
+  },
+  "ui_schema": {
+    "social_group": {
+      "ui:widget": "relation"
+    },
+    "user": {
+      "ui:widget": "relation"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "isFollow": {
+      "ui:widget": "boolean"
+    },
+    "role": {
+      "ui:widget": "select"
+    },
+    "ui:order": [
+      "social_group",
+      "user",
+      "status",
+      "isFollow",
+      "role"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "created_at": "2024-11-28T06:41:43.459Z",
+  "__v": 0,
+  "entity_group": null,
+  "unique_keys": "[\n  {\n    \"user\": 1,\n    \"social_group\": 1\n  }\n]",
+  "use_seo_path": false
+}

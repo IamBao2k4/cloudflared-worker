@@ -1,0 +1,13 @@
+{
+  "_id": "677cc7a14c897525eca25325",
+  "title": "delete social tag",
+  "outputEntity": [
+    "67590fed9b0285b4f6be778d"
+  ],
+  "queryAdvance": "",
+  "note": "",
+  "method": "delete",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

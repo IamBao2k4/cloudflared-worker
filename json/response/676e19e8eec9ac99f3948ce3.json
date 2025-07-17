@@ -1,0 +1,17 @@
+{
+  "_id": "676e19e8eec9ac99f3948ce3",
+  "title": "tranfer group owner",
+  "outputEntity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "queryAdvance": "{\n  \"user\": \"@param:user_id\",\n  \"social_group\": \"@param:group_id\",\n  \"role\": \"owner\",\n  \"status\": \"joined\"\n}",
+  "note": "",
+  "method": "put",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "body": null,
+  "documents": [],
+  "headers": null,
+  "params": null
+}

@@ -1,0 +1,95 @@
+{
+  "_id": "67a1c6191aaf205cfbd7110e",
+  "title": "get list course's member with status is pending",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "data": {
+    "id": "50d945f4-da9a-4087-8836-ced0fdb133a3",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "documents": [],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"course\": \"@param:course_id\",\n      \"status\": \"pending\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"user-tenant-profile\",\n      \"localField\": \"created_by\",\n      \"foreignField\": \"user\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"full_name\": {\n              \"$concat\": [\n                {\n                  \"$ifNull\": [\n                    \"$profile.last_name\",\n                    \"\"\n                  ]\n                },\n                \" \",\n                {\n                  \"$ifNull\": [\n                    \"$profile.first_name\",\n                    \"\"\n                  ]\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"$unwind\": {\n            \"path\": \"$user\",\n            \"preserveNullAndEmptyArrays\": true\n          }\n        },\n        {\n          \"$project\": {\n            \"_id\": \"$user\",\n            \"full_name\": 1,\n            \"featured_image\": \"$profile.course.featured_image\"\n          }\n        }\n      ],\n      \"as\": \"user\"\n    }\n  },\n  {\n    \"$unwind\": {\n      \"path\": \"$user\",\n      \"preserveNullAndEmptyArrays\": true\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$or\": [\n          {\n            \"$eq\": [\n              \"@param:title\",\n              null\n            ]\n          },\n          {\n            \"$regexMatch\": {\n              \"input\": \"$user.full_name\",\n              \"regex\": \"@param:title\",\n              \"options\": \"i\"\n            }\n          },\n          {\n            \"$regexMatch\": {\n              \"input\": \"$user.email\",\n              \"regex\": \"@param:title\",\n              \"options\": \"i\"\n            }\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"user\": {\n        \"$cond\": [\n          {\n            \"$ne\": [\n              \"$user\",\n              null\n            ]\n          },\n          [\n            \"$user\"\n          ],\n          []\n        ]\n      }\n    }\n  },\n  {\n    \"$sort\": {\n      \"created_at\": \"@sort_param:created_at\"\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "params": [
+    {
+      "value": "course",
+      "key": "course"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "course_id",
+      "key": "course_id"
+    },
+    {
+      "value": "sort",
+      "key": "sort"
+    },
+    {
+      "value": "title",
+      "key": "title"
+    },
+    {
+      "value": "created_at",
+      "key": "created_at"
+    }
+  ],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "restricted": [
+    {
+      "key": "course",
+      "value": "course"
+    },
+    {
+      "key": "user",
+      "value": "user"
+    },
+    {
+      "key": "status",
+      "value": "status"
+    },
+    {
+      "key": "role",
+      "value": "role"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "id": "67a1c6191aaf205cfbd7110e"
+}

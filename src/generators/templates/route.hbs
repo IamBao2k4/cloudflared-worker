@@ -1,0 +1,10 @@
+import { FastifyInstance } from "fastify";
+import { {{camelCase name}}Controller } from "../controllers/{{kebabCase name}}.controller";
+
+export async function {{camelCase name}}Routes(app: FastifyInstance) {
+  app.get("/{{kebabCase name}}", {{camelCase name}}Controller.findAll);
+  app.get("/{{kebabCase name}}/:id", {{camelCase name}}Controller.findOne);
+  app.post("/{{kebabCase name}}", {{camelCase name}}Controller.create);
+  app.put("/{{kebabCase name}}/:id", {{camelCase name}}Controller.update);
+  app.delete("/{{kebabCase name}}/:id", {{camelCase name}}Controller.remove);
+}

@@ -1,0 +1,14 @@
+{
+  "_id": "6785dc14d6d51abef2b11863",
+  "title": "get list course user joined",
+  "outputEntity": [
+    "67529c0665017d942f7592d1"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"tenant_id\": \"@header:x-tenant-id\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"media\",\n      \"let\": { \"featuredImageId\": { \"$arrayElemAt\": [ \"$cover_image\", 0 ] } },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$eq\": [ \"$_id\", { \"$toObjectId\": \"$$featuredImageId\" } ]\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"path\": {\n              \"$concat\": [\n                {\n                  \"$cond\": [\n                    { \"$eq\": [ \"minio\", \"@app_settings:storage_type\" ] },\n                    \"@app_settings:minio.public\",\n                    \"@app_settings:doSpace.public\"\n                  ]\n                },\n                \"/\",\n                \"$disk\",\n                \"/\",\n                \"$filename\"\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"cover_image\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-course-member\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"course\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"user\": \"@jwt:user.id\",\n            \"status\": \"joined\"\n          }\n        }\n      ],\n      \"as\": \"memberStatus\"\n    }\n  },\n  {\n    \"$match\": {\n      \"memberStatus\": { \"$ne\": [] }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-course-member\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"course\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"status\": \"joined\"\n          }\n        }\n      ],\n      \"as\": \"group_members\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"member_count\": {\n        \"$size\": \"$group_members\"\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"group_members\": 0\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        { \"$count\": \"count\" },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        { \"$skip\": \"@param:skip\" },\n        { \"$limit\": \"@param:limit\" }\n      ]\n    }\n  }\n]\n",
+  "note": "",
+  "method": "get-list",
+  "categories": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

@@ -1,0 +1,124 @@
+{
+  "_id": "6784f4518145c207b78a995d",
+  "title": "get list courses",
+  "outputEntity": [
+    "67529c0665017d942f7592d1"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"tenant_id\": \"@header:x-tenant-id\",\n      \"status\": \"active\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"media\",\n      \"let\": {\n        \"featuredImageId\": {\n          \"$arrayElemAt\": [\n            \"$cover_image\",\n            0\n          ]\n        }\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$eq\": [\n                \"$_id\",\n                {\n                  \"$toObjectId\": \"$$featuredImageId\"\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"path\": {\n              \"$concat\": [\n                {\n                  \"$cond\": [\n                    {\n                      \"$eq\": [\n                        \"minio\",\n                        \"@app_settings:storage_type\"\n                      ]\n                    },\n                    \"@app_settings:minio.public\",\n                    \"@app_settings:doSpace.public\"\n                  ]\n                },\n                \"/\",\n                \"$disk\",\n                \"/\",\n                \"$filename\"\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"cover_image\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"category\": {\n        \"$cond\": {\n          \"if\": {\n            \"$isArray\": \"$category\"\n          },\n          \"then\": {\n            \"$map\": {\n              \"input\": \"$category\",\n              \"as\": \"u\",\n              \"in\": {\n                \"$toObjectId\": \"$$u\"\n              }\n            }\n          },\n          \"else\": \"$category\"\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-categories\",\n      \"localField\": \"category\",\n      \"foreignField\": \"_id\",\n      \"pipeline\": [\n        {\n          \"$addFields\": {\n            \"id\": {\n              \"$toString\": \"$_id\"\n            }\n          }\n        }\n      ],\n      \"as\": \"category\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-categories\",\n      \"let\": {\n        \"categoryIds\": {\n          \"$cond\": {\n            \"if\": {\n              \"$isArray\": \"@param:category_ids[]\"\n            },\n            \"then\": \"@param:category_ids[]\",\n            \"else\": {\n              \"$cond\": {\n                \"if\": {\n                  \"$eq\": [\n                    \"@param:category_ids[]\",\n                    null\n                  ]\n                },\n                \"then\": [],\n                \"else\": \n                  \"@param:category_ids[]\"\n                \n              }\n            }\n          }\n        }\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$or\": [\n                {\n                  \"$in\": [\n                    \"$id\",\n                    \"$$categoryIds\"\n                  ]\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"$graphLookup\": {\n            \"from\": \"mge-categories\",\n            \"startWith\": \"$id\",\n            \"connectFromField\": \"id\",\n            \"connectToField\": \"parent_id\",\n            \"as\": \"descendants\",\n            \"depthField\": \"level\",\n            \"maxDepth\": 100\n          }\n        },\n        {\n          \"$project\": {\n            \"allCategoryIds\": {\n              \"$concatArrays\": [\n                [\n                  \"$id\"\n                ],\n                \"$descendants.id\"\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"categoryHierarchy\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"allRelevantCategoryIds\": {\n        \"$reduce\": {\n          \"input\": \"$categoryHierarchy\",\n          \"initialValue\": [],\n          \"in\": {\n            \"$concatArrays\": [\n              \"$$value\",\n              \"$$this.allCategoryIds\"\n            ]\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$or\": [\n          {\n            \"$eq\": [\n              \"@param:category_ids[]\",\n              null\n            ]\n          },\n          {\n            \"$gt\": [\n              {\n                \"$size\": {\n                  \"$setIntersection\": [\n                    {\n                      \"$map\": {\n                        \"input\": \"$category\",\n                        \"as\": \"c\",\n                        \"in\": \"$$c.id\"\n                      }\n                    },\n                    \"$allRelevantCategoryIds\"\n                  ]\n                }\n              },\n              0\n            ]\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-user-rating\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"course\",\n      \"pipeline\": [\n        {\n          \"$group\": {\n            \"_id\": \"$rating_score\",\n            \"count\": {\n              \"$sum\": 1\n            }\n          }\n        },\n        {\n          \"$project\": {\n            \"_id\": 0,\n            \"rating_score\": \"$_id\",\n            \"count\": 1\n          }\n        },\n        {\n          \"$sort\": {\n            \"rating_score\": 1\n          }\n        }\n      ],\n      \"as\": \"rating_detail\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-user-rating\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"course\",\n      \"as\": \"rating_info\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"rating_count\": {\n        \"$size\": \"$rating_info\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$or\": [\n          {\n            \"$eq\": [\n              \"@param:title\",\n              null\n            ]\n          },\n          {\n            \"$regexMatch\": {\n              \"input\": \"$title\",\n              \"regex\": \"@param:title\",\n              \"options\": \"i\"\n            }\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"rating_info\": 0\n    }\n  },\n  {\n    \"$sort\": {\n      \"rating_count\": -1,\n      \"created_at\": -1\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "note": "",
+  "method": "get-list",
+  "categories": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "body": null,
+  "documents": [],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "category",
+      "key": "category"
+    },
+    {
+      "value": "category_id",
+      "key": "category_id"
+    },
+    {
+      "value": "title",
+      "key": "title"
+    },
+    {
+      "value": "category[]",
+      "key": "category[]"
+    },
+    {
+      "value": "category_ids[]",
+      "key": "category_ids[]"
+    }
+  ],
+  "cache_time": "",
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "slug",
+      "value": "slug"
+    },
+    {
+      "key": "short_description",
+      "value": "short_description"
+    },
+    {
+      "key": "long_description",
+      "value": "long_description"
+    },
+    {
+      "key": "cover_image",
+      "value": "cover_image"
+    },
+    {
+      "key": "status",
+      "value": "status"
+    },
+    {
+      "key": "contains_course",
+      "value": "contains_course"
+    },
+    {
+      "key": "objectives",
+      "value": "objectives"
+    },
+    {
+      "key": "objects",
+      "value": "objects"
+    },
+    {
+      "key": "requests",
+      "value": "requests"
+    },
+    {
+      "key": "category",
+      "value": "category"
+    },
+    {
+      "key": "type",
+      "value": "type"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "id": "6784f4518145c207b78a995d"
+}

@@ -1,0 +1,322 @@
+{
+  "_id": "674e89c2033700ce36e9f038",
+  "title": "mge tweet social image",
+  "mongodb_collection_name": "mge-tweet-social-image",
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "entity_group": [
+    "674e8bdf2f536fda4192c8e1"
+  ],
+  "created_at": "2024-12-03T04:32:02.110Z",
+  "__v": 0,
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true,
+        "min": null,
+        "max": null
+      },
+      "slug": {
+        "title": "slug",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "depend_field": "root_title",
+        "filter": true
+      },
+      "short_description": {
+        "title": "short_description",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "long_description": {
+        "title": "long_description",
+        "type": "string",
+        "widget": "longAnswer",
+        "customRole": "textarea",
+        "filter": true
+      },
+      "images": {
+        "title": "Images",
+        "type": "string",
+        "widget": "multipleFiles"
+      },
+      "featured_image": {
+        "title": "featured_image",
+        "type": "string",
+        "widget": "file",
+        "filter": true
+      },
+      "categories": {
+        "title": "categories",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group-category",
+          "_id": "mge-group-category",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "70e6e4b7-db26-4801-88b7-e4931dd89ef1"
+          }
+        },
+        "filter": true
+      },
+      "tag": {
+        "title": "tag",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-social-tag",
+          "_id": "mge-social-tag",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "275d14d0-0d71-4e86-8d93-374a7b75cffe"
+          }
+        },
+        "filter": true
+      },
+      "comment_off": {
+        "title": "comment_off",
+        "type": "string",
+        "widget": "boolean",
+        "filter": true,
+        "default": false
+      },
+      "like_off": {
+        "title": " like_off",
+        "type": "string",
+        "widget": "boolean",
+        "filter": true,
+        "default": false
+      },
+      "status": {
+        "title": "status",
+        "type": "string",
+        "widget": "select",
+        "filter": true,
+        "choices": [
+          {
+            "key": "ACTIVE",
+            "value": "active"
+          },
+          {
+            "key": "DELETED",
+            "value": "deleted"
+          },
+          {
+            "key": "APPROVE",
+            "value": "approve"
+          },
+          {
+            "key": "HIDDEN",
+            "value": "hidden"
+          },
+          {
+            "key": "DRAFT",
+            "value": "draft"
+          },
+          {
+            "key": "ARCHIVE",
+            "value": "archive"
+          },
+          {
+            "key": "WAITING",
+            "value": "waiting"
+          },
+          {
+            "key": "REJECT",
+            "value": "reject"
+          },
+          {
+            "key": "SEND TO REVIEW",
+            "value": "send_to_review"
+          }
+        ],
+        "default": "active"
+      },
+      "social_group": {
+        "title": " social_group",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group",
+          "_id": "mge-group",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "f836e4d7-1251-4710-88ba-458f34ac59e2"
+          }
+        },
+        "filter": true
+      },
+      "approve_at": {
+        "title": "approve_at",
+        "type": "string",
+        "widget": "date",
+        "displayFormat": "YYYY/MM/DD",
+        "formatDate": "date",
+        "filter": true
+      },
+      "approve_by": {
+        "title": "approve_by",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "f4ba8792-3d07-41a0-a8d4-b2cdf53afe6d"
+          }
+        },
+        "filter": true
+      },
+      "published_at": {
+        "title": "published_at",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "YYYY/MM/DD : HH:mm a",
+        "formatDate": "date-time",
+        "filter": true
+      },
+      "report_tweet_off": {
+        "title": "report_tweet_off",
+        "type": "string",
+        "widget": "boolean",
+        "filter": true
+      },
+      "report_comment_off": {
+        "title": " report_comment_off",
+        "type": "string",
+        "widget": "boolean",
+        "filter": true
+      },
+      "tweet_waiting_time": {
+        "title": "tweet_waiting_time",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": false,
+        "field": "single",
+        "mode": "dateTime"
+      },
+      "reject_reason": {
+        "title": "reject_reason",
+        "type": "string",
+        "widget": "shortAnswer",
+        "description": "Lưu lý do khi bài viết bị từ chối"
+      }
+    },
+    "required": [
+      "title",
+      "slug",
+      "social_group"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "short_description": {
+      "ui:widget": "shortAnswer"
+    },
+    "long_description": {
+      "ui:widget": "textarea"
+    },
+    "images": {
+      "ui:widget": "multipleFiles"
+    },
+    "featured_image": {
+      "ui:widget": "file"
+    },
+    "categories": {
+      "ui:widget": "relation"
+    },
+    "tag": {
+      "ui:widget": "relation"
+    },
+    "comment_off": {
+      "ui:widget": "boolean"
+    },
+    "like_off": {
+      "ui:widget": "boolean"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "social_group": {
+      "ui:widget": "relation"
+    },
+    "approve_at": {
+      "ui:widget": "date"
+    },
+    "approve_by": {
+      "ui:widget": "relation"
+    },
+    "published_at": {
+      "ui:widget": "dateTime"
+    },
+    "report_tweet_off": {
+      "ui:widget": "boolean"
+    },
+    "report_comment_off": {
+      "ui:widget": "boolean"
+    },
+    "tweet_waiting_time": {
+      "ui:widget": "dateTime"
+    },
+    "reject_reason": {
+      "ui:widget": "shortAnswer"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "short_description",
+      "long_description",
+      "images",
+      "featured_image",
+      "categories",
+      "tag",
+      "comment_off",
+      "like_off",
+      "status",
+      "social_group",
+      "approve_at",
+      "approve_by",
+      "published_at",
+      "report_tweet_off",
+      "report_comment_off",
+      "tweet_waiting_time",
+      "reject_reason"
+    ]
+  },
+  "use_seo_path": false,
+  "use_parent_delete_childs": false,
+  "entity_setting": {
+    "merge_collection": "mge-tweet",
+    "type": "image"
+  },
+  "type": "image"
+}

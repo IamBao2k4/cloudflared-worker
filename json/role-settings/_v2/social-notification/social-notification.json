@@ -1,0 +1,164 @@
+{
+  "social-notification": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67ea0bb57463d047317d32ad",
+          "title": "get list user notifications",
+          "entity": "notification-record",
+          "path_file": "json/response/67ea0bb57463d047317d32ad.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "b65303e5-fd0a-4cf6-b669-a0fbed85e691",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            }
+          ],
+          "id": "863fbb1d-7624-452f-a31a-97437d39f6f1"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67ea166c7463d047317d391b",
+          "title": "update user notification",
+          "entity": "notification-record",
+          "path_file": "json/response/67ea166c7463d047317d391b.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "206fe8a6-974f-4cfb-bce2-00a8225bf8e0",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "d2b7d156-4a40-466c-a84b-10991f948ee5",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67ea16cd7463d047317d39a8"
+            }
+          ],
+          "id": "b0ef2cdc-f535-4124-9068-443d9094ee6c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "67ea16cd7463d047317d39a8",
+            "title": "is-notification-belongs-to-user",
+            "entity": {
+              "_id": "67a1b30e1aaf205cfbd70e02",
+              "mongodb_collection_name": "notification-record"
+            },
+            "path_file": "json/validate/67ea16cd7463d047317d39a8.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67ea1ad27463d047317d3c8d",
+          "title": "delete user notification",
+          "entity": "notification-record",
+          "path_file": "json/response/67ea1ad27463d047317d3c8d.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "4612dcfd-6339-4efa-9a1e-8bba5d658c39",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "bd55351b-4b74-4a59-8389-bf90f5848f34",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67ea16cd7463d047317d39a8"
+            }
+          ],
+          "id": "590fbf33-950d-4240-9fc9-dc8b54f9f4d7"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "67ea16cd7463d047317d39a8",
+            "title": "is-notification-belongs-to-user",
+            "entity": {
+              "_id": "67a1b30e1aaf205cfbd70e02",
+              "mongodb_collection_name": "notification-record"
+            },
+            "path_file": "json/validate/67ea16cd7463d047317d39a8.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

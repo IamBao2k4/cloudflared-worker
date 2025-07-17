@@ -1,0 +1,23 @@
+[
+  {
+    "name": "header",
+    "targetTable": "menu",
+    "localField": "header",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "Footer",
+    "targetTable": "menu",
+    "localField": "Footer",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "newInput1",
+    "targetTable": "entity",
+    "localField": "newInput1",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

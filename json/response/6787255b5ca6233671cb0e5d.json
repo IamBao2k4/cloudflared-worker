@@ -1,0 +1,83 @@
+{
+  "_id": "6787255b5ca6233671cb0e5d",
+  "title": "get detail lesson",
+  "outputEntity": [
+    "6752a70b65017d942f75941d"
+  ],
+  "queryAdvance": "[\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"$or\": [\n        {\n          \"_id\": \"@param:_id\"\n        },\n        {\n          \"_id\": \"@param:lesson_id\"\n        },\n        {\n          \"slug\":\"@param:slug\"\n        }\n      ]\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"user-tenant-profile\",\n      \"localField\": \"created_by\",\n      \"foreignField\": \"user\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"full_name\": {\n              \"$concat\": [\n                \"$profile.course.last_name\",\n                \" \",\n                \"$profile.course.first_name\"\n              ]\n            }\n          }\n        },\n        {\n          \"$project\": {\n            \"_id\": \"$user\",\n            \"full_name\": 1,\n            \"featured_image\": \"$profile.course.featured_image\"\n          }\n        }\n      ],\n      \"as\": \"user\"\n    }\n  },\n  // {\n  //   \"$addFields\": {\n  //     \"course\": {\n  //       \"$map\": {\n  //         \"input\": \"$course\",\n  //         \"as\": \"u\",\n  //         \"in\": {\n  //           \"$toObjectId\": \"$$u\"\n  //         }\n  //       }\n  //     }\n  //   }\n  // },\n  // {\n  //   \"$lookup\": {\n  //     \"from\": \"mge-courses\",\n  //     \"localField\": \"course\",\n  //     \"foreignField\": \"_id\",\n  //     \"as\": \"course\"\n  //   }\n  // },\n  {\n    \"$addFields\": {\n      \"chapters\": {\n        \"$map\": {\n          \"input\": {\n            \"$ifNull\": [\n              \"$chapters\",\n              []\n            ]\n          },\n          \"as\": \"u\",\n          \"in\": {\n            \"$toObjectId\": \"$$u\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-chapters\",\n      \"localField\": \"chapters\",\n      \"foreignField\": \"_id\",\n      \"as\": \"chapters\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"video_file\": {\n        \"$cond\": {\n          \"if\": {\n            \"$isArray\": \"$video_file\"\n          },\n          \"then\": {\n            \"$toObjectId\": {\n              \"$arrayElemAt\": [\n                \"$video_file\",\n                0\n              ]\n            }\n          },\n          \"else\": {\n            \"$toObjectId\": \"$video_file\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"media\",\n      \"localField\": \"video_file\",\n      \"foreignField\": \"_id\",\n      \"pipeline\": [\n        {\n          \"$addFields\": {\n            \"path\": {\n              \"$concat\": [\n                {\n                  \"$cond\": [\n                    {\n                      \"$eq\": [\n                        \"minio\",\n                        \"@app_settings:storage_type\"\n                      ]\n                    },\n                    \"@app_settings:minio.public\",\n                    \"@app_settings:doSpace.public\"\n                  ]\n                },\n                \"/\",\n                \"$disk\",\n                \"/\",\n                \"$filename\"\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"video_file\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-course-user-progress\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"lesson\",\n      \"pipeline\":[\n        {\n          \"$match\":{\n            \"tenant_id\":\"@header:x-tenant-id\",\n            \"user\":\"@jwt:user.id\"\n          }\n        }\n      ],\n      \"as\": \"is_finished\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"is_finished\": {\n        \"$cond\": {\n          \"if\": { \"$gt\": [{ \"$size\": \"$is_finished\" }, 0] },\n          \"then\": true,\n          \"else\": false\n        }\n      }\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "note": "",
+  "method": "get-detail",
+  "categories": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "body": null,
+  "documents": [],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    },
+    {
+      "value": "x-tenant-i",
+      "key": "x-tenant-i"
+    }
+  ],
+  "params": [
+    {
+      "value": "_id",
+      "key": "_id"
+    },
+    {
+      "value": "lesson_id",
+      "key": "lesson_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "slug",
+      "key": "slug"
+    }
+  ],
+  "cache_time": "",
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "slug",
+      "value": "slug"
+    },
+    {
+      "key": "lesson_type",
+      "value": "lesson_type"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ]
+}

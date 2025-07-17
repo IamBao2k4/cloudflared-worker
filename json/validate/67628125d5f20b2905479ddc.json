@@ -1,0 +1,42 @@
+{
+  "_id": "67628125d5f20b2905479ddc",
+  "title": "is-user-role-in-group-is-member",
+  "note": "",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "data": {
+    "id": "ddf6b724-7aff-40ba-96df-70fd76f1ca2e",
+    "rules": [
+      {
+        "id": "1f5db17d-4573-4bb4-b57b-bd825e57e70b",
+        "field": "mge-group-member.social_group",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-group-member.social_group:param.group_id"
+      },
+      {
+        "id": "99a740c0-0bd2-4370-b37b-daf90a3dcb4d",
+        "field": "mge-group-member.user",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-group-member.user:jwt.user@id"
+      },
+      {
+        "id": "81d0edd3-ad0d-4d98-b69a-cca49dece1f1",
+        "field": "mge-group-member.role",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "member"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"mge-group-member.social_group\":\"$mge-group-member.social_group:param.group_id\"},{\"mge-group-member.user\":\"$mge-group-member.user:jwt.user@id\"},{\"mge-group-member.role\":\"member\"}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": []
+}

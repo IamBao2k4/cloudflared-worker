@@ -1,0 +1,33 @@
+{
+  "course-team": {},
+  "get-list": {
+    "headers": [
+      {
+        "value": "x-tenant-id",
+        "key": "x-tenant-id"
+      }
+    ],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "680a13dfbc11e2ce3d19ad59",
+          "title": "get list course team",
+          "entity": "mge-team",
+          "path_file": "json/response/680a13dfbc11e2ce3d19ad59.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "61e11945-53d0-49e4-b466-55128ba43351"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

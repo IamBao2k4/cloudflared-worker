@@ -1,0 +1,16 @@
+[
+  {
+    "name": "user",
+    "targetTable": "user",
+    "localField": "user",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "learning_path",
+    "targetTable": "mge-learning-path",
+    "localField": "learning_path",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "_id": "676a5e6fa188bea5e073d744",
+  "title": "Get detail user's profile (self)",
+  "outputEntity": [
+    "6749933810905d9ddbd0104b"
+  ],
+  "queryAdvance": "[\n  {\n    \"$addFields\": {\n      \"id\": {\n        \"$toString\": \"$_id\"\n      },\n      \"full_name\": { \"$concat\": [\"$first_name\", \" \", \"$last_name\"] }\n    }\n  },\n  {\n    \"$match\": {\n      \"id\": \"@param:user_id\"\n    }\n  },\n  {\n    \"$project\": {\n      \"password\": 0\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"media\",\n      \"let\": {\n        \"featuredImageId\": {\n          \"$arrayElemAt\": [\"$cover\", 0]\n        }\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$eq\": [\n                \"$_id\",\n                {\n                  \"$toObjectId\": \"$$featuredImageId\"\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"path\": {\n              \"$concat\": [\n                {\n                  \"$cond\": [\n                    {\n                      \"$eq\": [\"minio\", \"@app_settings:storage_type\"]\n                    },\n                    \"@app_settings:minio.public\",\n                    \"@app_settings:doSpace.public\"\n                  ]\n                },\n                \"/\",\n                \"$disk\",\n                \"/\",\n                \"$filename\"\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"cover\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"media\",\n      \"let\": {\n        \"featuredImageId\": {\n          \"$arrayElemAt\": [\"$featured_image\", 0]\n        }\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$eq\": [\n                \"$_id\",\n                {\n                  \"$toObjectId\": \"$$featuredImageId\"\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"path\": {\n              \"$concat\": [\n                {\n                  \"$cond\": [\n                    {\n                      \"$eq\": [\"minio\", \"@app_settings:storage_type\"]\n                    },\n                    \"@app_settings:minio.public\",\n                    \"@app_settings:doSpace.public\"\n                  ]\n                },\n                \"/\",\n                \"$disk\",\n                \"/\",\n                \"$filename\"\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"featured_image\"\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]\n",
+  "note": "",
+  "method": "get-detail",
+  "documents": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "body": null,
+  "headers": [
+    {
+      "value": "user.id",
+      "key": "user.id"
+    }
+  ],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "user_id",
+      "key": "user_id"
+    }
+  ],
+  "categories": [],
+  "cache_time": ""
+}

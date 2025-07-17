@@ -1,0 +1,19 @@
+{
+  "_id": "680f37537cff9ff0d0ec3d24",
+  "title": "is-final-exam-false",
+  "note": "",
+  "entity": [
+    "6752cbec65017d942f7595dc"
+  ],
+  "categories": [],
+  "data": {
+    "id": "791457d0-4624-403c-9951-42e550ee2bbc",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "required": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "advance": "[\n  {\n    \"$addFields\": {\n      \"id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\":{\n      \"tenant_id\":\"@header:x-tenant-id\",\n      \"id\":\"@param:_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"exam\": {\n        \"$map\": {\n          \"input\": \"$exam\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-exams\",\n      \"localField\": \"exam\",\n      \"foreignField\": \"_id\",\n      \"pipeline\":[\n        {\n          \"$match\":{\n            \"is_final_exam\":false\n          }\n        }\n      ],\n      \"as\": \"is_final_exam\"\n    }\n  },\n  {\n    \"$match\": {\n      \"is_final_exam\": { \"$ne\": [] }\n    }\n  }\n]"
+}

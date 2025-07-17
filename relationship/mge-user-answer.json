@@ -1,0 +1,16 @@
+[
+  {
+    "name": "question",
+    "targetTable": "mge-questions",
+    "localField": "question",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "created_by",
+    "targetTable": "user",
+    "localField": "created_by",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

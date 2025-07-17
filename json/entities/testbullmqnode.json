@@ -1,0 +1,2240 @@
+{
+  "_id": "682aff1345a2636674cbbc9d",
+  "title": "test-bull-mq-node",
+  "mongodb_collection_name": "testbullmqnode",
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-05-19T09:51:15.690Z",
+  "__v": 0,
+  "id": "682aff1345a2636674cbbc9d",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "options": {
+        "title": "options",
+        "type": "object",
+        "properties": {
+          "list_options": {
+            "widget": "select",
+            "returnValue": 2,
+            "choices": [
+              {
+                "key": "timestamp",
+                "value": "timestamp"
+              },
+              {
+                "key": "priority",
+                "value": "priority"
+              },
+              {
+                "key": "delay",
+                "value": "delay"
+              },
+              {
+                "key": "attempts",
+                "value": "attempts"
+              },
+              {
+                "key": "backoff",
+                "value": "backoff"
+              },
+              {
+                "key": "lifo",
+                "value": "lifo"
+              },
+              {
+                "key": "timeout",
+                "value": "timeout"
+              },
+              {
+                "key": "removeOnComplete",
+                "value": "removeOnComplete"
+              },
+              {
+                "key": "removeOnFail",
+                "value": "removeOnFail"
+              },
+              {
+                "key": "keepLogs",
+                "value": "keepLogs"
+              },
+              {
+                "key": "stackTraceLimit",
+                "value": "stackTraceLimit"
+              },
+              {
+                "key": "sizeLimit",
+                "value": "sizeLimit"
+              },
+              {
+                "key": "repeat",
+                "value": "repeat"
+              },
+              {
+                "key": "jobId",
+                "value": "jobId"
+              },
+              {
+                "key": "parent",
+                "value": "parent"
+              },
+              {
+                "key": "preventParsingData",
+                "value": "preventParsingData"
+              },
+              {
+                "key": "deduplication",
+                "value": "deduplication"
+              },
+              {
+                "key": "failParentOnFailure",
+                "value": "failParentOnFailure"
+              },
+              {
+                "key": "continueParentOnFailure",
+                "value": "continueParentOnFailure"
+              },
+              {
+                "key": "ignoreDependencyOnFailure",
+                "value": "ignoreDependencyOnFailure"
+              },
+              {
+                "key": "removeDependencyOnFailure",
+                "value": "removeDependencyOnFailure"
+              },
+              {
+                "key": "telemetry",
+                "value": "telemetry"
+              },
+              {
+                "key": "concurrency",
+                "value": "concurrency"
+              },
+              {
+                "key": "lockDuration",
+                "value": "lockDuration"
+              },
+              {
+                "key": "lockRenewTime",
+                "value": "lockRenewTime"
+              },
+              {
+                "key": "fifo",
+                "value": "fifo"
+              }
+            ],
+            "default": [],
+            "allowNull": false,
+            "isMultiple": true,
+            "title": "list_options",
+            "type": "string"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "timestamp"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "timestamp": {
+                  "title": "timestamp",
+                  "type": "string",
+                  "widget": "numberInput",
+                  "description": "timestamp khi công việc được tạo"
+                }
+              },
+              "required": [
+                "timestamp"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "priority"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "priority": {
+                  "title": "priority",
+                  "type": "string",
+                  "widget": "numberInput",
+                  "description": "Độ ưu tiên của công việc, số càng thấp thì độ ưu tiên càng cao"
+                }
+              },
+              "required": [
+                "priority"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "delay"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "delay": {
+                  "title": "delay",
+                  "type": "string",
+                  "widget": "numberInput",
+                  "description": "Thời gian trì hoãn (tính bằng mili giây) trước khi công việc được xử lý"
+                }
+              },
+              "required": [
+                "delay"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "attempts"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "attempts": {
+                  "title": "attempts",
+                  "type": "string",
+                  "widget": "numberInput",
+                  "description": "Số lần thử lại tối đa nếu công việc thất bại"
+                }
+              },
+              "required": [
+                "attempts"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "backoff"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "backoff": {
+                  "title": "backoff",
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "widget": "select",
+                      "returnValue": 2,
+                      "choices": [
+                        {
+                          "key": "exponential",
+                          "value": "exponential"
+                        },
+                        {
+                          "key": "fixed",
+                          "value": "fixed"
+                        }
+                      ],
+                      "allowNull": false,
+                      "isMultiple": false,
+                      "title": "type",
+                      "type": "string",
+                      "description": "Kiểu tăng thời gian chờ giữa các lần thử lại, exponential tăng theo cấp số nhân, fixed giữ nguyên"
+                    },
+                    "delay": {
+                      "title": "delay",
+                      "type": "string",
+                      "widget": "numberInput",
+                      "description": "Thời gian chờ cơ bản giữa các lần thử lại (mili giây)"
+                    }
+                  },
+                  "required": [],
+                  "description": "Cấu hình cho việc thử lại"
+                }
+              },
+              "required": [
+                "backoff"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "timeout"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "timeout": {
+                  "title": "timeout",
+                  "type": "string",
+                  "widget": "numberInput",
+                  "description": "Thời gian tối đa (mili giây) cho phép một công việc chạy trước khi bị coi là timeout"
+                }
+              },
+              "required": [
+                "timeout"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "removeOnComplete"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "removeOnComplete": {
+                  "title": "removeOnComplete",
+                  "type": "object",
+                  "properties": {
+                    "options": {
+                      "title": "options",
+                      "type": "string",
+                      "widget": "select",
+                      "choices": [
+                        {
+                          "key": "true",
+                          "value": "true"
+                        },
+                        {
+                          "key": "false",
+                          "value": "false"
+                        },
+                        {
+                          "key": "number",
+                          "value": "number"
+                        },
+                        {
+                          "key": "object",
+                          "value": "object"
+                        }
+                      ],
+                      "description": "Miền giá trị"
+                    }
+                  },
+                  "dependencies": {
+                    "options": {
+                      "oneOf": [
+                        {
+                          "properties": {
+                            "options": {
+                              "enum": [
+                                "number"
+                              ]
+                            },
+                            "number": {
+                              "title": "number",
+                              "type": "string",
+                              "widget": "numberInput",
+                              "description": "Giữ lại số lượng công việc chỉ định"
+                            }
+                          },
+                          "required": []
+                        },
+                        {
+                          "properties": {
+                            "options": {
+                              "enum": [
+                                "object"
+                              ]
+                            },
+                            "objects": {
+                              "title": "objects",
+                              "type": "object",
+                              "properties": {
+                                "count": {
+                                  "title": "count",
+                                  "type": "string",
+                                  "widget": "numberInput",
+                                  "description": "Số lượng công việc giữ lại"
+                                },
+                                "age": {
+                                  "title": "age",
+                                  "type": "string",
+                                  "widget": "numberInput",
+                                  "description": "Thời gian giữ lại (giây)"
+                                }
+                              },
+                              "required": []
+                            }
+                          },
+                          "required": []
+                        }
+                      ]
+                    }
+                  },
+                  "required": [],
+                  "description": "Cấu hình việc xóa công việc sau khi hoàn thành"
+                }
+              },
+              "required": [
+                "removeOnComplete"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "removeOnFail"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "removeOnFail": {
+                  "title": "removeOnFail",
+                  "type": "object",
+                  "properties": {
+                    "options": {
+                      "title": "options",
+                      "type": "string",
+                      "widget": "select",
+                      "choices": [
+                        {
+                          "key": "true",
+                          "value": "true"
+                        },
+                        {
+                          "key": "false",
+                          "value": "false"
+                        },
+                        {
+                          "key": "number",
+                          "value": "number"
+                        },
+                        {
+                          "key": "object",
+                          "value": "object"
+                        }
+                      ],
+                      "description": "Miền giá trị"
+                    }
+                  },
+                  "dependencies": {
+                    "options": {
+                      "oneOf": [
+                        {
+                          "properties": {
+                            "options": {
+                              "enum": [
+                                "number"
+                              ]
+                            },
+                            "number": {
+                              "title": "number",
+                              "type": "string",
+                              "widget": "numberInput",
+                              "description": "Giữ lại số lượng công việc chỉ định"
+                            }
+                          },
+                          "required": []
+                        },
+                        {
+                          "properties": {
+                            "options": {
+                              "enum": [
+                                "object"
+                              ]
+                            },
+                            "objects": {
+                              "title": "objects",
+                              "type": "object",
+                              "properties": {
+                                "count": {
+                                  "title": "count",
+                                  "type": "string",
+                                  "widget": "numberInput",
+                                  "description": "Số lượng công việc giữ lại"
+                                },
+                                "age": {
+                                  "title": "age",
+                                  "type": "string",
+                                  "widget": "numberInput",
+                                  "description": "Thời gian giữ lại (giây)"
+                                }
+                              },
+                              "required": []
+                            }
+                          },
+                          "required": []
+                        }
+                      ]
+                    }
+                  },
+                  "required": [],
+                  "description": "Cấu hình việc xóa công việc sau khi thất bại"
+                }
+              },
+              "required": [
+                "removeOnFail"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "keepLogs"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "keepLogs": {
+                  "title": "keepLogs",
+                  "type": "string",
+                  "widget": "numberInput",
+                  "description": "Số lượng bản ghi log giữ lại cho mỗi công việc"
+                }
+              },
+              "required": [
+                "keepLogs"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "stackTraceLimit"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "stackTraceLimit": {
+                  "title": "stackTraceLimit",
+                  "type": "string",
+                  "widget": "numberInput",
+                  "description": "Giới hạn số dòng trong stack trace khi có lỗi"
+                }
+              },
+              "required": [
+                "stackTraceLimit"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "sizeLimit"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "sizeLimit": {
+                  "title": "sizeLimit",
+                  "type": "string",
+                  "widget": "numberInput",
+                  "description": "Giới hạn kích thước của dữ liệu công việc"
+                }
+              },
+              "required": [
+                "sizeLimit"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "repeat"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "repeat": {
+                  "title": "repeat",
+                  "type": "object",
+                  "properties": {
+                    "options": {
+                      "title": "options",
+                      "type": "string",
+                      "widget": "select",
+                      "choices": [
+                        {
+                          "key": "cron",
+                          "value": "cron"
+                        },
+                        {
+                          "key": "every",
+                          "value": "every"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "limit"
+                        },
+                        {
+                          "key": "startDate",
+                          "value": "startDate"
+                        },
+                        {
+                          "key": "endDate",
+                          "value": "endDate"
+                        },
+                        {
+                          "key": "timezone",
+                          "value": "timezone"
+                        }
+                      ],
+                      "description": "Miền giá trị"
+                    }
+                  },
+                  "dependencies": {
+                    "options": {
+                      "oneOf": [
+                        {
+                          "properties": {
+                            "options": {
+                              "enum": [
+                                "cron",
+                                "timezone"
+                              ]
+                            },
+                            "string": {
+                              "title": "string",
+                              "type": "string",
+                              "widget": "shortAnswer"
+                            }
+                          },
+                          "required": []
+                        },
+                        {
+                          "properties": {
+                            "options": {
+                              "enum": [
+                                "every",
+                                "limit"
+                              ]
+                            },
+                            "number": {
+                              "title": "number",
+                              "type": "string",
+                              "widget": "numberInput"
+                            }
+                          },
+                          "required": []
+                        },
+                        {
+                          "properties": {
+                            "options": {
+                              "enum": [
+                                "endDate",
+                                "startDate"
+                              ]
+                            },
+                            "date": {
+                              "title": "date",
+                              "type": "string",
+                              "widget": "date",
+                              "displayFormat": "yyyy/MM/dd",
+                              "formatDate": "date",
+                              "disabled": false,
+                              "field": "single",
+                              "mode": "date"
+                            }
+                          },
+                          "required": []
+                        }
+                      ]
+                    }
+                  },
+                  "required": [],
+                  "description": "Cấu hình lặp lại công việc"
+                }
+              },
+              "required": [
+                "repeat"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "jobId"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "jobId": {
+                  "title": "jobId",
+                  "type": "string",
+                  "widget": "shortAnswer",
+                  "description": "ID tùy chỉnh cho công việc"
+                }
+              },
+              "required": [
+                "jobId"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "parent"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "parent": {
+                  "title": "parent",
+                  "type": "object",
+                  "properties": {
+                    "Id": {
+                      "title": "Id",
+                      "type": "string",
+                      "widget": "shortAnswer",
+                      "description": "ID của công việc cha"
+                    },
+                    "queue": {
+                      "title": "queue",
+                      "type": "string",
+                      "widget": "shortAnswer",
+                      "description": "Tên queue của parent job"
+                    }
+                  },
+                  "required": [
+                    "Id",
+                    "queue"
+                  ],
+                  "description": "Thông tin về công việc cha"
+                }
+              },
+              "required": [
+                "parent"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "deduplication"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "deduplication": {
+                  "title": "deduplication",
+                  "type": "object",
+                  "properties": {
+                    "options": {
+                      "title": "options",
+                      "type": "string",
+                      "widget": "select",
+                      "choices": [
+                        {
+                          "key": "key",
+                          "value": "key"
+                        },
+                        {
+                          "key": "delay",
+                          "value": "delay"
+                        }
+                      ],
+                      "description": "Các lựa chọn"
+                    }
+                  },
+                  "dependencies": {
+                    "options": {
+                      "oneOf": [
+                        {
+                          "properties": {
+                            "options": {
+                              "enum": [
+                                "key"
+                              ]
+                            },
+                            "string": {
+                              "title": "string",
+                              "type": "string",
+                              "widget": "shortAnswer",
+                              "description": "Khóa để xác định trùng lặp"
+                            }
+                          },
+                          "required": []
+                        },
+                        {
+                          "properties": {
+                            "options": {
+                              "enum": [
+                                "delay"
+                              ]
+                            },
+                            "number": {
+                              "title": "number",
+                              "type": "string",
+                              "widget": "numberInput",
+                              "description": "Thời gian trì hoãn (mili giây)"
+                            }
+                          },
+                          "required": []
+                        }
+                      ]
+                    }
+                  },
+                  "required": [],
+                  "description": "Cấu hình loại bỏ trùng lặp"
+                }
+              },
+              "required": [
+                "deduplication"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "telemetry"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "telemetry": {
+                  "title": "telemetry",
+                  "type": "object",
+                  "properties": {
+                    "options": {
+                      "title": "options",
+                      "type": "string",
+                      "widget": "select",
+                      "choices": [
+                        {
+                          "key": "metadata",
+                          "value": "metadata"
+                        },
+                        {
+                          "key": "omitContext",
+                          "value": "omitContext"
+                        }
+                      ],
+                      "description": "Các lựa chọn"
+                    }
+                  },
+                  "dependencies": {
+                    "options": {
+                      "oneOf": [
+                        {
+                          "properties": {
+                            "options": {
+                              "enum": [
+                                "metadata"
+                              ]
+                            },
+                            "string": {
+                              "title": "string",
+                              "type": "string",
+                              "widget": "shortAnswer",
+                              "description": "Metadata phục vụ truyền tải"
+                            }
+                          },
+                          "required": []
+                        },
+                        {
+                          "properties": {
+                            "options": {
+                              "enum": [
+                                "omitContext"
+                              ]
+                            },
+                            "boolean": {
+                              "title": "boolean",
+                              "type": "string",
+                              "default": false,
+                              "widget": "boolean",
+                              "description": "Bỏ qua ngữ cảnh"
+                            }
+                          },
+                          "required": []
+                        }
+                      ]
+                    }
+                  },
+                  "required": [],
+                  "description": "Cấu hình thu thập dữ liệu telemetry"
+                }
+              },
+              "required": [
+                "telemetry"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "concurrency"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "concurrency": {
+                  "title": "concurrency",
+                  "type": "string",
+                  "widget": "numberInput",
+                  "description": "Số lượng công việc có thể chạy đồng thời"
+                }
+              },
+              "required": [
+                "concurrency"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "lockDuration"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "lockDuration": {
+                  "title": "lockDuration",
+                  "type": "string",
+                  "widget": "numberInput",
+                  "description": "Thời gian khóa công việc (mili giây)"
+                }
+              },
+              "required": [
+                "lockDuration"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "lockRenewTime"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "lockRenewTime": {
+                  "title": "lockRenewTime",
+                  "type": "string",
+                  "widget": "numberInput",
+                  "description": "Thời gian gia hạn khóa (mili giây)"
+                }
+              },
+              "required": [
+                "lockRenewTime"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "lifo"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "lifo": {
+                  "title": "lifo",
+                  "type": "string",
+                  "default": false,
+                  "widget": "boolean",
+                  "description": "Nếu true, công việc sẽ được thêm vào đầu hàng đợi (Last In First Out)"
+                }
+              },
+              "required": [
+                "lifo"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "fifo"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "fifo": {
+                  "title": "fifo",
+                  "type": "string",
+                  "default": false,
+                  "widget": "boolean",
+                  "description": "Nếu true, công việc sẽ được thêm vào hàng đợi FIFO First In First Out"
+                }
+              },
+              "required": [
+                "fifo"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "preventParsingData"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "preventParsingData": {
+                  "title": "preventParsingData",
+                  "type": "string",
+                  "default": false,
+                  "widget": "boolean",
+                  "description": "Nếu true, dữ liệu công việc sẽ không được phân tích cú pháp"
+                }
+              },
+              "required": [
+                "preventParsingData"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "failParentOnFailure"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "failParentOnFailure": {
+                  "title": "failParentOnFailure",
+                  "type": "string",
+                  "default": false,
+                  "widget": "boolean",
+                  "description": "Nếu true, công việc cha sẽ thất bại nếu công việc con thất bại"
+                }
+              },
+              "required": [
+                "failParentOnFailure"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "continueParentOnFailure"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "continueParentOnFailure": {
+                  "title": "continueParentOnFailure",
+                  "type": "string",
+                  "default": false,
+                  "widget": "boolean",
+                  "description": "Nếu true, công việc cha sẽ tiếp tục ngay cả khi công việc con thất bại"
+                }
+              },
+              "required": [
+                "continueParentOnFailure"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "ignoreDependencyOnFailure"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "ignoreDependencyOnFailure": {
+                  "title": "ignoreDependencyOnFailure",
+                  "type": "string",
+                  "default": false,
+                  "widget": "boolean",
+                  "description": "Nếu true, bỏ qua phụ thuộc khi thất bại"
+                }
+              },
+              "required": [
+                "ignoreDependencyOnFailure"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "list_options": {
+                  "contains": {
+                    "const": "removeDependencyOnFailure"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "removeDependencyOnFailure": {
+                  "title": "removeDependencyOnFailure",
+                  "type": "string",
+                  "default": false,
+                  "widget": "boolean",
+                  "description": "Nếu true, xóa phụ thuộc khi thất bại"
+                }
+              },
+              "required": [
+                "removeDependencyOnFailure"
+              ]
+            }
+          }
+        ],
+        "dependencies": {
+          "list_options": {
+            "oneOf": [
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "timestamp"
+                    ]
+                  },
+                  "timestamp": {
+                    "title": "timestamp",
+                    "type": "string",
+                    "widget": "numberInput",
+                    "description": "timestamp khi công việc được tạo"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "priority"
+                    ]
+                  },
+                  "priority": {
+                    "title": "priority",
+                    "type": "string",
+                    "widget": "numberInput",
+                    "description": "Độ ưu tiên của công việc, số càng thấp thì độ ưu tiên càng cao"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "delay"
+                    ]
+                  },
+                  "delay": {
+                    "title": "delay",
+                    "type": "string",
+                    "widget": "numberInput",
+                    "description": "Thời gian trì hoãn (tính bằng mili giây) trước khi công việc được xử lý"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "attempts"
+                    ]
+                  },
+                  "attempts": {
+                    "title": "attempts",
+                    "type": "string",
+                    "widget": "numberInput",
+                    "description": "Số lần thử lại tối đa nếu công việc thất bại"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "backoff"
+                    ]
+                  },
+                  "backoff": {
+                    "title": "backoff",
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "widget": "select",
+                        "returnValue": 2,
+                        "choices": [
+                          {
+                            "key": "exponential",
+                            "value": "exponential"
+                          },
+                          {
+                            "key": "fixed",
+                            "value": "fixed"
+                          }
+                        ],
+                        "allowNull": false,
+                        "isMultiple": false,
+                        "title": "type",
+                        "type": "string",
+                        "description": "Kiểu tăng thời gian chờ giữa các lần thử lại, exponential tăng theo cấp số nhân, fixed giữ nguyên"
+                      },
+                      "delay": {
+                        "title": "delay",
+                        "type": "string",
+                        "widget": "numberInput",
+                        "description": "Thời gian chờ cơ bản giữa các lần thử lại (mili giây)"
+                      }
+                    },
+                    "required": [],
+                    "description": "Cấu hình cho việc thử lại"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "timeout"
+                    ]
+                  },
+                  "timeout": {
+                    "title": "timeout",
+                    "type": "string",
+                    "widget": "numberInput",
+                    "description": "Thời gian tối đa (mili giây) cho phép một công việc chạy trước khi bị coi là timeout"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "removeOnComplete"
+                    ]
+                  },
+                  "removeOnComplete": {
+                    "title": "removeOnComplete",
+                    "type": "object",
+                    "properties": {
+                      "options": {
+                        "title": "options",
+                        "type": "string",
+                        "widget": "select",
+                        "choices": [
+                          {
+                            "key": "true",
+                            "value": "true"
+                          },
+                          {
+                            "key": "false",
+                            "value": "false"
+                          },
+                          {
+                            "key": "number",
+                            "value": "number"
+                          },
+                          {
+                            "key": "object",
+                            "value": "object"
+                          }
+                        ],
+                        "description": "Miền giá trị"
+                      }
+                    },
+                    "dependencies": {
+                      "options": {
+                        "oneOf": [
+                          {
+                            "properties": {
+                              "options": {
+                                "enum": [
+                                  "number"
+                                ]
+                              },
+                              "number": {
+                                "title": "number",
+                                "type": "string",
+                                "widget": "numberInput",
+                                "description": "Giữ lại số lượng công việc chỉ định"
+                              }
+                            },
+                            "required": []
+                          },
+                          {
+                            "properties": {
+                              "options": {
+                                "enum": [
+                                  "object"
+                                ]
+                              },
+                              "objects": {
+                                "title": "objects",
+                                "type": "object",
+                                "properties": {
+                                  "count": {
+                                    "title": "count",
+                                    "type": "string",
+                                    "widget": "numberInput",
+                                    "description": "Số lượng công việc giữ lại"
+                                  },
+                                  "age": {
+                                    "title": "age",
+                                    "type": "string",
+                                    "widget": "numberInput",
+                                    "description": "Thời gian giữ lại (giây)"
+                                  }
+                                },
+                                "required": []
+                              }
+                            },
+                            "required": []
+                          }
+                        ]
+                      }
+                    },
+                    "required": [],
+                    "description": "Cấu hình việc xóa công việc sau khi hoàn thành"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "removeOnFail"
+                    ]
+                  },
+                  "removeOnFail": {
+                    "title": "removeOnFail",
+                    "type": "object",
+                    "properties": {
+                      "options": {
+                        "title": "options",
+                        "type": "string",
+                        "widget": "select",
+                        "choices": [
+                          {
+                            "key": "true",
+                            "value": "true"
+                          },
+                          {
+                            "key": "false",
+                            "value": "false"
+                          },
+                          {
+                            "key": "number",
+                            "value": "number"
+                          },
+                          {
+                            "key": "object",
+                            "value": "object"
+                          }
+                        ],
+                        "description": "Miền giá trị"
+                      }
+                    },
+                    "dependencies": {
+                      "options": {
+                        "oneOf": [
+                          {
+                            "properties": {
+                              "options": {
+                                "enum": [
+                                  "number"
+                                ]
+                              },
+                              "number": {
+                                "title": "number",
+                                "type": "string",
+                                "widget": "numberInput",
+                                "description": "Giữ lại số lượng công việc chỉ định"
+                              }
+                            },
+                            "required": []
+                          },
+                          {
+                            "properties": {
+                              "options": {
+                                "enum": [
+                                  "object"
+                                ]
+                              },
+                              "objects": {
+                                "title": "objects",
+                                "type": "object",
+                                "properties": {
+                                  "count": {
+                                    "title": "count",
+                                    "type": "string",
+                                    "widget": "numberInput",
+                                    "description": "Số lượng công việc giữ lại"
+                                  },
+                                  "age": {
+                                    "title": "age",
+                                    "type": "string",
+                                    "widget": "numberInput",
+                                    "description": "Thời gian giữ lại (giây)"
+                                  }
+                                },
+                                "required": []
+                              }
+                            },
+                            "required": []
+                          }
+                        ]
+                      }
+                    },
+                    "required": [],
+                    "description": "Cấu hình việc xóa công việc sau khi thất bại"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "keepLogs"
+                    ]
+                  },
+                  "keepLogs": {
+                    "title": "keepLogs",
+                    "type": "string",
+                    "widget": "numberInput",
+                    "description": "Số lượng bản ghi log giữ lại cho mỗi công việc"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "stackTraceLimit"
+                    ]
+                  },
+                  "stackTraceLimit": {
+                    "title": "stackTraceLimit",
+                    "type": "string",
+                    "widget": "numberInput",
+                    "description": "Giới hạn số dòng trong stack trace khi có lỗi"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "sizeLimit"
+                    ]
+                  },
+                  "sizeLimit": {
+                    "title": "sizeLimit",
+                    "type": "string",
+                    "widget": "numberInput",
+                    "description": "Giới hạn kích thước của dữ liệu công việc"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "repeat"
+                    ]
+                  },
+                  "repeat": {
+                    "title": "repeat",
+                    "type": "object",
+                    "properties": {
+                      "options": {
+                        "title": "options",
+                        "type": "string",
+                        "widget": "select",
+                        "choices": [
+                          {
+                            "key": "cron",
+                            "value": "cron"
+                          },
+                          {
+                            "key": "every",
+                            "value": "every"
+                          },
+                          {
+                            "key": "limit",
+                            "value": "limit"
+                          },
+                          {
+                            "key": "startDate",
+                            "value": "startDate"
+                          },
+                          {
+                            "key": "endDate",
+                            "value": "endDate"
+                          },
+                          {
+                            "key": "timezone",
+                            "value": "timezone"
+                          }
+                        ],
+                        "description": "Miền giá trị"
+                      }
+                    },
+                    "dependencies": {
+                      "options": {
+                        "oneOf": [
+                          {
+                            "properties": {
+                              "options": {
+                                "enum": [
+                                  "cron",
+                                  "timezone"
+                                ]
+                              },
+                              "string": {
+                                "title": "string",
+                                "type": "string",
+                                "widget": "shortAnswer"
+                              }
+                            },
+                            "required": []
+                          },
+                          {
+                            "properties": {
+                              "options": {
+                                "enum": [
+                                  "every",
+                                  "limit"
+                                ]
+                              },
+                              "number": {
+                                "title": "number",
+                                "type": "string",
+                                "widget": "numberInput"
+                              }
+                            },
+                            "required": []
+                          },
+                          {
+                            "properties": {
+                              "options": {
+                                "enum": [
+                                  "endDate",
+                                  "startDate"
+                                ]
+                              },
+                              "date": {
+                                "title": "date",
+                                "type": "string",
+                                "widget": "date",
+                                "displayFormat": "yyyy/MM/dd",
+                                "formatDate": "date",
+                                "disabled": false,
+                                "field": "single",
+                                "mode": "date"
+                              }
+                            },
+                            "required": []
+                          }
+                        ]
+                      }
+                    },
+                    "required": [],
+                    "description": "Cấu hình lặp lại công việc"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "jobId"
+                    ]
+                  },
+                  "jobId": {
+                    "title": "jobId",
+                    "type": "string",
+                    "widget": "shortAnswer",
+                    "description": "ID tùy chỉnh cho công việc"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "parent"
+                    ]
+                  },
+                  "parent": {
+                    "title": "parent",
+                    "type": "object",
+                    "properties": {
+                      "Id": {
+                        "title": "Id",
+                        "type": "string",
+                        "widget": "shortAnswer",
+                        "description": "ID của công việc cha"
+                      },
+                      "queue": {
+                        "title": "queue",
+                        "type": "string",
+                        "widget": "shortAnswer",
+                        "description": "Tên queue của parent job"
+                      }
+                    },
+                    "required": [
+                      "Id",
+                      "queue"
+                    ],
+                    "description": "Thông tin về công việc cha"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "deduplication"
+                    ]
+                  },
+                  "deduplication": {
+                    "title": "deduplication",
+                    "type": "object",
+                    "properties": {
+                      "options": {
+                        "title": "options",
+                        "type": "string",
+                        "widget": "select",
+                        "choices": [
+                          {
+                            "key": "key",
+                            "value": "key"
+                          },
+                          {
+                            "key": "delay",
+                            "value": "delay"
+                          }
+                        ],
+                        "description": "Các lựa chọn"
+                      }
+                    },
+                    "dependencies": {
+                      "options": {
+                        "oneOf": [
+                          {
+                            "properties": {
+                              "options": {
+                                "enum": [
+                                  "key"
+                                ]
+                              },
+                              "string": {
+                                "title": "string",
+                                "type": "string",
+                                "widget": "shortAnswer",
+                                "description": "Khóa để xác định trùng lặp"
+                              }
+                            },
+                            "required": []
+                          },
+                          {
+                            "properties": {
+                              "options": {
+                                "enum": [
+                                  "delay"
+                                ]
+                              },
+                              "number": {
+                                "title": "number",
+                                "type": "string",
+                                "widget": "numberInput",
+                                "description": "Thời gian trì hoãn (mili giây)"
+                              }
+                            },
+                            "required": []
+                          }
+                        ]
+                      }
+                    },
+                    "required": [],
+                    "description": "Cấu hình loại bỏ trùng lặp"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "telemetry"
+                    ]
+                  },
+                  "telemetry": {
+                    "title": "telemetry",
+                    "type": "object",
+                    "properties": {
+                      "options": {
+                        "title": "options",
+                        "type": "string",
+                        "widget": "select",
+                        "choices": [
+                          {
+                            "key": "metadata",
+                            "value": "metadata"
+                          },
+                          {
+                            "key": "omitContext",
+                            "value": "omitContext"
+                          }
+                        ],
+                        "description": "Các lựa chọn"
+                      }
+                    },
+                    "dependencies": {
+                      "options": {
+                        "oneOf": [
+                          {
+                            "properties": {
+                              "options": {
+                                "enum": [
+                                  "metadata"
+                                ]
+                              },
+                              "string": {
+                                "title": "string",
+                                "type": "string",
+                                "widget": "shortAnswer",
+                                "description": "Metadata phục vụ truyền tải"
+                              }
+                            },
+                            "required": []
+                          },
+                          {
+                            "properties": {
+                              "options": {
+                                "enum": [
+                                  "omitContext"
+                                ]
+                              },
+                              "boolean": {
+                                "title": "boolean",
+                                "type": "string",
+                                "default": false,
+                                "widget": "boolean",
+                                "description": "Bỏ qua ngữ cảnh"
+                              }
+                            },
+                            "required": []
+                          }
+                        ]
+                      }
+                    },
+                    "required": [],
+                    "description": "Cấu hình thu thập dữ liệu telemetry"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "concurrency"
+                    ]
+                  },
+                  "concurrency": {
+                    "title": "concurrency",
+                    "type": "string",
+                    "widget": "numberInput",
+                    "description": "Số lượng công việc có thể chạy đồng thời"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "lockDuration"
+                    ]
+                  },
+                  "lockDuration": {
+                    "title": "lockDuration",
+                    "type": "string",
+                    "widget": "numberInput",
+                    "description": "Thời gian khóa công việc (mili giây)"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "lockRenewTime"
+                    ]
+                  },
+                  "lockRenewTime": {
+                    "title": "lockRenewTime",
+                    "type": "string",
+                    "widget": "numberInput",
+                    "description": "Thời gian gia hạn khóa (mili giây)"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "lifo"
+                    ]
+                  },
+                  "lifo": {
+                    "title": "lifo",
+                    "type": "string",
+                    "default": false,
+                    "widget": "boolean",
+                    "description": "Nếu true, công việc sẽ được thêm vào đầu hàng đợi (Last In First Out)"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "fifo"
+                    ]
+                  },
+                  "fifo": {
+                    "title": "fifo",
+                    "type": "string",
+                    "default": false,
+                    "widget": "boolean",
+                    "description": "Nếu true, công việc sẽ được xử lý theo thứ tự First In First Out"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "preventParsingData"
+                    ]
+                  },
+                  "preventParsingData": {
+                    "title": "preventParsingData",
+                    "type": "string",
+                    "default": false,
+                    "widget": "boolean",
+                    "description": "Nếu true, ngăn việc phân tích dữ liệu công việc"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "failParentOnFailure"
+                    ]
+                  },
+                  "failParentOnFailure": {
+                    "title": "failParentOnFailure",
+                    "type": "string",
+                    "default": false,
+                    "widget": "boolean",
+                    "description": "Nếu true, công việc cha sẽ thất bại nếu công việc con thất bại"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "continueParentOnFailure"
+                    ]
+                  },
+                  "continueParentOnFailure": {
+                    "title": "continueParentOnFailure",
+                    "type": "string",
+                    "default": false,
+                    "widget": "boolean",
+                    "description": "Nếu true, công việc cha sẽ tiếp tục ngay cả khi công việc con thất bại"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "ignoreDependencyOnFailure"
+                    ]
+                  },
+                  "ignoreDependencyOnFailure": {
+                    "title": "ignoreDependencyOnFailure",
+                    "type": "string",
+                    "default": false,
+                    "widget": "boolean",
+                    "description": "Nếu true, bỏ qua phụ thuộc khi thất bại"
+                  }
+                },
+                "required": []
+              },
+              {
+                "properties": {
+                  "list_options": {
+                    "enum": [
+                      "removeDependencyOnFailure"
+                    ]
+                  },
+                  "removeDependencyOnFailure": {
+                    "title": "removeDependencyOnFailure",
+                    "type": "string",
+                    "default": false,
+                    "widget": "boolean",
+                    "description": "Nếu true, xóa phụ thuộc khi thất bại"
+                  }
+                },
+                "required": []
+              }
+            ]
+          }
+        },
+        "required": [],
+        "description": "Các tùy chọn cấu hình cho công việc"
+      }
+    }
+  },
+  "ui_schema": {
+    "options": {
+      "list_options": {
+        "ui:widget": "select"
+      },
+      "timestamp": {
+        "ui:widget": "numberInput"
+      },
+      "priority": {
+        "ui:widget": "numberInput"
+      },
+      "delay": {
+        "ui:widget": "numberInput"
+      },
+      "attempts": {
+        "ui:widget": "numberInput"
+      },
+      "backoff": {
+        "type": {
+          "ui:widget": "select"
+        },
+        "delay": {
+          "ui:widget": "numberInput"
+        },
+        "ui:order": [
+          "type",
+          "delay"
+        ]
+      },
+      "timeout": {
+        "ui:widget": "numberInput"
+      },
+      "removeOnComplete": {
+        "options": {
+          "ui:widget": "select"
+        },
+        "number": {
+          "ui:widget": "numberInput"
+        },
+        "objects": {
+          "count": {
+            "ui:widget": "numberInput"
+          },
+          "age": {
+            "ui:widget": "numberInput"
+          },
+          "ui:order": [
+            "count",
+            "age"
+          ]
+        },
+        "ui:order": [
+          "options",
+          "number",
+          "objects"
+        ]
+      },
+      "removeOnFail": {
+        "options": {
+          "ui:widget": "select"
+        },
+        "number": {
+          "ui:widget": "numberInput"
+        },
+        "objects": {
+          "count": {
+            "ui:widget": "numberInput"
+          },
+          "age": {
+            "ui:widget": "numberInput"
+          },
+          "ui:order": [
+            "count",
+            "age"
+          ]
+        },
+        "ui:order": [
+          "options",
+          "number",
+          "objects"
+        ]
+      },
+      "keepLogs": {
+        "ui:widget": "numberInput"
+      },
+      "stackTraceLimit": {
+        "ui:widget": "numberInput"
+      },
+      "sizeLimit": {
+        "ui:widget": "numberInput"
+      },
+      "repeat": {
+        "options": {
+          "ui:widget": "select"
+        },
+        "string": {
+          "ui:widget": "shortAnswer"
+        },
+        "number": {
+          "ui:widget": "numberInput"
+        },
+        "date": {
+          "ui:widget": "date"
+        },
+        "ui:order": [
+          "options",
+          "string",
+          "number",
+          "date"
+        ]
+      },
+      "jobId": {
+        "ui:widget": "shortAnswer"
+      },
+      "parent": {
+        "Id": {
+          "ui:widget": "shortAnswer"
+        },
+        "queue": {
+          "ui:widget": "shortAnswer"
+        },
+        "ui:order": [
+          "Id",
+          "queue"
+        ]
+      },
+      "deduplication": {
+        "options": {
+          "ui:widget": "select"
+        },
+        "string": {
+          "ui:widget": "shortAnswer"
+        },
+        "number": {
+          "ui:widget": "numberInput"
+        },
+        "ui:order": [
+          "options",
+          "string",
+          "number"
+        ]
+      },
+      "telemetry": {
+        "options": {
+          "ui:widget": "select"
+        },
+        "string": {
+          "ui:widget": "shortAnswer"
+        },
+        "boolean": {
+          "ui:widget": "boolean"
+        },
+        "ui:order": [
+          "options",
+          "string",
+          "boolean"
+        ]
+      },
+      "concurrency": {
+        "ui:widget": "numberInput"
+      },
+      "lockDuration": {
+        "ui:widget": "numberInput"
+      },
+      "lockRenewTime": {
+        "ui:widget": "numberInput"
+      },
+      "lifo": {
+        "ui:widget": "boolean"
+      },
+      "fifo": {
+        "ui:widget": "boolean"
+      },
+      "preventParsingData": {
+        "ui:widget": "boolean"
+      },
+      "failParentOnFailure": {
+        "ui:widget": "boolean"
+      },
+      "continueParentOnFailure": {
+        "ui:widget": "boolean"
+      },
+      "ignoreDependencyOnFailure": {
+        "ui:widget": "boolean"
+      },
+      "removeDependencyOnFailure": {
+        "ui:widget": "boolean"
+      },
+      "ui:order": [
+        "list_options",
+        "timestamp",
+        "priority",
+        "delay",
+        "attempts",
+        "backoff",
+        "timeout",
+        "removeOnComplete",
+        "removeOnFail",
+        "keepLogs",
+        "stackTraceLimit",
+        "sizeLimit",
+        "repeat",
+        "jobId",
+        "parent",
+        "deduplication",
+        "telemetry",
+        "concurrency",
+        "lockDuration",
+        "lockRenewTime",
+        "lifo",
+        "fifo",
+        "preventParsingData",
+        "failParentOnFailure",
+        "continueParentOnFailure",
+        "ignoreDependencyOnFailure",
+        "removeDependencyOnFailure"
+      ]
+    },
+    "ui:order": [
+      "options"
+    ]
+  }
+}

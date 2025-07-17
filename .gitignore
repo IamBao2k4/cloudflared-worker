@@ -1,0 +1,9 @@
+node_modules/
+dist/
+logs/
+generator/
+**/node_modules/
+**/dist/
+**/logs/
+**/.next/
+.vercel

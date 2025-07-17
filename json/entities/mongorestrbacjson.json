@@ -1,0 +1,491 @@
+{
+  "_id": "683e66b9f75b9891a43fbf07",
+  "title": "mongoREST-rbac-json",
+  "mongodb_collection_name": "mongorestrbacjson",
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-06-03T03:06:33.986Z",
+  "__v": 0,
+  "id": "683e66b9f75b9891a43fbf07",
+  "json_schema": {
+    "type": "object",
+    "expanded": true,
+    "properties": {
+      "collection_name": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "collection_name",
+            "value": "collection_name"
+          },
+          {
+            "key": "users",
+            "value": "users"
+          },
+          {
+            "key": "products",
+            "value": "products"
+          },
+          {
+            "key": "categories",
+            "value": "categories"
+          },
+          {
+            "key": "orders",
+            "value": "orders"
+          }
+        ],
+        "default": "collection_name",
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "collection_name",
+        "type": "string"
+      },
+      "rbac_config": {
+        "title": "rbac_config",
+        "type": "object",
+        "properties": {
+          "access": {
+            "items": {
+              "type": "object",
+              "properties": {
+                "user_role": {
+                  "widget": "select",
+                  "returnValue": 2,
+                  "choices": [
+                    {
+                      "key": "default",
+                      "value": "default"
+                    },
+                    {
+                      "key": "user_lv1",
+                      "value": "user_lv1"
+                    },
+                    {
+                      "key": "user_lv2",
+                      "value": "user_lv2"
+                    },
+                    {
+                      "key": "manager",
+                      "value": "manager"
+                    },
+                    {
+                      "key": "hr_manager",
+                      "value": "hr_manager"
+                    },
+                    {
+                      "key": "admin",
+                      "value": "admin"
+                    }
+                  ],
+                  "default": "default",
+                  "allowNull": false,
+                  "isMultiple": false,
+                  "title": "user role",
+                  "type": "string"
+                },
+                "attributes": {
+                  "widget": "boolean",
+                  "appearance": "switch",
+                  "title": "attributes",
+                  "type": "boolean",
+                  "default": true
+                }
+              },
+              "required": [
+                "user_role",
+                "attributes"
+              ],
+              "title": "role_setting"
+            },
+            "title": "access",
+            "type": "array",
+            "minItems": 1,
+            "description": "Bắt buộc phải có role default user (có thể không được truy cập bất kỳ trường nào)"
+          },
+          "read": {
+            "items": {
+              "type": "object",
+              "properties": {
+                "user_role": {
+                  "widget": "select",
+                  "returnValue": 2,
+                  "choices": [
+                    {
+                      "key": "default",
+                      "value": "default"
+                    },
+                    {
+                      "key": "user_lv1",
+                      "value": "user_lv1"
+                    },
+                    {
+                      "key": "user_lv2",
+                      "value": "user_lv2"
+                    },
+                    {
+                      "key": "manager",
+                      "value": "manager"
+                    },
+                    {
+                      "key": "hr_manager",
+                      "value": "hr_manager"
+                    },
+                    {
+                      "key": "admin",
+                      "value": "admin"
+                    }
+                  ],
+                  "default": "default",
+                  "allowNull": false,
+                  "isMultiple": false,
+                  "title": "user role",
+                  "type": "string"
+                },
+                "attributes": {
+                  "title": "attributes",
+                  "type": "string",
+                  "widget": "select",
+                  "choices": [
+                    {
+                      "key": "none",
+                      "value": "none"
+                    },
+                    {
+                      "key": "att1",
+                      "value": "att1"
+                    },
+                    {
+                      "key": "att2",
+                      "value": "att2"
+                    },
+                    {
+                      "key": "att3",
+                      "value": "att3"
+                    },
+                    {
+                      "key": "att4",
+                      "value": "att4"
+                    },
+                    {
+                      "key": "att5",
+                      "value": "att5"
+                    },
+                    {
+                      "key": "att6",
+                      "value": "att6"
+                    },
+                    {
+                      "key": "att7",
+                      "value": "att7"
+                    }
+                  ],
+                  "default": "none",
+                  "isMultiple": true
+                }
+              },
+              "required": [
+                "user_role",
+                "attributes"
+              ],
+              "title": "role_setting"
+            },
+            "title": "read",
+            "type": "array",
+            "minItems": 1,
+            "description": "Bắt buộc phải có role default user (có thể không được truy cập bất kỳ trường nào)"
+          },
+          "write": {
+            "items": {
+              "type": "object",
+              "properties": {
+                "user_role": {
+                  "widget": "select",
+                  "returnValue": 2,
+                  "choices": [
+                    {
+                      "key": "default",
+                      "value": "default"
+                    },
+                    {
+                      "key": "user_lv1",
+                      "value": "user_lv1"
+                    },
+                    {
+                      "key": "user_lv2",
+                      "value": "user_lv2"
+                    },
+                    {
+                      "key": "manager",
+                      "value": "manager"
+                    },
+                    {
+                      "key": "hr_manager",
+                      "value": "hr_manager"
+                    },
+                    {
+                      "key": "admin",
+                      "value": "admin"
+                    }
+                  ],
+                  "default": "default",
+                  "allowNull": false,
+                  "isMultiple": false,
+                  "title": "user role",
+                  "type": "string"
+                },
+                "attributes": {
+                  "title": "attributes",
+                  "type": "string",
+                  "widget": "select",
+                  "choices": [
+                    {
+                      "key": "none",
+                      "value": "none"
+                    },
+                    {
+                      "key": "att1",
+                      "value": "att1"
+                    },
+                    {
+                      "key": "att2",
+                      "value": "att2"
+                    },
+                    {
+                      "key": "att3",
+                      "value": "att3"
+                    },
+                    {
+                      "key": "att4",
+                      "value": "att4"
+                    },
+                    {
+                      "key": "att5",
+                      "value": "att5"
+                    },
+                    {
+                      "key": "att6",
+                      "value": "att6"
+                    },
+                    {
+                      "key": "att7",
+                      "value": "att7"
+                    }
+                  ],
+                  "default": "none",
+                  "isMultiple": true
+                }
+              },
+              "required": [
+                "user_role",
+                "attributes"
+              ],
+              "title": "role_setting"
+            },
+            "title": "write",
+            "type": "array",
+            "minItems": 1,
+            "description": "Bắt buộc phải có role default user (có thể không được truy cập bất kỳ trường nào)"
+          },
+          "delete": {
+            "items": {
+              "type": "object",
+              "properties": {
+                "user_role": {
+                  "widget": "select",
+                  "returnValue": 2,
+                  "choices": [
+                    {
+                      "key": "default",
+                      "value": "default"
+                    },
+                    {
+                      "key": "user_lv1",
+                      "value": "user_lv1"
+                    },
+                    {
+                      "key": "user_lv2",
+                      "value": "user_lv2"
+                    },
+                    {
+                      "key": "manager",
+                      "value": "manager"
+                    },
+                    {
+                      "key": "hr_manager",
+                      "value": "hr_manager"
+                    },
+                    {
+                      "key": "admin",
+                      "value": "admin"
+                    }
+                  ],
+                  "default": "default",
+                  "allowNull": false,
+                  "isMultiple": false,
+                  "title": "user role",
+                  "type": "string"
+                },
+                "attributes": {
+                  "title": "attributes",
+                  "type": "string",
+                  "widget": "select",
+                  "choices": [
+                    {
+                      "key": "none",
+                      "value": "none"
+                    },
+                    {
+                      "key": "att1",
+                      "value": "att1"
+                    },
+                    {
+                      "key": "att2",
+                      "value": "att2"
+                    },
+                    {
+                      "key": "att3",
+                      "value": "att3"
+                    },
+                    {
+                      "key": "att4",
+                      "value": "att4"
+                    },
+                    {
+                      "key": "att5",
+                      "value": "att5"
+                    },
+                    {
+                      "key": "att6",
+                      "value": "att6"
+                    },
+                    {
+                      "key": "att7",
+                      "value": "att7"
+                    }
+                  ],
+                  "default": "none",
+                  "isMultiple": true
+                }
+              },
+              "required": [
+                "user_role",
+                "attributes"
+              ],
+              "title": "role_setting"
+            },
+            "title": "delete",
+            "type": "array",
+            "minItems": 1,
+            "description": "Bắt buộc phải có role default user (có thể không được truy cập bất kỳ trường nào)"
+          }
+        },
+        "required": [
+          "access",
+          "read",
+          "write",
+          "delete"
+        ]
+      },
+      "newInput1": {
+        "title": "Short Answer",
+        "type": "string",
+        "widget": "shortAnswer",
+        "default": "Default value 1234",
+        "min": 12,
+        "max": 30,
+        "pattern": "r213456789egular"
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "collection_name": {
+      "ui:widget": "select"
+    },
+    "rbac_config": {
+      "access": {
+        "items": {
+          "user_role": {
+            "ui:widget": "select"
+          },
+          "attributes": {
+            "ui:widget": "boolean"
+          },
+          "ui:order": [
+            "user_role",
+            "attributes"
+          ]
+        }
+      },
+      "read": {
+        "items": {
+          "user_role": {
+            "ui:widget": "select"
+          },
+          "attributes": {
+            "ui:widget": "select"
+          },
+          "ui:order": [
+            "user_role",
+            "attributes"
+          ]
+        }
+      },
+      "write": {
+        "items": {
+          "user_role": {
+            "ui:widget": "select"
+          },
+          "attributes": {
+            "ui:widget": "select"
+          },
+          "ui:order": [
+            "user_role",
+            "attributes"
+          ]
+        }
+      },
+      "delete": {
+        "items": {
+          "user_role": {
+            "ui:widget": "select"
+          },
+          "attributes": {
+            "ui:widget": "select"
+          },
+          "ui:order": [
+            "user_role",
+            "attributes"
+          ]
+        }
+      },
+      "ui:order": [
+        "access",
+        "read",
+        "write",
+        "delete"
+      ]
+    },
+    "newInput1": {
+      "ui:widget": "shortAnswer"
+    },
+    "ui:order": [
+      "collection_name",
+      "rbac_config",
+      "newInput1"
+    ]
+  },
+  "unique_keys": ""
+}

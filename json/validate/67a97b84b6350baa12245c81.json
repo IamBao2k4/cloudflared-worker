@@ -1,0 +1,32 @@
+{
+  "_id": "67a97b84b6350baa12245c81",
+  "title": "is-note-creator",
+  "note": "",
+  "entity": [
+    "67a32ec603679925e42bb2cb"
+  ],
+  "data": {
+    "id": "9fcebb82-a2bf-43ce-9881-7ff45e9df645",
+    "rules": [
+      {
+        "id": "7728794f-bc52-4360-a63c-8931b697b78e",
+        "field": "mge-user-note._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-user-note._id:param._id"
+      },
+      {
+        "id": "9d529ba7-319c-4610-b5f7-287800ea8751",
+        "field": "mge-user-note.created_by",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-user-note.created_by:jwt.user@id"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"mge-user-note._id\":\"$mge-user-note._id:param._id\"},{\"mge-user-note.created_by\":\"$mge-user-note.created_by:jwt.user@id\"}]}",
+  "required": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

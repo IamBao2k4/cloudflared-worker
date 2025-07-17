@@ -1,0 +1,116 @@
+{
+  "_id": "6819d3acbf114615637f6943",
+  "title": "data function",
+  "mongodb_collection_name": "data-function",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "type": {
+        "title": "type",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "memory",
+            "value": "memory"
+          },
+          {
+            "key": "database",
+            "value": "database"
+          }
+        ]
+      }
+    },
+    "required": [
+      "title",
+      "type"
+    ],
+    "dependencies": {
+      "type": {
+        "oneOf": [
+          {
+            "properties": {
+              "type": {
+                "enum": [
+                  "database"
+                ]
+              },
+              "mongodb_pipeline": {
+                "title": "mongodb_pipeline",
+                "type": "string",
+                "widget": "function"
+              },
+              "mongodb_collection_name": {
+                "title": "mongodb_collection_name",
+                "type": "string",
+                "widget": "shortAnswer"
+              }
+            },
+            "required": []
+          },
+          {
+            "properties": {
+              "type": {
+                "enum": [
+                  "memory"
+                ]
+              },
+              "jsonata": {
+                "title": "jsonata",
+                "type": "string",
+                "widget": "function",
+                "description": "dùng khi type bằng memory"
+              }
+            },
+            "required": []
+          }
+        ]
+      }
+    }
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "type": {
+      "ui:widget": "select"
+    },
+    "mongodb_collection_name": {
+      "ui:widget": "shortAnswer"
+    },
+    "mongodb_pipeline": {
+      "ui:widget": "function"
+    },
+    "jsonata": {
+      "ui:widget": "function"
+    },
+    "ui:order": [
+      "title",
+      "type",
+      "mongodb_collection_name",
+      "mongodb_pipeline",
+      "jsonata"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": [
+    "6819db74bf114615637f6e20"
+  ],
+  "created_at": "2025-05-06T09:17:32.425Z",
+  "__v": 0
+}

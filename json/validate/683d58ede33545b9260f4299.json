@@ -1,0 +1,27 @@
+{
+  "_id": "683d58ede33545b9260f4299",
+  "title": "is-tweet-event",
+  "note": "",
+  "entity": [
+    "681ad170fa59b263ad3e2fa4"
+  ],
+  "categories": [],
+  "data": {
+    "id": "b702bb33-0c50-4c7f-aa83-1c5079874a4c",
+    "rules": [
+      {
+        "id": "35e265ba-60bd-4303-ada4-cca991a91f96",
+        "field": "mge-tweet-social-event._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-tweet-social-event._id:param._id"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"mge-tweet-social-event._id\":\"$mge-tweet-social-event._id:param._id\"}",
+  "required": [],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "id": "683d58ede33545b9260f4299"
+}

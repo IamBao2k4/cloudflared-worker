@@ -1,0 +1,25 @@
+{
+  "_id": "67625263991509746b6a3d84",
+  "title": "Update menu item",
+  "outputEntity": [
+    "67493d3f10905d9ddbd007cc"
+  ],
+  "queryAdvance": "{\n  \"name\":0,\n  \"type\":0,\n  \"ordering\":0,\n  \"link\":0,\n  \"status\":0,\n  \"social_group\": \"@param:group_id\",\n  \"category\": \"@param:category_id\"\n}",
+  "note": "",
+  "method": "put",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "categories": [],
+  "documents": [],
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    },
+    {
+      "value": "category_id",
+      "key": "category_id"
+    }
+  ]
+}

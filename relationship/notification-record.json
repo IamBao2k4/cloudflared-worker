@@ -1,0 +1,16 @@
+[
+  {
+    "name": "to_user",
+    "targetTable": "user",
+    "localField": "to_user",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "group",
+    "targetTable": "mge-group",
+    "localField": "group",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  }
+]

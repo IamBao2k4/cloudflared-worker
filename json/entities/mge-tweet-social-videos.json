@@ -1,0 +1,300 @@
+{
+  "_id": "674e8ef485bc5241dd6405dd",
+  "title": "mge tweet social videos",
+  "mongodb_collection_name": "mge-tweet-social-videos",
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "entity_group": [
+    "674e8bdf2f536fda4192c8e1"
+  ],
+  "created_at": "2024-12-03T04:54:12.662Z",
+  "__v": 0,
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "slug": {
+        "title": "Slug",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "depend_field": "root_slug"
+      },
+      "short_description": {
+        "title": "Short Description",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "video_link": {
+        "title": "Video Link",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "video_file": {
+        "title": "Video File",
+        "type": "string",
+        "widget": "file"
+      },
+      "featured_image": {
+        "title": "Featured Image",
+        "type": "string",
+        "widget": "file"
+      },
+      "categories": {
+        "title": "Categories",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group-category",
+          "_id": "mge-group-category",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "b0381d65-49df-4723-a23b-89465a470ab7"
+          }
+        }
+      },
+      "tag": {
+        "title": "Tag",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-social-tag",
+          "_id": "mge-social-tag",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "5720636c-7b57-4c1c-8927-a635fc5132b2"
+          }
+        }
+      },
+      "comment_off": {
+        "title": "Comment Off",
+        "type": "string",
+        "widget": "boolean"
+      },
+      "like_off": {
+        "title": "Like Off",
+        "type": "string",
+        "widget": "boolean"
+      },
+      "status": {
+        "title": "Status",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "ACTIVE",
+            "value": "active"
+          },
+          {
+            "key": "DELETED",
+            "value": "deleted"
+          },
+          {
+            "key": "APPROVE",
+            "value": "approve"
+          },
+          {
+            "key": "HIDDEN",
+            "value": "hidden"
+          },
+          {
+            "key": "DRAFT",
+            "value": "draft"
+          },
+          {
+            "key": "ARCHIVE",
+            "value": "archive"
+          },
+          {
+            "key": "WAITING",
+            "value": "waiting"
+          },
+          {
+            "key": "REJECT",
+            "value": "reject"
+          },
+          {
+            "key": "SEND TO REVIEW",
+            "value": "send_to_review"
+          }
+        ]
+      },
+      "social_group": {
+        "title": "Social Group",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group",
+          "_id": "mge-group",
+          "type": "n-1"
+        },
+        "filter": true
+      },
+      "approve_at": {
+        "title": "Approve At",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "YYYY/MM/DD : HH:mm a",
+        "formatDate": "date-time"
+      },
+      "approve_by": {
+        "title": "Approve By",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "n-1"
+        }
+      },
+      "published_at": {
+        "title": "Published At",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "YYYY/MM/DD : HH:mm a",
+        "formatDate": "date-time"
+      },
+      "report_tweet_off": {
+        "title": "Report Tweet Off",
+        "type": "string",
+        "widget": "boolean"
+      },
+      "report_comment_off": {
+        "type": "string",
+        "widget": "boolean",
+        "title": "Report_comment_off"
+      },
+      "youtube_path": {
+        "title": "youtube_path",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "tweet_waiting_time": {
+        "title": "tweet_waiting_time",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": false,
+        "field": "single",
+        "mode": "dateTime"
+      },
+      "reason_reject": {
+        "title": "reason_reject",
+        "type": "string",
+        "widget": "shortAnswer",
+        "description": "Lưu lý do khi bài viết bị từ chối "
+      }
+    },
+    "required": [
+      "title",
+      "slug",
+      "social_group"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "short_description": {
+      "ui:widget": "shortAnswer"
+    },
+    "video_link": {
+      "ui:widget": "shortAnswer"
+    },
+    "video_file": {
+      "ui:widget": "file"
+    },
+    "featured_image": {
+      "ui:widget": "file"
+    },
+    "categories": {
+      "ui:widget": "relation"
+    },
+    "tag": {
+      "ui:widget": "relation"
+    },
+    "comment_off": {
+      "ui:widget": "boolean"
+    },
+    "like_off": {
+      "ui:widget": "boolean"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "social_group": {
+      "ui:widget": "relation"
+    },
+    "approve_at": {
+      "ui:widget": "dateTime"
+    },
+    "approve_by": {
+      "ui:widget": "relation"
+    },
+    "published_at": {
+      "ui:widget": "dateTime"
+    },
+    "report_tweet_off": {
+      "ui:widget": "boolean"
+    },
+    "report_comment_off": {
+      "ui:widget": "boolean"
+    },
+    "youtube_path": {
+      "ui:widget": "shortAnswer"
+    },
+    "tweet_waiting_time": {
+      "ui:widget": "dateTime"
+    },
+    "reason_reject": {
+      "ui:widget": "shortAnswer"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "short_description",
+      "video_link",
+      "video_file",
+      "featured_image",
+      "categories",
+      "tag",
+      "comment_off",
+      "like_off",
+      "status",
+      "social_group",
+      "approve_at",
+      "approve_by",
+      "published_at",
+      "report_tweet_off",
+      "report_comment_off",
+      "youtube_path",
+      "tweet_waiting_time",
+      "reason_reject"
+    ]
+  },
+  "use_seo_path": false,
+  "use_parent_delete_childs": false,
+  "entity_setting": {
+    "merge_collection": "mge-tweet",
+    "type": "videos"
+  },
+  "type": "videos"
+}

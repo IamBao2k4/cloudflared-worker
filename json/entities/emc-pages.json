@@ -1,0 +1,94 @@
+{
+  "_id": "680c838cf5f436c3255f716a",
+  "title": "EMC Pages",
+  "mongodb_collection_name": "emc-pages",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "slug": {
+        "title": "Slug",
+        "type": "string",
+        "widget": "UriKeyGen"
+      },
+      "featured_image": {
+        "title": "Featured Image",
+        "type": "string",
+        "widget": "file"
+      },
+      "background_image": {
+        "title": "Background Image",
+        "type": "string",
+        "widget": "file"
+      },
+      "short_description": {
+        "title": "Short Description",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "long_description": {
+        "widget": "longAnswer",
+        "customRole": "textarea",
+        "title": "Long Description",
+        "type": "string"
+      },
+      "body": {
+        "title": "Body",
+        "type": "string",
+        "widget": "textarea",
+        "customRole": "textarea"
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "featured_image": {
+      "ui:widget": "file"
+    },
+    "background_image": {
+      "ui:widget": "file"
+    },
+    "short_description": {
+      "ui:widget": "shortAnswer"
+    },
+    "long_description": {
+      "ui:widget": "longAnswer"
+    },
+    "body": {
+      "ui:widget": "textarea"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "featured_image",
+      "background_image",
+      "short_description",
+      "long_description",
+      "body"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-04-26T06:56:12.418Z",
+  "__v": 0
+}

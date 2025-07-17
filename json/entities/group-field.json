@@ -1,0 +1,179 @@
+{
+  "_id": "67ab1ad32754c1bdc0414a0c",
+  "title": "Group Field",
+  "mongodb_collection_name": "group-field",
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-02-11T09:39:31.509Z",
+  "__v": 0,
+  "json_schema": {
+    "type": "object",
+    "expanded": true,
+    "required": [
+      "title",
+      "slug"
+    ],
+    "properties": {
+      "title": {
+        "title": "Title 2",
+        "type": "string",
+        "description": "Nhập thông tin tiêu đề",
+        "widget": "shortAnswer",
+        "expanded": true,
+        "require": true,
+        "filter": true
+      },
+      "slug": {
+        "title": "Slug",
+        "type": "string",
+        "description": "Nhập slug cho posttype",
+        "widget": "autoGenKeyFromAnotherField",
+        "expanded": true,
+        "require": true,
+        "depend_field": "root_title",
+        "filter": true
+      },
+      "featured_image": {
+        "title": "Featured Image",
+        "type": "string",
+        "description": "Chọn hình ảnh đại diện",
+        "widget": "file",
+        "expanded": true,
+        "require": false,
+        "library_setting": "all",
+        "objectKey": "featured_image",
+        "filter": true
+      },
+      "json_schema": {
+        "title": "json_schema",
+        "type": "object"
+      },
+      "ui_schema": {
+        "title": "ui_schema",
+        "type": "object"
+      },
+      "folder": {
+        "title": "Folder",
+        "type": "string",
+        "description": "Chọn folder",
+        "widget": "relation",
+        "expanded": true,
+        "require": false,
+        "typeSelect": "multiple",
+        "typeRelation": {
+          "title": "categories-block-image",
+          "_id": "categories-block-image",
+          "type": "n-1"
+        },
+        "navigateTo": "detail",
+        "filter": true,
+        "objectKey": "folder"
+      },
+      "tag": {
+        "title": "Tag",
+        "type": "string",
+        "description": "Chọn tag",
+        "widget": "relation",
+        "expanded": true,
+        "require": false,
+        "typeSelect": "multiple",
+        "typeRelation": {
+          "title": "tags-group-field",
+          "_id": "tags-group-field",
+          "type": "n-1"
+        },
+        "navigateTo": "detail",
+        "filter": false,
+        "objectKey": "tag"
+      },
+      "sourceJSX": {
+        "title": "Source JSX",
+        "type": "string",
+        "widget": "function",
+        "expanded": true,
+        "require": false,
+        "customRole": "textarea"
+      },
+      "defaultData": {
+        "title": "Default Data",
+        "type": "string",
+        "widget": "longAnswer",
+        "expanded": true,
+        "require": false,
+        "customRole": "textarea"
+      },
+      "isActive": {
+        "title": "Is Active",
+        "type": "string",
+        "widget": "boolean",
+        "expanded": true,
+        "require": false,
+        "default": true,
+        "filter": true
+      },
+      "keyword": {
+        "title": "keyword",
+        "type": "string",
+        "widget": "textarea",
+        "expanded": true,
+        "require": false,
+        "customRole": "textarea",
+        "filter": true
+      }
+    }
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "autoGenKeyFromAnotherField"
+    },
+    "featured_image": {
+      "ui:widget": "file"
+    },
+    "folder": {
+      "ui:widget": "relation"
+    },
+    "tag": {
+      "ui:widget": "relation"
+    },
+    "sourceJSX": {
+      "ui:widget": "function"
+    },
+    "defaultData": {
+      "ui:widget": "longAnswer"
+    },
+    "isActive": {
+      "ui:widget": "boolean"
+    },
+    "keyword": {
+      "ui:widget": "textarea"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "featured_image",
+      "json_schema",
+      "ui_schema",
+      "folder",
+      "tag",
+      "sourceJSX",
+      "defaultData",
+      "isActive",
+      "keyword"
+    ]
+  },
+  "id": "67ab1ad32754c1bdc0414a0c",
+  "unique_keys": ""
+}

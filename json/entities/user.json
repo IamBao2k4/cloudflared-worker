@@ -1,0 +1,161 @@
+{
+  "_id": "6749933810905d9ddbd0104b",
+  "title": "user",
+  "mongodb_collection_name": "user",
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "created_at": "2024-11-29T10:11:04.190Z",
+  "__v": 0,
+  "entity_group": null,
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "username": {
+        "title": "username1",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "email": {
+        "title": "email",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "first_name": {
+        "title": "first_name",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "last_name": {
+        "title": "last_name",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "full_name": {
+        "title": "full_name",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "featured_image": {
+        "type": "string",
+        "widget": "file",
+        "title": "featured_image"
+      },
+      "cover": {
+        "title": "cover",
+        "type": "string",
+        "widget": "file",
+        "filter": false
+      },
+      "phone": {
+        "title": "phone",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "password": {
+        "title": "password",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "birthday": {
+        "title": "birthday",
+        "type": "string",
+        "widget": "date",
+        "displayFormat": "YYYY/MM/DD",
+        "formatDate": "date"
+      },
+      "role_system": {
+        "title": "role_system",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "user",
+            "value": "user"
+          }
+        ],
+        "default": "user"
+      },
+      "is_active": {
+        "title": "is_active",
+        "type": "string",
+        "default": false,
+        "widget": "boolean"
+      }
+    },
+    "required": [
+      "username",
+      "email",
+      "first_name",
+      "last_name",
+      "full_name",
+      "role_system",
+      "is_active"
+    ]
+  },
+  "ui_schema": {
+    "username": {
+      "ui:widget": "shortAnswer"
+    },
+    "email": {
+      "ui:widget": "shortAnswer"
+    },
+    "first_name": {
+      "ui:widget": "shortAnswer"
+    },
+    "last_name": {
+      "ui:widget": "shortAnswer"
+    },
+    "full_name": {
+      "ui:widget": "shortAnswer"
+    },
+    "featured_image": {
+      "ui:widget": "file"
+    },
+    "cover": {
+      "ui:widget": "file"
+    },
+    "phone": {
+      "ui:widget": "numberInput"
+    },
+    "password": {
+      "ui:widget": "shortAnswer"
+    },
+    "birthday": {
+      "ui:widget": "date"
+    },
+    "role_system": {
+      "ui:widget": "select"
+    },
+    "is_active": {
+      "ui:widget": "boolean"
+    },
+    "ui:order": [
+      "username",
+      "email",
+      "first_name",
+      "last_name",
+      "full_name",
+      "featured_image",
+      "cover",
+      "phone",
+      "password",
+      "birthday",
+      "role_system",
+      "is_active"
+    ]
+  },
+  "use_seo_path": false,
+  "use_parent_delete_childs": false
+}

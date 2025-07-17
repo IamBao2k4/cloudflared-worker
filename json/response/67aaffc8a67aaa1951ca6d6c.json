@@ -1,0 +1,20 @@
+{
+  "_id": "67aaffc8a67aaa1951ca6d6c",
+  "title": "update user tenant profile",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "67aad740a67aaa1951ca64b0"
+  ],
+  "queryAdvance": "{\n  \"nickname\": 0,\n  \"profile\": {\n    \"social\": {\n      \"featured_image\": {\n        \"_id\": 0,\n        \"title\": 0,\n        \"path\": 0\n      },\n      \"cover\": {\n        \"_id\": 0,\n        \"title\": 0,\n        \"path\": 0\n      },\n      \"first_name\": 0,\n      \"last_name\": 0,\n      \"birthday\": 0,\n      \"description\": 0\n    }\n  }\n}",
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "params": [
+    {
+      "value": "user_id",
+      "key": "user_id"
+    }
+  ]
+}

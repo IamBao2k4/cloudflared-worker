@@ -1,0 +1,412 @@
+{
+  "chapter": {},
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "678623415b126d1f3fd59196",
+          "title": "create chapter",
+          "entity": "mge-chapters",
+          "path_file": "json/response/678623415b126d1f3fd59196.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "977645c2-8b57-4277-9669-5d4701f87d73",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "0dfc526c-1981-42ad-ba63-16feb842b020",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            },
+            {
+              "id": "a7b703ed-8a4c-4114-b6ab-9eda7de0019c",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862d8541c99c20314161ec"
+            }
+          ],
+          "id": "6f5c7862-c9a3-496e-a52f-383be31ce591"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          },
+          {
+            "_id": "67862d8541c99c20314161ec",
+            "title": "is-user-has-permission-to-create-chapter",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862d8541c99c20314161ec.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "084085e9-826d-4f6b-a46d-1428e72e4415",
+          "rules": [],
+          "combinator": "and",
+          "not": false
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6786305141c99c20314162f3",
+          "title": "update chapter",
+          "entity": "mge-chapters",
+          "path_file": "json/response/6786305141c99c20314162f3.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "f66837a4-422a-4b77-8659-31d9b9aba3d8",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "3c87ee15-c452-4b9e-9df7-248ef4bafc8b",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            },
+            {
+              "id": "cd618bcb-6f29-47e4-824e-bbc13da66a22",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678630a841c99c2031416325"
+            }
+          ],
+          "id": "3406e8af-91e9-4aef-b312-cbe2b7517740"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          },
+          {
+            "_id": "678630a841c99c2031416325",
+            "title": "is-user-has-permission-to-manage-chapter",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/678630a841c99c2031416325.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "678633c26d9b09071159c206",
+          "title": "get list chapters",
+          "entity": "mge-chapters",
+          "path_file": "json/response/678633c26d9b09071159c206.json"
+        },
+        "query_validate": {
+          "combinator": "or",
+          "rules": [
+            {
+              "id": "5e9fe29e-66e3-48b1-8dba-a7246ac261d0",
+              "rules": [
+                {
+                  "id": "18cec21b-8766-4569-bcbb-08860017c1bf",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "6784f4dd8145c207b78a9972"
+                },
+                {
+                  "id": "7eda7511-034d-4330-b249-f75de69dbb41",
+                  "rules": [
+                    {
+                      "id": "b9a145d5-0495-4750-aab0-6127e4636348",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "678635516d9b09071159c2d8"
+                    },
+                    {
+                      "id": "a07292ad-f4e4-43e1-856f-eddea32fbd14",
+                      "rules": [
+                        {
+                          "id": "190ffe5b-2e21-4fb1-a410-d4f4eb15f385",
+                          "field": "data",
+                          "operator": "=",
+                          "valueSource": "value",
+                          "value": "67862ea941c99c2031416254"
+                        },
+                        {
+                          "id": "24f08bbc-e202-4129-824c-01f0941af1fc",
+                          "field": "data",
+                          "operator": "=",
+                          "valueSource": "value",
+                          "value": "678539794c9747dfaeed5f39"
+                        }
+                      ],
+                      "combinator": "and",
+                      "not": false
+                    }
+                  ],
+                  "combinator": "or",
+                  "not": false
+                }
+              ],
+              "combinator": "and",
+              "not": false
+            },
+            {
+              "id": "1fd37ade-a7eb-437a-883f-0f7e5600744b",
+              "rules": [
+                {
+                  "id": "edec8f81-9744-4763-ba0b-56a4ac97fe10",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "6784f56b4c9747dfaeed5ca6"
+                },
+                {
+                  "id": "88d29ceb-8497-4c61-8a9f-7841b76a4432",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "678539794c9747dfaeed5f39"
+                },
+                {
+                  "id": "e17e755f-b6fd-4e20-9635-d3145f0dd764",
+                  "rules": [
+                    {
+                      "id": "42b8227c-485d-407a-9dc2-c870645fced8",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "678635516d9b09071159c2d8"
+                    },
+                    {
+                      "id": "870bfe77-e630-4956-851c-839c7fe5cb8d",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "67862ea941c99c2031416254"
+                    }
+                  ],
+                  "combinator": "or",
+                  "not": false
+                }
+              ],
+              "combinator": "and",
+              "not": false
+            }
+          ],
+          "id": "73fb59a4-6d93-4faa-996c-d0532391d9c5"
+        },
+        "list_validate": [
+          {
+            "_id": "6784f4dd8145c207b78a9972",
+            "title": "is-tenant-public",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/6784f4dd8145c207b78a9972.json"
+          },
+          {
+            "_id": "6784f56b4c9747dfaeed5ca6",
+            "title": "is-tenant-private",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/6784f56b4c9747dfaeed5ca6.json"
+          },
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "678635516d9b09071159c2d8",
+            "title": "is-course-public",
+            "entity": {
+              "_id": "67529c0665017d942f7592d1",
+              "mongodb_collection_name": "mge-courses"
+            },
+            "path_file": "json/validate/678635516d9b09071159c2d8.json"
+          },
+          {
+            "_id": "678636df6d9b09071159c329",
+            "title": "is-course-instructor or course-assistant",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/678636df6d9b09071159c329.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [
+      {
+        "value": "course_id",
+        "key": "course_id"
+      },
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67bd3e2d2692eef9b7ac3368",
+          "title": "delete chapter",
+          "entity": "mge-chapters",
+          "path_file": "json/response/67bd3e2d2692eef9b7ac3368.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "cfa1e714-f664-4a24-9364-94079e0e1bcf",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "25e363da-5b7b-451e-8ceb-7a5ccaca1386",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            },
+            {
+              "id": "f44d5f50-2bd4-4167-893c-d7f1f4aa0e00",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678630a841c99c2031416325"
+            }
+          ],
+          "id": "3ebde7da-abea-42cc-b7fb-bf61d519879d"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          },
+          {
+            "_id": "678630a841c99c2031416325",
+            "title": "is-user-has-permission-to-manage-chapter",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/678630a841c99c2031416325.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

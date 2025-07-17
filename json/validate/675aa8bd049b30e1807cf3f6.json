@@ -1,0 +1,51 @@
+{
+  "_id": "675aa8bd049b30e1807cf3f6",
+  "title": "is-user-B-active",
+  "note": "",
+  "entity": [
+    "6749933810905d9ddbd0104b"
+  ],
+  "data": {
+    "id": "9b600ff3-acbb-407d-aa3b-ade0f441d888",
+    "rules": [
+      {
+        "id": "ae41fa82-1712-477b-aaa8-732aaacb58b4",
+        "field": "user.is_active",
+        "operator": "=",
+        "valueSource": "value",
+        "value": true
+      },
+      {
+        "id": "2021569e-6a46-459f-a0a1-14ad15213136",
+        "rules": [
+          {
+            "id": "ecdc6b31-6e70-47d7-8c5b-1b9ee4570e45",
+            "field": "user._id",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "user"
+          },
+          {
+            "id": "afad0a5b-e3e9-4ddb-96ad-fba206e13a2d",
+            "field": "user._id",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$user._id:param.user_id"
+          }
+        ],
+        "combinator": "or",
+        "not": false
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"user.is_active\":true},{\"$or\":[{\"user._id\":\"user\"},{\"user._id\":\"$user._id:param.user_id\"}]}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "categories": [],
+  "id": "675aa8bd049b30e1807cf3f6"
+}

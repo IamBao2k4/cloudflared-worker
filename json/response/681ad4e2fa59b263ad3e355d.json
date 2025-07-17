@@ -1,0 +1,46 @@
+{
+  "_id": "681ad4e2fa59b263ad3e355d",
+  "title": "update tweet event",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "681ad170fa59b263ad3e2fa4"
+  ],
+  "categories": [],
+  "queryAdvance": "{\n  \"title\": 0,\n  \"slug\": 0,\n  \"short_description\": 0,\n  \"featured_image\": 0,\n  \"categories\": 0,\n  \"tag\": 0,\n  \"status\": 0,\n  \"social_group\": \"@param:group_id\",\n  \"comment_off\": \"false,true\",\n  \"like_off\": \"false,true\",\n  \"event_start_time\": 0,\n  \"event_end_time\": 0,\n  \"event_type\": \"online,offline\",\n  \"event_location\": 0,\n  \"event_link\": 0,\n  \"tweet_waiting_time\": 0\n}",
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    }
+  ]
+}

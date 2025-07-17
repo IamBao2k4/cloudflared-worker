@@ -1,0 +1,88 @@
+{
+  "_id": "68198f2215cf915ba520bf83",
+  "title": "EMC Tags",
+  "mongodb_collection_name": "emc-tags",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "tags_groups": {
+        "type": "string",
+        "typeRelation": {
+          "title": "emc-tags-groups",
+          "_id": "emc-tags-groups",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "50d637ab-3d8e-462c-bcd3-97727b77237f"
+          }
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "Tags Groups",
+        "filter": true
+      },
+      "is_active": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "active",
+            "value": "active"
+          },
+          {
+            "key": "inactive",
+            "value": "inactive"
+          }
+        ],
+        "default": "active",
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "Is Active",
+        "type": "string",
+        "filter": true
+      }
+    },
+    "required": [
+      "title",
+      "tags_groups",
+      "is_active"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "tags_groups": {
+      "ui:widget": "relation"
+    },
+    "is_active": {
+      "ui:widget": "select"
+    },
+    "ui:order": [
+      "title",
+      "tags_groups",
+      "is_active"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-05-06T04:25:06.818Z",
+  "__v": 0
+}

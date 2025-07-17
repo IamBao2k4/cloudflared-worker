@@ -1,0 +1,26 @@
+{
+  "_id": "677508003c56caf3d6e34d86",
+  "title": "is-user-has-permisson-to-delete-category",
+  "note": "",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "data": {
+    "id": "7607e6a6-1d19-46d3-9d97-a03dd4e59062",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "advance": "[\n    {\n        \"$addFields\": {\n            \"social_group_object_id\": {\n                \"$map\": {\n                    \"input\": \"$social_group\",\n                    \"as\": \"sg\",\n                    \"in\": {\n                        \"$toObjectId\": \"$$sg\"\n                    }\n                }\n            }\n        }\n    },\n    {\n        \"$match\": {\n            \"user\": \"@jwt:user.id\",\n            \"$or\": [\n            {\"social_group\": \"@param:_id\"},\n            {\"social_group\": \"@param:group_id\"}\n            ]\n        }\n    },\n    {\n        \"$lookup\": {\n            \"from\": \"mge-group\",\n            \"localField\": \"social_group_object_id\",\n            \"foreignField\": \"_id\",\n            \"as\": \"group_info\"\n        }\n    },\n  {\n    \"$addFields\": {\n      \"group_info\": {\n        \"$arrayElemAt\": [\n          \"$group_info\",\n          0\n        ]\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"can_update_member_in_group\": {\n        \"$gt\": [\n          { \n            \"$size\": {\n              \"$setIntersection\": [\n                \"$role\", \n                \"$group_info.permissions.group_category_delete\"\n              ]\n            }\n          },\n          0\n        ]\n      }\n    }\n  },\n  { \"$match\": { \"can_update_member_in_group\": true } }\n]",
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    }
+  ]
+}

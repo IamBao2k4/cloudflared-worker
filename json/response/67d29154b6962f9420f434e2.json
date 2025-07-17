@@ -1,0 +1,13 @@
+{
+  "_id": "67d29154b6962f9420f434e2",
+  "title": "get detail category",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "67529b1465017d942f7592b5"
+  ],
+  "queryAdvance": "[\n             {\n                \"$addFields\": {\n                  \"id\": {\n                    \"$toString\": \"$_id\"\n                  }\n                }\n              },\n  {\n    \"$match\": {\n      \"tenant_id\":\"@header:x-tenant-id\",\n      \"$or\":[\n        {\n          \"id\":\"@param:_id\"\n        },\n        {\n          \"slug\":\"@param:slug\"\n        }\n        ]\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        { \"$count\": \"count\" },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        { \"$skip\": \"@param:skip\" },\n        { \"$limit\": \"@param:limit\" }\n      ]\n    }\n  }\n]",
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

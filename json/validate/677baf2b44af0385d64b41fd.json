@@ -1,0 +1,46 @@
+{
+  "_id": "677baf2b44af0385d64b41fd",
+  "title": "is-entity-like-belongs-to-entity-name",
+  "note": "",
+  "entity": [
+    "676a2762dedfcf1bf1c55abf"
+  ],
+  "data": {
+    "id": "2c63c86c-1ca1-43cc-9226-f1e06a295884",
+    "rules": [
+      {
+        "id": "146efe81-9238-41d9-8ff0-a4c7ea4f85ad",
+        "field": "mge-entity-like._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": ""
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "advance": "[\n    {\n        \"$match\": {\n            \"tenant_id\": \"@header:x-tenant-id\"\n        }\n    }, \n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\":{\n      \"_id\":\"@param:tweet_id\",\n      \"collection_name\":\"@body:entity_name\"\n    }\n  }\n      ]",
+  "required": [],
+  "queryMongodb": "{\"mge-entity-like._id\":\"\"}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "body": [
+    {
+      "value": "entity_name",
+      "key": "entity_name"
+    }
+  ],
+  "params": [
+    {
+      "value": "tweet_id",
+      "key": "tweet_id"
+    }
+  ],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ]
+}

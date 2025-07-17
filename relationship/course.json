@@ -1,0 +1,9 @@
+[
+  {
+    "name": "intro_video",
+    "targetTable": "677cce5b676bc057e16690ed",
+    "localField": "intro_video",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

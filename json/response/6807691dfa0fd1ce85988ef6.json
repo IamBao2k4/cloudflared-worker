@@ -1,0 +1,36 @@
+{
+  "_id": "6807691dfa0fd1ce85988ef6",
+  "title": "UPDATE shipping",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "68076802fa0fd1ce85988e85"
+  ],
+  "categories": [],
+  "queryAdvance": "{\n  \"title\": 0,\n  \"code\": 0,\n  \"description\": 0,\n  \"status\": 0\n}",
+  "restricted": [
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "6801bf1b887875ca1b8c3ee4",
+  "documents": []
+}

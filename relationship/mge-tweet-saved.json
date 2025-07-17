@@ -1,0 +1,9 @@
+[
+  {
+    "name": "user_collection",
+    "targetTable": "mge-user-collections",
+    "localField": "user_collection",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

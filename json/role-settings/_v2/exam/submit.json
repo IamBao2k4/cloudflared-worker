@@ -1,0 +1,304 @@
+{
+  "submit": {},
+  "post": {
+    "headers": [
+      {
+        "value": "x-tenant-id",
+        "key": "x-tenant-id"
+      }
+    ],
+    "params": [
+      {
+        "value": "exam_id",
+        "key": "exam_id"
+      }
+    ],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67a30c823939e2a74e49804b",
+          "title": "submit exam",
+          "entity": "mge-user-exam-result",
+          "path_file": "json/response/67a30c823939e2a74e49804b.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "24108105-149f-4008-9ba0-58bd1d8d36b2",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "418026e3-a717-49e9-afd1-620163933bbb",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            }
+          ],
+          "id": "0f8fc16f-71b0-47a1-9313-d9e485ba2970"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67a33b2003679925e42bb622",
+          "title": "get list user exam result",
+          "entity": "mge-user-exam-result",
+          "path_file": "json/response/67a33b2003679925e42bb622.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "bf5dd693-0958-4747-bf20-e4c340323db3",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            }
+          ],
+          "id": "a9bd7009-0da3-4fbc-bd71-de52c87b7074"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-detail": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67a33d6303679925e42bb66a",
+          "title": "get detail user exam result",
+          "entity": "mge-user-exam-result",
+          "path_file": "json/response/67a33d6303679925e42bb66a.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "044c680d-0744-42e4-8c90-cde275780690"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [
+      {
+        "value": "course_id",
+        "key": "course_id"
+      },
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67c91c70f4aa922e5d2a01a5",
+          "title": "update exam submission",
+          "entity": "mge-user-exam-result",
+          "path_file": "json/response/67c91c70f4aa922e5d2a01a5.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "ee7a70e5-77bd-47b6-9236-6936b9718593",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            },
+            {
+              "id": "516468f0-fedb-4402-b895-5869883e6928",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "218fd6d1-7088-40ea-ad4d-99a55af3c83f",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "680f37537cff9ff0d0ec3d24"
+            }
+          ],
+          "id": "b5faddb7-ee81-44c4-a195-f99c15dcedd9"
+        },
+        "list_validate": [
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          },
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "680f37537cff9ff0d0ec3d24",
+            "title": "is-final-exam-false",
+            "entity": {
+              "_id": "6752ad7665017d942f759440",
+              "mongodb_collection_name": "mge-exams"
+            },
+            "path_file": "json/validate/680f37537cff9ff0d0ec3d24.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        },
+        "trigger_pipeline": "[\n  {\n    \"collection_name\": \"mge-user-exam-result\",\n    \"action\": \"find-one\",\n    \"query_advance\": [\n      {\n        \"$addFields\": {\n          \"_id\": {\n            \"$toString\": \"$_id\"\n          }\n        }\n      },\n      {\n        \"$match\": {\n          \"_id\": \"@param:_id\"\n        }\n      },\n      {\n        \"$unwind\": \"$exam\"\n      },\n      {\n        \"$addFields\": {\n          \"examObj\": {\n            \"$toObjectId\": \"$exam\"\n          }\n        }\n      },\n      {\n        \"$lookup\": {\n          \"from\": \"mge-exams\",\n          \"localField\": \"examObj\",\n          \"foreignField\": \"_id\",\n          \"as\": \"exam_info\"\n        }\n      },\n      {\n        \"$addFields\": {\n          \"exam_info\": {\n            \"$arrayElemAt\": [\n              \"$exam_info\",\n              0\n            ]\n          }\n        }\n      },\n      {\n        \"$addFields\": {\n          \"correct_answer_count\": {\n            \"$size\": {\n              \"$filter\": {\n                \"input\": \"$user_answer\",\n                \"as\": \"userAns\",\n                \"cond\": {\n                  \"$let\": {\n                    \"vars\": {\n                      \"question\": {\n                        \"$arrayElemAt\": [\n                          {\n                            \"$filter\": {\n                              \"input\": \"$exam_info.questions\",\n                              \"as\": \"ques\",\n                              \"cond\": {\n                                \"$eq\": [\n                                  \"$$ques._id\",\n                                  \"$$userAns.question_id\"\n                                ]\n                              }\n                            }\n                          },\n                          0\n                        ]\n                      }\n                    },\n                    \"in\": {\n                      \"$setEquals\": [\n                        {\n                          \"$ifNull\": [\n                            \"$$userAns.multiple_choice_answer\",\n                            []\n                          ]\n                        },\n                        {\n                          \"$map\": {\n                            \"input\": {\n                              \"$filter\": {\n                                \"input\": {\n                                  \"$ifNull\": [\n                                    \"$$question.answer\",\n                                    []\n                                  ]\n                                },\n                                \"as\": \"ans\",\n                                \"cond\": {\n                                  \"$eq\": [\n                                    \"$$ans.is_correct\",\n                                    true\n                                  ]\n                                }\n                              }\n                            },\n                            \"as\": \"correctAns\",\n                            \"in\": \"$$correctAns.id\"\n                          }\n                        }\n                      ]\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"total_score\": {\n            \"$reduce\": {\n              \"input\": {\n                \"$map\": {\n                  \"input\": \"$user_answer\",\n                  \"as\": \"userAns\",\n                  \"in\": {\n                    \"$let\": {\n                      \"vars\": {\n                        \"question\": {\n                          \"$arrayElemAt\": [\n                            {\n                              \"$filter\": {\n                                \"input\": \"$exam_info.questions\",\n                                \"as\": \"ques\",\n                                \"cond\": {\n                                  \"$eq\": [\n                                    \"$$ques._id\",\n                                    \"$$userAns.question_id\"\n                                  ]\n                                }\n                              }\n                            },\n                            0\n                          ]\n                        }\n                      },\n                      \"in\": {\n                        \"$cond\": [\n                          {\n                            \"$setEquals\": [\n                              {\n                                \"$ifNull\": [\n                                  \"$$userAns.multiple_choice_answer\",\n                                  []\n                                ]\n                              },\n                              {\n                                \"$map\": {\n                                  \"input\": {\n                                    \"$filter\": {\n                                      \"input\": {\n                                        \"$ifNull\": [\n                                          \"$$question.answer\",\n                                          []\n                                        ]\n                                      },\n                                      \"as\": \"ans\",\n                                      \"cond\": {\n                                        \"$eq\": [\n                                          \"$$ans.is_correct\",\n                                          true\n                                        ]\n                                      }\n                                    }\n                                  },\n                                  \"as\": \"correctAns\",\n                                  \"in\": \"$$correctAns.id\"\n                                }\n                              }\n                            ]\n                          },\n                          \"$$question.score\",\n                          0\n                        ]\n                      }\n                    }\n                  }\n                }\n              },\n              \"initialValue\": 0,\n              \"in\": {\n                \"$add\": [\n                  \"$$value\",\n                  \"$$this\"\n                ]\n              }\n            }\n          },\n          \"max_possible_score\": {\n            \"$reduce\": {\n              \"input\": \"$exam_info.questions\",\n              \"initialValue\": 0,\n              \"in\": {\n                \"$add\": [\n                  \"$$value\",\n                  \"$$this.score\"\n                ]\n              }\n            }\n          }\n        }\n      },\n      {\n        \"$addFields\": {\n          \"score_scale_10\": {\n            \"$multiply\": [\n              {\n                \"$divide\": [\n                  \"$total_score\",\n                  \"$max_possible_score\"\n                ]\n              },\n              10\n            ]\n          }\n        }\n      },\n      {\n        \"$addFields\": {\n          \"exam_pass_status\": {\n            \"$cond\": {\n              \"if\": {\n                \"$gt\": [\n                  \"$score_scale_10\",\n                  \"$exam_info.minimum_passing_score\"\n                ]\n              },\n              \"then\": \"passed\",\n              \"else\": \"failed\"\n            }\n          }\n        }\n      },\n      {\n        \"$lookup\": {\n          \"from\": \"mge-user-exam-result\",\n          \"localField\": \"exam\",\n          \"foreignField\": \"exam\",\n          \"pipeline\": [\n            {\n              \"$match\": {\n                \"created_by\": \"@jwt:user.id\",\n                \"status\": \"finished\"\n              }\n            },\n            {\n              \"$count\": \"attempt_count\"\n            }\n          ],\n          \"as\": \"attempt_info\"\n        }\n      },\n      {\n        \"$addFields\": {\n          \"attempt_count\": {\n            \"$ifNull\": [\n              {\n                \"$arrayElemAt\": [\n                  \"$attempt_info.attempt_count\",\n                  0\n                ]\n              },\n              1\n            ]\n          }\n        }\n      },\n      {\n        \"$project\": {\n          \"max_possible_score\": 1,\n          \"total_score\": 1,\n          \"score_scale_10\": 1,\n          \"attempt_count\": 1,\n          \"correct_answer_count\": 1,\n          \"exam_pass_status\": 1\n        }\n      },\n      {\n        \"$addFields\": {\n          \"_id\": {\n            \"$toObjectId\": \"$_id\"\n          }\n        }\n      },\n      {\n        \"$merge\": {\n          \"into\": \"mge-user-exam-result\",\n          \"on\": \"_id\",\n          \"whenMatched\": \"merge\",\n          \"whenNotMatched\": \"discard\"\n        }\n      }\n    ]\n  },\n  {\n    \"collection_name\": \"mge-user-exam-result\",\n    \"action\": \"find-one\",\n    \"query_advance\": [\n      {\n        \"$addFields\": {\n          \"_id\": {\n            \"$toString\": \"$_id\"\n          }\n        }\n      },\n      {\n        \"$match\":{\n          \"_id\":\"@param:_id\"\n        }\n      }\n    ]\n  },\n  {\n    \"collection_name\": \"mge-course-user-progress\",\n    \"action\": \"create\",\n    \"skip_error\": true,\n    \"advance\": {\n      \"user\": \"@jwt:user.id\",\n      \"exam\": \"@param:exam_id\",\n      \"course\": \"@param:course_id\"\n    }\n  }\n]"
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "67c91c70f4aa922e5d2a01a5",
+          "title": "update exam submission",
+          "entity": "mge-user-exam-result",
+          "path_file": "json/response/67c91c70f4aa922e5d2a01a5.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "ee7a70e5-77bd-47b6-9236-6936b9718593",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            },
+            {
+              "id": "516468f0-fedb-4402-b895-5869883e6928",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "218fd6d1-7088-40ea-ad4d-99a55af3c83f",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "680f380d7cff9ff0d0ec3d5a"
+            }
+          ],
+          "id": "b5faddb7-ee81-44c4-a195-f99c15dcedd9"
+        },
+        "list_validate": [
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          },
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "680f380d7cff9ff0d0ec3d5a",
+            "title": "is-final-exam-true",
+            "entity": {
+              "_id": "6752ad7665017d942f759440",
+              "mongodb_collection_name": "mge-exams"
+            },
+            "path_file": "json/validate/680f380d7cff9ff0d0ec3d5a.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        },
+        "trigger_pipeline": "[\n  {\n    \"collection_name\": \"mge-user-exam-result\",\n    \"action\": \"find-one\",\n    \"query_advance\": [\n      {\n        \"$addFields\": {\n          \"_id\": {\n            \"$toString\": \"$_id\"\n          }\n        }\n      },\n      {\n        \"$match\": {\n          \"_id\": \"@param:_id\"\n        }\n      },\n      {\n        \"$unwind\": \"$exam\"\n      },\n      {\n        \"$addFields\": {\n          \"examObj\": {\n            \"$toObjectId\": \"$exam\"\n          }\n        }\n      },\n      {\n        \"$lookup\": {\n          \"from\": \"mge-exams\",\n          \"localField\": \"examObj\",\n          \"foreignField\": \"_id\",\n          \"as\": \"exam_info\"\n        }\n      },\n      {\n        \"$addFields\": {\n          \"exam_info\": {\n            \"$arrayElemAt\": [\n              \"$exam_info\",\n              0\n            ]\n          }\n        }\n      },\n      {\n        \"$addFields\": {\n          \"correct_answer_count\": {\n            \"$size\": {\n              \"$filter\": {\n                \"input\": \"$user_answer\",\n                \"as\": \"userAns\",\n                \"cond\": {\n                  \"$let\": {\n                    \"vars\": {\n                      \"question\": {\n                        \"$arrayElemAt\": [\n                          {\n                            \"$filter\": {\n                              \"input\": \"$exam_info.questions\",\n                              \"as\": \"ques\",\n                              \"cond\": {\n                                \"$eq\": [\n                                  \"$$ques._id\",\n                                  \"$$userAns.question_id\"\n                                ]\n                              }\n                            }\n                          },\n                          0\n                        ]\n                      }\n                    },\n                    \"in\": {\n                      \"$setEquals\": [\n                        {\n                          \"$ifNull\": [\n                            \"$$userAns.multiple_choice_answer\",\n                            []\n                          ]\n                        },\n                        {\n                          \"$map\": {\n                            \"input\": {\n                              \"$filter\": {\n                                \"input\": {\n                                  \"$ifNull\": [\n                                    \"$$question.answer\",\n                                    []\n                                  ]\n                                },\n                                \"as\": \"ans\",\n                                \"cond\": {\n                                  \"$eq\": [\n                                    \"$$ans.is_correct\",\n                                    true\n                                  ]\n                                }\n                              }\n                            },\n                            \"as\": \"correctAns\",\n                            \"in\": \"$$correctAns.id\"\n                          }\n                        }\n                      ]\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"total_score\": {\n            \"$reduce\": {\n              \"input\": {\n                \"$map\": {\n                  \"input\": \"$user_answer\",\n                  \"as\": \"userAns\",\n                  \"in\": {\n                    \"$let\": {\n                      \"vars\": {\n                        \"question\": {\n                          \"$arrayElemAt\": [\n                            {\n                              \"$filter\": {\n                                \"input\": \"$exam_info.questions\",\n                                \"as\": \"ques\",\n                                \"cond\": {\n                                  \"$eq\": [\n                                    \"$$ques._id\",\n                                    \"$$userAns.question_id\"\n                                  ]\n                                }\n                              }\n                            },\n                            0\n                          ]\n                        }\n                      },\n                      \"in\": {\n                        \"$cond\": [\n                          {\n                            \"$setEquals\": [\n                              {\n                                \"$ifNull\": [\n                                  \"$$userAns.multiple_choice_answer\",\n                                  []\n                                ]\n                              },\n                              {\n                                \"$map\": {\n                                  \"input\": {\n                                    \"$filter\": {\n                                      \"input\": {\n                                        \"$ifNull\": [\n                                          \"$$question.answer\",\n                                          []\n                                        ]\n                                      },\n                                      \"as\": \"ans\",\n                                      \"cond\": {\n                                        \"$eq\": [\n                                          \"$$ans.is_correct\",\n                                          true\n                                        ]\n                                      }\n                                    }\n                                  },\n                                  \"as\": \"correctAns\",\n                                  \"in\": \"$$correctAns.id\"\n                                }\n                              }\n                            ]\n                          },\n                          \"$$question.score\",\n                          0\n                        ]\n                      }\n                    }\n                  }\n                }\n              },\n              \"initialValue\": 0,\n              \"in\": {\n                \"$add\": [\n                  \"$$value\",\n                  \"$$this\"\n                ]\n              }\n            }\n          },\n          \"max_possible_score\": {\n            \"$reduce\": {\n              \"input\": \"$exam_info.questions\",\n              \"initialValue\": 0,\n              \"in\": {\n                \"$add\": [\n                  \"$$value\",\n                  \"$$this.score\"\n                ]\n              }\n            }\n          }\n        }\n      },\n      {\n        \"$addFields\": {\n          \"score_scale_10\": {\n            \"$multiply\": [\n              {\n                \"$divide\": [\n                  \"$total_score\",\n                  \"$max_possible_score\"\n                ]\n              },\n              10\n            ]\n          }\n        }\n      },\n      {\n        \"$addFields\": {\n          \"exam_pass_status\": {\n            \"$cond\": {\n              \"if\": {\n                \"$gt\": [\n                  \"$score_scale_10\",\n                  \"$exam_info.minimum_passing_score\"\n                ]\n              },\n              \"then\": \"passed\",\n              \"else\": \"failed\"\n            }\n          }\n        }\n      },\n      {\n        \"$lookup\": {\n          \"from\": \"mge-user-exam-result\",\n          \"localField\": \"exam\",\n          \"foreignField\": \"exam\",\n          \"pipeline\": [\n            {\n              \"$match\": {\n                \"created_by\": \"@jwt:user.id\",\n                \"status\": \"finished\"\n              }\n            },\n            {\n              \"$count\": \"attempt_count\"\n            }\n          ],\n          \"as\": \"attempt_info\"\n        }\n      },\n      {\n        \"$addFields\": {\n          \"attempt_count\": {\n            \"$ifNull\": [\n              {\n                \"$arrayElemAt\": [\n                  \"$attempt_info.attempt_count\",\n                  0\n                ]\n              },\n              1\n            ]\n          }\n        }\n      },\n      {\n        \"$project\": {\n          \"max_possible_score\": 1,\n          \"total_score\": 1,\n          \"score_scale_10\": 1,\n          \"attempt_count\": 1,\n          \"correct_answer_count\": 1,\n          \"exam_pass_status\": 1\n        }\n      },\n      {\n        \"$addFields\": {\n          \"_id\": {\n            \"$toObjectId\": \"$_id\"\n          }\n        }\n      },\n      {\n        \"$merge\": {\n          \"into\": \"mge-user-exam-result\",\n          \"on\": \"_id\",\n          \"whenMatched\": \"merge\",\n          \"whenNotMatched\": \"discard\"\n        }\n      }\n    ]\n  },\n  {\n    \"collection_name\": \"mge-course-user-progress\",\n    \"action\": \"create\",\n    \"skip_error\": true,\n    \"advance\": {\n      \"user\": \"@jwt:user.id\",\n      \"exam\": \"@param:exam_id\",\n      \"course\": \"@param:course_id\"\n    }\n  },\n  {\n    \"collection_name\": \"mge-course-member\",\n    \"action\": \"update\",\n    \"query_advance\": [\n      {\n        \"$match\": {\n          \"tenant_id\": \"@header:x-tenant-id\",\n          \"course\": \"@param:course_id\",\n          \"user\": \"@jwt:user.id\"\n        }\n      }\n    ],\n    \"advance\": {\n      \"is_finished\": true\n    }\n  },\n  {\n    \"collection_name\": \"mge-user-exam-result\",\n    \"action\": \"find-one\",\n    \"query_advance\": [\n      {\n        \"$addFields\": {\n          \"_id\": {\n            \"$toString\": \"$_id\"\n          }\n        }\n      },\n      {\n        \"$match\":{\n          \"_id\":\"@param:_id\"\n        }\n      }\n    ]\n  },\n  {\n    \"collection_name\": \"mge-user-exam-result\",\n    \"action\": \"find-one\",\n    \"query_advance\": [\n      {\n        \"$addFields\": {\n          \"_id\": {\n            \"$toString\": \"$_id\"\n          }\n        }\n      },\n      {\n        \"$match\": {\n          \"_id\": \"@param:_id\",\n          \"exam_pass_status\": \"passed\"\n        }\n      },\n      {\n        \"$unwind\": \"$exam\"\n      },\n      {\n        \"$addFields\": {\n          \"examObj\": {\n            \"$toObjectId\": \"$exam\"\n          }\n        }\n      },\n      {\n        \"$lookup\": {\n          \"from\": \"mge-exams\",\n          \"localField\": \"examObj\",\n          \"foreignField\": \"_id\",\n          \"as\": \"exam_info\"\n        }\n      },\n      {\n        \"$lookup\": {\n          \"from\": \"mge-course-member\",\n          \"localField\": \"exam_info.course\",\n          \"foreignField\": \"course\",\n          \"pipeline\": [\n            {\n              \"$match\": {\n                \"user\": \"@jwt:user.id\"\n              }\n            },\n            {\n              \"$addFields\": {\n                \"end_learning_time\": {\n                  \"$dateAdd\": {\n                    \"startDate\": \"$$NOW\",\n                    \"unit\": \"hour\",\n                    \"amount\": 7\n                  }\n                }\n              }\n            }\n          ],\n          \"as\": \"member_status\"\n        }\n      },\n      {\n        \"$unwind\": \"$member_status\"\n      },\n      {\n        \"$replaceRoot\": {\n          \"newRoot\": \"$member_status\"\n        }\n      },\n      {\n        \"$project\": {\n          \"end_learning_time\": 1\n        }\n      },\n      {\n        \"$merge\": {\n          \"into\": \"mge-course-member\",\n          \"on\": \"_id\",\n          \"whenMatched\": \"merge\",\n          \"whenNotMatched\": \"discard\"\n        }\n      }\n    ]\n  }\n]"
+      }
+    ]
+  }
+}

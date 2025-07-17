@@ -1,0 +1,10 @@
+{
+  "_id": "678e30a2e8bbafb4fc9a3bfa",
+  "title": "is-user-role-instructor-or-assistant-through-discussion",
+  "note": "",
+  "entity": [
+    "6752bcd265017d942f759541"
+  ],
+  "advance": "[\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"_id\":\"@param:_id\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-course-member\",\n      \"localField\": \"course\",\n      \"foreignField\": \"course\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"user\": \"@jwt:user.id\",\n            \"$or\": [\n              { \"role\": \"instructor\" },\n              { \"role\": \"assistant\" }\n            ]\n          }\n        }\n      ],\n      \"as\": \"memberStatus\"\n    }\n  },\n  {\n    \"$match\": {\n      \"memberStatus\": { \"$ne\": [] }\n    }\n  }\n]",
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

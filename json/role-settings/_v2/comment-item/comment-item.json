@@ -1,0 +1,28 @@
+{
+  "comment-item": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "677b8ad4b664f6a424540dd6",
+          "title": "Get list sub comment ( by comment_id = parent_id)",
+          "entity": "mge-tweet-comment",
+          "path_file": "json/response/677b8ad4b664f6a424540dd6.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "b92f036e-b72c-4e34-a768-09b755a1254d"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "_id": "67725ce7e240a7d43f0ef9f9",
+  "title": "is-user-has-permission-to-manage-tweet-waiting",
+  "note": "",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "advance": "[\r\n  {\r\n    \"$addFields\": {\r\n      \"social_group_object_id\": {\r\n        \"$map\": {\r\n          \"input\": \"$social_group\",\r\n          \"as\": \"sg\",\r\n          \"in\": {\r\n            \"$toObjectId\": \"$$sg\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$match\": {\r\n      \"user\": \"@jwt:user.id\",\r\n      \"social_group\": \"@param:group_id\"\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-group\",\r\n      \"localField\": \"social_group_object_id\",\r\n      \"foreignField\": \"_id\",\r\n      \"as\": \"group_info\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"group_info\": {\r\n        \"$arrayElemAt\": [\r\n          \"$group_info\",\r\n          0\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"can_add_member\": {\r\n        \"$cond\": {\r\n          \"if\": {\r\n            \"$gt\": [\r\n              {\r\n                \"$size\": {\r\n                  \"$setIntersection\": [\r\n                    \"$role\",\r\n                    \"$group_info.permissions.group_member_add\"\r\n                  ]\r\n                }\r\n              },\r\n              0\r\n            ]\r\n          },\r\n          \"then\": true,\r\n          \"else\": false\r\n        }\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$match\": {\r\n      \"can_add_member\": true\r\n    }\r\n  }\r\n]",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "data": {
+    "id": "0c92a0be-9fa5-49c1-9a33-8eba89212359",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "documents": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "required": [],
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    }
+  ]
+}

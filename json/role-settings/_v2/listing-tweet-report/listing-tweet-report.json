@@ -1,0 +1,148 @@
+{
+  "listing-tweet-report": {},
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67cfdc02dada26e67e88016b",
+          "title": "create tweet report",
+          "entity": "mge-listing-tweet-report",
+          "path_file": "json/response/67cfdc02dada26e67e88016b.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "b8a4904b-4bf7-4d8f-9dfe-e27e4642afed",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67c92992f4aa922e5d2a1074"
+            }
+          ],
+          "id": "d5425ef4-37b3-4bb0-8b35-1d9df4de1c68"
+        },
+        "list_validate": [
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67cffecb79b3dc87b27a60ca",
+          "title": "delete tweet report",
+          "entity": "mge-listing-tweet-report",
+          "path_file": "json/response/67cffecb79b3dc87b27a60ca.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "b069f180-107a-47b8-ac9f-39f6e1df1747",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67c92992f4aa922e5d2a1074"
+            },
+            {
+              "id": "1d1ae733-58b0-4937-b124-d82f2f9f560a",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67c92938f4aa922e5d2a1025"
+            }
+          ],
+          "id": "ff334aa6-0090-4885-943b-8f135a5c5879"
+        },
+        "list_validate": [
+          {
+            "_id": "67c92938f4aa922e5d2a1025",
+            "title": "is-user-superadmin",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92938f4aa922e5d2a1025.json"
+          },
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67d0f79b563a6f3245cb0de7",
+          "title": "get list tweet report",
+          "entity": "mge-listing-tweet-report",
+          "path_file": "json/response/67d0f79b563a6f3245cb0de7.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "2808a63f-640d-4093-a701-2f1651ac3f33",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67c92938f4aa922e5d2a1025"
+            }
+          ],
+          "id": "e1c0a459-208f-4d31-8ec1-8525355341ac"
+        },
+        "list_validate": [
+          {
+            "_id": "67c92938f4aa922e5d2a1025",
+            "title": "is-user-superadmin",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92938f4aa922e5d2a1025.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

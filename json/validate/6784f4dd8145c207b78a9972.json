@@ -1,0 +1,34 @@
+{
+  "_id": "6784f4dd8145c207b78a9972",
+  "title": "is-tenant-public",
+  "note": "",
+  "entity": [
+    "6740251baefaffc3e4662e6b"
+  ],
+  "data": {
+    "id": "a2698743-7edb-49ff-a690-023e48a9b259",
+    "rules": [
+      {
+        "id": "da141b6f-aa24-4684-9081-e1afdf7f3496",
+        "field": "tenant._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$tenant._id:header.x-tenant-id"
+      },
+      {
+        "id": "d1cbf653-08a1-4832-b782-aed83a4e97aa",
+        "field": "tenant.type",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "public"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"tenant._id\":\"$tenant._id:header.x-tenant-id\"},{\"tenant.type\":\"public\"}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

@@ -1,0 +1,36 @@
+{
+  "_id": "67a5901eb45a45be2aa96a3c",
+  "title": "get list note",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "67a32ec603679925e42bb2cb"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"created_by\": \"@jwt:user.id\",\n      \"lesson\":\"@param:lesson_id\",\n      \"tenant_id\":\"@header:x-tenant-id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"lesson\": {\n        \"$toObjectId\": \"$lesson\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-lessons\",\n      \"localField\": \"lesson\",\n      \"foreignField\": \"_id\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"course\": \"@param:course_id\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"chapters\": {\n              \"$map\": {\n                \"input\": \"$chapters\",\n                \"as\": \"u\",\n                \"in\": {\n                  \"$toObjectId\": \"$$u\"\n                }\n              }\n            }\n          }\n        },\n        {\n          \"$lookup\": {\n            \"from\": \"mge-chapters\",\n            \"localField\": \"chapters\",\n            \"foreignField\": \"_id\",\n            \"pipeline\": [\n              {\n                \"$project\": {\n                  \"title\": 1\n                }\n              }\n            ],\n            \"as\": \"chapter_info\"\n          }\n        },\n        {\n          \"$project\": {\n            \"title\": 1,\n            \"chapter_info\": 1\n          }\n        }\n      ],\n      \"as\": \"lesson_info\"\n    }\n  },\n  {\n    \"$match\": {\n      \"lesson_info\": {\n        \"$ne\": []\n      }\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "params": [
+    {
+      "value": "course_id",
+      "key": "course_id"
+    },
+    {
+      "value": "status[]",
+      "key": "status[]"
+    },
+    {
+      "value": "type[]",
+      "key": "type[]"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "_id": "67da3d18bab79a925cd2f65a",
+  "title": "update tweet vote waiting to active",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "674e8f8885bc5241dd6405fb"
+  ],
+  "queryAdvance": "{\r\n  \"status\":\"active\"\r\n}",
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

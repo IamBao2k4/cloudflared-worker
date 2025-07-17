@@ -1,0 +1,28 @@
+{
+  "social-search": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67befe3f22351d6c715292e3",
+          "title": "search social tweet group ",
+          "entity": "mge-tweet",
+          "path_file": "json/response/67befe3f22351d6c715292e3.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "765b7a61-0de9-410e-9a57-3743674a8726"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

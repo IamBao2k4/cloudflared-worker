@@ -1,0 +1,9 @@
+[
+  {
+    "name": "tag_group",
+    "targetTable": "tag-group",
+    "localField": "tag_group",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "_id": "6790a7d32bf4488eb3ab1978",
+  "title": "create discussion's comment",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "6752c64565017d942f759585"
+  ],
+  "queryAdvance": "{\n  \"content\":1,\n  \"attachments\":0,\n  \"discussion\":\"@param:discussion_id\",\n  \"parent_id\":0\n}",
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

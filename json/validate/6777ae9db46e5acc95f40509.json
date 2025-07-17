@@ -1,0 +1,41 @@
+{
+  "_id": "6777ae9db46e5acc95f40509",
+  "title": "is-tweet_saved-mine",
+  "note": "",
+  "entity": [
+    "675b9a4a9279b9d81247c3cc"
+  ],
+  "data": {
+    "id": "634679e1-b607-4c02-83ca-88d9d6579832",
+    "rules": [
+      {
+        "id": "b8cf5e5c-ec21-4567-9ff1-3697c3c6a17d",
+        "field": "mge-tweet-saved._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-tweet-saved._id:param._id"
+      },
+      {
+        "id": "d68159f5-de0f-43f5-ad35-b97678523bab",
+        "field": "mge-tweet-saved.created_by",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-tweet-saved.created_by:jwt.user@id"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "advance": "",
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"mge-tweet-saved._id\":\"$mge-tweet-saved._id:param._id\"},{\"mge-tweet-saved.created_by\":\"$mge-tweet-saved.created_by:jwt.user@id\"}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "body": null,
+  "documents": [],
+  "headers": null,
+  "logged": null,
+  "params": null,
+  "pre": null
+}

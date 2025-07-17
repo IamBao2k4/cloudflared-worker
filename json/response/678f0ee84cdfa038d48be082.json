@@ -1,0 +1,40 @@
+{
+  "_id": "678f0ee84cdfa038d48be082",
+  "title": "get list course's instructor",
+  "note": "",
+  "method": "get-list",
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"course\": \"@param:course_id\",\n      \"role\": \"instructor\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"user-tenant-profile\",\n      \"localField\": \"created_by\",\n      \"foreignField\": \"user\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"full_name\": {\n              \"$concat\": [\n                \"$profile.course.last_name\",\n                \" \",\n                \"$profile.course.first_name\"\n              ]\n            }\n          }\n        },\n        {\n          \"$project\": {\n            \"_id\": \"$user\",\n            \"full_name\": 1,\n            \"featured_image\": \"$profile.course.featured_image\"\n          }\n        }\n      ],\n      \"as\": \"user\"\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "outputEntity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "data": {
+    "id": "8b3165b7-cb60-4986-92bc-8b3d3f264e93",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "params": [
+    {
+      "value": "course_id",
+      "key": "course_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ],
+  "cache_time": "",
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ]
+}

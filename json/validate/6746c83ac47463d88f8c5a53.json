@@ -1,0 +1,27 @@
+{
+  "_id": "6746c83ac47463d88f8c5a53",
+  "title": "Xác thực trưởng nhóm",
+  "entity": [
+    "672d7c7f1bc536db5817342f"
+  ],
+  "data": {
+    "id": "f329111d-9dca-4b52-8e86-db6db527e6bc",
+    "rules": [
+      {
+        "id": "cf9a760f-eeed-459a-9a99-12a19e4290d6",
+        "field": "social-group-member.group_role",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "manager"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"social-group-member.group_role\":\"manager\"}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "671f5023a966a71127e5b483",
+  "group_id": null
+}

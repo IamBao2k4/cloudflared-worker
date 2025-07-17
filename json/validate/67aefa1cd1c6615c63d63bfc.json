@@ -1,0 +1,53 @@
+{
+  "_id": "67aefa1cd1c6615c63d63bfc",
+  "title": "test owner manager",
+  "note": "",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "data": {
+    "id": "4034e8c4-f350-4462-bde1-044f50ba5874",
+    "rules": [
+      {
+        "id": "468536c3-d9be-4b5b-a6e8-a6fb404b84d5",
+        "field": "mge-group-member.social_group",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-group-member.social_group:param.group_id"
+      },
+      {
+        "id": "2cfb7027-021d-4522-bb56-f03525d4a4db",
+        "field": "mge-group-member.user",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-group-member.user:jwt.user@id"
+      },
+      {
+        "id": "1550b6bc-cdb3-49b6-a450-0f3bf1cae968",
+        "rules": [
+          {
+            "id": "04db5fdb-b663-49f0-8d43-09f309fabd84",
+            "field": "mge-group-member.role",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "owner"
+          },
+          {
+            "id": "29d15517-dcea-403e-9c20-794d5d2b81de",
+            "field": "mge-group-member.role",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "manager"
+          }
+        ],
+        "combinator": "or",
+        "not": false
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"mge-group-member.social_group\":\"$mge-group-member.social_group:param.group_id\"},{\"mge-group-member.user\":\"$mge-group-member.user:jwt.user@id\"},{\"$or\":[{\"mge-group-member.role\":\"owner\"},{\"mge-group-member.role\":\"manager\"}]}]}",
+  "required": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

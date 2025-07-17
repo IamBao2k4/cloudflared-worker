@@ -1,0 +1,85 @@
+{
+  "_id": "676000575a1356463269d0b0",
+  "title": "mge group pin",
+  "mongodb_collection_name": "mge-group-pin",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "social_group": {
+        "title": "social_group",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group",
+          "_id": "mge-group",
+          "type": "1-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "b2cdd699-b071-406d-95ec-b01c22ccda5d"
+          }
+        },
+        "filter": true
+      },
+      "user": {
+        "title": "user",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "1-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "df09694a-ca5a-4411-ab06-c390fcd5a6e6"
+          }
+        },
+        "filter": true
+      },
+      "position": {
+        "widget": "numberInput",
+        "title": "position",
+        "type": "string",
+        "default": "0",
+        "filter": true
+      }
+    },
+    "required": [
+      "social_group",
+      "user",
+      "position"
+    ]
+  },
+  "ui_schema": {
+    "social_group": {
+      "ui:widget": "relation"
+    },
+    "user": {
+      "ui:widget": "relation"
+    },
+    "position": {
+      "ui:widget": "numberInput"
+    },
+    "ui:order": [
+      "social_group",
+      "user",
+      "position"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2024-12-16T10:26:31.069Z",
+  "__v": 0,
+  "unique_keys": "[\n  {\n    \"social_group\":1,\n    \"user\":1\n  }\n]",
+  "use_parent_delete_childs": false
+}

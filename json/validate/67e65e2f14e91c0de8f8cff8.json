@@ -1,0 +1,24 @@
+{
+  "_id": "67e65e2f14e91c0de8f8cff8",
+  "title": "is-tweet-belongs-to-watch-later-collection",
+  "note": "",
+  "entity": [
+    "675b9a4a9279b9d81247c3cc"
+  ],
+  "advance": "[\r\n  {\r\n    \"$addFields\": {\r\n      \"_id\": {\r\n        \"$toString\": \"$_id\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$match\": {\r\n      \"_id\": \"@param:_id\",\r\n      \"created_by\":\"@jwt:user.id\",\r\n      \"$or\": [\r\n        {\r\n          \"user_collection\": {\r\n            \"$exists\": false\r\n          }\r\n        },\r\n        {\r\n          \"user_collection\": null\r\n        }\r\n      ]\r\n    }\r\n  }\r\n]",
+  "data": {
+    "id": "21f5c078-8107-480a-b5e6-d69ba9bd6b48",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "required": [],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "params": [
+    {
+      "value": "_id",
+      "key": "_id"
+    }
+  ]
+}

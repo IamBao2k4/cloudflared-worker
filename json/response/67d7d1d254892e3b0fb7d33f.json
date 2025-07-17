@@ -1,0 +1,24 @@
+{
+  "_id": "67d7d1d254892e3b0fb7d33f",
+  "title": "get list tag",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "67d2617ab6962f9420f4035a"
+  ],
+  "queryAdvance": "[\r\n  {\r\n    \"$match\": {\r\n      \"tenant_id\":\"@header:x-tenant-id\"\r\n    }\r\n  },\r\n  {\r\n    \"$facet\": {\r\n      \"meta_data\": [\r\n        {\r\n          \"$count\": \"count\"\r\n        },\r\n        {\r\n          \"$addFields\": {\r\n            \"skip\": \"@param:skip\",\r\n            \"limit\": \"@param:limit\"\r\n          }\r\n        }\r\n      ],\r\n      \"data\": [\r\n        {\r\n          \"$skip\": \"@param:skip\"\r\n        },\r\n        {\r\n          \"$limit\": \"@param:limit\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n]",
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb",
+  "documents": [],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ]
+}

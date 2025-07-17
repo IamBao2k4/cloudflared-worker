@@ -1,0 +1,53 @@
+{
+  "_id": "67c00fc50bb62abd56e80c4e",
+  "title": "is-group-secret",
+  "note": "",
+  "entity": [
+    "6747ef07c47463d88f8c5ab1"
+  ],
+  "data": {
+    "id": "9fde1881-ef42-4b4a-a21d-40a40922931b",
+    "rules": [
+      {
+        "id": "c98c8667-18b4-4814-881d-91aa71085880",
+        "field": "mge-group.type",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "secret"
+      },
+      {
+        "id": "82f7cc6b-67da-47bf-a3c3-fabf215052dd",
+        "rules": [
+          {
+            "id": "e07e406d-1daf-42ba-8b1d-688aad512463",
+            "field": "mge-group._id",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-group._id:param._id"
+          },
+          {
+            "id": "555d8dc7-2e19-4d73-8d44-c2b114bf215e",
+            "field": "mge-group._id",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-group._id:param.group_id"
+          }
+        ],
+        "combinator": "or",
+        "not": false
+      },
+      {
+        "id": "73015747-c10f-4667-be90-1189dff68ab2",
+        "field": "mge-group.status",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "active"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"mge-group.type\":\"secret\"},{\"$or\":[{\"mge-group._id\":\"$mge-group._id:param._id\"},{\"mge-group._id\":\"$mge-group._id:param.group_id\"}]},{\"mge-group.status\":\"active\"}]}",
+  "required": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

@@ -1,0 +1,285 @@
+{
+  "request-join-group": {},
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {
+          "_id": "67c5352ecb2d3f0de0499cdb",
+          "path_file": "json/notification/67c5352ecb2d3f0de0499cdb.json"
+        },
+        "response": {
+          "_id": "6762353a9923ae86205ceceb",
+          "title": "Request to join group",
+          "path_file": "json/response/6762353a9923ae86205ceceb.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "ebb40538-d4e8-4bf0-8b25-ece932600841",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "44773790-50e8-48ad-bc2a-cc9f80c794c4",
+              "rules": [
+                {
+                  "id": "28b136ac-52b8-469e-b859-4f36a5b631e4",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "675935944670a4882df4fdb1"
+                },
+                {
+                  "id": "805aaac0-8af9-4af0-9647-50c59206a7b8",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "675a99760f44fc1769fdeee9"
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "2044e24c-4e85-4044-8d75-62ecec75da34"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "675935944670a4882df4fdb1",
+            "title": "is-group-public",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675935944670a4882df4fdb1.json"
+          },
+          {
+            "_id": "675a99760f44fc1769fdeee9",
+            "title": "is-group-private",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675a99760f44fc1769fdeee9.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6768e6cb7150f61db7cecd67",
+          "title": "Get list group is requesting to join",
+          "path_file": "json/response/6768e6cb7150f61db7cecd67.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "6a13e7ee-98f9-46f2-ab8d-1070148802e0",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            }
+          ],
+          "id": "c8d6712e-826f-4ec2-bf0f-af5bb557201e"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "676a79ef357685825bbd08e1",
+          "title": "Cancel group join request",
+          "path_file": "json/response/676a79ef357685825bbd08e1.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "66b83ea7-6c22-4958-884e-7cc41933e01e",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "21362ef3-9561-4007-959c-a25759b49695",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675ba2b39279b9d81247c724"
+            },
+            {
+              "id": "b135fd78-a02b-436a-8752-8c4aa88a754e",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "676a7b30357685825bbd0929"
+            }
+          ],
+          "id": "5a93a8a8-305a-4626-961e-68a1881abce3"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "675ba2b39279b9d81247c724",
+            "title": "is-group-active",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675ba2b39279b9d81247c724.json"
+          },
+          {
+            "_id": "676a7b30357685825bbd0929",
+            "title": "is-user-requesting-to-join-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/676a7b30357685825bbd0929.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67a5bc6eb45a45be2aa97417",
+          "title": "update status from reject to pending",
+          "entity": "mge-group-member",
+          "path_file": "json/response/67a5bc6eb45a45be2aa97417.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "451e971f-b23e-4f75-be85-eae154eaf973",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "7a9b0868-53b1-4f65-9a2f-8d07a9a8fda0",
+              "rules": [
+                {
+                  "id": "43738146-4095-4024-96bb-06b3ef453446",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67a5c4c82339f5d7b3fd3a8e"
+                },
+                {
+                  "id": "32160d76-5b0a-4ccc-8d39-cff628d45e88",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67aece6ad1c6615c63d614bb"
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "f290ca9f-93ec-457c-844c-a48b2b3b7d8a"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "67a5c4c82339f5d7b3fd3a8e",
+            "title": "user-has-status-reject-in-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/67a5c4c82339f5d7b3fd3a8e.json"
+          },
+          {
+            "_id": "67aece6ad1c6615c63d614bb",
+            "title": "user-has-status-left-in-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/67aece6ad1c6615c63d614bb.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

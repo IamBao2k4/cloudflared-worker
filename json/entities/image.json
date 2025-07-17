@@ -1,0 +1,187 @@
+{
+  "_id": "6743fa8e4633668aab2b41b7",
+  "title": "image",
+  "mongodb_collection_name": "image",
+  "json_schema": {
+    "title": "image",
+    "description": "image",
+    "type": "object",
+    "properties": {
+      "mime": {
+        "title": "mime",
+        "widget": "shortAnswer",
+        "type": "string",
+        "objectKey": "mime"
+      },
+      "title": {
+        "title": "title",
+        "widget": "shortAnswer",
+        "type": "string",
+        "objectKey": "title",
+        "filter": true
+      },
+      "alt": {
+        "title": "alt",
+        "widget": "shortAnswer",
+        "type": "string",
+        "objectKey": "alt"
+      },
+      "path": {
+        "title": "path",
+        "widget": "shortAnswer",
+        "type": "string",
+        "objectKey": "path"
+      },
+      "sourceCode": {
+        "title": "sourceCode",
+        "widget": "longAnswer",
+        "customRole": "textarea",
+        "type": "string",
+        "objectKey": "sourceCode"
+      },
+      "data": {
+        "title": "data",
+        "type": "object",
+        "properties": {
+          "title": {
+            "title": "title",
+            "widget": "shortAnswer",
+            "type": "string",
+            "objectKey": "title"
+          },
+          "newsItems": {
+            "title": "newsItems",
+            "type": "array",
+            "objectKey": "newsItems",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "title": "title",
+                  "widget": "shortAnswer",
+                  "type": "string",
+                  "objectKey": "title"
+                },
+                "date": {
+                  "title": "date",
+                  "widget": "shortAnswer",
+                  "type": "string",
+                  "objectKey": "date"
+                },
+                "image": {
+                  "title": "image",
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "title": "path",
+                      "widget": "shortAnswer",
+                      "type": "string",
+                      "objectKey": "path"
+                    },
+                    "type": {
+                      "title": "type",
+                      "widget": "shortAnswer",
+                      "type": "string",
+                      "objectKey": "type"
+                    }
+                  },
+                  "objectKey": "image"
+                }
+              }
+            }
+          },
+          "seeMoreButton": {
+            "title": "seeMoreButton",
+            "widget": "shortAnswer",
+            "type": "string",
+            "objectKey": "seeMoreButton"
+          }
+        },
+        "objectKey": "data"
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "mime": {
+      "ui:widget": "shortAnswer"
+    },
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "alt": {
+      "ui:widget": "shortAnswer"
+    },
+    "path": {
+      "ui:widget": "shortAnswer"
+    },
+    "sourceCode": {
+      "ui:widget": "longAnswer"
+    },
+    "data": {
+      "title": {
+        "ui:widget": "shortAnswer"
+      },
+      "newsItems": {
+        "items": {
+          "title": {
+            "ui:widget": "shortAnswer"
+          },
+          "date": {
+            "ui:widget": "shortAnswer"
+          },
+          "image": {
+            "path": {
+              "ui:widget": "shortAnswer"
+            },
+            "type": {
+              "ui:widget": "shortAnswer"
+            },
+            "ui:order": [
+              "path",
+              "type"
+            ]
+          },
+          "ui:order": [
+            "title",
+            "date",
+            "image"
+          ]
+        }
+      },
+      "seeMoreButton": {
+        "ui:widget": "shortAnswer"
+      },
+      "ui:order": [
+        "title",
+        "newsItems",
+        "seeMoreButton"
+      ]
+    },
+    "ui:order": [
+      "mime",
+      "title",
+      "alt",
+      "path",
+      "sourceCode",
+      "data"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "created_at": "2024-11-25T04:18:22.379Z",
+  "__v": 0,
+  "entity_group": null,
+  "settings": {
+    "featured_image": "data"
+  },
+  "use_parent_delete_childs": false,
+  "use_seo_path": false
+}

@@ -1,0 +1,32 @@
+{
+  "_id": "67b6b41bbe393421251088c9",
+  "title": "is-member-status-pending",
+  "note": "",
+  "entity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "data": {
+    "id": "235ede72-e02b-425a-a26f-c029a9e2fec8",
+    "rules": [
+      {
+        "id": "2058e408-696e-464f-9956-bc17905e7a94",
+        "field": "mge-course-member._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-course-member._id:param._id"
+      },
+      {
+        "id": "34cdb1e6-5a8b-4524-9d47-786a8e3a9b5a",
+        "field": "mge-course-member.status",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "pending"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"mge-course-member._id\":\"$mge-course-member._id:param._id\"},{\"mge-course-member.status\":\"pending\"}]}",
+  "required": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

@@ -1,0 +1,118 @@
+{
+  "_id": "6780ca7ca78c4e63fee5ab77",
+  "title": "mge user rating",
+  "mongodb_collection_name": "mge-user-rating",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "rating_score": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "1 sao",
+            "value": "1"
+          },
+          {
+            "key": "2 sao",
+            "value": "2"
+          },
+          {
+            "key": "3 sao",
+            "value": "3"
+          },
+          {
+            "key": "4 sao",
+            "value": "4"
+          },
+          {
+            "key": "5 sao",
+            "value": "5"
+          }
+        ],
+        "default": [],
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "rating_score",
+        "type": "string",
+        "filter": true
+      },
+      "content": {
+        "title": "content",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "images": {
+        "type": "string",
+        "library_setting": "all",
+        "widget": "multipleFiles",
+        "title": "images"
+      },
+      "course": {
+        "title": "course",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-courses",
+          "_id": "mge-courses",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "d6927816-e791-42b3-bef7-13834205d971"
+          }
+        },
+        "filter": true
+      },
+      "instructor_response": {
+        "title": "instructor_response",
+        "type": "string",
+        "widget": "textarea",
+        "customRole": "textarea"
+      }
+    },
+    "required": [
+      "rating_score",
+      "course"
+    ]
+  },
+  "ui_schema": {
+    "rating_score": {
+      "ui:widget": "select"
+    },
+    "content": {
+      "ui:widget": "shortAnswer"
+    },
+    "images": {
+      "ui:widget": "multipleFiles"
+    },
+    "course": {
+      "ui:widget": "relation"
+    },
+    "instructor_response": {
+      "ui:widget": "textarea"
+    },
+    "ui:order": [
+      "rating_score",
+      "content",
+      "images",
+      "course",
+      "instructor_response"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-01-10T07:21:32.063Z",
+  "__v": 0
+}

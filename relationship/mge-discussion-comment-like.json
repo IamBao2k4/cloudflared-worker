@@ -1,0 +1,9 @@
+[
+  {
+    "name": "comment",
+    "targetTable": "mge-discussion-comment",
+    "localField": "comment",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

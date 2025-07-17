@@ -1,0 +1,9 @@
+{
+  "_id": "67fc8381fc8de6de063ffa6c",
+  "title": "check-user-reached-exam-attempt-limit",
+  "note": "Kiểm tra xem người dùng đã đạt đến giới hạn số lần làm bài kiểm tra hay chưa",
+  "entity": "mge-user-exam-result",
+  "advance": "[\\r\\n  {\\r\\n    \\\"$match\\\": {\\r\\n      \\\"created_by\\\": \\\"@jwt:user.id\\\",\\r\\n      \\\"exam\\\": \\\"@param:exam_id\\\"\\r\\n    }\\r\\n  },\\r\\n  {\\r\\n    \\\"$lookup\\\": {\\r\\n      \\\"from\\\": \\\"mge-exams\\\",\\r\\n      \\\"let\\\": { \\\"exam_id\\\": { \\\"$toObjectId\\\": \\\"$exam\\\" } },\\r\\n      \\\"pipeline\\\": [\\r\\n        {\\r\\n          \\\"$match\\\": {\\r\\n            \\\"$expr\\\": { \\\"$eq\\\": [\\\"$_id\\\", \\\"$$exam_id\\\"] }\\r\\n          }\\r\\n        }\\r\\n      ],\\r\\n      \\\"as\\\": \\\"exam_info\\\"\\r\\n    }\\r\\n  },\\r\\n  {\\r\\n    \\\"$addFields\\\": {\\r\\n      \\\"exam_info\\\": { \\\"$arrayElemAt\\\": [\\\"$exam_info\\\", 0] }\\r\\n    }\\r\\n  },\\r\\n  {\\r\\n    \\\"$group\\\": {\\r\\n      \\\"_id\\\": null,\\r\\n      \\\"attempts_count\\\": { \\\"$sum\\\": 1 },\\r\\n      \\\"max_attempts\\\": { \\\"$first\\\": \\\"$exam_info.member_retries_allowed\\\" }\\r\\n    }\\r\\n  },\\r\\n  {\\r\\n    \\\"$addFields\\\": {\\r\\n      \\\"has_reached_limit\\\": {\\r\\n        \\\"$gte\\\": [\\\"$attempts_count\\\", \\\"$max_attempts\\\"]\\r\\n      }\\r\\n    }\\r\\n  },\\r\\n  {\\r\\n    \\\"$match\\\": {\\r\\n      \\\"has_reached_limit\\\": true\\r\\n    }\\r\\n  }\\r\\n]",
+  "logged": true,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

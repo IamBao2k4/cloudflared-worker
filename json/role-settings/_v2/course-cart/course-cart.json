@@ -1,0 +1,129 @@
+{
+  "course-cart": {},
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "68186b41753574930d610060",
+          "title": "add course to cart",
+          "entity": "mge-course-cart",
+          "path_file": "json/response/68186b41753574930d610060.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "dbd0b9bd-3021-44be-acd2-23bf8ed09c6e"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": []
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "68186c39753574930d61007b",
+          "title": "delete cart's item",
+          "entity": "mge-course-cart",
+          "path_file": "json/response/68186c39753574930d61007b.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "67276648-b06f-4136-82ca-d1dc80b363b8",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            }
+          ],
+          "id": "6b05017b-f511-48dc-aa33-2216cec0bfc0"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "68186d63753574930d6100fb",
+          "title": "get list user cart",
+          "entity": "mge-course-cart",
+          "path_file": "json/response/68186d63753574930d6100fb.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "885929d4-4298-4fe0-8722-fbe3b87821dd",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            }
+          ],
+          "id": "5348676e-0d77-45ca-8666-fa5a17c00281"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,439 @@
+{
+  "_id": "6740251baefaffc3e4662e6b",
+  "title": "Tenant",
+  "mongodb_collection_name": "tenant",
+  "json_schema": {
+    "type": "object",
+    "expanded": true,
+    "properties": {
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "description": "Nhập title cho tenant",
+        "widget": "shortAnswer",
+        "expanded": true,
+        "require": false,
+        "filter": true
+      },
+      "is_active": {
+        "title": "Is Active",
+        "type": "boolean",
+        "description": "Có build tenant hay không",
+        "widget": "boolean",
+        "expanded": true,
+        "require": false,
+        "appearance": "switch",
+        "filter": true
+      },
+      "settings": {
+        "title": "Settings",
+        "type": "object",
+        "description": "Nhập các thông tin thêm",
+        "expanded": true,
+        "properties": {
+          "description": {
+            "title": "Description",
+            "type": "string",
+            "description": "Nhập mô tả cho tenant",
+            "widget": "shortAnswer",
+            "expanded": true,
+            "require": false
+          },
+          "layout": {
+            "title": "Layout",
+            "type": "string",
+            "description": "Chọn layout hiển thị",
+            "widget": "shortAnswer",
+            "expanded": true,
+            "require": false
+          },
+          "logo": {
+            "title": "Logo",
+            "type": "string",
+            "description": "Chọn logo hiển thị",
+            "widget": "file",
+            "expanded": true,
+            "require": false
+          },
+          "img_og": {
+            "title": "Image OG",
+            "type": "string",
+            "description": "Chọn hình hiển thị cho og",
+            "widget": "file",
+            "expanded": true,
+            "require": false
+          },
+          "img_notfound": {
+            "title": "Image Notfound",
+            "type": "string",
+            "description": "Chọn hình hiển thị khi bị lỗi",
+            "widget": "file",
+            "expanded": true,
+            "require": false
+          },
+          "env": {
+            "title": "env",
+            "type": "string",
+            "widget": "function"
+          },
+          "entities": {
+            "title": "entities",
+            "type": "string",
+            "widget": "relation",
+            "typeRelation": {
+              "title": "entity",
+              "entity": "entity",
+              "type": "1-n",
+              "filter": {
+                "combinator": "and",
+                "rules": [],
+                "id": "103bd709-cd45-45c1-97ba-5de8f7013299"
+              }
+            }
+          },
+          "domain": {
+            "title": "domain",
+            "type": "string",
+            "widget": "shortAnswer"
+          },
+          "app_type": {
+            "title": "app_type",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "social",
+                "value": "social"
+              },
+              {
+                "key": "course",
+                "value": "course"
+              }
+            ]
+          }
+        },
+        "required": []
+      },
+      "type": {
+        "title": "type",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "public",
+            "value": "public"
+          },
+          {
+            "key": "private",
+            "value": "private"
+          }
+        ],
+        "default": "public",
+        "filter": true
+      },
+      "mge_setting": {
+        "title": "mge_setting",
+        "type": "object",
+        "expanded": true,
+        "properties": {
+          "is_root": {
+            "title": "is_root",
+            "type": "boolean",
+            "widget": "boolean",
+            "expanded": true,
+            "require": false,
+            "appearance": "switch"
+          },
+          "code": {
+            "title": "code",
+            "type": "string",
+            "widget": "shortAnswer",
+            "expanded": true,
+            "require": false
+          },
+          "color": {
+            "type": "string",
+            "widget": "file",
+            "title": "color"
+          },
+          "configs": {
+            "title": "configs",
+            "type": "string",
+            "widget": "shortAnswer",
+            "expanded": true,
+            "require": false
+          },
+          "logo": {
+            "type": "string",
+            "widget": "file",
+            "title": "logo"
+          },
+          "domains": {
+            "title": "domains",
+            "type": "string",
+            "widget": "shortAnswer",
+            "expanded": true,
+            "require": false
+          },
+          "setting_permissions": {
+            "title": "Setting Permissions",
+            "type": "object",
+            "expanded": true,
+            "required": [
+              "setting_group_create"
+            ],
+            "properties": {
+              "setting_group_create": {
+                "title": "Setting Group Create",
+                "type": "string",
+                "widget": "relation",
+                "expanded": true,
+                "require": true,
+                "typeRelation": {
+                  "title": "user-tenant-level",
+                  "_id": "user-tenant-level",
+                  "type": "1-n",
+                  "filter": {
+                    "combinator": "and",
+                    "rules": [],
+                    "id": "f8f3f58d-dd24-4afb-9dd7-178cd2344e87"
+                  }
+                },
+                "typeSelect": "multiple"
+              }
+            }
+          },
+          "logo2": {
+            "title": "logo2",
+            "type": "string",
+            "widget": "shortAnswer"
+          }
+        },
+        "required": []
+      },
+      "course_setting": {
+        "title": "course_setting",
+        "type": "object",
+        "properties": {
+          "full_permission": {
+            "title": "full_permisson",
+            "type": "string",
+            "widget": "relation",
+            "typeRelation": {
+              "title": "user-tenant-level",
+              "_id": "user-tenant-level",
+              "type": "n-1",
+              "filter": {
+                "combinator": "and",
+                "rules": [],
+                "id": "d9eef44f-9e02-4723-ab74-d3ab08d66c20"
+              }
+            },
+            "description": "role nào có full permission trong tenant"
+          },
+          "create_course": {
+            "title": "create_course",
+            "type": "string",
+            "widget": "relation",
+            "typeRelation": {
+              "title": "user-tenant-level",
+              "_id": "user-tenant-level",
+              "type": "n-1"
+            }
+          },
+          "create_question": {
+            "title": "create_question",
+            "type": "string",
+            "widget": "relation",
+            "typeRelation": {
+              "title": "user-tenant-level",
+              "_id": "user-tenant-level",
+              "type": "n-1",
+              "filter": {
+                "combinator": "and",
+                "rules": [],
+                "id": "d9eef44f-9e02-4723-ab74-d3ab08d66c20"
+              }
+            },
+            "description": "(vì question là được sử dụng global nên phải setting ở tenant)"
+          },
+          "create_learning_path": {
+            "title": "create_learning_path",
+            "type": "string",
+            "widget": "relation",
+            "typeRelation": {
+              "title": "user-tenant-level",
+              "_id": "user-tenant-level",
+              "type": "n-1",
+              "filter": {
+                "combinator": "and",
+                "rules": [],
+                "id": "d9eef44f-9e02-4723-ab74-d3ab08d66c20"
+              }
+            },
+            "description": "(vì question là được sử dụng global nên phải setting ở tenant)"
+          }
+        },
+        "required": [
+          "full_permission",
+          "create_course",
+          "create_question",
+          "create_learning_path"
+        ]
+      },
+      "domain": {
+        "title": "domain",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "domain",
+          "_id": "domain",
+          "type": "n-1"
+        },
+        "filter": false
+      }
+    },
+    "required": [
+      "type"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "is_active": {
+      "ui:widget": "boolean"
+    },
+    "settings": {
+      "description": {
+        "ui:widget": "shortAnswer"
+      },
+      "layout": {
+        "ui:widget": "shortAnswer"
+      },
+      "logo": {
+        "ui:widget": "file"
+      },
+      "img_og": {
+        "ui:widget": "file"
+      },
+      "img_notfound": {
+        "ui:widget": "file"
+      },
+      "env": {
+        "ui:widget": "function"
+      },
+      "entities": {
+        "ui:widget": "relation"
+      },
+      "domain": {
+        "ui:widget": "shortAnswer"
+      },
+      "app_type": {
+        "ui:widget": "select"
+      },
+      "ui:order": [
+        "description",
+        "layout",
+        "logo",
+        "img_og",
+        "img_notfound",
+        "env",
+        "entities",
+        "domain",
+        "app_type"
+      ]
+    },
+    "type": {
+      "ui:widget": "select"
+    },
+    "mge_setting": {
+      "is_root": {
+        "ui:widget": "boolean"
+      },
+      "code": {
+        "ui:widget": "shortAnswer"
+      },
+      "color": {
+        "ui:widget": "file"
+      },
+      "configs": {
+        "ui:widget": "shortAnswer"
+      },
+      "logo": {
+        "ui:widget": "file"
+      },
+      "domains": {
+        "ui:widget": "shortAnswer"
+      },
+      "setting_permissions": {
+        "setting_group_create": {
+          "ui:widget": "relation"
+        },
+        "ui:order": [
+          "setting_group_create"
+        ]
+      },
+      "logo2": {
+        "ui:widget": "shortAnswer"
+      },
+      "ui:order": [
+        "is_root",
+        "code",
+        "color",
+        "configs",
+        "logo",
+        "domains",
+        "setting_permissions",
+        "logo2"
+      ]
+    },
+    "course_setting": {
+      "full_permission": {
+        "ui:widget": "relation"
+      },
+      "create_course": {
+        "ui:widget": "relation"
+      },
+      "create_question": {
+        "ui:widget": "relation"
+      },
+      "create_learning_path": {
+        "ui:widget": "relation"
+      },
+      "ui:order": [
+        "full_permission",
+        "create_course",
+        "create_question",
+        "create_learning_path"
+      ]
+    },
+    "domain": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "title",
+      "is_active",
+      "settings",
+      "type",
+      "mge_setting",
+      "course_setting",
+      "domain"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "created_at": "2024-11-22T06:30:51.177Z",
+  "__v": 0,
+  "entity_group": null,
+  "use_parent_delete_childs": false,
+  "use_seo_path": false,
+  "id": "6740251baefaffc3e4662e6b"
+}

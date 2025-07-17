@@ -1,0 +1,36 @@
+{
+  "_id": "68217eb81d50e98cb4b40424",
+  "title": "oke",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "68217bae1d50e98cb4b40225"
+  ],
+  "categories": [],
+  "restricted": [
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "id": "68217eb81d50e98cb4b40424",
+  "documents": []
+}

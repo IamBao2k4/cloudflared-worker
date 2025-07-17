@@ -1,0 +1,13 @@
+{
+  "_id": "67c6da5cd8a51860fc2f716c",
+  "title": "get list entity",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "674eaf8ac43906b58198de5e"
+  ],
+  "queryAdvance": "  [{\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }]\n",
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

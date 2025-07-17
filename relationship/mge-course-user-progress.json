@@ -1,0 +1,30 @@
+[
+  {
+    "name": "user",
+    "targetTable": "user",
+    "localField": "user",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "lesson",
+    "targetTable": "mge-lessons",
+    "localField": "lesson",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "exam",
+    "targetTable": "mge-exams",
+    "localField": "exam",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "course",
+    "targetTable": "mge-courses",
+    "localField": "course",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

@@ -1,0 +1,399 @@
+{
+  "name": "mongorest_rbac_config",
+  "version": "2.0.0",
+  "description": "RBAC configuration aligned with MongoREST collection schemas",
+  "collections": [
+    {
+      "collection_name": "products",
+      "rbac_config": {
+        "GET": [
+          {
+            "user_role": "default",
+            "patterns": [
+              {
+                "sku": { "type": "string" }
+              },
+              {
+                "name": { "type": "string" }
+              },
+              {
+                "description": { "type": "string" }
+              },
+              {
+                "category": { "type": "string" }
+              },
+              {
+                "subcategory": { "type": "string" }
+              },
+              {
+                "price": { "type": "string" }
+              },
+              {
+                "currency": { "type": "string" }
+              },
+              {
+                "ratings": { "type": "object" }
+              },
+              {
+                "status": { "type": "string" }
+              }
+            ]
+          },
+          {
+            "user_role": "user",
+            "patterns": [
+              {
+                "_id": { "type": "string" }
+              },
+              {
+                "sku": { "type": "string" }
+              },
+              {
+                "name": { "type": "string" }
+              },
+              {
+                "description": { "type": "string" }
+              },
+              {
+                "category": { "type": "string" }
+              },
+              {
+                "subcategory": { "type": "string" }
+              },
+              {
+                "price": { "type": "string" }
+              },
+              {
+                "currency": { "type": "string" }
+              },
+              {
+                "inventory.quantity": { "type": "string" }
+              },
+              {
+                "images": { "type": "array" }
+              },
+              {
+                "tags": { "type": "array" }
+              },
+              {
+                "specifications": { "type": "object" }
+              },
+              {
+                "ratings": { "type": "object" }
+              },
+              {
+                "status": { "type": "string" }
+              },
+              {
+                "createdAt": { "type": "string" }
+              }
+            ]
+          },
+          {
+            "user_role": "analyst",
+            "patterns": [
+              {
+                "_id": { "type": "string" }
+              },
+              {
+                "sku": { "type": "string" }
+              },
+              {
+                "name": { "type": "string" }
+              },
+              {
+                "category": { "type": "string" }
+              },
+              {
+                "subcategory": { "type": "string" }
+              },
+              {
+                "price": { "type": "string" }
+              },
+              {
+                "currency": { "type": "string" }
+              },
+              {
+                "inventory": { "type": "object" }
+              },
+              {
+                "ratings": { "type": "object" }
+              },
+              {
+                "status": { "type": "string" }
+              },
+              {
+                "createdAt": { "type": "string" }
+              },
+              {
+                "updatedAt": { "type": "string" }
+              }
+            ]
+          },
+          {
+            "user_role": "admin",
+            "patterns": [
+              {
+                "_id": { "type": "string" }
+              },
+              {
+                "sku": { "type": "string" }
+              },
+              {
+                "name": { "type": "string" }
+              },
+              {
+                "description": { "type": "string" }
+              },
+              {
+                "category": { "type": "string" }
+              },
+              {
+                "subcategory": { "type": "string" }
+              },
+              {
+                "price": { "type": "string" }
+              },
+              {
+                "currency": { "type": "string" }
+              },
+              {
+                "inventory": { "type": "object" }
+              },
+              {
+                "images": { "type": "array" }
+              },
+              {
+                "tags": { "type": "array" }
+              },
+              {
+                "specifications": { "type": "object" }
+              },
+              {
+                "ratings": { "type": "object" }
+              },
+              {
+                "status": { "type": "string" }
+              },
+              {
+                "createdAt": { "type": "string" }
+              },
+              {
+                "updatedAt": { "type": "string" }
+              }
+            ]
+          }
+        ],
+        "PUT": [
+          {
+            "user_role": "user",
+            "patterns": [
+              {
+                "name": { 
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9\\s\\-_.,()]{1,255}$"
+                }
+              },
+              {
+                "description": { 
+                  "type": "string",
+                  "pattern": "^[\\s\\S]{1,2000}$"
+                }
+              },
+              {
+                "category": { 
+                  "type": "string",
+                  "enum": ["electronics", "clothing", "books", "home", "sports", "toys", "health", "beauty", "automotive", "other"]
+                }
+              },
+              {
+                "subcategory": { 
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9\\s\\-_]{1,100}$"
+                }
+              },
+              {
+                "status": { 
+                  "type": "string",
+                  "enum": ["active", "inactive", "draft", "archived"]
+                }
+              },
+              {
+                "currency": { 
+                  "type": "string",
+                  "enum": ["USD", "EUR", "GBP", "VND", "JPY", "CNY", "KRW", "THB", "SGD", "MYR"]
+                }
+              },
+              {
+                "price": { 
+                  "type": "string",
+                  "pattern": "^[0-9]+(\\.([0-9]{1,2}))?$"
+                }
+              },
+              {
+                "inventory.quantity": { 
+                  "type": "string",
+                  "pattern": "^[0-9]+$"
+                }
+              },
+              {
+                "tags": { "type": "array" }
+              },
+              {
+                "specifications": { "type": "object" }
+              },
+              {
+                "ratings": { "type": "object" }
+              },
+              {
+                "images": { "type": "array" }
+              }
+            ]
+          },
+          {
+            "user_role": "analyst",
+            "patterns": [
+              {
+                "name": { 
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9\\s\\-_.,()]{1,255}$"
+                }
+              },
+              {
+                "description": { 
+                  "type": "string",
+                  "pattern": "^[\\s\\S]{1,2000}$"
+                }
+              },
+              {
+                "category": { 
+                  "type": "string",
+                  "enum": ["electronics", "clothing", "books", "home", "sports", "toys", "health", "beauty", "automotive", "other"]
+                }
+              },
+              {
+                "subcategory": { 
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9\\s\\-_]{1,100}$"
+                }
+              },
+              {
+                "status": { 
+                  "type": "string",
+                  "enum": ["active", "inactive", "draft", "archived"]
+                }
+              },
+              {
+                "currency": { 
+                  "type": "string",
+                  "enum": ["USD", "EUR", "GBP", "VND", "JPY", "CNY", "KRW", "THB", "SGD", "MYR"]
+                }
+              },
+              {
+                "price": { 
+                  "type": "string",
+                  "pattern": "^[0-9]+(\\.([0-9]{1,2}))?$"
+                }
+              },
+              {
+                "inventory.quantity": { 
+                  "type": "string",
+                  "pattern": "^[0-9]+$"
+                }
+              },
+              {
+                "tags": { "type": "array" }
+              },
+              {
+                "specifications": { "type": "object" }
+              },
+              {
+                "ratings": { "type": "object" }
+              },
+              {
+                "images": { "type": "array" }
+              },
+              {
+                "inventory": { "type": "object" }
+              }
+            ]
+          },
+          {
+            "user_role": "admin",
+            "patterns": [
+              {
+                "sku": { 
+                  "type": "string",
+                  "pattern": "^[A-Z0-9\\-_]{3,50}$"
+                }
+              },
+              {
+                "name": { 
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9\\s\\-_.,()]{1,255}$"
+                }
+              },
+              {
+                "description": { 
+                  "type": "string",
+                  "pattern": "^[\\s\\S]{1,2000}$"
+                }
+              },
+              {
+                "category": { 
+                  "type": "string",
+                  "enum": ["electronics", "clothing", "books", "home", "sports", "toys", "health", "beauty", "automotive", "other"]
+                }
+              },
+              {
+                "subcategory": { 
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9\\s\\-_]{1,100}$"
+                }
+              },
+              {
+                "status": { 
+                  "type": "string",
+                  "enum": ["active", "inactive", "draft", "archived", "pending_approval"]
+                }
+              },
+              {
+                "currency": { 
+                  "type": "string",
+                  "enum": ["USD", "EUR", "GBP", "VND", "JPY", "CNY", "KRW", "THB", "SGD", "MYR"]
+                }
+              },
+              {
+                "price": { 
+                  "type": "string",
+                  "pattern": "^[0-9]+(\\.([0-9]{1,2}))?$"
+                }
+              },
+              {
+                "inventory.quantity": { 
+                  "type": "string",
+                  "pattern": "^[0-9]+$"
+                }
+              },
+              {
+                "tags": { "type": "array" }
+              },
+              {
+                "specifications": { "type": "object" }
+              },
+              {
+                "ratings": { "type": "object" }
+              },
+              {
+                "images": { "type": "array" }
+              },
+              {
+                "inventory": { "type": "object" }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

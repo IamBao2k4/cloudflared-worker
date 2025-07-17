@@ -1,0 +1,32 @@
+{
+  "_id": "67cf9969dada26e67e87d55d",
+  "title": "is-user-project-creator",
+  "note": "",
+  "entity": [
+    "67c6ccd9412d5b4c1e2bf08c"
+  ],
+  "data": {
+    "id": "e2519f04-4185-41f7-8f91-abcfb7b74afa",
+    "rules": [
+      {
+        "id": "111b34c3-e22a-422c-b668-73390e4dacfa",
+        "field": "mge-listing-project._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-listing-project._id:param._id"
+      },
+      {
+        "id": "0a4bd1a1-a05a-4d64-98c1-db9c28d86aab",
+        "field": "mge-listing-project.created_by",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-listing-project.created_by:jwt.user@id"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"mge-listing-project._id\":\"$mge-listing-project._id:param._id\"},{\"mge-listing-project.created_by\":\"$mge-listing-project.created_by:jwt.user@id\"}]}",
+  "required": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb"
+}

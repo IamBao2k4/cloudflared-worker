@@ -1,0 +1,35 @@
+{
+  "_id": "675aaa34049b30e1807cf4e5",
+  "title": "is-user-has-permission-update-group-member",
+  "note": "bảng group-member -> match user và social group -> lookup qua bảng group -> check field group_member_update chứa role gì -> trả true nếu role user nằm trong field group_member_update",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "data": {
+    "id": "ac164154-9c8f-4077-9f57-92585399333b",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "advance": "[\n    {\n        \"$addFields\": {\n            \"social_group_object_id\": {\n                \"$map\": {\n                    \"input\": \"$social_group\",\n                    \"as\": \"sg\",\n                    \"in\": {\n                        \"$toObjectId\": \"$$sg\"\n                    }\n                }\n            }\n        }\n    },\n    {\n        \"$match\": {\n            \"user\": \"@jwt:user.id\",\n            \"$or\": [\n            {\"social_group\": \"@param:_id\"},\n            {\"social_group\": \"@param:group_id\"}\n            ]\n        }\n    },\n    {\n        \"$lookup\": {\n            \"from\": \"mge-group\",\n            \"localField\": \"social_group_object_id\",\n            \"foreignField\": \"_id\",\n            \"as\": \"group_info\"\n        }\n    },\n  {\n    \"$addFields\": {\n      \"group_info\": {\n        \"$arrayElemAt\": [\n          \"$group_info\",\n          0\n        ]\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"can_update_member_in_group\": {\n        \"$gt\": [\n          { \n            \"$size\": {\n              \"$setIntersection\": [\n                \"$role\", \n                \"$group_info.permissions.group_member_update\"\n              ]\n            }\n          },\n          0\n        ]\n      }\n    }\n  },\n  { \"$match\": { \"can_update_member_in_group\": true } }\n]",
+  "body": null,
+  "headers": null,
+  "logged": false,
+  "params": [
+    {
+      "value": "_id",
+      "key": "_id"
+    },
+    {
+      "value": "group_id",
+      "key": "group_id"
+    }
+  ],
+  "pre": null
+}

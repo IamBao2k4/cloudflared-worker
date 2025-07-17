@@ -1,0 +1,102 @@
+{
+  "_id": "6801cba8887875ca1b8c4a3d",
+  "title": "ecommerce coupon",
+  "mongodb_collection_name": "ecommerce-discount-code",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "price_rule": {
+        "type": "string",
+        "typeRelation": {
+          "title": "ecommerce-price-rule",
+          "_id": "ecommerce-price-rule",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "52e25c67-e100-4edb-8220-bb6d2d3874e9"
+          }
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "Quy tắc giá",
+        "filter": true
+      },
+      "code": {
+        "title": "Mã giảm giá",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "usage_count": {
+        "widget": "numberInput",
+        "title": "Số lần đã sử dụng",
+        "type": "string",
+        "filter": true
+      },
+      "status": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "active",
+            "value": "active"
+          },
+          {
+            "key": "used",
+            "value": "used"
+          },
+          {
+            "key": "disabled",
+            "value": "disabled"
+          }
+        ],
+        "default": "active",
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "Trạng thái",
+        "type": "string",
+        "filter": true
+      }
+    },
+    "required": [
+      "price_rule",
+      "code",
+      "status"
+    ]
+  },
+  "ui_schema": {
+    "price_rule": {
+      "ui:widget": "relation"
+    },
+    "code": {
+      "ui:widget": "shortAnswer"
+    },
+    "usage_count": {
+      "ui:widget": "numberInput"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "ui:order": [
+      "price_rule",
+      "code",
+      "usage_count",
+      "status"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-04-18T03:48:56.261Z",
+  "__v": 0
+}

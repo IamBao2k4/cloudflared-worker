@@ -1,0 +1,146 @@
+{
+  "_id": "67493d3f10905d9ddbd007cc",
+  "title": "mge group menu item",
+  "mongodb_collection_name": "mge-group-menu-item",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "type": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "Category",
+            "value": "category"
+          },
+          {
+            "key": "Link",
+            "value": "link"
+          }
+        ],
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "Type",
+        "type": "string",
+        "default": "category"
+      },
+      "link": {
+        "title": "Link",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "position": {
+        "widget": "numberInput",
+        "title": "position",
+        "type": "string"
+      },
+      "social_group": {
+        "type": "string",
+        "typeRelation": {
+          "title": "mge-group",
+          "_id": "mge-group",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "b8a67ba4-9da9-42bd-b690-6876d5a5812d"
+          }
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "social_group",
+        "filter": true
+      },
+      "category": {
+        "type": "string",
+        "typeRelation": {
+          "title": "mge-group-category",
+          "_id": "mge-group-category",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "66613ba1-8771-4575-9c50-858b1c3a9b88"
+          }
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "Category",
+        "filter": true
+      },
+      "parent_id": {
+        "title": "Parent ID",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group-menu-item",
+          "id": "mge-group-menu-item",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "c1253f90-51eb-4894-9071-3055b9bfae7d"
+          },
+          "type": "n-1"
+        }
+      }
+    },
+    "required": [
+      "name",
+      "type",
+      "social_group"
+    ]
+  },
+  "ui_schema": {
+    "name": {
+      "ui:widget": "shortAnswer"
+    },
+    "type": {
+      "ui:widget": "select"
+    },
+    "link": {
+      "ui:widget": "shortAnswer"
+    },
+    "position": {
+      "ui:widget": "numberInput"
+    },
+    "social_group": {
+      "ui:widget": "relation"
+    },
+    "category": {
+      "ui:widget": "relation"
+    },
+    "parent_id": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "name",
+      "type",
+      "link",
+      "position",
+      "social_group",
+      "category",
+      "parent_id"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": true,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "created_at": "2024-11-29T04:04:15.810Z",
+  "__v": 0,
+  "entity_group": null,
+  "use_seo_path": false,
+  "use_parent_delete_childs": false
+}

@@ -1,0 +1,85 @@
+{
+  "followers": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "677b9fd144af0385d64b3f9f",
+          "title": "view user followers",
+          "entity": "mge-user-follow",
+          "path_file": "json/response/677b9fd144af0385d64b3f9f.json"
+        },
+        "query_validate": {
+          "combinator": "or",
+          "rules": [
+            {
+              "id": "899ecea6-4350-438a-86a2-b56df8db9c6f",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6763a69466e06fcc01e7540e"
+            },
+            {
+              "id": "ba20b79c-ddfa-4744-ae47-b4929a3c18ee",
+              "rules": [
+                {
+                  "id": "ea5315b6-716c-45e7-a76a-c9262cfc5209",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "6763a6c166e06fcc01e75420"
+                },
+                {
+                  "id": "3ba46d90-b273-44c5-8587-96e53d8e953e",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "675a8e9b0f44fc1769fdea90"
+                }
+              ],
+              "combinator": "and",
+              "not": false
+            }
+          ],
+          "id": "16968a0e-ea47-4470-999d-711f7c1e7b5d"
+        },
+        "list_validate": [
+          {
+            "_id": "6763a69466e06fcc01e7540e",
+            "title": "is-tenant-public",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/6763a69466e06fcc01e7540e.json"
+          },
+          {
+            "_id": "6763a6c166e06fcc01e75420",
+            "title": "is-tenant-private",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/6763a6c166e06fcc01e75420.json"
+          },
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

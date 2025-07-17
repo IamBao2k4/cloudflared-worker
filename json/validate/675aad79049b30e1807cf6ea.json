@@ -1,0 +1,56 @@
+{
+  "_id": "675aad79049b30e1807cf6ea",
+  "title": "is-user-be-group-owner",
+  "note": "",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "data": {
+    "id": "89499e85-2e68-4a36-92ce-61316f51c327",
+    "rules": [
+      {
+        "id": "4590fc0a-1886-49ed-a436-79e15c7293bc",
+        "rules": [
+          {
+            "id": "7985429c-1b4a-48fc-8c03-9e38d09ee1e3",
+            "field": "mge-group-member.social_group",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-group-member.social_group:param.group_id"
+          },
+          {
+            "id": "96bf3454-9b14-4f63-95f0-59c5d4324489",
+            "field": "mge-group-member.social_group",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-group-member.social_group:param._id"
+          }
+        ],
+        "combinator": "or",
+        "not": false
+      },
+      {
+        "id": "d8bdb81b-9240-463a-940b-647c4f5634c7",
+        "field": "mge-group-member.user",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-group-member.user:jwt.user@id"
+      },
+      {
+        "id": "78ae5a51-064f-4d6e-85d9-4cb6b793f73f",
+        "field": "mge-group-member.role",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "owner"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$or\":[{\"mge-group-member.social_group\":\"$mge-group-member.social_group:param.group_id\"},{\"mge-group-member.social_group\":\"$mge-group-member.social_group:param._id\"}]},{\"mge-group-member.user\":\"$mge-group-member.user:jwt.user@id\"},{\"mge-group-member.role\":\"owner\"}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": []
+}

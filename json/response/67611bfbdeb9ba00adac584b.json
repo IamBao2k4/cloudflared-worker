@@ -1,0 +1,16 @@
+{
+  "_id": "67611bfbdeb9ba00adac584b",
+  "title": "Update Category",
+  "outputEntity": [
+    "674835d876462b61b5df90d1"
+  ],
+  "queryAdvance": "{\n  \"title\": 0,\n  \"slug\": 0,\n  \"short_description\": 0,\n  \"parent_id\": 0,\n  \"position\":0\n}",
+  "note": "",
+  "method": "put",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "cache_time": "",
+  "categories": [],
+  "documents": []
+}

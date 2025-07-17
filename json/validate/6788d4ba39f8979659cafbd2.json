@@ -1,0 +1,16 @@
+{
+  "_id": "6788d4ba39f8979659cafbd2",
+  "title": "was-user-joined-group-of-comment (entity-like)",
+  "note": "",
+  "entity": [
+    "6764e3926e57acaf6815ab97"
+  ],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "advance": "[\n    {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-entity-like\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"entity_id\",\n      \"pipeline\": [\n        {\n          \"$addFields\": {\n            \"_id\": {\n              \"$toString\": \"$_id\"\n            }\n          }\n        },\n        {\n          \"$match\": {\n            \"_id\": \"@param:_id\"\n          }\n        }\n      ],\n      \"as\": \"like_info\"\n    }\n  },\n  {\n    \"$match\": {\n      \"like_info\": { \"$ne\": [] }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group-member\",\n      \"localField\": \"social_group\",\n      \"foreignField\": \"social_group\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"user\": \"@jwt:user.id\",\n            \"status\":\"joined\"\n          }\n        }\n      ],\n      \"as\": \"memberStatus\"\n    }\n  },\n  {\n    \"$match\": {\n      \"memberStatus\": { \"$ne\": [] }\n    }\n  }\n]",
+  "params": [
+    {
+      "value": "_id",
+      "key": "_id"
+    }
+  ]
+}

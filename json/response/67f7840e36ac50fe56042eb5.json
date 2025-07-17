@@ -1,0 +1,13 @@
+{
+  "_id": "67f7840e36ac50fe56042eb5",
+  "title": "create discussion pin",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "67f7834636ac50fe56042e6e"
+  ],
+  "categories": [],
+  "queryAdvance": "{\r\n  \"discussion\":\"@param:discussion_id\",\r\n  \"course\":\"@param:course_id\",\r\n  \"position\":0\r\n}",
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

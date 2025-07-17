@@ -1,0 +1,23 @@
+[
+  {
+    "name": "social_group",
+    "targetTable": "mge-group",
+    "localField": "social_group",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "category",
+    "targetTable": "mge-group-category",
+    "localField": "category",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "parent_id",
+    "targetTable": "mge-group-menu-item",
+    "localField": "parent_id",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

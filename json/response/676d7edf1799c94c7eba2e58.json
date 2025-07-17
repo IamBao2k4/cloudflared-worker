@@ -1,0 +1,12 @@
+{
+  "_id": "676d7edf1799c94c7eba2e58",
+  "title": "Delete tweet saved",
+  "outputEntity": [
+    "675b9a4a9279b9d81247c3cc"
+  ],
+  "note": "",
+  "method": "delete",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

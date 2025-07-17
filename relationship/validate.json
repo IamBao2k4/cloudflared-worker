@@ -1,0 +1,23 @@
+[
+  {
+    "name": "entity",
+    "targetTable": "entity",
+    "localField": "entity",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "documents",
+    "targetTable": "documents",
+    "localField": "documents",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "categories",
+    "targetTable": "categories-api",
+    "localField": "categories",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

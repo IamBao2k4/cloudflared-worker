@@ -1,0 +1,56 @@
+{
+  "_id": "6837e3d06b77a55a819dc7cb",
+  "title": "upgrade role course member",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "categories": [],
+  "queryAdvance": "{\r\n  \"user\":\"@param:user_id\",\r\n  \"course\":\"@param:course_id\",\r\n  \"role\":\"assistant\"\r\n}",
+  "restricted": [
+    {
+      "key": "course",
+      "value": "course"
+    },
+    {
+      "key": "user",
+      "value": "user"
+    },
+    {
+      "key": "status",
+      "value": "status"
+    },
+    {
+      "key": "role",
+      "value": "role"
+    },
+    {
+      "key": "is_finished",
+      "value": "is_finished"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "id": "6837e3d06b77a55a819dc7cb"
+}

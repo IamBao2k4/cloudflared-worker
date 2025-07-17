@@ -1,0 +1,9 @@
+[
+  {
+    "name": "exam",
+    "targetTable": "mge-exams",
+    "localField": "exam",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

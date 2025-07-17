@@ -1,0 +1,20 @@
+{
+  "_id": "67b60ed4daf8793d547d8314",
+  "title": "create tweet pin",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "67b60e53daf8793d547d82d3"
+  ],
+  "queryAdvance": "{\n  \"tweet\":\"@body:tweet\",\n  \"position\":\"0\",\n  \"social_group\":0\n}",
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "body": [
+    {
+      "value": "social_group",
+      "key": "social_group"
+    }
+  ],
+  "documents": []
+}

@@ -1,0 +1,104 @@
+{
+  "_id": "674835d876462b61b5df90d1",
+  "title": "mge group category",
+  "mongodb_collection_name": "mge-group-category",
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": true,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "created_at": "2024-11-28T09:20:24.356Z",
+  "__v": 0,
+  "json_schema": {
+    "type": "object",
+    "required": [
+      "title",
+      "social_group"
+    ],
+    "properties": {
+      "title": {
+        "title": "title",
+        "description": "Nhập thông tin tiêu đề",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "short_description": {
+        "title": "short_description",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "slug": {
+        "title": "slug",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "depend_field": "root_title"
+      },
+      "social_group": {
+        "title": "social_group",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group",
+          "_id": "mge-group",
+          "type": "n-1"
+        },
+        "filter": true
+      },
+      "parent_id": {
+        "title": "Parent ID",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group-category",
+          "id": "mge-group-category",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "94fdb5e9-7ab2-4804-8f19-a1cb10c26a6e"
+          },
+          "type": "n-1"
+        }
+      },
+      "position": {
+        "title": "position",
+        "type": "string",
+        "widget": "numberInput",
+        "default": "0",
+        "filter": true
+      }
+    }
+  },
+  "ui_schema": {
+    "short_description": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "social_group": {
+      "ui:widget": "relation"
+    },
+    "parent_id": {
+      "ui:widget": "relation"
+    },
+    "position": {
+      "ui:widget": "numberInput"
+    },
+    "ui:order": [
+      "title",
+      "short_description",
+      "slug",
+      "social_group",
+      "parent_id",
+      "position"
+    ]
+  },
+  "entity_group": null,
+  "use_parent_delete_childs": false,
+  "use_seo_path": false
+}

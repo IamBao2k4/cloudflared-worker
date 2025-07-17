@@ -1,0 +1,8 @@
+{
+  "_id": "67f8f04d36ac50fe5604e71e",
+  "title": "is-user-joined-group",
+  "note": "Kiểm tra xem người dùng đã tham gia vào nhóm hay chưa, trả về kết quả nếu user đã join và status là 'joined'",
+  "entity": "mge-group-member",
+  "advance": "[\n  {\n    \"$match\": {\n      \"user\": \"@jwt:user.id\",\n      \"social_group\": \"@param:group_id\",\n      \"status\": \"joined\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"is_member\": {\n        \"$cond\": {\n          \"if\": {\n            \"$eq\": [\n              { \"$ifNull\": [\"$_id\", null] },\n              null\n            ]\n          },\n          \"then\": false,\n          \"else\": true\n        }\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"_id\": 1,\n      \"user\": 1,\n      \"social_group\": 1,\n      \"status\": 1,\n      \"role\": 1,\n      \"is_member\": 1\n    }\n  }\n]",
+  "tenant_id": "674028d2611a654e763a73e8"
+}

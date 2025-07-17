@@ -1,0 +1,11 @@
+{
+  "_id": "67e8fe71e6cc2bbdc851102f",
+  "is_active": true,
+  "meta_data": {},
+  "title": "abc test",
+  "title_input": "abc test jjb",
+  "advance": "test",
+  "type": "SOCIAL_TWEET_GROUP_APPROVE",
+  "blocks": {},
+  "tenant_id": "674028d2611a654e763a73e8"
+}

@@ -1,0 +1,28 @@
+{
+  "_id": "678539794c9747dfaeed5f39",
+  "title": "is-user-active-in-tenant",
+  "note": "",
+  "entity": [
+    "67aad740a67aaa1951ca64b0"
+  ],
+  "data": {
+    "id": "d1849212-1c16-4b8a-8dd0-ad5b918b3806",
+    "rules": [
+      {
+        "id": "305067b7-b21e-4ea8-9162-131160bbf044",
+        "field": "user-tenant-profile.user",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$user-tenant-profile.user:jwt.user@id"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"user-tenant-profile.user\":\"$user-tenant-profile.user:jwt.user@id\"}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "categories": []
+}

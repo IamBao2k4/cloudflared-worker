@@ -1,0 +1,75 @@
+{
+  "_id": "67f7834636ac50fe56042e6e",
+  "title": "mge discussion pin",
+  "mongodb_collection_name": "mge-discussion-pin",
+  "unique_keys": "[\r\n  {\r\n    \"discussion\":1,\r\n    \"course\":1\r\n  }\r\n]",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "discussion": {
+        "title": "discussion",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-discussions",
+          "_id": "mge-discussions",
+          "type": "n-1"
+        },
+        "filter": true
+      },
+      "course": {
+        "title": "course",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-courses",
+          "_id": "mge-courses",
+          "type": "n-1"
+        },
+        "filter": true
+      },
+      "position": {
+        "title": "position",
+        "type": "string",
+        "widget": "numberInput",
+        "filter": true,
+        "default": "0"
+      }
+    },
+    "required": [
+      "discussion",
+      "course",
+      "position"
+    ]
+  },
+  "ui_schema": {
+    "discussion": {
+      "ui:widget": "relation"
+    },
+    "course": {
+      "ui:widget": "relation"
+    },
+    "position": {
+      "ui:widget": "numberInput"
+    },
+    "ui:order": [
+      "discussion",
+      "course",
+      "position"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-04-10T08:37:26.280Z",
+  "__v": 0
+}

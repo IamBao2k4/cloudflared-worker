@@ -1,0 +1,136 @@
+{
+  "_id": "6764e3926e57acaf6815ab97",
+  "title": "mge tweet comment",
+  "mongodb_collection_name": "mge-tweet-comment",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "parent_id": {
+        "title": "Parent ID",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-tweet-comment",
+          "id": "mge-tweet-comment",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "a5031b91-2f8b-4a61-ae73-b1b65c207224"
+          },
+          "type": "n-1"
+        },
+        "filter": true
+      },
+      "content": {
+        "widget": "longAnswer",
+        "customRole": "textarea",
+        "title": "content",
+        "type": "string",
+        "filter": true
+      },
+      "attachments": {
+        "type": "string",
+        "library_setting": "all",
+        "widget": "multipleFiles",
+        "title": "attachments"
+      },
+      "tweet": {
+        "title": "tweet",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "social_group": {
+        "title": "social_group",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group",
+          "_id": "mge-group",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "ab51f19d-9552-4d7d-bd51-4472e77ccedc"
+          }
+        },
+        "filter": true
+      },
+      "like_count": {
+        "title": "like_count",
+        "type": "string",
+        "widget": "numberInput",
+        "filter": true,
+        "default": "0"
+      },
+      "$inc": {
+        "title": "$inc",
+        "type": "object",
+        "properties": {
+          "like_count": {
+            "title": "like_count",
+            "type": "string",
+            "widget": "numberInput"
+          }
+        },
+        "required": []
+      }
+    },
+    "required": [
+      "content",
+      "tweet",
+      "social_group"
+    ]
+  },
+  "ui_schema": {
+    "parent_id": {
+      "ui:widget": "relation"
+    },
+    "content": {
+      "ui:widget": "longAnswer"
+    },
+    "attachments": {
+      "ui:widget": "multipleFiles"
+    },
+    "tweet": {
+      "ui:widget": "shortAnswer"
+    },
+    "social_group": {
+      "ui:widget": "relation"
+    },
+    "like_count": {
+      "ui:widget": "numberInput"
+    },
+    "$inc": {
+      "like_count": {
+        "ui:widget": "numberInput"
+      },
+      "ui:order": [
+        "like_count"
+      ]
+    },
+    "ui:order": [
+      "parent_id",
+      "content",
+      "attachments",
+      "tweet",
+      "social_group",
+      "like_count",
+      "$inc"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": true,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2024-12-20T03:25:06.904Z",
+  "__v": 0,
+  "use_parent_delete_childs": false
+}

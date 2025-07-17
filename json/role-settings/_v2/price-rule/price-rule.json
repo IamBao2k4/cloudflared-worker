@@ -1,0 +1,213 @@
+{
+  "price-rule": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "68061564aac841dab05e2735",
+          "title": "GET danh sách price rule",
+          "entity": "ecommerce-price-rule",
+          "path_file": "json/response/68061564aac841dab05e2735.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "b2211b2e-ee82-410d-9ba6-8643ca23307b",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "211d999b-5219-45a8-bcb1-330d640bc5fc"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-detail": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "680615bfaac841dab05e274e",
+          "title": "GET chi tiết price rule",
+          "entity": "ecommerce-price-rule",
+          "path_file": "json/response/680615bfaac841dab05e274e.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "4c5b9853-4bc7-4eda-81f3-76b92f14fb4e",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "9ff9828e-1b21-4b8d-82c8-97041a66c13d"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "680617e8aac841dab05e27c2",
+          "title": "CREATE price rule",
+          "entity": "ecommerce-price-rule",
+          "path_file": "json/response/680617e8aac841dab05e27c2.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "19faf063-f3f8-4ae6-b8b8-acd8d94822be",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "d6dc5697-9d56-4a88-9387-75025478af63"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "680619eaaac841dab05e2836",
+          "title": "UPDATE price rule",
+          "entity": "ecommerce-price-rule",
+          "path_file": "json/response/680619eaaac841dab05e2836.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "ae7f48bc-cadf-4e02-817d-87f1f177f065",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "c98ddd03-1fc6-4956-b393-ac5ed58c4312"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {},
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "48dedb8b-ec83-400d-b172-f3247ff193ef",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "e9259ae5-e77c-4b4a-985b-c84b03679b65"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

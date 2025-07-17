@@ -1,0 +1,21 @@
+{
+  "_id": "675bf2327676bb226a02cbe1",
+  "title": "is-tweet-news-belongs-to-public-group",
+  "note": "",
+  "entity": [
+    "674e8ed585bc5241dd6405d3"
+  ],
+  "data": {
+    "id": "1fbb22f0-e695-45f0-a174-dff83990fd20",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "advance": "[\n    {\n        \"$addFields\": {\n            \"idAsString\": { \"$toString\": \"$_id\" }\n        }\n    },\n    {\n        \"$match\": {\n            \"idAsString\": {\n              \"$in\": \"@body:tweet_news\"\n            }\n        }\n    },\n    {\n        \"$addFields\": {\n            \"social_group_as_objectId\": {\n                \"$map\": {\n                    \"input\": \"$social_group\",\n                    \"as\": \"sg\",\n                    \"in\": { \"$toObjectId\": \"$$sg\" }\n                }\n            }\n        }\n    },\n    {\n        \"$lookup\": {\n            \"from\": \"mge-group\",\n            \"localField\": \"social_group_as_objectId\",\n            \"foreignField\": \"_id\",\n            \"as\": \"group_data\",\n            \"pipeline\": [\n                {\n                    \"$match\": {\n                        \"type\": \"public\",\n                        \"status\": \"active\"\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"$project\": {\n            \"_id\": 1,\n            \"title\": 1,\n            \"slug\": 1,\n            \"social_group\": 1,\n            \"group_data\": 1\n        }\n    }\n]",
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": []
+}

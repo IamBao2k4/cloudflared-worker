@@ -1,0 +1,28 @@
+{
+  "course-add-members": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67f6388ca9febf9a7d3d3262",
+          "title": "get list tenant's user except course's members",
+          "entity": "user-tenant-profile",
+          "path_file": "json/response/67f6388ca9febf9a7d3d3262.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "bff24b5d-29de-40e0-8af2-54c15a86db19"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "page-ai": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "681c31776b38a6176feb07fb",
+          "title": "get list page ai",
+          "entity": "page-ai",
+          "path_file": "json/response/681c31776b38a6176feb07fb.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "4b827a2c-0ae3-40d8-83a9-d04aabffde3c"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

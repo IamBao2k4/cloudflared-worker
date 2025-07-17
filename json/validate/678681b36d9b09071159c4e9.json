@@ -1,0 +1,12 @@
+{
+  "_id": "678681b36d9b09071159c4e9",
+  "title": "is-user-has-permission-to-manage-lesson",
+  "note": "",
+  "entity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "advance": "[\n  {\n    \"$match\": {\n      \"user\": \"@jwt:user.id\",\n      \"course\": \"@params:course_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"course\": {\n        \"$map\": {\n          \"input\": \"$course\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-courses\",\n      \"localField\": \"course\",\n      \"foreignField\": \"_id\",\n      \"as\": \"course_info\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"course_info\": {\n        \"$arrayElemAt\": [\n          \"$course_info\",\n          0\n        ]\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"can_manage_lesson_in_course\": {\n        \"$cond\": {\n          \"if\": {\n            \"$gt\": [\n              {\n                \"$size\": {\n                  \"$setIntersection\": [\n                    \"$role\",\n                    \"$course_info.permissions.course_lesson_manage\"\n                  ]\n                }\n              },\n              0\n            ]\n          },\n          \"then\": true,\n          \"else\": false\n        }\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"can_manage_lesson_in_course\": true\n    }\n  }\n]",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

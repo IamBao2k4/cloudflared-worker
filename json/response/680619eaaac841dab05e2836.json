@@ -1,0 +1,79 @@
+{
+  "_id": "680619eaaac841dab05e2836",
+  "title": "UPDATE price rule",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "6801c6e2887875ca1b8c4945"
+  ],
+  "categories": [],
+  "queryAdvance": "{\n  \"title\": 0,\n  \"value_type\": 0,\n  \"value\": 0,\n  \"starts_at\": 0,\n  \"ends_at\": 0,\n  \"status\": 0,\n  \"minimum_subtotal\": 0,\n  \"usage_limit\": 0,\n  \"usage_limit_per_customer\": 0,\n  \"can_combine\": 0,\n  \"once_per_customer\": 0\n}",
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "value_type",
+      "value": "value_type"
+    },
+    {
+      "key": "value",
+      "value": "value"
+    },
+    {
+      "key": "starts_at",
+      "value": "starts_at"
+    },
+    {
+      "key": "ends_at",
+      "value": "ends_at"
+    },
+    {
+      "key": "status",
+      "value": "status"
+    },
+    {
+      "key": "minimum_subtotal",
+      "value": "minimum_subtotal"
+    },
+    {
+      "key": "usage_limit",
+      "value": "usage_limit"
+    },
+    {
+      "key": "usage_limit_per_customer",
+      "value": "usage_limit_per_customer"
+    },
+    {
+      "key": "can_combine",
+      "value": "can_combine"
+    },
+    {
+      "key": "once_per_customer",
+      "value": "once_per_customer"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "6801bf1b887875ca1b8c3ee4"
+}

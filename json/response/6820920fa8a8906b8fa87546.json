@@ -1,0 +1,65 @@
+{
+  "_id": "6820920fa8a8906b8fa87546",
+  "title": "get detail course statics",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "681dbedfa8a8906b8fa78291"
+  ],
+  "categories": [],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"course\": \"@param:course_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"start_date\": {\n        \"$dateTrunc\": {\n          \"date\": \"$start_date\",\n          \"unit\": \"day\"\n        }\n      },\n      \"end_date\": {\n        \"$dateTrunc\": {\n          \"date\": \"$end_date\",\n          \"unit\": \"day\"\n        }\n      },\n      \"log_date\": {\n        \"$dateTrunc\": {\n          \"date\": \"$time_stamp\",\n          \"unit\": \"day\"\n        }\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$and\": [\n          {\n            \"$or\": [\n              {\n                \"$and\": [\n                  {\n                    \"$ne\": [\n                      \"$start_date\",\n                      null\n                    ]\n                  },\n                  {\n                    \"$ne\": [\n                      \"$end_date\",\n                      null\n                    ]\n                  },\n                  {\n                    \"$and\": [\n                      {\n                        \"$gte\": [\n                          \"$log_date\",\n                          \"$start_date\"\n                        ]\n                      },\n                      {\n                        \"$lte\": [\n                          \"$log_date\",\n                          \"$end_date\"\n                        ]\n                      }\n                    ]\n                  }\n                ]\n              },\n              {\n                \"$or\": [\n                  {\n                    \"$eq\": [\n                      \"$start_date\",\n                      null\n                    ]\n                  },\n                  {\n                    \"$eq\": [\n                      \"$end_date\",\n                      null\n                    ]\n                  }\n                ]\n              }\n            ]\n          }\n        ]\n      }\n    }\n  },\n{\n\"$lookup\":{\n  \"from\":\"mge-course-member\",\n  \"localField\":\"course\",\n  \"foreignField\":\"course\",\n  \"pipeline\":[\n    {\n    \"$match\":{\n      \"tenant_id\":\"@header:x-tenant-id\",\n      \"status\":\"joined\"\n    }\n    }\n  ],\n  \"as\":\"all_members\"\n}\n},\n  {\n    \"$addFields\": {\n      \"all_members\": {\n        \"$size\": \"$all_members\"\n      }\n    }\n  },\n  {\n    \"$sort\": {\n      \"time_stamp\": -1 // Sắp xếp giảm dần để cái mới nhất lên đầu\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        { \"$count\": \"count\" },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        { \"$skip\": \"@param:skip\" },\n        { \"$limit\": \"@param:limit\" }\n      ]\n    }\n  }\n]",
+  "restricted": [
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "id": "6820920fa8a8906b8fa87546",
+  "params": [
+    {
+      "value": "course_id",
+      "key": "course_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "start_date",
+      "key": "start_date"
+    },
+    {
+      "value": "end_date",
+      "key": "end_date"
+    }
+  ],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ]
+}

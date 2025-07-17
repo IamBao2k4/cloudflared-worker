@@ -1,0 +1,709 @@
+{
+  "_id": "67ea74b7e629338df1f6daf6",
+  "title": "entity json format",
+  "mongodb_collection_name": "entity-json-format",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "short-answer-1": {
+        "title": "Short Answer 1",
+        "type": "string",
+        "widget": "shortAnswer",
+        "min": 1,
+        "max": 2,
+        "format-data": "email",
+        "placeholder": "example",
+        "autocomplete": "email",
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "description": "This is description for a field",
+        "pattern": "Write regex here"
+      },
+      "short-answer-2": {
+        "title": "Short Answer 2",
+        "type": "string",
+        "widget": "shortAnswer",
+        "min": 1,
+        "max": 2,
+        "format-data": "phone",
+        "placeholder": "example",
+        "autocomplete": "tel",
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "pattern": "Write regex here"
+      },
+      "password": {
+        "title": "Password",
+        "type": "string",
+        "widget": "password",
+        "min": 12,
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "autocomplete": "password",
+        "description": "This is description for a field",
+        "default": "loginto123",
+        "max": 127,
+        "pattern": "Write regex here"
+      },
+      "long-answer-1": {
+        "title": "Long Answer 1",
+        "type": "string",
+        "widget": "textarea",
+        "customRole": "textarea",
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "placeholder": "Write your content here",
+        "description": "This is description for a field",
+        "pattern": "Write regex here"
+      },
+      "long-answer-2": {
+        "title": "Long Answer 2",
+        "type": "string",
+        "widget": "textarea",
+        "customRole": "texteditor",
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "placeholder": "Write your content here",
+        "description": "This is description for a field",
+        "pattern": "Write regex here"
+      },
+      "slug": {
+        "title": "Slug",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "depend_field": "root_newinput1",
+        "description": "This is description for a field",
+        "pattern": "Write regex here"
+      },
+      "number": {
+        "widget": "numberInput",
+        "title": "Number",
+        "type": "string",
+        "default": "10",
+        "min": 1,
+        "max": 100,
+        "placeholder": "Select a number",
+        "hidden": true,
+        "filter": true,
+        "disabled": true
+      },
+      "range": {
+        "title": "Range",
+        "type": "string",
+        "widget": "range",
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "default": "10",
+        "step": "1",
+        "placeholder": "Select range",
+        "labelStart": "Nhỏ nhất",
+        "labelEnd": "Lớn nhất",
+        "min": 100,
+        "max": 800000000
+      },
+      "date-1": {
+        "title": "Date 1",
+        "type": "string",
+        "widget": "date",
+        "displayFormat": "yyyy/MM/dd",
+        "formatDate": "date",
+        "disabled": true,
+        "field": "single",
+        "mode": "date",
+        "hidden": true,
+        "filter": true,
+        "description": "This is description for a field",
+        "min": "2025-02-28T17:00:00.000Z",
+        "max": "2025-03-30T17:00:00.000Z"
+      },
+      "date-2": {
+        "title": "Date 2",
+        "type": "string",
+        "widget": "date",
+        "displayFormat": "dd/MM/yyyy",
+        "formatDate": "date",
+        "disabled": true,
+        "field": "range",
+        "mode": "date",
+        "hidden": true,
+        "filter": true,
+        "description": "This is description for a field",
+        "min": "2025-02-28T17:00:00.000Z",
+        "max": "2025-03-30T17:00:00.000Z"
+      },
+      "date-3": {
+        "title": "Date 3",
+        "type": "string",
+        "widget": "date",
+        "displayFormat": "MM/dd/yyyy",
+        "formatDate": "date",
+        "disabled": true,
+        "field": "range",
+        "mode": "date",
+        "hidden": true,
+        "filter": true,
+        "description": "This is description for a field",
+        "min": "2025-02-28T17:00:00.000Z",
+        "max": "2025-03-30T17:00:00.000Z"
+      },
+      "date-4": {
+        "title": "Date 4",
+        "type": "string",
+        "widget": "date",
+        "displayFormat": "yyyy-MM-dd",
+        "formatDate": "date",
+        "disabled": true,
+        "field": "range",
+        "mode": "date",
+        "hidden": true,
+        "filter": true,
+        "description": "This is description for a field",
+        "min": "2025-02-28T17:00:00.000Z",
+        "max": "2025-03-30T17:00:00.000Z"
+      },
+      "date-5": {
+        "title": "Date 5",
+        "type": "string",
+        "widget": "date",
+        "displayFormat": "MMM dd, yyyy",
+        "formatDate": "date",
+        "disabled": true,
+        "field": "range",
+        "mode": "date",
+        "hidden": true,
+        "filter": true,
+        "description": "This is description for a field",
+        "min": "2025-02-28T17:00:00.000Z",
+        "max": "2025-03-30T17:00:00.000Z"
+      },
+      "time-1": {
+        "title": "Time 1",
+        "type": "string",
+        "widget": "time",
+        "displayFormat": "HH:mm:ss",
+        "formatDate": "time",
+        "disabled": true,
+        "min": "00:00:00",
+        "max": "23:59:59",
+        "field": "single",
+        "mode": "time",
+        "hidden": true,
+        "filter": true,
+        "description": "This is a description for field"
+      },
+      "time-2": {
+        "title": "Time 2",
+        "type": "string",
+        "widget": "time",
+        "displayFormat": "HH:mm",
+        "formatDate": "time",
+        "disabled": true,
+        "min": "00:00:00",
+        "max": "23:59:59",
+        "field": "single",
+        "mode": "time",
+        "hidden": true,
+        "filter": true,
+        "description": "This is a description for field"
+      },
+      "time-3": {
+        "title": "Time 3",
+        "type": "string",
+        "widget": "time",
+        "displayFormat": "HH",
+        "formatDate": "time",
+        "disabled": true,
+        "min": "00:00:00",
+        "max": "23:59:59",
+        "field": "single",
+        "mode": "time",
+        "hidden": true,
+        "filter": true,
+        "description": "This is a description for field"
+      },
+      "date_time_1": {
+        "title": "Date Time 1",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": true,
+        "field": "single",
+        "mode": "dateTime",
+        "hidden": true,
+        "filter": true,
+        "description": "This is description for a field",
+        "min": "2025-03-31T15:47:16.400Z",
+        "max": "2025-04-29T17:00:00.000Z"
+      },
+      "date_time_2": {
+        "title": "Date Time 2",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "wo",
+        "formatDate": "date-time",
+        "disabled": true,
+        "field": "range",
+        "mode": "week",
+        "hidden": true,
+        "filter": true,
+        "description": "This is description for a field",
+        "min": "2025-03-31T15:47:16.400Z",
+        "max": "2025-04-29T17:00:00.000Z"
+      },
+      "date_time_3": {
+        "title": "Date Time 3",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "MMMM",
+        "formatDate": "date-time",
+        "disabled": true,
+        "field": "single",
+        "mode": "month",
+        "hidden": true,
+        "filter": true,
+        "description": "This is description for a field",
+        "min": "2025-03-31T15:47:16.400Z",
+        "max": "2025-04-29T17:00:00.000Z"
+      },
+      "date_time_4": {
+        "title": "Date Time 4",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "Qo",
+        "formatDate": "date-time",
+        "disabled": true,
+        "field": "single",
+        "mode": "quarter",
+        "hidden": true,
+        "filter": true,
+        "description": "This is description for a field",
+        "min": "2025-03-31T15:47:16.400Z",
+        "max": "2025-04-29T17:00:00.000Z"
+      },
+      "date_time_5": {
+        "title": "Date Time 5",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy",
+        "formatDate": "date-time",
+        "disabled": true,
+        "field": "single",
+        "mode": "year",
+        "hidden": true,
+        "filter": true,
+        "description": "This is description for a field",
+        "min": "2025-03-31T15:47:16.400Z",
+        "max": "2025-04-29T17:00:00.000Z"
+      },
+      "radio_1": {
+        "type": "string",
+        "widget": "radio",
+        "choices": "label1:value1\nlabel2:value2\nlabel3:value3",
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "title": "Radio 1",
+        "description": "This is description for a field",
+        "default": "value1",
+        "allowNull": true,
+        "allowCustom": true
+      },
+      "radio_2": {
+        "type": "string",
+        "widget": "radio",
+        "choices": "label1:value1\nlabel2:value2\nlabel3:value3",
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "title": "Radio 2",
+        "description": "This is description for a field",
+        "default": "value1",
+        "allowNull": false,
+        "allowCustom": false,
+        "layout": 1
+      },
+      "select": {
+        "title": "Select",
+        "type": "string",
+        "widget": "select",
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "description": "This is description for a field",
+        "choices": [
+          {
+            "key": "label1",
+            "value": "value1"
+          },
+          {
+            "key": "label2",
+            "value": "value2"
+          },
+          {
+            "key": "label3",
+            "value": "value3"
+          }
+        ],
+        "default": "value1",
+        "allowNull": true,
+        "isMultiple": true
+      },
+      "check_box_1": {
+        "title": "Check box 1",
+        "type": "string",
+        "default": "value1",
+        "widget": "checkbox",
+        "choices": "label1:value1\nlabel2:value2\nlabel3:value3",
+        "allowCustom": false,
+        "returnValue": 2,
+        "layout": 0,
+        "toggleAll": true,
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "description": "This is description for a field"
+      },
+      "check_box_2": {
+        "title": "Check box 2",
+        "type": "string",
+        "default": "value1",
+        "widget": "checkbox",
+        "choices": "label1:value1\nlabel2:value2\nlabel3:value3",
+        "allowCustom": false,
+        "returnValue": 2,
+        "layout": 1,
+        "toggleAll": true,
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "description": "This is description for a field"
+      },
+      "true_false_1": {
+        "title": "True False 1 ",
+        "type": "string",
+        "default": true,
+        "widget": "boolean",
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "description": "This is description for a field",
+        "appearance": "switch"
+      },
+      "true_false_2": {
+        "title": "True False 2",
+        "type": "string",
+        "default": true,
+        "widget": "boolean",
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "description": "This is description for a field",
+        "appearance": "checkbox"
+      },
+      "relation": {
+        "title": "Relation",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "entity",
+          "entity": "entity",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "880ad058-79dc-445c-be47-7aed8d59e147"
+          }
+        },
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "description": "This is description for a field"
+      },
+      "single_image": {
+        "type": "string",
+        "widget": "file",
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "title": "Single Image",
+        "description": "This is description for a field"
+      },
+      "multiple_images": {
+        "title": "Multiple Images",
+        "type": "string",
+        "widget": "multipleFiles",
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "description": "This is description for a field"
+      },
+      "icon": {
+        "title": "Icon",
+        "type": "string",
+        "widget": "icon",
+        "hidden": true,
+        "filter": true,
+        "disabled": true,
+        "description": "This is description for a field"
+      },
+      "array": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "title": "title",
+              "type": "string",
+              "widget": "shortAnswer"
+            }
+          },
+          "required": [],
+          "title": "item",
+          "description": "This is description for a field",
+          "hidden": true
+        },
+        "title": "Arrray",
+        "type": "array",
+        "description": "This is description for a field",
+        "hidden": true,
+        "disabled": true,
+        "filter": true
+      },
+      "section": {
+        "title": "Section",
+        "type": "object",
+        "description": "This is description for a field",
+        "hidden": true,
+        "properties": {
+          "title": {
+            "title": "title",
+            "type": "string",
+            "widget": "shortAnswer",
+            "description": "This is description for a field"
+          },
+          "tweet": {
+            "title": "Tweet",
+            "type": "string",
+            "widget": "shortAnswer",
+            "description": "This is description for a field"
+          }
+        },
+        "required": []
+      }
+    },
+    "required": [
+      "short-answer-1",
+      "short-answer-2",
+      "password",
+      "long-answer-1",
+      "long-answer-2",
+      "slug",
+      "number",
+      "range",
+      "date-1",
+      "date-2",
+      "date-3",
+      "date-4",
+      "date-5",
+      "time-1",
+      "time-2",
+      "time-3",
+      "date_time_1",
+      "date_time_2",
+      "date_time_3",
+      "date_time_4",
+      "date_time_5",
+      "radio_1",
+      "radio_2",
+      "select",
+      "check_box_1",
+      "check_box_2",
+      "true_false_1",
+      "true_false_2",
+      "relation",
+      "single_image",
+      "multiple_images",
+      "icon",
+      "array"
+    ]
+  },
+  "ui_schema": {
+    "short-answer-1": {
+      "ui:widget": "shortAnswer"
+    },
+    "short-answer-2": {
+      "ui:widget": "shortAnswer"
+    },
+    "password": {
+      "ui:widget": "password"
+    },
+    "long-answer-1": {
+      "ui:widget": "textarea"
+    },
+    "long-answer-2": {
+      "ui:widget": "textarea"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "number": {
+      "ui:widget": "numberInput"
+    },
+    "range": {
+      "ui:widget": "range"
+    },
+    "date-1": {
+      "ui:widget": "date"
+    },
+    "date-2": {
+      "ui:widget": "date"
+    },
+    "date-3": {
+      "ui:widget": "date"
+    },
+    "date-4": {
+      "ui:widget": "date"
+    },
+    "date-5": {
+      "ui:widget": "date"
+    },
+    "time-1": {
+      "ui:widget": "time"
+    },
+    "time-2": {
+      "ui:widget": "time"
+    },
+    "time-3": {
+      "ui:widget": "time"
+    },
+    "date_time_1": {
+      "ui:widget": "dateTime"
+    },
+    "date_time_2": {
+      "ui:widget": "dateTime"
+    },
+    "date_time_3": {
+      "ui:widget": "dateTime"
+    },
+    "date_time_4": {
+      "ui:widget": "dateTime"
+    },
+    "date_time_5": {
+      "ui:widget": "dateTime"
+    },
+    "radio_1": {
+      "ui:widget": "radio"
+    },
+    "radio_2": {
+      "ui:widget": "radio"
+    },
+    "select": {
+      "ui:widget": "select"
+    },
+    "check_box_1": {
+      "ui:widget": "checkbox"
+    },
+    "check_box_2": {
+      "ui:widget": "checkbox"
+    },
+    "true_false_1": {
+      "ui:widget": "boolean"
+    },
+    "true_false_2": {
+      "ui:widget": "boolean"
+    },
+    "relation": {
+      "ui:widget": "relation"
+    },
+    "single_image": {
+      "ui:widget": "file"
+    },
+    "multiple_images": {
+      "ui:widget": "multipleFiles"
+    },
+    "icon": {
+      "ui:widget": "icon"
+    },
+    "array": {
+      "items": {
+        "title": {
+          "ui:widget": "shortAnswer"
+        },
+        "ui:order": [
+          "title"
+        ]
+      }
+    },
+    "section": {
+      "title": {
+        "ui:widget": "shortAnswer"
+      },
+      "tweet": {
+        "ui:widget": "shortAnswer"
+      },
+      "ui:order": [
+        "title",
+        "tweet"
+      ]
+    },
+    "ui:order": [
+      "short-answer-1",
+      "short-answer-2",
+      "password",
+      "long-answer-1",
+      "long-answer-2",
+      "slug",
+      "number",
+      "range",
+      "date-1",
+      "date-2",
+      "date-3",
+      "date-4",
+      "date-5",
+      "time-1",
+      "time-2",
+      "time-3",
+      "date_time_1",
+      "date_time_2",
+      "date_time_3",
+      "date_time_4",
+      "date_time_5",
+      "radio_1",
+      "radio_2",
+      "select",
+      "check_box_1",
+      "check_box_2",
+      "true_false_1",
+      "true_false_2",
+      "relation",
+      "single_image",
+      "multiple_images",
+      "icon",
+      "array",
+      "section"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-03-31T10:55:51.365Z",
+  "__v": 0
+}

@@ -1,0 +1,21 @@
+{
+  "_id": "67627438d5f20b2905479ccb",
+  "title": "is tweet-approve-mode-true",
+  "note": "",
+  "entity": [
+    "6747ef07c47463d88f8c5ab1"
+  ],
+  "advance": "[\n    {\n        \"$addFields\": {\n            \"idAsString\": { \"$toString\": \"$_id\" }\n        }\n    }, \n  {\n        \"$match\": {\n            \"idAsString\": \"@param:group_id\" }\n        \n    },\n    {\n        \"$match\": {\n            \"permissions.tweet_approve_mode\": true\n        }\n    }\n]",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "data": {
+    "id": "b3a2678e-36ee-4398-a055-1654de5e9cc4",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "required": [],
+  "documents": []
+}

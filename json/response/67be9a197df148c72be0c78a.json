@@ -1,0 +1,13 @@
+{
+  "_id": "67be9a197df148c72be0c78a",
+  "title": "Create tweet image with status draft",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "674e89c2033700ce36e9f038"
+  ],
+  "queryAdvance": "{\n  \"title\":1,\n  \"slug\":1,\n  \"short_description\":0,\n  \"long_description\":0,\n  \"images\":0,\n  \"featured_image\":0,\n  \"categories\": 0,\n  \"tag\":0,\n  \"status\":\"draft\",\n  \"social_group\":\"@param:group_id\",\n  \"comment_off\": \"false,true\",\n  \"like_off\": \"false,true\",\n  \"report_tweet_off\": \"false,true\",\n  \"report_comment_off\": \"false,true\"\n}",
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

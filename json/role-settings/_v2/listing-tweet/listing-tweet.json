@@ -1,0 +1,440 @@
+{
+  "listing-tweet": {},
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67caaf6c31eb23d2750284f9",
+          "title": "create tweet type post",
+          "entity": "mge-listing-tweet",
+          "path_file": "json/response/67caaf6c31eb23d2750284f9.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "f639347d-9f70-4056-aae0-1f25a08c9374",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67c92992f4aa922e5d2a1074"
+            }
+          ],
+          "id": "0616b649-0da0-4c95-8ad6-314c882dfaba"
+        },
+        "list_validate": [
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "2a5e9f45-20b2-431f-98e8-4539a535721a",
+          "rules": [
+            {
+              "id": "42f58428-fe4d-47eb-9bcc-62f381dc4dca",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "posts"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        }
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "67d3e98b465da5431aaf6be1",
+          "title": "create tweet news",
+          "entity": "mge-listing-tweet",
+          "path_file": "json/response/67d3e98b465da5431aaf6be1.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "efbb6e95-97c3-489f-af86-dc816f26667c",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67c92992f4aa922e5d2a1074"
+            },
+            {
+              "id": "fa5ca787-d1fd-42a2-a426-7460b87c12fc",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67c92938f4aa922e5d2a1025"
+            }
+          ],
+          "id": "718785d5-4162-4951-b7b1-895d438cd003"
+        },
+        "list_validate": [
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          },
+          {
+            "_id": "67c92938f4aa922e5d2a1025",
+            "title": "is-user-superadmin",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92938f4aa922e5d2a1025.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "e56c1c35-077d-4dde-97c7-edae0926bc18",
+          "rules": [
+            {
+              "id": "ac5e76bd-6825-4c85-8e95-e835be76aa29",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "news"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67cab3df31eb23d2750289e5",
+          "title": "update listing tweet",
+          "entity": "mge-listing-tweet",
+          "path_file": "json/response/67cab3df31eb23d2750289e5.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "db57e6e8-947c-44b9-82bf-544746c5864b",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67c92992f4aa922e5d2a1074"
+            },
+            {
+              "id": "75c8f718-3792-4e8a-8220-5eb4657cdebe",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67cab38631eb23d2750289a5"
+            }
+          ],
+          "id": "34b3fad0-2fff-40af-8768-26aeea9878d2"
+        },
+        "list_validate": [
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          },
+          {
+            "_id": "67cab38631eb23d2750289a5",
+            "title": "is-user-tweet-creator",
+            "entity": {
+              "_id": "67c66d92cb2d3f0de04bccc1",
+              "mongodb_collection_name": "mge-listing-tweet"
+            },
+            "path_file": "json/validate/67cab38631eb23d2750289a5.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67cac1a30080deb843b97116",
+          "title": "delete tweet",
+          "entity": "mge-listing-tweet",
+          "path_file": "json/response/67cac1a30080deb843b97116.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "1b25c183-3ad5-411e-91e3-c90cf43d0941",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67c92992f4aa922e5d2a1074"
+            },
+            {
+              "id": "99692e2c-d0bd-42a2-a00d-09acb0c64842",
+              "rules": [
+                {
+                  "id": "c0320209-d095-4e24-b5e3-852e111cce86",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67c92938f4aa922e5d2a1025"
+                },
+                {
+                  "id": "dd0f6633-8fb6-48bd-bbc6-d25a8cef4123",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67cab38631eb23d2750289a5"
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "2142718c-2070-4c8c-be2b-78ccff3d3b90"
+        },
+        "list_validate": [
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          },
+          {
+            "_id": "67c92938f4aa922e5d2a1025",
+            "title": "is-user-superadmin",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92938f4aa922e5d2a1025.json"
+          },
+          {
+            "_id": "67cab38631eb23d2750289a5",
+            "title": "is-user-tweet-creator",
+            "entity": {
+              "_id": "67c66d92cb2d3f0de04bccc1",
+              "mongodb_collection_name": "mge-listing-tweet"
+            },
+            "path_file": "json/validate/67cab38631eb23d2750289a5.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-detail": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67ce554e948cd325aa3f155b",
+          "title": "get detail tweet",
+          "entity": "mge-listing-tweet",
+          "path_file": "json/response/67ce554e948cd325aa3f155b.json"
+        },
+        "query_validate": {
+          "combinator": "or",
+          "rules": [
+            {
+              "id": "458d9994-269f-4c9e-a445-4805d58fb71b",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67cdc8d3c4550fe33c2a6c34"
+            },
+            {
+              "id": "c5d146b0-2a33-4de6-b4da-7a1293b40ba2",
+              "rules": [
+                {
+                  "id": "a6f49606-a402-4bd5-957e-8388a48d2e04",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67cdc90fc4550fe33c2a6c43"
+                },
+                {
+                  "id": "1e0a10f3-f1bc-4f04-840b-6d2d50844e0b",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67c92992f4aa922e5d2a1074"
+                }
+              ],
+              "combinator": "and",
+              "not": false
+            }
+          ],
+          "id": "0548f00f-1342-4900-a1de-d58cd2c74003"
+        },
+        "list_validate": [
+          {
+            "_id": "67cdc8d3c4550fe33c2a6c34",
+            "title": "is-tenant-public",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/67cdc8d3c4550fe33c2a6c34.json"
+          },
+          {
+            "_id": "67cdc90fc4550fe33c2a6c43",
+            "title": "is-tenant-private",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/67cdc90fc4550fe33c2a6c43.json"
+          },
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [
+      {
+        "value": "x-tenant-id",
+        "key": "x-tenant-id"
+      }
+    ],
+    "params": [
+      {
+        "value": "tweet_id",
+        "key": "tweet_id"
+      }
+    ],
+    "body": [
+      {
+        "value": "tweet_id",
+        "key": "tweet_id"
+      }
+    ],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67ce855b0e05c9a6ba6e8fa0",
+          "title": "get list tweet",
+          "entity": "mge-listing-tweet",
+          "path_file": "json/response/67ce855b0e05c9a6ba6e8fa0.json"
+        },
+        "query_validate": {
+          "combinator": "or",
+          "rules": [
+            {
+              "id": "621453a2-eeff-4dc0-9461-3ed8132196b0",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67cdc8d3c4550fe33c2a6c34"
+            },
+            {
+              "id": "cf3997fa-e001-4021-bd45-c267942ae254",
+              "rules": [
+                {
+                  "id": "53ae45f3-62a9-43da-8893-7c49f8d2f4dc",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67c92992f4aa922e5d2a1074"
+                },
+                {
+                  "id": "9f6fb530-2c92-410f-98bd-36156d554883",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67cdc90fc4550fe33c2a6c43"
+                }
+              ],
+              "combinator": "and",
+              "not": false
+            }
+          ],
+          "id": "69af9a0c-c69e-4605-8132-a0d9ee1a9cc0"
+        },
+        "list_validate": [
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          },
+          {
+            "_id": "67cdc8d3c4550fe33c2a6c34",
+            "title": "is-tenant-public",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/67cdc8d3c4550fe33c2a6c34.json"
+          },
+          {
+            "_id": "67cdc90fc4550fe33c2a6c43",
+            "title": "is-tenant-private",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/67cdc90fc4550fe33c2a6c43.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

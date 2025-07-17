@@ -1,0 +1,139 @@
+{
+  "user-progress": {},
+  "post": {
+    "headers": [],
+    "params": [
+      {
+        "value": "course_id",
+        "key": "course_id"
+      },
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "68066676beb73c2d42c993d0",
+          "title": "create user progress",
+          "entity": "mge-course-user-progress",
+          "path_file": "json/response/68066676beb73c2d42c993d0.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "78d59d80-03da-4608-8dfb-403e7c73a024",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "b8243e27-5a59-4c42-b49d-37b6fa87df6e",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            }
+          ],
+          "id": "a100f09e-c840-4bf7-80b4-6878727a4a18"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [
+      {
+        "value": "course_id",
+        "key": "course_id"
+      },
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "68066736beb73c2d42c99402",
+          "title": "delete user progress",
+          "entity": "mge-course-user-progress",
+          "path_file": "json/response/68066736beb73c2d42c99402.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "62c2956a-a203-4db5-9bef-c191664efafb",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "38bd3c77-1e88-4e8c-814c-742cddd8a235",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            }
+          ],
+          "id": "20297c26-3e43-46d7-8b0a-2b84cbdf382c"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

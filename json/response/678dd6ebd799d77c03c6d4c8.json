@@ -1,0 +1,26 @@
+{
+  "_id": "678dd6ebd799d77c03c6d4c8",
+  "title": "create discussion",
+  "note": "",
+  "method": "post",
+  "queryAdvance": "{\n  \"title\":1,\n  \"content\": 1,\n  \"attachments\": 0,\n  \"course\": \"@param:course_id\"\n  }",
+  "outputEntity": [
+    "6752bcd265017d942f759541"
+  ],
+  "data": {
+    "id": "0a81e5da-54e9-49ae-b277-7315de39bd18",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "cache_time": "",
+  "documents": [],
+  "params": [
+    {
+      "value": "course_id",
+      "key": "course_id"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "_id": "67a97c43b6350baa12245cb2",
+  "title": "delete note",
+  "note": "",
+  "cache_time": "",
+  "method": "delete",
+  "outputEntity": [
+    "67a32ec603679925e42bb2cb"
+  ],
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "data": {
+    "id": "5abbcb5e-b7be-4d97-80c3-6679f94d87eb",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "documents": []
+}

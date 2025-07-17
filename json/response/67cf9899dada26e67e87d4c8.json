@@ -1,0 +1,14 @@
+{
+  "_id": "67cf9899dada26e67e87d4c8",
+  "title": "update project",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "67c6ccd9412d5b4c1e2bf08c"
+  ],
+  "queryAdvance": "{\r\n  \"title\": 0,\r\n  \"overview_static\": {\r\n    \"apartment\": 0,\r\n    \"acreage\": 0,\r\n    \"tower\": 0,\r\n    \"site_area\": 0,\r\n    \"building_density\": 0,\r\n    \"pricing\":0\r\n  },\r\n  \"long_description\": 0,\r\n  \"amenity_facility\": \"shopping_mall,supermarket_convenience_stores,shophouse,restaurants_coffee_shops,swimming_pool,children_playground,gym_yoga,spa_massage,cinema,bbq_outdoor_area,school,hospital,parking_car,security,community,walking_street,sport_area,park_playground,administrative_center,bus_station,hightway,pccc_systems,atm_banks,exit_way,elevator,receptionist,ac_system,coffee,tenis_area,basketball_area,badminton_area\",\r\n  \"list_image\": 0,\r\n  \"address\": {\r\n    \"city\": 0,\r\n    \"district\": 0,\r\n    \"ward\": 0,\r\n    \"street\": 0,\r\n    \"full_address\": 0\r\n  },\r\n  \"status\": \"active,deleted,approve,draft,hidden,archive,waiting,reject,send_to_review,expire\",\r\n  \"tag\": 0,\r\n  \"contact\": 0\r\n}",
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb",
+  "documents": []
+}

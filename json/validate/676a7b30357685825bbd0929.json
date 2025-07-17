@@ -1,0 +1,41 @@
+{
+  "_id": "676a7b30357685825bbd0929",
+  "title": "is-user-requesting-to-join-group",
+  "note": "",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "data": {
+    "id": "e0ba8ede-33e3-4bfa-a614-6240618a8993",
+    "rules": [
+      {
+        "id": "9c254d98-1288-4fac-8e61-bbc9ab45690c",
+        "field": "mge-group-member.social_group",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-group-member.social_group:param.group_id"
+      },
+      {
+        "id": "8fccdb31-7c5c-4e83-861f-a4ef01030547",
+        "field": "mge-group-member.user",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-group-member.user:jwt.user@id"
+      },
+      {
+        "id": "6f91a480-a411-4d2f-aee1-9973a64f2ca8",
+        "field": "mge-group-member.status",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "pending"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"mge-group-member.social_group\":\"$mge-group-member.social_group:param.group_id\"},{\"mge-group-member.user\":\"$mge-group-member.user:jwt.user@id\"},{\"mge-group-member.status\":\"pending\"}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "name": "header",
+    "targetTable": "menu",
+    "localField": "header",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "footer",
+    "targetTable": "menu",
+    "localField": "footer",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "sidebar",
+    "targetTable": "menu",
+    "localField": "sidebar",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

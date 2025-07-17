@@ -1,0 +1,28 @@
+{
+  "upgrade-role": {},
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6837e3d06b77a55a819dc7cb",
+          "title": "upgrade role course member",
+          "entity": "mge-course-member",
+          "path_file": "json/response/6837e3d06b77a55a819dc7cb.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "9c79a1ef-284b-49ce-b360-d2139651d764"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

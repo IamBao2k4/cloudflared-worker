@@ -1,0 +1,3318 @@
+{
+  "tweets-group": {},
+  "get-list": {
+    "headers": [
+      {
+        "value": "user.id",
+        "key": "user.id"
+      }
+    ],
+    "params": [
+      {
+        "value": "group_id",
+        "key": "group_id"
+      },
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [
+      {
+        "value": "social_group",
+        "key": "social_group"
+      }
+    ],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67c5249ccb2d3f0de0497000",
+          "title": "Get list tweet in group pause",
+          "entity": "mge-tweet",
+          "path_file": "json/response/67c5249ccb2d3f0de0497000.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "ccd37e5e-bc50-411f-a4e8-e59e7a82cbb0",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "9f1c94fb-80f7-417d-8a0d-be7d2083a936",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67a5881db45a45be2aa9671e"
+            },
+            {
+              "id": "8d096b03-15d7-4b97-9cb4-f0604ca4be90",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67a588e7b45a45be2aa96776"
+            }
+          ],
+          "id": "34aa96ea-d9da-485e-8ffe-40b97e7c87ba"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "67a5881db45a45be2aa9671e",
+            "title": "did-group-pause",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/67a5881db45a45be2aa9671e.json"
+          },
+          {
+            "_id": "67a588e7b45a45be2aa96776",
+            "title": "user-joined-group (no status)",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/67a588e7b45a45be2aa96776.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "676bdbfd4ec833ce93a0785c",
+          "title": "Get list tweet in group",
+          "entity": "mge-group",
+          "path_file": "json/response/676bdbfd4ec833ce93a0785c.json"
+        },
+        "query_validate": {
+          "combinator": "or",
+          "rules": [
+            {
+              "id": "99c5dfc1-0b15-4e2d-ad33-cc8dcd54dde1",
+              "rules": [
+                {
+                  "id": "f03af11d-ec8c-455b-91a8-c1abe9af515b",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "6763a69466e06fcc01e7540e"
+                },
+                {
+                  "id": "8a8a067c-bfad-44da-8681-83b173a457f0",
+                  "rules": [
+                    {
+                      "id": "1fff2ef9-242b-460f-a4fe-5d5b1a3dd224",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "675935944670a4882df4fdb1"
+                    },
+                    {
+                      "id": "21f7caba-88dc-4456-a647-e3951e8206df",
+                      "rules": [
+                        {
+                          "id": "6fee0991-98fa-4b6e-ba4d-cc128aa1aaec",
+                          "field": "data",
+                          "operator": "=",
+                          "valueSource": "value",
+                          "value": "675a8e9b0f44fc1769fdea90"
+                        },
+                        {
+                          "id": "c78ae4be-7843-4a2a-b5d4-5a315a941805",
+                          "field": "data",
+                          "operator": "=",
+                          "valueSource": "value",
+                          "value": "674d2f9f4b5b2e5f92441d16"
+                        }
+                      ],
+                      "combinator": "and",
+                      "not": false
+                    }
+                  ],
+                  "combinator": "or",
+                  "not": false
+                }
+              ],
+              "combinator": "and",
+              "not": false
+            },
+            {
+              "id": "07bdb487-3d19-4f61-ba9f-4178a8b37545",
+              "rules": [
+                {
+                  "id": "d003d945-4e2d-468c-ba83-7a111484960b",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "6763a6c166e06fcc01e75420"
+                },
+                {
+                  "id": "8d6cf9c2-8be4-4931-b116-139c8da8f14c",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "675a8e9b0f44fc1769fdea90"
+                },
+                {
+                  "id": "6c292eec-368c-4a7e-ac37-08bd49607979",
+                  "rules": [
+                    {
+                      "id": "e3ed2ef3-815c-4eea-8ed7-8b7fceb96324",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "675935944670a4882df4fdb1"
+                    },
+                    {
+                      "id": "4034bb1f-5bd5-4602-bddc-e62d786f1f60",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "674d2f9f4b5b2e5f92441d16"
+                    }
+                  ],
+                  "combinator": "or",
+                  "not": false
+                }
+              ],
+              "combinator": "and",
+              "not": false
+            }
+          ],
+          "id": "0d26ce2c-6cee-4e33-b5d4-cc83c12eef25"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "6763a69466e06fcc01e7540e",
+            "title": "is-tenant-public",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/6763a69466e06fcc01e7540e.json"
+          },
+          {
+            "_id": "6763a6c166e06fcc01e75420",
+            "title": "is-tenant-private",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/6763a6c166e06fcc01e75420.json"
+          },
+          {
+            "_id": "675935944670a4882df4fdb1",
+            "title": "is-group-public",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675935944670a4882df4fdb1.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "4be799e4-69cb-401c-88ab-7b27304bb1b6",
+          "rules": [],
+          "combinator": "and",
+          "not": false
+        }
+      }
+    ]
+  },
+  "get-detail": {
+    "headers": [
+      {
+        "value": "x-tenant-id",
+        "key": "x-tenant-id"
+      }
+    ],
+    "params": [
+      {
+        "value": "tweet_id",
+        "key": "tweet_id"
+      },
+      {
+        "value": "slug",
+        "key": "slug"
+      },
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [
+      {
+        "value": "tweet_id",
+        "key": "tweet_id"
+      }
+    ],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67683d2f6e57acaf6815b622",
+          "title": "Get detail tweet",
+          "path_file": "json/response/67683d2f6e57acaf6815b622.json"
+        },
+        "query_validate": {
+          "combinator": "or",
+          "rules": [
+            {
+              "id": "a06b0c64-a739-477b-934b-266bab96a3dd",
+              "rules": [
+                {
+                  "id": "0d63b06a-130c-498d-9f81-0ce88c1508ed",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "6763a69466e06fcc01e7540e"
+                },
+                {
+                  "id": "c1ec1d41-62a0-4b32-bbc2-b5f0d1b299c8",
+                  "rules": [
+                    {
+                      "id": "81a54c9e-798f-4265-affb-5bbcdc00e6e0",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "675fe82c5a1356463269cc40"
+                    },
+                    {
+                      "id": "705708fb-29cd-4b74-b18d-451cf623aa19",
+                      "rules": [
+                        {
+                          "id": "28cdd5b1-e44b-4acb-9d60-468efd0a610a",
+                          "field": "data",
+                          "operator": "=",
+                          "valueSource": "value",
+                          "value": "675a8e9b0f44fc1769fdea90"
+                        },
+                        {
+                          "id": "c27ca07e-3e1a-4de3-9789-6de8c6ba955c",
+                          "field": "data",
+                          "operator": "=",
+                          "valueSource": "value",
+                          "value": "674d2f9f4b5b2e5f92441d16"
+                        }
+                      ],
+                      "combinator": "and",
+                      "not": false
+                    }
+                  ],
+                  "combinator": "or",
+                  "not": false
+                }
+              ],
+              "combinator": "and",
+              "not": false
+            },
+            {
+              "id": "7842e907-4e1d-475d-bb00-968071022f41",
+              "rules": [
+                {
+                  "id": "075c6a19-020c-4d27-9668-386901050df4",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "6763a6c166e06fcc01e75420"
+                },
+                {
+                  "id": "c18d2ab1-c33c-4bce-87eb-a301472a0a32",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "675a8e9b0f44fc1769fdea90"
+                },
+                {
+                  "id": "331349a7-e6a6-4fdc-85fe-d87b17968988",
+                  "rules": [
+                    {
+                      "id": "d1b423d2-6a85-478d-a399-2134ed76c881",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "675fe82c5a1356463269cc40"
+                    },
+                    {
+                      "id": "afa942d6-2fa8-4ea7-a593-c4b1ec577ed6",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "674d2f9f4b5b2e5f92441d16"
+                    }
+                  ],
+                  "combinator": "or",
+                  "not": false
+                }
+              ],
+              "combinator": "and",
+              "not": false
+            }
+          ],
+          "id": "cf96855b-5771-421a-8dc8-c2245fe1c397"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "6763a69466e06fcc01e7540e",
+            "title": "is-tenant-public",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/6763a69466e06fcc01e7540e.json"
+          },
+          {
+            "_id": "6763a6c166e06fcc01e75420",
+            "title": "is-tenant-private",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/6763a6c166e06fcc01e75420.json"
+          },
+          {
+            "_id": "675fe82c5a1356463269cc40",
+            "title": "is-type-group-public",
+            "entity": {
+              "_id": "67b6a286606da18e6c1976f1",
+              "mongodb_collection_name": "mge-tweet"
+            },
+            "path_file": "json/validate/675fe82c5a1356463269cc40.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "3addedaa-7bf9-43c0-9561-0e93722f28e6",
+          "rules": [],
+          "combinator": "and",
+          "not": false
+        }
+      }
+    ]
+  },
+  "post": {
+    "headers": [
+      {
+        "value": "user.id",
+        "key": "user.id"
+      }
+    ],
+    "params": [
+      {
+        "value": "group_id",
+        "key": "group_id"
+      },
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [
+      {
+        "value": "social_group",
+        "key": "social_group"
+      }
+    ],
+    "validate": [
+      {
+        "notification": {
+          "_id": "67d8ff0d41a9e2f0e877af4f",
+          "path_file": "json/notification/67d8ff0d41a9e2f0e877af4f.json"
+        },
+        "response": {
+          "_id": "67626db7d5f20b2905479c28",
+          "title": "Create tweet news with status send to review",
+          "entity": "mge-tweet-social-news",
+          "path_file": "json/response/67626db7d5f20b2905479c28.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "6b870bf0-f334-4f70-bca0-9d99e039e4ab",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67627438d5f20b2905479ccb"
+            },
+            {
+              "id": "dcb88940-0f79-48c7-aff8-79db4170971a",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67628125d5f20b2905479ddc"
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "67627438d5f20b2905479ccb",
+            "title": "is tweet-approve-mode-true",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/67627438d5f20b2905479ccb.json"
+          },
+          {
+            "_id": "67628125d5f20b2905479ddc",
+            "title": "is-user-role-in-group-is-member",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/67628125d5f20b2905479ddc.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "7007dde1-cd59-4dd8-bb96-2a255c2cbc98",
+          "rules": [
+            {
+              "id": "716ef2fa-01a3-4658-ab35-29308f8c9a3e",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "news"
+            },
+            {
+              "id": "35d870b4-1858-404e-9a18-aaad0c434dce",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "true"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        },
+        "trigger_pipeline": ""
+      },
+      {
+        "notification": {
+          "_id": "67d8ff0d41a9e2f0e877af4f",
+          "path_file": "json/notification/67d8ff0d41a9e2f0e877af4f.json"
+        },
+        "response": {
+          "_id": "676bcbce4ec833ce93a074cf",
+          "title": "Create tweet image with status send to review",
+          "entity": "mge-tweet-social-image",
+          "path_file": "json/response/676bcbce4ec833ce93a074cf.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "6b870bf0-f334-4f70-bca0-9d99e039e4ab",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67627438d5f20b2905479ccb"
+            },
+            {
+              "id": "dcb88940-0f79-48c7-aff8-79db4170971a",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67628125d5f20b2905479ddc"
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "67627438d5f20b2905479ccb",
+            "title": "is tweet-approve-mode-true",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/67627438d5f20b2905479ccb.json"
+          },
+          {
+            "_id": "67628125d5f20b2905479ddc",
+            "title": "is-user-role-in-group-is-member",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/67628125d5f20b2905479ddc.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "68c23512-12cf-4a61-87bd-5b2bb12d885a",
+          "rules": [
+            {
+              "id": "198b0e19-01da-46e6-b46a-ea651edcea02",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "image"
+            },
+            {
+              "id": "9adc95e4-f083-47e4-9f5f-2ba2206ac241",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "true"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        }
+      },
+      {
+        "notification": {
+          "_id": "67d8ff0d41a9e2f0e877af4f",
+          "path_file": "json/notification/67d8ff0d41a9e2f0e877af4f.json"
+        },
+        "response": {
+          "_id": "676bb3dd4ec833ce93a06d78",
+          "title": "Create tweet videos with status send to review",
+          "entity": "mge-tweet-social-videos",
+          "path_file": "json/response/676bb3dd4ec833ce93a06d78.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "6b870bf0-f334-4f70-bca0-9d99e039e4ab",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67627438d5f20b2905479ccb"
+            },
+            {
+              "id": "dcb88940-0f79-48c7-aff8-79db4170971a",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67628125d5f20b2905479ddc"
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "67627438d5f20b2905479ccb",
+            "title": "is tweet-approve-mode-true",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/67627438d5f20b2905479ccb.json"
+          },
+          {
+            "_id": "67628125d5f20b2905479ddc",
+            "title": "is-user-role-in-group-is-member",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/67628125d5f20b2905479ddc.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "19d0c08d-3466-441b-9127-41999b63cb62",
+          "rules": [
+            {
+              "id": "a59725ad-4b10-45ad-b2fd-2c49a469b9dd",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "videos"
+            },
+            {
+              "id": "a3c03855-4424-4713-99ee-3eb8e6f2d69a",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "true"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        }
+      },
+      {
+        "notification": {
+          "_id": "67d8ff0d41a9e2f0e877af4f",
+          "path_file": "json/notification/67d8ff0d41a9e2f0e877af4f.json"
+        },
+        "response": {
+          "_id": "676d286e4ec833ce93a08794",
+          "title": "Create tweet votes with status send to review",
+          "entity": "mge-tweet-social-votes",
+          "path_file": "json/response/676d286e4ec833ce93a08794.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "6b870bf0-f334-4f70-bca0-9d99e039e4ab",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67627438d5f20b2905479ccb"
+            },
+            {
+              "id": "dcb88940-0f79-48c7-aff8-79db4170971a",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67628125d5f20b2905479ddc"
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "67627438d5f20b2905479ccb",
+            "title": "is tweet-approve-mode-true",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/67627438d5f20b2905479ccb.json"
+          },
+          {
+            "_id": "67628125d5f20b2905479ddc",
+            "title": "is-user-role-in-group-is-member",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/67628125d5f20b2905479ddc.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "be979059-bde5-4c96-9f2a-679ed279eb4c",
+          "rules": [
+            {
+              "id": "eb141806-b194-45c4-845f-35fd719084d6",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "votes"
+            },
+            {
+              "id": "89efe06a-3108-47cc-84cd-fb7a5e2d8e51",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "true"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        }
+      },
+      {
+        "notification": {
+          "_id": "67d8ff0d41a9e2f0e877af4f",
+          "path_file": "json/notification/67d8ff0d41a9e2f0e877af4f.json"
+        },
+        "response": {
+          "_id": "681890fc753574930d6111f9",
+          "title": "create tweet file with status send to review",
+          "entity": "mge-tweet-social-file",
+          "path_file": "json/response/681890fc753574930d6111f9.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "6b870bf0-f334-4f70-bca0-9d99e039e4ab",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67627438d5f20b2905479ccb"
+            },
+            {
+              "id": "dcb88940-0f79-48c7-aff8-79db4170971a",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67628125d5f20b2905479ddc"
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "67627438d5f20b2905479ccb",
+            "title": "is tweet-approve-mode-true",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/67627438d5f20b2905479ccb.json"
+          },
+          {
+            "_id": "67628125d5f20b2905479ddc",
+            "title": "is-user-role-in-group-is-member",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/67628125d5f20b2905479ddc.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "2517fc78-3f23-47a7-bb8b-691efe4eeba5",
+          "rules": [
+            {
+              "id": "e7f51caa-8813-458b-8862-a50fbfc45490",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "files"
+            },
+            {
+              "id": "a8d283fd-8f18-4964-bf4c-ead701e035ac",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "true"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        }
+      },
+      {
+        "notification": {
+          "_id": "67d8ff0d41a9e2f0e877af4f",
+          "path_file": "json/notification/67d8ff0d41a9e2f0e877af4f.json"
+        },
+        "response": {
+          "_id": "681ad28dfa59b263ad3e3154",
+          "title": "create tweet event with status send to review",
+          "entity": "mge-social-tweet-event",
+          "path_file": "json/response/681ad28dfa59b263ad3e3154.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "6b870bf0-f334-4f70-bca0-9d99e039e4ab",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67627438d5f20b2905479ccb"
+            },
+            {
+              "id": "dcb88940-0f79-48c7-aff8-79db4170971a",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67628125d5f20b2905479ddc"
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "67627438d5f20b2905479ccb",
+            "title": "is tweet-approve-mode-true",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/67627438d5f20b2905479ccb.json"
+          },
+          {
+            "_id": "67628125d5f20b2905479ddc",
+            "title": "is-user-role-in-group-is-member",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/67628125d5f20b2905479ddc.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "bb259d6a-0cb6-41a3-a14c-fbf3031b5857",
+          "rules": [
+            {
+              "id": "f70fa189-7b36-418c-8db1-5e81bac924b2",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "event"
+            },
+            {
+              "id": "70f60076-d904-45aa-995f-7cae14a0e7c0",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "true"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        }
+      },
+      {
+        "notification": {
+          "_id": "67da60b2bab79a925cd30844",
+          "path_file": "json/notification/67da60b2bab79a925cd30844.json"
+        },
+        "response": {
+          "_id": "67bd7ea82692eef9b7ac8ccf",
+          "title": "Create tweet news with status active",
+          "entity": "mge-tweet-social-news",
+          "path_file": "json/response/67bd7ea82692eef9b7ac8ccf.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "459189a9-99bd-4d5b-a85c-ec8e6245d2df",
+              "rules": [
+                {
+                  "id": "2b8d6011-f432-4f3b-9eb9-95672c37349e",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67627319d5f20b2905479ca0"
+                },
+                {
+                  "id": "b758388e-0dac-45df-adef-39bd4c373fda",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "6759411a2fbf378066198410"
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "67627319d5f20b2905479ca0",
+            "title": "is tweet-approve-mode-false",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/67627319d5f20b2905479ca0.json"
+          },
+          {
+            "_id": "6759411a2fbf378066198410",
+            "title": "is-group-manager or group-owner",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/6759411a2fbf378066198410.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "a5431028-d885-4755-a0e9-cf7a1bf2f2b9",
+          "rules": [
+            {
+              "id": "07e23946-6163-48b4-9cf8-be1a7cc4e950",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "news"
+            },
+            {
+              "id": "346986fe-7660-47cb-8923-8b5c858ce88e",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "true"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        },
+        "trigger_pipeline": "[\r\n    {\r\n    \"collection_name\": \"mge-social-activity-log-record\",\r\n    \"action\": \"create\",\r\n    \"advance\": {\r\n      \"title\": \"Bạn đã đăng $tweet_title trong nhóm $social_group_title\",\r\n      \"value_replace\": [\r\n        {\r\n          \"title\": \"tweet_title\",\r\n          \"_id\":\"@main_result:_id\",\r\n          \"value\": \"@main_result:slug\"\r\n        },\r\n        {\r\n          \"title\": \"social_group_title\",\r\n          \"_id\": \"@main_result:social_group_id\",\r\n          \"value\": \"@main_result:social_group.title\"\r\n        }\r\n      ],\r\n      \"parent_type\": \"tweet_engagement\",\r\n      \"type\": \"TWEET_POSTED\",\r\n      \"from\": [\r\n        \"@jwt:user.id\"\r\n      ]\r\n    }\r\n  }\r\n]"
+      },
+      {
+        "notification": {
+          "_id": "67da60b2bab79a925cd30844",
+          "path_file": "json/notification/67da60b2bab79a925cd30844.json"
+        },
+        "response": {
+          "_id": "67bd80e9fd928cd081e7409a",
+          "title": "Create tweet image with status active",
+          "entity": "mge-tweet-social-image",
+          "path_file": "json/response/67bd80e9fd928cd081e7409a.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "459189a9-99bd-4d5b-a85c-ec8e6245d2df",
+              "rules": [
+                {
+                  "id": "2b8d6011-f432-4f3b-9eb9-95672c37349e",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67627319d5f20b2905479ca0"
+                },
+                {
+                  "id": "b758388e-0dac-45df-adef-39bd4c373fda",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "6759411a2fbf378066198410"
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "67627319d5f20b2905479ca0",
+            "title": "is tweet-approve-mode-false",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/67627319d5f20b2905479ca0.json"
+          },
+          {
+            "_id": "6759411a2fbf378066198410",
+            "title": "is-group-manager or group-owner",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/6759411a2fbf378066198410.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "3bf52790-abdd-430e-a292-99eab12ea53f",
+          "rules": [
+            {
+              "id": "adc1dd74-b846-4c6c-9b1b-394833f79b65",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "image"
+            },
+            {
+              "id": "11e8b7a8-ad49-4d51-a6ce-7b8162dee165",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "true"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        },
+        "trigger_pipeline": ""
+      },
+      {
+        "notification": {
+          "_id": "67da60b2bab79a925cd30844",
+          "path_file": "json/notification/67da60b2bab79a925cd30844.json"
+        },
+        "response": {
+          "_id": "67bd7f812692eef9b7ac8e5d",
+          "title": "Create tweet videos with status active",
+          "entity": "mge-tweet-social-videos",
+          "path_file": "json/response/67bd7f812692eef9b7ac8e5d.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "459189a9-99bd-4d5b-a85c-ec8e6245d2df",
+              "rules": [
+                {
+                  "id": "2b8d6011-f432-4f3b-9eb9-95672c37349e",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67627319d5f20b2905479ca0"
+                },
+                {
+                  "id": "b758388e-0dac-45df-adef-39bd4c373fda",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "6759411a2fbf378066198410"
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "67627319d5f20b2905479ca0",
+            "title": "is tweet-approve-mode-false",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/67627319d5f20b2905479ca0.json"
+          },
+          {
+            "_id": "6759411a2fbf378066198410",
+            "title": "is-group-manager or group-owner",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/6759411a2fbf378066198410.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "4b7dc875-3ca5-44f1-8895-badf97700e21",
+          "rules": [
+            {
+              "id": "0e8027d6-5985-48c8-8715-0aaaa76538b5",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "videos"
+            },
+            {
+              "id": "bd3bce96-c7e7-43ec-b9f3-0fe2d9a75b78",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "true"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        },
+        "trigger_pipeline": "[\r\n    {\r\n    \"collection_name\": \"mge-social-activity-log-record\",\r\n    \"action\": \"create\",\r\n    \"advance\": {\r\n      \"title\": \"Bạn đã đăng $tweet_title trong nhóm $social_group_title\",\r\n      \"value_replace\": [\r\n        {\r\n          \"title\": \"tweet_title\",\r\n          \"_id\":\"@main_result:_id\",\r\n          \"value\": \"@main_result:slug\"\r\n        },\r\n        {\r\n          \"title\": \"social_group_title\",\r\n          \"_id\": \"@main_result:social_group_id\",\r\n          \"value\": \"@main_result:social_group.title\"\r\n        }\r\n      ],\r\n      \"parent_type\": \"tweet_engagement\",\r\n      \"type\": \"TWEET_POSTED\",\r\n      \"from\": [\r\n        \"@jwt:user.id\"\r\n      ]\r\n    }\r\n  }\r\n]"
+      },
+      {
+        "notification": {
+          "_id": "67da60b2bab79a925cd30844",
+          "path_file": "json/notification/67da60b2bab79a925cd30844.json"
+        },
+        "response": {
+          "_id": "67bd8063fd928cd081e73da3",
+          "title": "Create tweet votes with status active",
+          "entity": "mge-tweet-social-votes",
+          "path_file": "json/response/67bd8063fd928cd081e73da3.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "459189a9-99bd-4d5b-a85c-ec8e6245d2df",
+              "rules": [
+                {
+                  "id": "2b8d6011-f432-4f3b-9eb9-95672c37349e",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67627319d5f20b2905479ca0"
+                },
+                {
+                  "id": "b758388e-0dac-45df-adef-39bd4c373fda",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "6759411a2fbf378066198410"
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "67627319d5f20b2905479ca0",
+            "title": "is tweet-approve-mode-false",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/67627319d5f20b2905479ca0.json"
+          },
+          {
+            "_id": "6759411a2fbf378066198410",
+            "title": "is-group-manager or group-owner",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/6759411a2fbf378066198410.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "064d837a-8471-40a1-8424-eb935d3cc448",
+          "rules": [
+            {
+              "id": "ea65a17f-86f9-49d6-9ca8-63fd3dd432eb",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "votes"
+            },
+            {
+              "id": "f8d0d9d4-ecf2-440f-85e9-c5d5a9218fd1",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "true"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        },
+        "trigger_pipeline": "[\n  {\n    \"collection_name\": \"mge-social-activity-log-record\",\n    \"action\": \"create\",\n    \"advance\": {\n      \"title\": \"Bạn đã đăng $tweet_title trong nhóm $social_group_title\",\n      \"value_replace\": [\n        {\n          \"title\": \"tweet_title\",\n          \"_id\": \"@main_result:_id\",\n          \"value\": \"@main_result:slug\"\n        },\n        {\n          \"title\": \"social_group_title\",\n          \"_id\": \"@main_result:social_group_id\",\n          \"value\": \"@main_result:social_group.title\"\n        }\n      ],\n      \"parent_type\": \"tweet_engagement\",\n      \"type\": \"TWEET_POSTED\",\n      \"from\": [\n        \"@jwt:user.id\"\n      ]\n    }\n  }\n]"
+      },
+      {
+        "notification": {
+          "_id": "67da60b2bab79a925cd30844",
+          "path_file": "json/notification/67da60b2bab79a925cd30844.json"
+        },
+        "response": {
+          "_id": "68189256753574930d611271",
+          "title": "create tweet file with status active",
+          "entity": "mge-tweet-social-file",
+          "path_file": "json/response/68189256753574930d611271.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "459189a9-99bd-4d5b-a85c-ec8e6245d2df",
+              "rules": [
+                {
+                  "id": "2b8d6011-f432-4f3b-9eb9-95672c37349e",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67627319d5f20b2905479ca0"
+                },
+                {
+                  "id": "b758388e-0dac-45df-adef-39bd4c373fda",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "6759411a2fbf378066198410"
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "67627319d5f20b2905479ca0",
+            "title": "is tweet-approve-mode-false",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/67627319d5f20b2905479ca0.json"
+          },
+          {
+            "_id": "6759411a2fbf378066198410",
+            "title": "is-group-manager or group-owner",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/6759411a2fbf378066198410.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "e20100d5-1f44-4ed8-954a-3b91c6b91bb8",
+          "rules": [
+            {
+              "id": "bb34e684-12b0-4277-b6c7-17edafe916f9",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "file"
+            },
+            {
+              "id": "72250447-e718-4744-866d-216af38c2353",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "true"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        },
+        "trigger_pipeline": "[\n  {\n    \"collection_name\": \"mge-social-activity-log-record\",\n    \"action\": \"create\",\n    \"advance\": {\n      \"title\": \"Bạn đã đăng $tweet_title trong nhóm $social_group_title\",\n      \"value_replace\": [\n        {\n          \"title\": \"tweet_title\",\n          \"_id\": \"@main_result:_id\",\n          \"value\": \"@main_result:slug\"\n        },\n        {\n          \"title\": \"social_group_title\",\n          \"_id\": \"@main_result:social_group_id\",\n          \"value\": \"@main_result:social_group.title\"\n        }\n      ],\n      \"parent_type\": \"tweet_engagement\",\n      \"type\": \"TWEET_POSTED\",\n      \"from\": [\n        \"@jwt:user.id\"\n      ]\n    }\n  }\n]"
+      },
+      {
+        "notification": {
+          "_id": "67da60b2bab79a925cd30844",
+          "path_file": "json/notification/67da60b2bab79a925cd30844.json"
+        },
+        "response": {
+          "_id": "681ad304fa59b263ad3e318a",
+          "title": "create tweet event with status active",
+          "entity": "mge-social-tweet-event",
+          "path_file": "json/response/681ad304fa59b263ad3e318a.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "459189a9-99bd-4d5b-a85c-ec8e6245d2df",
+              "rules": [
+                {
+                  "id": "2b8d6011-f432-4f3b-9eb9-95672c37349e",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67627319d5f20b2905479ca0"
+                },
+                {
+                  "id": "b758388e-0dac-45df-adef-39bd4c373fda",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "6759411a2fbf378066198410"
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "67627319d5f20b2905479ca0",
+            "title": "is tweet-approve-mode-false",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/67627319d5f20b2905479ca0.json"
+          },
+          {
+            "_id": "6759411a2fbf378066198410",
+            "title": "is-group-manager or group-owner",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/6759411a2fbf378066198410.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "45e6929c-0dc1-48a6-94fa-17a4bbf31504",
+          "rules": [
+            {
+              "id": "78fdb357-406f-4503-9828-b6e09623fe3e",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "event"
+            },
+            {
+              "id": "178373f5-4cb5-496a-809c-cb3150e84140",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "true"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        },
+        "trigger_pipeline": "[\n  {\n    \"collection_name\": \"mge-social-activity-log-record\",\n    \"action\": \"create\",\n    \"advance\": {\n      \"title\": \"Bạn đã đăng $tweet_title trong nhóm $social_group_title\",\n      \"value_replace\": [\n        {\n          \"title\": \"tweet_title\",\n          \"_id\": \"@main_result:_id\",\n          \"value\": \"@main_result:slug\"\n        },\n        {\n          \"title\": \"social_group_title\",\n          \"_id\": \"@main_result:social_group_id\",\n          \"value\": \"@main_result:social_group.title\"\n        }\n      ],\n      \"parent_type\": \"tweet_engagement\",\n      \"type\": \"TWEET_POSTED\",\n      \"from\": [\n        \"@jwt:user.id\"\n      ]\n    }\n  }\n]"
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "67c15707a3ed6d3393a7fa89",
+          "title": "Create tweet news with status waiting",
+          "entity": "mge-tweet-social-news",
+          "path_file": "json/response/67c15707a3ed6d3393a7fa89.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "8a368125-faf8-46ec-b3eb-ba446914abf8",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6759411a2fbf378066198410"
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "6759411a2fbf378066198410",
+            "title": "is-group-manager or group-owner",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/6759411a2fbf378066198410.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "8825d408-e691-49cc-85d9-67ab6dd02ed5",
+          "rules": [
+            {
+              "id": "c574e7d7-982b-47c9-843b-0d5a12657090",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "news"
+            },
+            {
+              "id": "f955c8e0-071f-4e64-a271-c26651978d4f",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "false"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        },
+        "trigger_pipeline": ""
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "67c1576fa3ed6d3393a7fb7e",
+          "title": "Create tweet image with status waiting",
+          "entity": "mge-tweet-social-image",
+          "path_file": "json/response/67c1576fa3ed6d3393a7fb7e.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "369f6055-af50-425d-b359-2b503d9a3843",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6759411a2fbf378066198410"
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "6759411a2fbf378066198410",
+            "title": "is-group-manager or group-owner",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/6759411a2fbf378066198410.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "6125e081-e336-4362-b9e5-b184b0c08cae",
+          "rules": [
+            {
+              "id": "a4605714-135e-4d33-8c12-a302a880a63c",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "image"
+            },
+            {
+              "id": "d00b846e-9a1b-4186-b154-a464103793e7",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "false"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        },
+        "trigger_pipeline": ""
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "67c15823a3ed6d3393a7fcdf",
+          "title": "Create tweet votes with status waiting",
+          "entity": "mge-tweet-social-votes",
+          "path_file": "json/response/67c15823a3ed6d3393a7fcdf.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "82a0861b-e593-4c4a-896c-8b4ac120d8d3",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6759411a2fbf378066198410"
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "6759411a2fbf378066198410",
+            "title": "is-group-manager or group-owner",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/6759411a2fbf378066198410.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "8c5eabbf-18e2-4bb8-b0b4-a86b01039c93",
+          "rules": [
+            {
+              "id": "46b20bb5-23a9-4f30-a2d3-cb8bd421c36d",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "votes"
+            },
+            {
+              "id": "d9913386-7257-4bff-98c5-14674529e2c5",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "false"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        },
+        "trigger_pipeline": ""
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "67c1587ca3ed6d3393a7fd5a",
+          "title": "Create tweet videos with status waiting",
+          "entity": "mge-tweet-social-videos",
+          "path_file": "json/response/67c1587ca3ed6d3393a7fd5a.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "570b8aae-c93c-4bc5-ad1e-aa7065679595",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6759411a2fbf378066198410"
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "6759411a2fbf378066198410",
+            "title": "is-group-manager or group-owner",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/6759411a2fbf378066198410.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "96fbc5fe-7fa8-4a8a-93a2-0560618383aa",
+          "rules": [
+            {
+              "id": "b3cd6ccc-bba2-4c51-9a1f-aa63a84a7547",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "videos"
+            },
+            {
+              "id": "746e1b07-562c-4748-b2d1-3358abaadb14",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "false"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        },
+        "trigger_pipeline": ""
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "6818934f753574930d6112bd",
+          "title": "create tweet file with status waiting",
+          "entity": "mge-tweet-social-file",
+          "path_file": "json/response/6818934f753574930d6112bd.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "570b8aae-c93c-4bc5-ad1e-aa7065679595",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6759411a2fbf378066198410"
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "6759411a2fbf378066198410",
+            "title": "is-group-manager or group-owner",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/6759411a2fbf378066198410.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "c71f0009-2017-4efd-b0d7-84d0958423ed",
+          "rules": [
+            {
+              "id": "e7b56192-b18e-4e18-adf9-0eca761ca40c",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "file"
+            },
+            {
+              "id": "6c2b50d9-c8f5-467d-bf37-e37b8f8c6054",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "false"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        },
+        "trigger_pipeline": ""
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "681ad39afa59b263ad3e34a6",
+          "title": "create tweet file with status waiting",
+          "entity": "mge-social-tweet-event",
+          "path_file": "json/response/681ad39afa59b263ad3e34a6.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "95122ec3-fd83-4041-8b0f-2123cc9a4381",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b86ce2a9-f234-4c20-8220-22f6a5ab1840",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "570b8aae-c93c-4bc5-ad1e-aa7065679595",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6759411a2fbf378066198410"
+            }
+          ],
+          "id": "f59614a8-0fc7-4816-8330-6c5eabc8868c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "Is user active?",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "6759411a2fbf378066198410",
+            "title": "is-group-manager or group-owner",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/6759411a2fbf378066198410.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "4392599a-8243-4afb-8a80-69277236e0fe",
+          "rules": [
+            {
+              "id": "01e9cac2-73f3-4855-9b00-a0f3d9f74ed9",
+              "field": "@param:type",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "event"
+            },
+            {
+              "id": "6191f905-c095-4870-83b3-31785bbb3702",
+              "field": "@body:tweet_waiting_time",
+              "operator": "null",
+              "valueSource": "value",
+              "value": "false"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        },
+        "trigger_pipeline": ""
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67724090e240a7d43f0ef5d3",
+          "title": "update tweet images",
+          "entity": "mge-tweet-social-image",
+          "path_file": "json/response/67724090e240a7d43f0ef5d3.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "e220757c-ff27-4239-8191-1c602a2b2e74",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675bee1c7676bb226a02c65e"
+            },
+            {
+              "id": "5af4aa8b-d1df-42cd-91b4-02d71c605b36",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a9b7f049b30e1807cecaf"
+            }
+          ],
+          "id": "0565fa83-2529-4238-b27c-4ce30a308088"
+        },
+        "list_validate": [
+          {
+            "_id": "675a9b7f049b30e1807cecaf",
+            "title": "is-tweet-image",
+            "entity": {
+              "_id": "674e89c2033700ce36e9f038",
+              "mongodb_collection_name": "mge-tweet-social-image"
+            },
+            "path_file": "json/validate/675a9b7f049b30e1807cecaf.json"
+          },
+          {
+            "_id": "675bee1c7676bb226a02c65e",
+            "title": "is-group active AND user-joined",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675bee1c7676bb226a02c65e.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "677261e4e240a7d43f0efae7",
+          "title": "update tweet videos",
+          "entity": "mge-tweet-social-videos",
+          "path_file": "json/response/677261e4e240a7d43f0efae7.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "e7fef816-1887-4ec6-9142-940e60dabc92",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675bee1c7676bb226a02c65e"
+            },
+            {
+              "id": "448854e3-b16c-4fab-a898-6f49e3d98083",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675aa591049b30e1807cf152"
+            }
+          ],
+          "id": "fe1d4d73-be7d-44b3-a5d5-7394764ed8aa"
+        },
+        "list_validate": [
+          {
+            "_id": "675bee1c7676bb226a02c65e",
+            "title": "Is group active & user joined? ",
+            "entity": {
+              "_id": "674e89c2033700ce36e9f038",
+              "mongodb_collection_name": "mge-tweet-social-image"
+            },
+            "path_file": "json/validate/675bee1c7676bb226a02c65e.json"
+          },
+          {
+            "_id": "675aa591049b30e1807cf152",
+            "title": "Is tweet videos?",
+            "entity": {
+              "_id": "674e8ef485bc5241dd6405dd",
+              "mongodb_collection_name": "mge-tweet-social-videos"
+            },
+            "path_file": "json/validate/675aa591049b30e1807cf152.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "67723ae3e240a7d43f0ef557",
+          "title": "update tweet news",
+          "entity": "mge-tweet-social-news",
+          "path_file": "json/response/67723ae3e240a7d43f0ef557.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "d4055242-1c8b-4e45-a560-aeacd3fc91f3",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675bee1c7676bb226a02c65e"
+            },
+            {
+              "id": "f842a917-6b0a-41b8-87b2-9780b48a2cba",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675aa34b049b30e1807cef06"
+            }
+          ],
+          "id": "618f15e7-8e49-4467-9f89-3f9d23f2aa63"
+        },
+        "list_validate": [
+          {
+            "_id": "675bee1c7676bb226a02c65e",
+            "title": "Is group active & user joined? ",
+            "entity": {
+              "_id": "674e89c2033700ce36e9f038",
+              "mongodb_collection_name": "mge-tweet-social-image"
+            },
+            "path_file": "json/validate/675bee1c7676bb226a02c65e.json"
+          },
+          {
+            "_id": "675aa34b049b30e1807cef06",
+            "title": "Is tweet news?",
+            "entity": {
+              "_id": "674e8ed585bc5241dd6405d3",
+              "mongodb_collection_name": "mge-tweet-social-news"
+            },
+            "path_file": "json/validate/675aa34b049b30e1807cef06.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "028c1eb7-976e-4865-b88d-7a78a12b3e6f",
+          "rules": [],
+          "combinator": "and",
+          "not": false
+        }
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "6772636de240a7d43f0efb6e",
+          "title": "update tweet votes",
+          "entity": "mge-tweet-social-votes",
+          "path_file": "json/response/6772636de240a7d43f0efb6e.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "4b9e76e1-1788-4cbe-adab-4500802f0ce8",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675aa539049b30e1807cf103"
+            },
+            {
+              "id": "78155924-5848-403b-8f92-1232c9157b23",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675bee1c7676bb226a02c65e"
+            }
+          ],
+          "id": "6e315011-003a-48af-b571-a8aeea92c727"
+        },
+        "list_validate": [
+          {
+            "_id": "675bee1c7676bb226a02c65e",
+            "title": "Is group active & user joined? ",
+            "entity": {
+              "_id": "674e89c2033700ce36e9f038",
+              "mongodb_collection_name": "mge-tweet-social-image"
+            },
+            "path_file": "json/validate/675bee1c7676bb226a02c65e.json"
+          },
+          {
+            "_id": "675aa539049b30e1807cf103",
+            "title": "Is tweet votes?",
+            "entity": {
+              "_id": "674e8f8885bc5241dd6405fb",
+              "mongodb_collection_name": "mge-tweet-social-votes"
+            },
+            "path_file": "json/validate/675aa539049b30e1807cf103.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "8404fb8e-b474-44af-a033-e718340e63c4",
+          "rules": [],
+          "combinator": "and",
+          "not": false
+        }
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "6818941b753574930d61132d",
+          "title": "update tweet file",
+          "entity": "mge-tweet-social-file",
+          "path_file": "json/response/6818941b753574930d61132d.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "78155924-5848-403b-8f92-1232c9157b23",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675bee1c7676bb226a02c65e"
+            },
+            {
+              "id": "342fa398-0c67-4afa-b898-8931e3f010ec",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "68189463753574930d61133b"
+            }
+          ],
+          "id": "6e315011-003a-48af-b571-a8aeea92c727"
+        },
+        "list_validate": [
+          {
+            "_id": "675bee1c7676bb226a02c65e",
+            "title": "Is group active & user joined? ",
+            "entity": {
+              "_id": "674e89c2033700ce36e9f038",
+              "mongodb_collection_name": "mge-tweet-social-image"
+            },
+            "path_file": "json/validate/675bee1c7676bb226a02c65e.json"
+          },
+          {
+            "_id": "68189463753574930d61133b",
+            "title": "is-tweet-file",
+            "entity": {
+              "_id": "68188ea9753574930d6110a1",
+              "mongodb_collection_name": "mge-tweet-social-file"
+            },
+            "path_file": "json/validate/68189463753574930d61133b.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "9cbb6e0f-6483-41e7-98e7-95585220bee5",
+          "rules": [],
+          "combinator": "and",
+          "not": false
+        }
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "681ad4e2fa59b263ad3e355d",
+          "title": "update tweet event",
+          "entity": "mge-tweet-social-event",
+          "path_file": "json/response/681ad4e2fa59b263ad3e355d.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "78155924-5848-403b-8f92-1232c9157b23",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675bee1c7676bb226a02c65e"
+            },
+            {
+              "id": "342fa398-0c67-4afa-b898-8931e3f010ec",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "681ad4b1fa59b263ad3e354b"
+            }
+          ],
+          "id": "6e315011-003a-48af-b571-a8aeea92c727"
+        },
+        "list_validate": [
+          {
+            "_id": "675bee1c7676bb226a02c65e",
+            "title": "Is group active & user joined? ",
+            "entity": {
+              "_id": "674e89c2033700ce36e9f038",
+              "mongodb_collection_name": "mge-tweet-social-image"
+            },
+            "path_file": "json/validate/675bee1c7676bb226a02c65e.json"
+          },
+          {
+            "_id": "681ad4b1fa59b263ad3e354b",
+            "title": "is-tweet-event",
+            "entity": {
+              "_id": "681ad170fa59b263ad3e2fa4",
+              "mongodb_collection_name": "mge-tweet-social-event"
+            },
+            "path_file": "json/validate/681ad4b1fa59b263ad3e354b.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "63648f73-05c6-43df-a359-a8fbac1f8a38",
+          "rules": [],
+          "combinator": "and",
+          "not": false
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [
+      {
+        "value": "_id",
+        "key": "_id"
+      },
+      {
+        "value": "group_id",
+        "key": "group_id"
+      }
+    ],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67726d6ee240a7d43f0efe12",
+          "title": "delete tweet news",
+          "entity": "mge-tweet-social-news",
+          "path_file": "json/response/67726d6ee240a7d43f0efe12.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "79f8bf12-7e90-425f-87d6-61af0a1ac91f",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "fbec1aff-e910-498d-b894-a8474a6492e2",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675bee1c7676bb226a02c65e"
+            },
+            {
+              "id": "ed9587fe-765e-4432-b22d-6ed6c2bccf7e",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675aa34b049b30e1807cef06"
+            },
+            {
+              "id": "b07018db-e0cc-46af-ae99-b4f59f042005",
+              "rules": [
+                {
+                  "id": "0be8a1eb-9957-4c8b-94b2-6d9293f7ea1b",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "677e27eca6ff1634411dd644"
+                },
+                {
+                  "id": "b4da8c9d-f644-475e-8edf-d3a397d54692",
+                  "rules": [
+                    {
+                      "id": "d82daf24-62bd-4f44-b00c-6fc4aa348655",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "677372dea6a6f67ec4b816b1"
+                    },
+                    {
+                      "id": "682f8737-708f-440a-93a2-2080fc471340",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "675bd63da598611d57bb3118"
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "8d2ef4e1-827b-4062-ad49-749de025d3ba"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "675bee1c7676bb226a02c65e",
+            "title": "is-group active AND user-joined",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675bee1c7676bb226a02c65e.json"
+          },
+          {
+            "_id": "677e27eca6ff1634411dd644",
+            "title": "is-tweet-mine",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/677e27eca6ff1634411dd644.json"
+          },
+          {
+            "_id": "675bd63da598611d57bb3118",
+            "title": "is-user-has-permission-delete-tweet",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675bd63da598611d57bb3118.json"
+          },
+          {
+            "_id": "675aa34b049b30e1807cef06",
+            "title": "is-tweet-news",
+            "entity": {
+              "_id": "674e8ed585bc5241dd6405d3",
+              "mongodb_collection_name": "mge-tweet-social-news"
+            },
+            "path_file": "json/validate/675aa34b049b30e1807cef06.json"
+          },
+          {
+            "_id": "677372dea6a6f67ec4b816b1",
+            "title": "is-user-be-owner-or-manager-through-tweet",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/677372dea6a6f67ec4b816b1.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "72d57b13-c188-4071-8b27-48abb2b16304",
+          "rules": [],
+          "combinator": "and",
+          "not": false
+        }
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "6772ac3a01dfc8643f077ce7",
+          "title": "delete tweet image",
+          "entity": "mge-tweet-social-image",
+          "path_file": "json/response/6772ac3a01dfc8643f077ce7.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "eec815b8-6b68-477e-a807-09c294042044",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "1646fed5-83bc-40aa-8c29-f44c2fc3fc32",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675bee1c7676bb226a02c65e"
+            },
+            {
+              "id": "2575c743-f6ec-41ae-81b2-569bd744f79f",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a9b7f049b30e1807cecaf"
+            },
+            {
+              "id": "cb663f47-5275-496b-8f01-511b0cf91ea1",
+              "rules": [
+                {
+                  "id": "4cf3635a-3612-484e-bd32-2edb3b95517b",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "677e27eca6ff1634411dd644"
+                },
+                {
+                  "id": "c565d0c4-6a00-413f-a592-e132a4a71ee9",
+                  "rules": [
+                    {
+                      "id": "2cc732cc-41f8-4ec3-b5cc-6fd330534880",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "677372dea6a6f67ec4b816b1"
+                    },
+                    {
+                      "id": "68be9333-c3af-4352-9358-7c6a3a495456",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "675bd63da598611d57bb3118"
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "bd2e4a22-35ba-4ada-83d7-a6912107a047"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "675bee1c7676bb226a02c65e",
+            "title": "is-group active AND user-joined",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675bee1c7676bb226a02c65e.json"
+          },
+          {
+            "_id": "677e27eca6ff1634411dd644",
+            "title": "is-tweet-mine",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/677e27eca6ff1634411dd644.json"
+          },
+          {
+            "_id": "675a9b7f049b30e1807cecaf",
+            "title": "is-tweet-image",
+            "entity": {
+              "_id": "674e89c2033700ce36e9f038",
+              "mongodb_collection_name": "mge-tweet-social-image"
+            },
+            "path_file": "json/validate/675a9b7f049b30e1807cecaf.json"
+          },
+          {
+            "_id": "677372dea6a6f67ec4b816b1",
+            "title": "is-user-be-owner-or-manager-through-tweet",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/677372dea6a6f67ec4b816b1.json"
+          },
+          {
+            "_id": "675bd63da598611d57bb3118",
+            "title": "is-user-has-permission-delete-tweet",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675bd63da598611d57bb3118.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "1a40c7bc-a2c3-4ada-8cd0-d7acfd861fd1",
+          "rules": [],
+          "combinator": "and",
+          "not": false
+        }
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "6772b41601dfc8643f077d79",
+          "title": "delete tweet videos",
+          "entity": "mge-tweet-social-videos",
+          "path_file": "json/response/6772b41601dfc8643f077d79.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "1626a1e9-23ec-46bd-92ec-49d7b7f62eb6",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "547fbfcd-a67b-4ea4-ac83-9707be13ef74",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675bee1c7676bb226a02c65e"
+            },
+            {
+              "id": "79a06525-d1c6-49f2-8fe5-b1747bf28963",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675aa591049b30e1807cf152"
+            },
+            {
+              "id": "a5efba9c-f493-458f-8960-414fceaf9405",
+              "rules": [
+                {
+                  "id": "9cc145a9-842b-4186-a9a8-6eb28e4d9b36",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "677e27eca6ff1634411dd644"
+                },
+                {
+                  "id": "119d69a7-30bb-4c31-a0f6-eb2c3f0ab44c",
+                  "rules": [
+                    {
+                      "id": "1e63663b-3e15-4b9d-b198-402e1276e86b",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "677372dea6a6f67ec4b816b1"
+                    },
+                    {
+                      "id": "ba11c5dc-3c92-4761-bd9e-b42dc87c67f0",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "675bd63da598611d57bb3118"
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "9d3bad4c-88d6-4974-8e12-93555524e6f4"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "677e27eca6ff1634411dd644",
+            "title": "is-tweet-mine",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/677e27eca6ff1634411dd644.json"
+          },
+          {
+            "_id": "675bee1c7676bb226a02c65e",
+            "title": "is-group active AND user-joined",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675bee1c7676bb226a02c65e.json"
+          },
+          {
+            "_id": "675aa591049b30e1807cf152",
+            "title": "is-tweet-videos",
+            "entity": {
+              "_id": "674e8ef485bc5241dd6405dd",
+              "mongodb_collection_name": "mge-tweet-social-videos"
+            },
+            "path_file": "json/validate/675aa591049b30e1807cf152.json"
+          },
+          {
+            "_id": "677372dea6a6f67ec4b816b1",
+            "title": "is-user-be-owner-or-manager-through-tweet",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/677372dea6a6f67ec4b816b1.json"
+          },
+          {
+            "_id": "675bd63da598611d57bb3118",
+            "title": "is-user-has-permission-delete-tweet",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675bd63da598611d57bb3118.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "12ce8b52-3973-4ea7-a002-1893ae88345b",
+          "rules": [],
+          "combinator": "and",
+          "not": false
+        }
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "681894e4753574930d6113c5",
+          "title": "delete tweet file",
+          "entity": "mge-tweet-social-file",
+          "path_file": "json/response/681894e4753574930d6113c5.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "fe07c18b-4e5f-4c05-a8e1-45ce7f29a2e6",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "3637cb39-eb8d-4735-a7d3-09d48c843a94",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675bee1c7676bb226a02c65e"
+            },
+            {
+              "id": "925b233a-bc1c-47ea-961e-2a41d12c2a1b",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "68189463753574930d61133b"
+            },
+            {
+              "id": "66c1e51a-ae09-4737-9310-81cdcd54adde",
+              "rules": [
+                {
+                  "id": "87e2b9c1-7703-46a8-af72-8065ced20f10",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "677e27eca6ff1634411dd644"
+                },
+                {
+                  "id": "bac30866-a661-49a8-9a87-f13da180cfb5",
+                  "rules": [
+                    {
+                      "id": "ceb7d820-5f06-4848-b3aa-082fe02cfd52",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "677372dea6a6f67ec4b816b1"
+                    },
+                    {
+                      "id": "612daa21-a3dc-4cae-9c92-392de518b714",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "675bd63da598611d57bb3118"
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "722429ac-1a9a-44a3-a840-ec21f274b388"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "677e27eca6ff1634411dd644",
+            "title": "is-tweet-mine",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/677e27eca6ff1634411dd644.json"
+          },
+          {
+            "_id": "675bee1c7676bb226a02c65e",
+            "title": "is-group active AND user-joined",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675bee1c7676bb226a02c65e.json"
+          },
+          {
+            "_id": "675bd63da598611d57bb3118",
+            "title": "is-user-has-permission-delete-tweet",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675bd63da598611d57bb3118.json"
+          },
+          {
+            "_id": "677372dea6a6f67ec4b816b1",
+            "title": "is-user-be-owner-or-manager-through-tweet",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/677372dea6a6f67ec4b816b1.json"
+          },
+          {
+            "_id": "68189463753574930d61133b",
+            "title": "is-tweet-file",
+            "entity": {
+              "_id": "68188ea9753574930d6110a1",
+              "mongodb_collection_name": "mge-tweet-social-file"
+            },
+            "path_file": "json/validate/68189463753574930d61133b.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "c326580f-e0c6-4af4-a6ef-05bffc13f3a3",
+          "rules": [],
+          "combinator": "and",
+          "not": false
+        }
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "6772b44001dfc8643f077d86",
+          "title": "delete tweet votes",
+          "entity": "mge-tweet-social-votes",
+          "path_file": "json/response/6772b44001dfc8643f077d86.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "fe07c18b-4e5f-4c05-a8e1-45ce7f29a2e6",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "3637cb39-eb8d-4735-a7d3-09d48c843a94",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675bee1c7676bb226a02c65e"
+            },
+            {
+              "id": "925b233a-bc1c-47ea-961e-2a41d12c2a1b",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675aa539049b30e1807cf103"
+            },
+            {
+              "id": "66c1e51a-ae09-4737-9310-81cdcd54adde",
+              "rules": [
+                {
+                  "id": "87e2b9c1-7703-46a8-af72-8065ced20f10",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "677e27eca6ff1634411dd644"
+                },
+                {
+                  "id": "bac30866-a661-49a8-9a87-f13da180cfb5",
+                  "rules": [
+                    {
+                      "id": "ceb7d820-5f06-4848-b3aa-082fe02cfd52",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "677372dea6a6f67ec4b816b1"
+                    },
+                    {
+                      "id": "612daa21-a3dc-4cae-9c92-392de518b714",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "675bd63da598611d57bb3118"
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "722429ac-1a9a-44a3-a840-ec21f274b388"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "677e27eca6ff1634411dd644",
+            "title": "is-tweet-mine",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/677e27eca6ff1634411dd644.json"
+          },
+          {
+            "_id": "675bee1c7676bb226a02c65e",
+            "title": "is-group active AND user-joined",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675bee1c7676bb226a02c65e.json"
+          },
+          {
+            "_id": "675bd63da598611d57bb3118",
+            "title": "is-user-has-permission-delete-tweet",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675bd63da598611d57bb3118.json"
+          },
+          {
+            "_id": "675aa539049b30e1807cf103",
+            "title": "is-tweet-votes",
+            "entity": {
+              "_id": "674e8f8885bc5241dd6405fb",
+              "mongodb_collection_name": "mge-tweet-social-votes"
+            },
+            "path_file": "json/validate/675aa539049b30e1807cf103.json"
+          },
+          {
+            "_id": "677372dea6a6f67ec4b816b1",
+            "title": "is-user-be-owner-or-manager-through-tweet",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/677372dea6a6f67ec4b816b1.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "efda3f8b-eb2d-42b1-bc4e-68b32c9003cf",
+          "rules": [],
+          "combinator": "and",
+          "not": false
+        }
+      }
+    ]
+  }
+}

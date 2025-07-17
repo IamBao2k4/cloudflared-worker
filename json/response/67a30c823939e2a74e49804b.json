@@ -1,0 +1,42 @@
+{
+  "_id": "67a30c823939e2a74e49804b",
+  "title": "submit exam",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "6752cbec65017d942f7595dc"
+  ],
+  "queryAdvance": "{\n  \"exam\": \"@param:exam_id\",\n  \"status\": \"doing\"\n}",
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "params": [
+    {
+      "value": "exam_id",
+      "key": "exam_id"
+    }
+  ],
+  "restricted": [
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ]
+}

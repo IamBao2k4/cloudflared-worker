@@ -1,0 +1,73 @@
+{
+  "_id": "67bd479b2692eef9b7ac491b",
+  "title": "get detail exam",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "6752ad7665017d942f759440"
+  ],
+  "queryAdvance": "[\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"_id\": \"@param:_id\"\n    }\n  },\n  {\n    \"$set\": {\n      \"chapters\": {\n        \"$map\": {\n          \"input\": \"$chapters\",\n          \"as\": \"ch\",\n          \"in\": {\n            \"$toObjectId\": \"$$ch\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-chapters\",\n      \"localField\": \"chapters\",\n      \"foreignField\": \"_id\",\n      \"as\": \"chapters\"\n    }\n  },\n  {\n    \"$set\": {\n      \"course\": {\n        \"$map\": {\n          \"input\": \"$course\",\n          \"as\": \"ch\",\n          \"in\": {\n            \"$toObjectId\": \"$$ch\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-courses\",\n      \"localField\": \"course\",\n      \"foreignField\": \"_id\",\n      \"as\": \"course\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-user-exam-result\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"exam\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"created_by\": \"@jwt:user.id\"\n          }\n        },\n        {\n          \"$sort\": {\n            \"created_at\": -1\n          }\n        },\n        {\n          \"$project\": {\n            \"status\": 1,\n            \"user_answer\":1,\n            \"max_possible_score\": 1,\n            \"score_scale_10\": 1,\n            \"total_score\": 1,\n            \"attempt_count\": 1,\n            \"correct_answer_count\": 1\n          }\n        }\n      ],\n      \"as\": \"user_exam_info\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-course-user-progress\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"exam\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"tenant_id\": \"@header:x-tenant-id\",\n            \"user\": \"@jwt:user.id\"\n          }\n        }\n      ],\n      \"as\": \"is_finished\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"is_finished\": {\n        \"$cond\": {\n          \"if\": {\n            \"$gt\": [\n              {\n                \"$size\": \"$is_finished\"\n              },\n              0\n            ]\n          },\n          \"then\": true,\n          \"else\": false\n        }\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"category\": {\n        \"$map\": {\n          \"input\": \"$category\",\n          \"as\": \"u\",\n          \"in\": {\n            \"$toObjectId\": \"$$u\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-categories\",\n      \"localField\": \"category\",\n      \"foreignField\": \"_id\",\n      \"as\": \"category\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-user-exam-result\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"exam\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"created_by\": \"@jwt:user.id\",\n            \"status\": \"finished\"\n          }\n        }\n      ],\n      \"as\": \"is_do_exam\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"attempt_count\": {\n        \"$size\": \"$is_do_exam\"\n      }\n    }\n  },\n  {\n    \"$set\": {\n      \"is_do_exam\": {\n        \"$cond\": {\n          \"if\": {\n            \"$gt\": [\n              {\n                \"$size\": \"$is_do_exam\"\n              },\n              0\n            ]\n          },\n          \"then\": true,\n          \"else\": false\n        }\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"has_reached_max\": {\n        \"$gte\": [\n          \"$attempt_count\",\n          \"$member_retries_allowed\"\n        ]\n      }\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "params": [
+    {
+      "value": "_id",
+      "key": "_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ],
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "chapters",
+      "value": "chapters"
+    },
+    {
+      "key": "course",
+      "value": "course"
+    },
+    {
+      "key": "exam_type",
+      "value": "exam_type"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "id": "67bd479b2692eef9b7ac491b"
+}

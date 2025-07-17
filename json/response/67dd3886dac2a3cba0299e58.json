@@ -1,0 +1,13 @@
+{
+  "_id": "67dd3886dac2a3cba0299e58",
+  "title": "get list tag group",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "67dd3711dac2a3cba0299cdd"
+  ],
+  "queryAdvance": "  [\r\n  {\r\n    \"$match\":{\r\n      \"tenant_id\":\"@header:x-tenant-id\"\r\n    }\r\n  },\r\n  {\r\n    \"$facet\": {\r\n      \"meta_data\": [\r\n        { \"$count\": \"count\" },\r\n        {\r\n          \"$addFields\": {\r\n          \"skip\": \"@param:skip\",\r\n          \"limit\": \"@param:limit\"\r\n        }\r\n        }\r\n      ],\r\n      \"data\": [\r\n        { \"$skip\": \"@param:skip\" },\r\n        { \"$limit\": \"@param:limit\" }\r\n      ]\r\n    }\r\n  }\r\n  ]\r\n",
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb"
+}

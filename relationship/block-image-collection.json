@@ -1,0 +1,9 @@
+[
+  {
+    "name": "categories",
+    "targetTable": "categories-block-image",
+    "localField": "categories",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

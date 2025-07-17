@@ -1,0 +1,620 @@
+{
+  "group-categories": {},
+  "post": {
+    "headers": [
+      {
+        "value": "x-tenant-id",
+        "required": true
+      }
+    ],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67601b5df9dc86d36ed2ba46",
+          "title": "Create category",
+          "path_file": "json/response/67601b5df9dc86d36ed2ba46.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "68b8f1c0-ba96-495e-9762-25a4342fab5a",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "2ff51b2d-05ef-46da-850d-dfa9415d7e9d",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6759411a2fbf378066198410"
+            },
+            {
+              "id": "bb7ada1f-a19e-4528-89e5-6a843425034e",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a948d0f44fc1769fded21"
+            }
+          ],
+          "id": "a129b288-553b-492f-87d0-dd5f1f4c81a6"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "6759411a2fbf378066198410",
+            "title": "is-group-manager or group-owner",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/6759411a2fbf378066198410.json"
+          },
+          {
+            "_id": "675a948d0f44fc1769fded21",
+            "title": "is-user-has-permission-create-group-categories",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/675a948d0f44fc1769fded21.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67611bfbdeb9ba00adac584b",
+          "title": "Update Category",
+          "path_file": "json/response/67611bfbdeb9ba00adac584b.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "f51d88e8-857b-49f5-bde4-3932d119ac81",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "baa3c8b2-85f2-4bc8-bc42-2902f22528cb",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6759411a2fbf378066198410"
+            },
+            {
+              "id": "95ff1ab6-9b5f-405a-b58d-b98922efa6d0",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a94d00f44fc1769fded60"
+            }
+          ],
+          "id": "9bedb8ab-5505-40d6-a931-5d7057acc0e4"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "6759411a2fbf378066198410",
+            "title": "is-group-manager or group-owner",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/6759411a2fbf378066198410.json"
+          },
+          {
+            "_id": "675a94d00f44fc1769fded60",
+            "title": "is-user-has-permission-update-group-categories",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/675a94d00f44fc1769fded60.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "677505b13c56caf3d6e34d10",
+          "title": "delete group's category",
+          "entity": "mge-group-category",
+          "path_file": "json/response/677505b13c56caf3d6e34d10.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "9dd791fb-da32-4a2c-90cb-080ce06fcf03",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "1e3a6b3f-1905-4b84-8c52-b3732b22b899",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6759411a2fbf378066198410"
+            },
+            {
+              "id": "32bb8eee-fd35-4789-97f2-86b045c0400d",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "677508003c56caf3d6e34d86"
+            }
+          ],
+          "id": "ad67b631-9614-4472-abd8-643f81c12e08"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "6759411a2fbf378066198410",
+            "title": "is-group-manager or group-owner",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/6759411a2fbf378066198410.json"
+          },
+          {
+            "_id": "677508003c56caf3d6e34d86",
+            "title": "is-user-has-permisson-to-delete-category",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/677508003c56caf3d6e34d86.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67643b49c34159fb897b6fcd",
+          "title": "Get list group's categories",
+          "path_file": "json/response/67643b49c34159fb897b6fcd.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "8d0bcdcb-97f7-41c7-aeac-64bb4f15b599",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675ba2b39279b9d81247c724"
+            },
+            {
+              "id": "8cb37c98-e2f4-46f4-9a61-6a067f4b677f",
+              "rules": [
+                {
+                  "id": "d40edf47-bb08-4237-bf8f-b8df1b4b3d0e",
+                  "rules": [
+                    {
+                      "id": "9fb9abf1-b3f1-4dd1-adcf-5e27c20ac714",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "6763a69466e06fcc01e7540e"
+                    },
+                    {
+                      "id": "d1bda611-44fd-4785-bd78-c424c35bf00b",
+                      "rules": [
+                        {
+                          "id": "468f6743-d935-4543-aa76-14c455b49f30",
+                          "field": "data",
+                          "operator": "=",
+                          "valueSource": "value",
+                          "value": "675935944670a4882df4fdb1"
+                        },
+                        {
+                          "id": "01cb5105-8caf-4a69-a026-b81ed608bcbb",
+                          "rules": [
+                            {
+                              "id": "10079525-ccbb-4137-85bd-715e4e49702d",
+                              "field": "data",
+                              "operator": "=",
+                              "valueSource": "value",
+                              "value": "674d2f9f4b5b2e5f92441d16"
+                            },
+                            {
+                              "id": "291b5089-97a1-41f6-924a-4833f1348894",
+                              "field": "data",
+                              "operator": "=",
+                              "valueSource": "value",
+                              "value": "675a8e9b0f44fc1769fdea90"
+                            }
+                          ],
+                          "combinator": "and",
+                          "not": false
+                        }
+                      ],
+                      "combinator": "or",
+                      "not": false
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                },
+                {
+                  "id": "8d4ffe56-469a-4758-bc49-4c4dc52f9e03",
+                  "rules": [
+                    {
+                      "id": "a0af26b6-3699-48a7-804d-c96d83ca131a",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "6763a6c166e06fcc01e75420"
+                    },
+                    {
+                      "id": "b46c829a-d3db-49d3-ba1e-ff5fd4f79b7f",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "675a8e9b0f44fc1769fdea90"
+                    },
+                    {
+                      "id": "7483b7d8-2339-4683-ad7c-55781a6810cc",
+                      "rules": [
+                        {
+                          "id": "78e76d1a-bdaf-469b-ba52-18f75ca09b4c",
+                          "field": "data",
+                          "operator": "=",
+                          "valueSource": "value",
+                          "value": "675935944670a4882df4fdb1"
+                        },
+                        {
+                          "id": "356527e6-2d78-4446-acc7-c8b4c1cc23d8",
+                          "field": "data",
+                          "operator": "=",
+                          "valueSource": "value",
+                          "value": "674d2f9f4b5b2e5f92441d16"
+                        }
+                      ],
+                      "combinator": "or",
+                      "not": false
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "f248383c-31fc-4882-813a-f4a7cb272ae6"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "675ba2b39279b9d81247c724",
+            "title": "is-group-active",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675ba2b39279b9d81247c724.json"
+          },
+          {
+            "_id": "6763a6c166e06fcc01e75420",
+            "title": "is-tenant-private",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/6763a6c166e06fcc01e75420.json"
+          },
+          {
+            "_id": "6763a69466e06fcc01e7540e",
+            "title": "is-tenant-public",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/6763a69466e06fcc01e7540e.json"
+          },
+          {
+            "_id": "675935944670a4882df4fdb1",
+            "title": "is-group-public",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675935944670a4882df4fdb1.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-detail": {
+    "headers": [
+      {
+        "value": "user.id",
+        "key": "user.id"
+      }
+    ],
+    "params": [
+      {
+        "value": "group_id",
+        "key": "group_id"
+      },
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [
+      {
+        "value": "social_group",
+        "key": "social_group"
+      }
+    ],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6764d305c34159fb897b7177",
+          "title": "Get detail group's category",
+          "path_file": "json/response/6764d305c34159fb897b7177.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "ac7f47e1-0d77-4068-b89c-da983e180633",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675ba2b39279b9d81247c724"
+            },
+            {
+              "id": "5c022fde-e20d-4c50-bb03-bdb93c69d628",
+              "rules": [
+                {
+                  "id": "5c0c3abe-2396-4d52-a855-286587a53d5f",
+                  "rules": [
+                    {
+                      "id": "ab1d61df-c67a-4b9b-b71a-6e29ca6fb46c",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "6763a69466e06fcc01e7540e"
+                    },
+                    {
+                      "id": "23a6b4cc-7c5f-45b7-9eae-836a9bb91c74",
+                      "rules": [
+                        {
+                          "id": "9b645da1-5306-4767-8be7-8f36fb072082",
+                          "field": "data",
+                          "operator": "=",
+                          "valueSource": "value",
+                          "value": "675935944670a4882df4fdb1"
+                        },
+                        {
+                          "id": "5093d25d-79f4-4f44-9bcb-6c4ebbe91dfd",
+                          "rules": [
+                            {
+                              "id": "4f3db80e-08a7-443d-821d-d9c610034511",
+                              "field": "data",
+                              "operator": "=",
+                              "valueSource": "value",
+                              "value": "674d2f9f4b5b2e5f92441d16"
+                            },
+                            {
+                              "id": "141ec799-9e6f-436a-960c-5d89a30ac601",
+                              "field": "data",
+                              "operator": "=",
+                              "valueSource": "value",
+                              "value": "675a8e9b0f44fc1769fdea90"
+                            }
+                          ],
+                          "combinator": "and",
+                          "not": false
+                        }
+                      ],
+                      "combinator": "or",
+                      "not": false
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                },
+                {
+                  "id": "9acc61b1-9727-4534-b112-68b6b9e2e6d0",
+                  "rules": [
+                    {
+                      "id": "ef0ecdff-2f9e-4213-bd1a-6e08a2743b3b",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "6763a6c166e06fcc01e75420"
+                    },
+                    {
+                      "id": "4a9bd6e2-c5fb-442a-8635-f3c788353d38",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "675a8e9b0f44fc1769fdea90"
+                    },
+                    {
+                      "id": "657da327-2d20-44f1-8693-03787ef8e203",
+                      "rules": [
+                        {
+                          "id": "00ec758b-5ae9-49f0-9b06-31d614cf476f",
+                          "field": "data",
+                          "operator": "=",
+                          "valueSource": "value",
+                          "value": "675935944670a4882df4fdb1"
+                        },
+                        {
+                          "id": "c949038c-7863-4114-ba7b-14430ea21e97",
+                          "field": "data",
+                          "operator": "=",
+                          "valueSource": "value",
+                          "value": "674d2f9f4b5b2e5f92441d16"
+                        }
+                      ],
+                      "combinator": "or",
+                      "not": false
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "d3b1de1a-a65c-4d85-99c4-4fe703b3fa18"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "675ba2b39279b9d81247c724",
+            "title": "is-group-active",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675ba2b39279b9d81247c724.json"
+          },
+          {
+            "_id": "6763a6c166e06fcc01e75420",
+            "title": "is-tenant-private",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/6763a6c166e06fcc01e75420.json"
+          },
+          {
+            "_id": "6763a69466e06fcc01e7540e",
+            "title": "is-tenant-public",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/6763a69466e06fcc01e7540e.json"
+          },
+          {
+            "_id": "675935944670a4882df4fdb1",
+            "title": "is-group-public",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/675935944670a4882df4fdb1.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

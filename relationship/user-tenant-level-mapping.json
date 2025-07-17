@@ -1,0 +1,16 @@
+[
+  {
+    "name": "user",
+    "targetTable": "user-tenant-profile",
+    "localField": "user",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "tenant_level",
+    "targetTable": "user-tenant-level",
+    "localField": "tenant_level",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

@@ -1,0 +1,9 @@
+[
+  {
+    "name": "entity_group",
+    "targetTable": "entity-group",
+    "localField": "entity_group",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

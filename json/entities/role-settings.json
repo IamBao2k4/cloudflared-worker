@@ -1,0 +1,89 @@
+{
+  "_id": "672ca01a1bc536db581732c5",
+  "title": "Role Settings",
+  "mongodb_collection_name": "role-settings",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "description": "Nhập title",
+        "filter": true
+      },
+      "endpoint": {
+        "widget": "UriKeyGen",
+        "title": "Endpoint",
+        "type": "string",
+        "depend_field": "root_title"
+      },
+      "long_description": {
+        "title": "Long Description",
+        "type": "string",
+        "widget": "longAnswer",
+        "customRole": "textarea"
+      },
+      "role": {
+        "type": "string",
+        "widget": "shortAnswer",
+        "title": "Role",
+        "description": "Chọn role"
+      },
+      "method": {
+        "items": {
+          "type": "object"
+        },
+        "title": "Method",
+        "type": "array"
+      },
+      "settings": {
+        "title": "Settings",
+        "type": "object"
+      },
+      "schema": {
+        "title": "Schema",
+        "type": "object",
+        "description": "Schema"
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "endpoint": {
+      "ui:widget": "UriKeyGen"
+    },
+    "long_description": {
+      "ui:widget": "textarea"
+    },
+    "role": {
+      "ui:widget": "shortAnswer"
+    },
+    "ui:order": [
+      "title",
+      "endpoint",
+      "long_description",
+      "role",
+      "method",
+      "settings",
+      "schema"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "created_at": "2024-11-07T11:10:18.596Z",
+  "__v": 0,
+  "entity_group": null,
+  "use_parent_delete_childs": false,
+  "use_seo_path": false
+}

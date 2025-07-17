@@ -1,0 +1,36 @@
+{
+  "_id": "67643b49c34159fb897b6fcd",
+  "title": "Get list group's categories",
+  "outputEntity": [
+    "674835d876462b61b5df90d1"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"social_group\": \"@param:group_id\",\n      \"tenant_id\": \"@header:x-tenant-id\"\n    }\n  },\n  {\n    \"$sort\":{\n      \"position\":-1\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "note": "",
+  "method": "get-list",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "categories": [],
+  "documents": [],
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ],
+  "cache_time": "",
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ]
+}

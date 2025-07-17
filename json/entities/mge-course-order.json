@@ -1,0 +1,194 @@
+{
+  "_id": "68187875753574930d610809",
+  "title": "mge course order",
+  "mongodb_collection_name": "mge-course-order",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "user": {
+        "type": "string",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "e49f542c-07ef-4c56-ad8b-deca071ee351"
+          }
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "user"
+      },
+      "subtotal": {
+        "title": "subtotal",
+        "type": "string",
+        "widget": "numberInput",
+        "description": "tổng tiền trước giảm giá"
+      },
+      "discount_amount": {
+        "title": "discount_amount",
+        "type": "string",
+        "widget": "numberInput",
+        "description": "Tổng tiền giảm giá"
+      },
+      "tax_amount": {
+        "title": "tax_amount",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "processing_fee": {
+        "title": "processing_fee",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "total_price": {
+        "title": "total_price",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "order_status": {
+        "title": "order_status",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "processing",
+            "value": "processing"
+          },
+          {
+            "key": "confirmed",
+            "value": "confirmed"
+          },
+          {
+            "key": "completed",
+            "value": "completed"
+          },
+          {
+            "key": "failed",
+            "value": "failed"
+          },
+          {
+            "key": "refunded",
+            "value": "refunded"
+          }
+        ],
+        "default": "processing"
+      },
+      "coupon": {
+        "title": "coupon",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "entity",
+          "entity": "entity",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "d737d539-e82f-4185-ac00-ebfc155341d7"
+          }
+        }
+      },
+      "notes": {
+        "title": "notes",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "currency": {
+        "title": "currency",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "USD",
+            "value": "USD"
+          },
+          {
+            "key": "VND",
+            "value": "VND"
+          }
+        ]
+      },
+      "payment_method": {
+        "title": "payment_method",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "entity",
+          "entity": "entity",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "8510479e-091c-4d90-9279-9aa799ec8a3c"
+          }
+        }
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "user": {
+      "ui:widget": "relation"
+    },
+    "subtotal": {
+      "ui:widget": "numberInput"
+    },
+    "discount_amount": {
+      "ui:widget": "numberInput"
+    },
+    "tax_amount": {
+      "ui:widget": "numberInput"
+    },
+    "processing_fee": {
+      "ui:widget": "numberInput"
+    },
+    "total_price": {
+      "ui:widget": "numberInput"
+    },
+    "order_status": {
+      "ui:widget": "select"
+    },
+    "coupon": {
+      "ui:widget": "relation"
+    },
+    "notes": {
+      "ui:widget": "shortAnswer"
+    },
+    "currency": {
+      "ui:widget": "select"
+    },
+    "payment_method": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "user",
+      "subtotal",
+      "discount_amount",
+      "tax_amount",
+      "processing_fee",
+      "total_price",
+      "order_status",
+      "coupon",
+      "notes",
+      "currency",
+      "payment_method"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-05-05T08:36:05.782Z",
+  "__v": 0
+}

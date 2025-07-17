@@ -1,0 +1,9 @@
+[
+  {
+    "name": "templates",
+    "targetTable": "templates",
+    "localField": "templates",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

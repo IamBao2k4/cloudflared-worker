@@ -1,0 +1,23 @@
+[
+  {
+    "name": "tenant_id",
+    "targetTable": "tenant",
+    "localField": "tenant_id",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "created_by",
+    "targetTable": "entity",
+    "localField": "created_by",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "updated_by",
+    "targetTable": "entity",
+    "localField": "updated_by",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "_id": "675a8b970f44fc1769fde91e",
+  "title": "is-user-has-permission-update-group-menu-item",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "data": {
+    "id": "76917e73-daf8-4d4b-b951-7a8d43d5ec34",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "advance": "[\r  {\r    \"$addFields\": {\r      \"social_group_object_id\": {\r        \"$map\": {\r          \"input\": \"$social_group\",\r          \"as\": \"sg\",\r          \"in\": {\r            \"$toObjectId\": \"$$sg\"\r          }\r        }\r      }\r    }\r  },\r  {\r    \"$match\": {\r      \"user\": \"@jwt:user.id\",\r      \"$or\": [\r        { \"social_group\": \"@param:group_id\" },\r        { \"social_group\": \"@param:_id\" }\r      ]\r    }\r  },\r  {\r    \"$lookup\": {\r      \"from\": \"mge-group\",\r      \"localField\": \"social_group_object_id\",\r      \"foreignField\": \"_id\",\r      \"as\": \"group_info\"\r    }\r  },\r  {\r    \"$addFields\": {\r      \"group_info\": { \"$arrayElemAt\": [\"$group_info\", 0] }\r    }\r  },\r{\r  \"$addFields\": {\r    \"can_update_group_menu_item\": {\r      \"$cond\": {\r        \"if\": {\r          \"$gt\": [\r            { \"$size\": { \"$setIntersection\": [\"$role\", \"$group_info.permissions.group_menu_item_update\"] } },\r            0\r          ]\r        },\r        \"then\": true,\r        \"else\": false\r      }\r    }\r  }\r},\r  { \"$match\": { \"can_update_group_menu_item\": true } }\r]\r",
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    },
+    {
+      "value": "_id",
+      "key": "_id"
+    }
+  ],
+  "headers": [],
+  "body": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "note": "",
+  "documents": [],
+  "logged": null,
+  "pre": null
+}

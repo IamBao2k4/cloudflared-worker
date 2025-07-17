@@ -1,0 +1,41 @@
+{
+  "use_parent_delete_childs": false,
+  "use_seo_path": false,
+  "_id": "674e88f1033700ce36e9f025",
+  "title": "entity group",
+  "mongodb_collection_name": "entity-group",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      }
+    },
+    "required": [
+      "title"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "ui:order": [
+      "title"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "entity_group": null,
+  "created_at": "2024-12-03T04:28:33.297Z",
+  "__v": 0
+}

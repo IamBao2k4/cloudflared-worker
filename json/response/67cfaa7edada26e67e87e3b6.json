@@ -1,0 +1,13 @@
+{
+  "_id": "67cfaa7edada26e67e87e3b6",
+  "title": "create area",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "67cfaa00dada26e67e87e2f5"
+  ],
+  "queryAdvance": "{\r\n  \"title\":1,\r\n  \"type\":1,\r\n  \"parent_id\":0\r\n}",
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb"
+}

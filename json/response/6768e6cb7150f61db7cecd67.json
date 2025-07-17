@@ -1,0 +1,81 @@
+{
+  "_id": "6768e6cb7150f61db7cecd67",
+  "title": "Get list group is requesting to join",
+  "outputEntity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "queryAdvance": "[\n  {\n    \"$addFields\": {\n      \"social_group_object_id\": {\n        \"$map\": {\n          \"input\": \"$social_group\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group\",\n      \"localField\": \"social_group_object_id\",\n      \"foreignField\": \"_id\",\n      \"as\": \"social_group\"\n    }\n  },\n  {\n    \"$match\": {\n      \"user\": \"@jwt:user.id\",\n      \"status\": \"pending\",\n      \"tenant_id\": \"@header:x-tenant-id\"\n    }\n  },\n  {\n    \"$unwind\": \"$social_group\"\n  },\n  {\n    \"$replaceRoot\": {\n      \"newRoot\": {\n        \"$mergeObjects\": [\n          \"$social_group\",\n          {\n            \"role\": \"$role\"\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"media\",\n      \"let\": {\n        \"featuredImageId\": {\n          \"$arrayElemAt\": [\n            \"$cover\",\n            0\n          ]\n        }\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$eq\": [\n                \"$_id\",\n                {\n                  \"$toObjectId\": \"$$featuredImageId\"\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"path\": {\n              \"$concat\": [\n                {\n                  \"$cond\": [\n                    {\n                      \"$eq\": [\n                        \"minio\",\n                        \"@app_settings:storage_type\"\n                      ]\n                    },\n                    \"@app_settings:minio.public\",\n                    \"@app_settings:doSpace.public\"\n                  ]\n                },\n                \"/\",\n                \"$disk\",\n                \"/\",\n                \"$filename\"\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"cover\"\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "note": "",
+  "method": "get-list",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "cache_time": "",
+  "categories": [],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "restricted": [
+    {
+      "key": "social_group",
+      "value": "social_group",
+      "required": true
+    },
+    {
+      "key": "user",
+      "value": "user",
+      "required": true
+    },
+    {
+      "key": "status",
+      "value": "status",
+      "required": true
+    },
+    {
+      "key": "isFollow",
+      "value": "isFollow",
+      "required": true
+    },
+    {
+      "key": "role",
+      "value": "role",
+      "required": true
+    },
+    {
+      "key": "_id",
+      "value": "_id",
+      "required": true
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at",
+      "required": true
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "_id": "677b434df99e7327567de020",
+  "title": "Get comments level 1 of tweet",
+  "outputEntity": [
+    "6764e3926e57acaf6815ab97"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"tweet\": \"@param:tweet_id\",\n      \"$or\": [\n        { \"parent_id\": null },\n        { \"parent_id\": { \"$size\": 0 } },\n        { \"parent_id\": { \"$exists\": false } }\n      ]\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"media\",\n      \"let\": {\n        \"attachmentsIds\": {\n          \"$cond\": {\n            \"if\": {\n              \"$and\": [\n                {\n                  \"$isArray\": \"$attachments\"\n                },\n                {\n                  \"$gt\": [\n                    {\n                      \"$size\": \"$attachments\"\n                    },\n                    0\n                  ]\n                }\n              ]\n            },\n            \"then\": {\n              \"$map\": {\n                \"input\": \"$attachments\",\n                \"as\": \"attId\",\n                \"in\": {\n                  \"$toObjectId\": \"$$attId\"\n                }\n              }\n            },\n            \"else\": []\n          }\n        }\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$in\": [\n                \"$_id\",\n                \"$$attachmentsIds\"\n              ]\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"path\": {\n              \"$concat\": [\n                {\n                  \"$cond\": [\n                    {\n                      \"$eq\": [\n                        \"minio\",\n                        \"@app_settings:storage_type\"\n                      ]\n                    },\n                    \"@app_settings:minio.public\",\n                    \"@app_settings:doSpace.public\"\n                  ]\n                },\n                \"/\",\n                \"$disk\",\n                \"/\",\n                \"$filename\"\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"attachments\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-tweet-comment\",\n      \"let\": {\n        \"id\": \"$id\"\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$eq\": [\n                [\n                  \"$$id\"\n                ],\n                \"$parent_id\"\n              ]\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"id\": {\n              \"$toString\": \"$_id\"\n            }\n          }\n        }\n      ],\n      \"as\": \"sub_comments\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"sub_comment_quantity\": {\n        \"$size\": \"$sub_comments\"\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"sub_comments\": 0\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"user-tenant-profile\",\n      \"localField\": \"created_by\",\n      \"foreignField\": \"user\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"full_name\": {\n              \"$concat\": [\n                \"$profile.last_name\",\n                \" \",\n                \"$profile.first_name\"\n              ]\n            }\n          }\n        },\n        {\n          \"$project\": {\n            \"_id\": \"$user\",\n            \"full_name\": 1,\n            \"featured_image\": \"$profile.social.featured_image\"\n          }\n        }\n      ],\n      \"as\": \"user\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-entity-like\",\n      \"let\": {\n        \"currentId\": \"$id\",\n        \"userId\": \"@jwt:user.id\"\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$and\": [\n                {\n                  \"$eq\": [\n                    \"$entity_id\",\n                    \"$$currentId\"\n                  ]\n                },\n                {\n                  \"$eq\": [\n                    \"$created_by\",\n                    \"$$userId\"\n                  ]\n                }\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"liked_info\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"liked\": {\n        \"$cond\": {\n          \"if\": {\n            \"$gt\": [\n              {\n                \"$size\": \"$liked_info\"\n              },\n              0\n            ]\n          },\n          \"then\": true,\n          \"else\": false\n        }\n      }\n    }\n  },\n  {\n    \"$sort\": {\n      \"created_at\": -1\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "note": "",
+  "method": "get-list",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "body": null,
+  "documents": [],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "tweet_id",
+      "key": "tweet_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ],
+  "categories": [],
+  "data": {
+    "id": "f12290ab-5c35-4ab6-b9bd-70df2c60379e",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "cache_time": "",
+  "restricted": [
+    {
+      "key": "parent_id",
+      "value": "parent_id"
+    },
+    {
+      "key": "content",
+      "value": "content"
+    },
+    {
+      "key": "tweet",
+      "value": "tweet"
+    },
+    {
+      "key": "social_group",
+      "value": "social_group"
+    },
+    {
+      "key": "like_count",
+      "value": "like_count"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "id": "677b434df99e7327567de020"
+}

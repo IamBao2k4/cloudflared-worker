@@ -1,0 +1,714 @@
+{
+  "_id": "67c66d92cb2d3f0de04bccc1",
+  "title": "mge listing tweet",
+  "mongodb_collection_name": "mge-listing-tweet",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true,
+        "hidden": false
+      },
+      "slug": {
+        "title": "slug",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "depend_field": "root_title",
+        "filter": true
+      },
+      "category": {
+        "title": "category",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-listing-category",
+          "_id": "mge-listing-category",
+          "type": "n-1"
+        },
+        "filter": true
+      },
+      "status": {
+        "title": "status",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "ACTIVE",
+            "value": "active"
+          },
+          {
+            "key": "DELETED",
+            "value": "deleted"
+          },
+          {
+            "key": "APPROVE",
+            "value": "approve"
+          },
+          {
+            "key": "HIDDEN",
+            "value": "hidden"
+          },
+          {
+            "key": "DRAFT",
+            "value": "draft"
+          },
+          {
+            "key": "ARCHIVE",
+            "value": "archive"
+          },
+          {
+            "key": "WAITING",
+            "value": "waiting"
+          },
+          {
+            "key": "REJECT",
+            "value": "reject"
+          },
+          {
+            "key": "SEND TO REVIEW",
+            "value": "send_to_review"
+          },
+          {
+            "key": "EXPIRE",
+            "value": "expire"
+          }
+        ],
+        "allowNull": false,
+        "filter": true
+      },
+      "type": {
+        "title": "type",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "Tin tức",
+            "value": "news"
+          },
+          {
+            "key": "Tin đăng",
+            "value": "post"
+          }
+        ],
+        "filter": true
+      },
+      "short_description": {
+        "title": "short_description",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "long_description": {
+        "title": "long_description",
+        "type": "string",
+        "widget": "textarea",
+        "customRole": "texteditor",
+        "filter": true,
+        "min": 30,
+        "max": 3000
+      },
+      "featured_image": {
+        "title": "featured_image",
+        "type": "string",
+        "widget": "file",
+        "description": "field dành cho type news"
+      },
+      "list_image": {
+        "title": "list_image",
+        "type": "string",
+        "widget": "multipleFiles",
+        "filter": true
+      },
+      "approve_at": {
+        "title": "approve_at",
+        "type": "string",
+        "widget": "date",
+        "displayFormat": "yyyy/MM/dd",
+        "formatDate": "date",
+        "disabled": false,
+        "field": "single",
+        "mode": "date",
+        "filter": true
+      },
+      "approve_by": {
+        "title": "approve_by",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "entity",
+          "entity": "entity",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "f1104dd3-5c1f-447f-b871-480080ec1d2f"
+          }
+        },
+        "filter": true
+      },
+      "expire_at": {
+        "title": "expire_at",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": false,
+        "field": "single",
+        "mode": "dateTime",
+        "filter": true
+      },
+      "reject_reason": {
+        "title": "reject_reason",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "real_estate_features": {
+        "title": "real_estate_features",
+        "type": "object",
+        "properties": {
+          "price": {
+            "widget": "numberInput",
+            "title": "price",
+            "type": "string"
+          },
+          "acreage": {
+            "title": "acreage",
+            "type": "string",
+            "widget": "numberInput"
+          },
+          "price_type": {
+            "title": "price_type",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "VND",
+                "value": "vnd"
+              },
+              {
+                "key": "Giá/m2",
+                "value": "price_unit_m2"
+              },
+              {
+                "key": "Thỏa thuận",
+                "value": " agreement"
+              }
+            ]
+          },
+          "legal_document": {
+            "title": "legal_document",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "Sổ đỏ/Sổ hồng",
+                "value": "ownership_certificate"
+              },
+              {
+                "key": "Hợp đồng mua bán",
+                "value": "commodity_trading_contracts"
+              },
+              {
+                "key": "Đang chờ sổ",
+                "value": "waiting_certificate"
+              },
+              {
+                "key": "Thêm",
+                "value": "more"
+              }
+            ]
+          },
+          "another_legal_document": {
+            "title": "another_legal_document",
+            "type": "string",
+            "widget": "shortAnswer"
+          },
+          "furniture": {
+            "title": "furniture",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "Đầy đủ",
+                "value": "full"
+              },
+              {
+                "key": "Cơ bản",
+                "value": "basic"
+              },
+              {
+                "key": "Không nội thất",
+                "value": "none"
+              },
+              {
+                "key": "Thêm",
+                "value": "more"
+              }
+            ]
+          },
+          "another_furniture": {
+            "title": "another_furniture",
+            "type": "string",
+            "widget": "shortAnswer"
+          },
+          "bed_room": {
+            "type": "string",
+            "widget": "numberInput",
+            "title": "bed_room"
+          },
+          "rest_room": {
+            "type": "string",
+            "widget": "numberInput",
+            "title": "rest_room"
+          },
+          "floor": {
+            "type": "string",
+            "widget": "numberInput",
+            "title": "floor"
+          },
+          "house_direction": {
+            "title": "house_direction",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "Đông",
+                "value": "east"
+              },
+              {
+                "key": "Tây",
+                "value": "west"
+              },
+              {
+                "key": "Nam",
+                "value": "south"
+              },
+              {
+                "key": "Bắc",
+                "value": "north"
+              },
+              {
+                "key": "Đông Bắc",
+                "value": "north_east"
+              },
+              {
+                "key": "Tây Bắc",
+                "value": "north_west"
+              },
+              {
+                "key": "Đông Nam",
+                "value": "south_east"
+              },
+              {
+                "key": "Tây Nam",
+                "value": "south_west"
+              }
+            ]
+          },
+          "balcony_direction": {
+            "title": "balcony_direction",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "Đông",
+                "value": "east"
+              },
+              {
+                "key": "Tây",
+                "value": "west"
+              },
+              {
+                "key": "Nam",
+                "value": "south"
+              },
+              {
+                "key": "Bắc",
+                "value": "north"
+              },
+              {
+                "key": "Đông Bắc",
+                "value": "north_east"
+              },
+              {
+                "key": "Tây Bắc",
+                "value": "north_west"
+              },
+              {
+                "key": "Đông Nam",
+                "value": "south_east"
+              },
+              {
+                "key": "Tây Nam",
+                "value": "south_west"
+              }
+            ]
+          },
+          "weight_house": {
+            "title": "weight_house",
+            "type": "string",
+            "widget": "numberInput"
+          },
+          "weight_street": {
+            "title": "weight_street",
+            "type": "string",
+            "widget": "numberInput"
+          },
+          "move_in_time": {
+            "title": "move_in_time",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "Ở ngay",
+                "value": "now"
+              },
+              {
+                "key": "1 - 2 tuần",
+                "value": "week"
+              },
+              {
+                "key": "1 tháng",
+                "value": "month"
+              },
+              {
+                "key": "Thỏa thuận",
+                "value": "deal "
+              }
+            ],
+            "default": "now"
+          },
+          "electricity_price": {
+            "title": "electricity_price",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "Theo nhà cung cấp",
+                "value": "according_to_the_provider"
+              },
+              {
+                "key": "Do chủ nhà quy định",
+                "value": "determined_by_the_landlord"
+              },
+              {
+                "key": "Thỏa thuận",
+                "value": "deal"
+              }
+            ],
+            "default": "according_to_the_provider"
+          },
+          "water_price": {
+            "title": "water_price",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "Theo nhà cung cấp",
+                "value": "according_to_the_provider"
+              },
+              {
+                "key": "Do chủ nhà quy định",
+                "value": "determined_by_the_landlord"
+              },
+              {
+                "key": "Thỏa thuận",
+                "value": "deal"
+              }
+            ],
+            "default": "according_to_the_provider"
+          },
+          "internet_price": {
+            "title": "internet_price",
+            "type": "string",
+            "widget": "select",
+            "choices": [
+              {
+                "key": "Do chủ nhà quy định",
+                "value": "determined_by_the_landlord"
+              },
+              {
+                "key": "Thỏa thuận",
+                "value": "deal"
+              }
+            ],
+            "default": "determined_by_the_landlord"
+          },
+          "amenity_facility": {
+            "title": "amenity_facility",
+            "type": "string",
+            "widget": "select",
+            "isMultiple": true,
+            "choices": [
+              {
+                "key": "Camera",
+                "value": "camera"
+              },
+              {
+                "key": "Bảo vệ",
+                "value": "security"
+              },
+              {
+                "key": "PCCC",
+                "value": "pccc"
+              }
+            ]
+          }
+        },
+        "required": []
+      },
+      "address": {
+        "title": "address",
+        "type": "object",
+        "properties": {
+          "city": {
+            "widget": "shortAnswer",
+            "title": "city",
+            "type": "string"
+          },
+          "district": {
+            "widget": "shortAnswer",
+            "title": "district",
+            "type": "string"
+          },
+          "ward": {
+            "widget": "shortAnswer",
+            "title": "ward",
+            "type": "string"
+          },
+          "street": {
+            "title": "street",
+            "type": "string",
+            "widget": "shortAnswer"
+          },
+          "full_address": {
+            "title": "full_address",
+            "type": "string",
+            "widget": "shortAnswer"
+          }
+        },
+        "required": []
+      },
+      "project": {
+        "title": "project",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-listing-project",
+          "_id": "mge-listing-project",
+          "type": "n-1"
+        }
+      },
+      "willingness_to": {
+        "title": "willingness_to",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "SELL",
+            "value": "sell"
+          },
+          {
+            "key": "RENT",
+            "value": "rent"
+          }
+        ],
+        "default": "sell"
+      }
+    },
+    "required": [
+      "title",
+      "slug",
+      "category",
+      "type"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "category": {
+      "ui:widget": "relation"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "type": {
+      "ui:widget": "select"
+    },
+    "short_description": {
+      "ui:widget": "shortAnswer"
+    },
+    "long_description": {
+      "ui:widget": "textarea"
+    },
+    "featured_image": {
+      "ui:widget": "file"
+    },
+    "list_image": {
+      "ui:widget": "multipleFiles"
+    },
+    "approve_at": {
+      "ui:widget": "date"
+    },
+    "approve_by": {
+      "ui:widget": "relation"
+    },
+    "expire_at": {
+      "ui:widget": "dateTime"
+    },
+    "reject_reason": {
+      "ui:widget": "shortAnswer"
+    },
+    "real_estate_features": {
+      "price": {
+        "ui:widget": "numberInput"
+      },
+      "acreage": {
+        "ui:widget": "numberInput"
+      },
+      "price_type": {
+        "ui:widget": "select"
+      },
+      "legal_document": {
+        "ui:widget": "select"
+      },
+      "another_legal_document": {
+        "ui:widget": "shortAnswer"
+      },
+      "furniture": {
+        "ui:widget": "select"
+      },
+      "another_furniture": {
+        "ui:widget": "shortAnswer"
+      },
+      "bed_room": {
+        "ui:widget": "numberInput"
+      },
+      "rest_room": {
+        "ui:widget": "numberInput"
+      },
+      "floor": {
+        "ui:widget": "numberInput"
+      },
+      "house_direction": {
+        "ui:widget": "select"
+      },
+      "balcony_direction": {
+        "ui:widget": "select"
+      },
+      "weight_house": {
+        "ui:widget": "numberInput"
+      },
+      "weight_street": {
+        "ui:widget": "numberInput"
+      },
+      "move_in_time": {
+        "ui:widget": "select"
+      },
+      "electricity_price": {
+        "ui:widget": "select"
+      },
+      "water_price": {
+        "ui:widget": "select"
+      },
+      "internet_price": {
+        "ui:widget": "select"
+      },
+      "amenity_facility": {
+        "ui:widget": "select"
+      },
+      "ui:order": [
+        "price",
+        "acreage",
+        "price_type",
+        "legal_document",
+        "another_legal_document",
+        "furniture",
+        "another_furniture",
+        "bed_room",
+        "rest_room",
+        "floor",
+        "house_direction",
+        "balcony_direction",
+        "weight_house",
+        "weight_street",
+        "move_in_time",
+        "electricity_price",
+        "water_price",
+        "internet_price",
+        "amenity_facility"
+      ]
+    },
+    "address": {
+      "city": {
+        "ui:widget": "shortAnswer"
+      },
+      "district": {
+        "ui:widget": "shortAnswer"
+      },
+      "ward": {
+        "ui:widget": "shortAnswer"
+      },
+      "street": {
+        "ui:widget": "shortAnswer"
+      },
+      "full_address": {
+        "ui:widget": "shortAnswer"
+      },
+      "ui:order": [
+        "city",
+        "district",
+        "ward",
+        "street",
+        "full_address"
+      ]
+    },
+    "project": {
+      "ui:widget": "relation"
+    },
+    "willingness_to": {
+      "ui:widget": "select"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "category",
+      "status",
+      "type",
+      "short_description",
+      "long_description",
+      "featured_image",
+      "list_image",
+      "approve_at",
+      "approve_by",
+      "expire_at",
+      "reject_reason",
+      "real_estate_features",
+      "address",
+      "project",
+      "willingness_to"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-03-04T03:03:46.121Z",
+  "__v": 0
+}

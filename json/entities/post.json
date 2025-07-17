@@ -1,0 +1,143 @@
+{
+  "_id": "6717481115fa361bfc39f995",
+  "title": "Post",
+  "mongodb_collection_name": "post",
+  "json_schema": {
+    "title": "",
+    "description": "",
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true,
+        "description": "Nhập thông tin title"
+      },
+      "slug": {
+        "title": "Slug",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "depend_field": "root_title",
+        "filter": true,
+        "description": "Nhập slug cho title"
+      },
+      "featured_image": {
+        "type": "string",
+        "widget": "file",
+        "title": "Featured Image",
+        "description": "Chọn hình đại diện",
+        "filter": true
+      },
+      "short_description": {
+        "widget": "longAnswer",
+        "customRole": "textarea",
+        "title": "Short Description",
+        "type": "string"
+      },
+      "category": {
+        "title": "Category",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "category",
+          "_id": "category",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "449ef126-309e-421f-bc66-8d48c2efc1bb"
+          },
+          "type": "1-n"
+        },
+        "filter": true,
+        "description": "Chọn category cho bài viết"
+      },
+      "long_description": {
+        "title": "Long Description",
+        "type": "string",
+        "widget": "longAnswer",
+        "customRole": "texteditor",
+        "description": "Nhập content cho bài viết"
+      },
+      "status": {
+        "widget": "numberInput",
+        "title": "Status",
+        "type": "string",
+        "filter": false,
+        "default": "1",
+        "description": "Chọn trạng thái bài viết",
+        "hidden": true
+      },
+      "tenant_id": {
+        "title": "tenant_id",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true,
+        "hidden": true
+      }
+    },
+    "required": [
+      "title",
+      "slug"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "featured_image": {
+      "ui:widget": "file"
+    },
+    "short_description": {
+      "ui:widget": "longAnswer"
+    },
+    "category": {
+      "ui:widget": "relation"
+    },
+    "long_description": {
+      "ui:widget": "textarea"
+    },
+    "status": {
+      "ui:widget": "numberInput"
+    },
+    "tenant_id": {
+      "ui:widget": "shortAnswer"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "featured_image",
+      "short_description",
+      "category",
+      "long_description",
+      "status",
+      "tenant_id"
+    ]
+  },
+  "languages": [
+    {
+      "locale": "vi",
+      "slug": "vi"
+    },
+    {
+      "locale": "en",
+      "slug": "en"
+    }
+  ],
+  "is_active": true,
+  "use_locale": true,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "created_at": "2024-10-22T06:37:05.063Z",
+  "__v": 0,
+  "entity_group": null,
+  "use_seo_path": true,
+  "use_parent_delete_childs": false
+}

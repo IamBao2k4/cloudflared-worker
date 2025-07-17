@@ -1,0 +1,60 @@
+{
+  "_id": "675934e14670a4882df4fd38",
+  "title": "is-user-level-1",
+  "entity": [
+    "6757b1998659c9e98a2f1e2b"
+  ],
+  "data": {
+    "id": "c835d045-a38d-4e3d-a1a4-057c360397aa",
+    "rules": [
+      {
+        "id": "458cbab0-1300-4109-8954-78476730130a",
+        "field": "user-tenant-level-mapping.user",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$user-tenant-level-mapping.user:jwt.user@id"
+      },
+      {
+        "id": "61132049-dddd-4955-923b-33c4502c4170",
+        "field": "user-tenant-level-mapping.tenant_level",
+        "operator": "=",
+        "valueSource": "value",
+        "value": [
+          {
+            "_id": "6756b8db43dcdc4a3eeef644",
+            "title": "User level 1",
+            "locale": null,
+            "locale_id": null,
+            "created_at": "2024-12-09T16:31:07.000Z",
+            "updated_at": "2024-12-10T10:17:01.000Z",
+            "created_by": [
+              {
+                "_id": "6711e8a47b45b2974bd6133c",
+                "username": "admin2024@gmail.com"
+              }
+            ],
+            "tenant_id": "674028d2611a654e763a73e8",
+            "updated_by": [
+              {
+                "_id": "6711e8a47b45b2974bd6133c",
+                "username": "admin2024@gmail.com"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"user-tenant-level-mapping.user\":\"$user-tenant-level-mapping.user:jwt.user@id\"},{\"user-tenant-level-mapping.tenant_level\":\"6756b8db43dcdc4a3eeef644\"}]}",
+  "params": [],
+  "headers": [],
+  "body": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "note": "",
+  "documents": []
+}

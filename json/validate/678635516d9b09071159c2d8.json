@@ -1,0 +1,64 @@
+{
+  "_id": "678635516d9b09071159c2d8",
+  "title": "is-course-public",
+  "note": "",
+  "entity": [
+    "67529c0665017d942f7592d1"
+  ],
+  "data": {
+    "id": "25beea64-2cc9-4e81-ac73-a06cbd48d5be",
+    "rules": [
+      {
+        "id": "d6db9657-3755-4921-9b51-38e8db5f3b1f",
+        "rules": [
+          {
+            "id": "9dac0e4e-af44-4485-8188-737501bd3fe7",
+            "field": "mge-courses._id",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-courses._id:param._id"
+          },
+          {
+            "id": "886e5f2d-5c9e-451e-8f25-be9d6c1dc0fd",
+            "field": "mge-courses._id",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-courses._id:param.course_id"
+          }
+        ],
+        "combinator": "or",
+        "not": false
+      },
+      {
+        "id": "f75b8566-5cd1-4a88-bf8b-c6a4d3171fa8",
+        "field": "mge-courses.type",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "public"
+      },
+      {
+        "id": "74ee207f-7174-4fc7-bd3c-d907b25f207b",
+        "field": "mge-courses.status",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "active"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$or\":[{\"mge-courses._id\":\"$mge-courses._id:param._id\"},{\"mge-courses._id\":\"$mge-courses._id:param.course_id\"}]},{\"mge-courses.type\":\"public\"},{\"mge-courses.status\":\"active\"}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "advance": null,
+  "body": null,
+  "categories": null,
+  "documents": null,
+  "error_code": null,
+  "headers": null,
+  "logged": null,
+  "params": null,
+  "pre": null
+}

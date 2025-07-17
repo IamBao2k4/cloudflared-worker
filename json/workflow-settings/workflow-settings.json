@@ -1,0 +1,3320 @@
+[
+  {
+    "_id": "67d0f0dd563a6f3245cb028c",
+    "endpoint": "submit-answer-exam",
+    "method": [
+      "put",
+      "get-list",
+      "get-detail",
+      "delete",
+      "post"
+    ],
+    "settings": {
+      "put": {
+        "validate": [
+          {
+            "data": [
+              {
+                "_id": "678479b12669d501febe3619",
+                "title": "is-user-be-owner-or-manager-through-comment",
+                "note": "",
+                "entity": [
+                  {
+                    "_id": "6764e4046e57acaf6815ab9f",
+                    "title": "mge user reports",
+                    "mongodb_collection_name": "mge-user-reports",
+                    "json_schema": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "title": "type",
+                          "type": "string",
+                          "widget": "select",
+                          "choices": [
+                            {
+                              "key": "tweet",
+                              "value": "tweet"
+                            },
+                            {
+                              "key": "comment",
+                              "value": "comment"
+                            }
+                          ],
+                          "filter": true
+                        },
+                        "reason": {
+                          "title": "reason",
+                          "type": "string",
+                          "widget": "select",
+                          "choices": [
+                            {
+                              "key": "Spam",
+                              "value": "spam"
+                            },
+                            {
+                              "key": "Bắt nạt, ngôn tử thù địch",
+                              "value": "bullying"
+                            },
+                            {
+                              "key": "Thông tin sai lệch",
+                              "value": "misinformation"
+                            },
+                            {
+                              "key": "Vi phạm bản quyền",
+                              "value": "copyright-violation"
+                            },
+                            {
+                              "key": "Nội dung quấy rối, khiêu dâm hoặc tình dục",
+                              "value": "harassment"
+                            },
+                            {
+                              "key": "Hành vi lừa đảo",
+                              "value": "fraud"
+                            },
+                            {
+                              "key": "Bạo lực hoặc tự hại",
+                              "value": "violence"
+                            }
+                          ],
+                          "filter": true
+                        },
+                        "document_id": {
+                          "widget": "shortAnswer",
+                          "title": "document_id",
+                          "type": "string",
+                          "filter": true
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "reason",
+                        "document_id"
+                      ],
+                      "dependencies": {}
+                    },
+                    "ui_schema": {
+                      "type": {
+                        "ui:widget": "select"
+                      },
+                      "reason": {
+                        "ui:widget": "select"
+                      },
+                      "document_id": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "ui:order": [
+                        "type",
+                        "reason",
+                        "document_id"
+                      ]
+                    },
+                    "languages": [],
+                    "is_active": true,
+                    "use_locale": false,
+                    "use_parent": false,
+                    "use_block": false,
+                    "use_content_review": false,
+                    "use_like": false,
+                    "use_comment": false,
+                    "use_save": false,
+                    "use_seo_path": false,
+                    "entity_group": null,
+                    "created_by": "6711e8a47b45b2974bd6133c",
+                    "updated_by": "6711e8a47b45b2974bd6133c",
+                    "created_at": "2024-12-20T03:27:00.357Z",
+                    "updated_at": "2025-01-09T01:57:47.548Z",
+                    "__v": 0,
+                    "use_parent_delete_childs": false
+                  }
+                ],
+                "advance": "[\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"_id\":\"@param:_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"document_id\": {\n        \"$toObjectId\": \"$document_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-tweet-comment\",\n      \"localField\": \"document_id\",\n      \"foreignField\": \"_id\",\n      \"as\": \"comment_info\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group-member\",\n      \"localField\": \"comment_info.social_group\",\n      \"foreignField\": \"social_group\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"user\": \"@jwt:user.id\",\n            \"$or\": [\n              { \"role\": \"owner\" },\n              { \"role\": \"manager\" }\n            ]\n          }\n        }\n      ],\n      \"as\": \"memberStatus\"\n    }\n  },\n  {\n    \"$match\": {\n      \"memberStatus\": { \"$ne\": [] }\n    }\n  }\n]",
+                "locale": null,
+                "locale_id": null,
+                "created_at": "2025-01-13T09:25:53.000Z",
+                "created_by": {
+                  "_id": "6711e8a47b45b2974bd6133c",
+                  "username": "admin2024@gmail.com",
+                  "featured_image": [
+                    {
+                      "_id": "67c52c92cb2d3f0de049849f",
+                      "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                      "disk": "satellite",
+                      "mime": "image/jpeg",
+                      "size": 95662,
+                      "title": "AVA-AI-Voice-Assistant.jpg",
+                      "alt": "AVA-AI-Voice-Assistant.jpg",
+                      "tenant_id": "674028d2611a654e763a73e8",
+                      "created_by": "6711e8a47b45b2974bd6133c",
+                      "created_at": "2025-03-03T11:14:10.000Z",
+                      "updated_at": "2025-03-03T11:14:10.000Z",
+                      "is_draft": true,
+                      "__v": 0,
+                      "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                    }
+                  ],
+                  "first_name": "Không Tên",
+                  "last_name": "Không Tên."
+                },
+                "updated_at": "2025-01-13T09:25:53.000Z",
+                "updated_by": {
+                  "_id": "6711e8a47b45b2974bd6133c",
+                  "username": "admin2024@gmail.com",
+                  "featured_image": [
+                    {
+                      "_id": "67c52c92cb2d3f0de049849f",
+                      "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                      "disk": "satellite",
+                      "mime": "image/jpeg",
+                      "size": 95662,
+                      "title": "AVA-AI-Voice-Assistant.jpg",
+                      "alt": "AVA-AI-Voice-Assistant.jpg",
+                      "tenant_id": "674028d2611a654e763a73e8",
+                      "created_by": "6711e8a47b45b2974bd6133c",
+                      "created_at": "2025-03-03T11:14:10.000Z",
+                      "updated_at": "2025-03-03T11:14:10.000Z",
+                      "is_draft": true,
+                      "__v": 0,
+                      "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                    }
+                  ],
+                  "first_name": "Không Tên",
+                  "last_name": "Không Tên."
+                },
+                "tenant_id": "674028d2611a654e763a73e8",
+                "count": 0
+              },
+              {
+                "_id": "67808dae04c6c6669c35bf7f",
+                "title": "is-group-id-from-body-exist",
+                "note": "",
+                "entity": [
+                  {
+                    "_id": "6747ef07c47463d88f8c5ab1",
+                    "title": "mge group",
+                    "mongodb_collection_name": "mge-group",
+                    "languages": [],
+                    "is_active": true,
+                    "use_locale": false,
+                    "use_parent": false,
+                    "use_block": false,
+                    "use_content_review": false,
+                    "use_like": false,
+                    "use_comment": false,
+                    "use_save": false,
+                    "created_by": "6711e8a47b45b2974bd6133c",
+                    "updated_by": "6711e8a47b45b2974bd6133c",
+                    "created_at": "2024-11-28T04:18:15.740Z",
+                    "updated_at": "2025-03-04T01:55:50.121Z",
+                    "__v": 0,
+                    "json_schema": {
+                      "title": "groups",
+                      "description": "",
+                      "type": "object",
+                      "properties": {
+                        "cover": {
+                          "type": "string",
+                          "widget": "file",
+                          "title": "Cover"
+                        },
+                        "title": {
+                          "title": "Title",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "slug": {
+                          "title": "Slug",
+                          "type": "string",
+                          "widget": "UriKeyGen",
+                          "filter": true,
+                          "depend_field": "root_title"
+                        },
+                        "description": {
+                          "title": "Description",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "type": {
+                          "widget": "select",
+                          "returnValue": 2,
+                          "choices": [
+                            {
+                              "key": "public",
+                              "value": "public"
+                            },
+                            {
+                              "key": "private",
+                              "value": "private"
+                            },
+                            {
+                              "key": "secret",
+                              "value": "secret"
+                            }
+                          ],
+                          "allowNull": false,
+                          "isMultiple": false,
+                          "title": "Type",
+                          "type": "string",
+                          "filter": true,
+                          "default": "public"
+                        },
+                        "status": {
+                          "widget": "select",
+                          "returnValue": 2,
+                          "choices": [
+                            {
+                              "key": "active",
+                              "value": "active"
+                            },
+                            {
+                              "key": "inactive",
+                              "value": "inactive"
+                            },
+                            {
+                              "key": "pause",
+                              "value": "pause"
+                            }
+                          ],
+                          "default": [],
+                          "allowNull": false,
+                          "isMultiple": false,
+                          "title": "Status",
+                          "type": "string",
+                          "filter": true
+                        },
+                        "permissions": {
+                          "title": "Permissions",
+                          "type": "object",
+                          "description": " Setup permission's group",
+                          "properties": {
+                            "post_create": {
+                              "title": "post_create",
+                              "type": "string",
+                              "widget": "select",
+                              "isMultiple": true,
+                              "choices": [
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                },
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                }
+                              ],
+                              "description": "Ai có quyền tạo bài viết trong nhóm",
+                              "default": "owner"
+                            },
+                            "group_info_update": {
+                              "title": "group_info_update",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                },
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true,
+                              "description": "Ai có quyền chỉnh sửa thông tin nhóm"
+                            },
+                            "group_member_update": {
+                              "title": "group_member_update",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                },
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                }
+                              ],
+                              "isMultiple": true,
+                              "description": "update là cập nhật trạng thái và role user",
+                              "default": "owner"
+                            },
+                            "group_member_add": {
+                              "title": "group_member_add",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "isMultiple": true,
+                              "default": "owner"
+                            },
+                            "group_member_remove": {
+                              "title": "group_member_remove",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "isMultiple": true,
+                              "default": "owner"
+                            },
+                            "group_category_create": {
+                              "title": "group_category_create",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "isMultiple": true,
+                              "default": "owner"
+                            },
+                            "group_category_update": {
+                              "title": "group_category_update",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "isMultiple": true,
+                              "default": "owner"
+                            },
+                            "group_category_delete": {
+                              "title": "group_category_delete",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "isMultiple": true,
+                              "default": "owner"
+                            },
+                            "group_menu_item_create": {
+                              "type": "string",
+                              "widget": "select",
+                              "title": "group_menu_item_create",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "isMultiple": true,
+                              "default": "owner"
+                            },
+                            "group_menu_item_update": {
+                              "title": "group_menu_item_update",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true
+                            },
+                            "tweet_delete": {
+                              "widget": "select",
+                              "returnValue": 2,
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "allowNull": false,
+                              "isMultiple": true,
+                              "title": "tweet_delete",
+                              "type": "string",
+                              "filter": false,
+                              "default": "owner"
+                            },
+                            "group_reports_manage": {
+                              "title": "group_reports_manage",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true
+                            },
+                            "group_interface_setting_manage": {
+                              "title": "group_interface_setting_manage",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true
+                            },
+                            "tweet_store_create": {
+                              "widget": "select",
+                              "returnValue": 2,
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "allowNull": false,
+                              "isMultiple": true,
+                              "title": "tweet_store_create",
+                              "type": "string",
+                              "default": "owner"
+                            },
+                            "tweet_store_manage": {
+                              "widget": "select",
+                              "returnValue": 2,
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "allowNull": false,
+                              "isMultiple": true,
+                              "title": "tweet_store_manage",
+                              "type": "string",
+                              "default": "owner"
+                            },
+                            "tweet_reject_create": {
+                              "title": "tweet_reject_create",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true
+                            },
+                            "tweet_reject_manage": {
+                              "title": "tweet_reject_manage",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true
+                            },
+                            "tweet_waiting_create": {
+                              "title": "tweet_waiting_create",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true
+                            },
+                            "tweet_waiting_manage": {
+                              "title": "tweet_waiting_manage",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true
+                            },
+                            "tweet_approve": {
+                              "title": "tweet_approve",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true
+                            },
+                            "tweet_send_to_review_manage": {
+                              "title": "tweet_send_to_review_manage",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true,
+                              "allowNull": false
+                            },
+                            "tweet_approve_mode": {
+                              "title": "tweet_approve_mode",
+                              "type": "string",
+                              "widget": "boolean",
+                              "default": false
+                            },
+                            "tweet_edited_approve_mode": {
+                              "title": "tweet_edited_approve_mode",
+                              "type": "string",
+                              "default": false,
+                              "widget": "boolean"
+                            }
+                          },
+                          "required": [
+                            "post_create",
+                            "group_info_update",
+                            "group_member_update",
+                            "group_member_add",
+                            "group_member_remove",
+                            "group_category_create",
+                            "group_category_update",
+                            "group_category_delete",
+                            "group_menu_item_create",
+                            "group_menu_item_update",
+                            "tweet_delete",
+                            "group_reports_manage",
+                            "group_interface_setting_manage",
+                            "tweet_store_create",
+                            "tweet_store_manage",
+                            "tweet_reject_create",
+                            "tweet_reject_manage",
+                            "tweet_waiting_create",
+                            "tweet_waiting_manage",
+                            "tweet_approve",
+                            "tweet_send_to_review_manage",
+                            "tweet_approve_mode",
+                            "tweet_edited_approve_mode"
+                          ],
+                          "dependencies": {}
+                        }
+                      },
+                      "required": [
+                        "title",
+                        "slug",
+                        "type",
+                        "status"
+                      ],
+                      "dependencies": {}
+                    },
+                    "ui_schema": {
+                      "cover": {
+                        "ui:widget": "file"
+                      },
+                      "title": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "slug": {
+                        "ui:widget": "UriKeyGen"
+                      },
+                      "description": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "type": {
+                        "ui:widget": "select"
+                      },
+                      "status": {
+                        "ui:widget": "select"
+                      },
+                      "permissions": {
+                        "post_create": {
+                          "ui:widget": "select"
+                        },
+                        "group_info_update": {
+                          "ui:widget": "select"
+                        },
+                        "group_member_update": {
+                          "ui:widget": "select"
+                        },
+                        "group_member_add": {
+                          "ui:widget": "select"
+                        },
+                        "group_member_remove": {
+                          "ui:widget": "select"
+                        },
+                        "group_category_create": {
+                          "ui:widget": "select"
+                        },
+                        "group_category_update": {
+                          "ui:widget": "select"
+                        },
+                        "group_category_delete": {
+                          "ui:widget": "select"
+                        },
+                        "group_menu_item_create": {
+                          "ui:widget": "select"
+                        },
+                        "group_menu_item_update": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_delete": {
+                          "ui:widget": "select"
+                        },
+                        "group_reports_manage": {
+                          "ui:widget": "select"
+                        },
+                        "group_interface_setting_manage": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_store_create": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_store_manage": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_reject_create": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_reject_manage": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_waiting_create": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_waiting_manage": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_approve": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_send_to_review_manage": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_approve_mode": {
+                          "ui:widget": "boolean"
+                        },
+                        "tweet_edited_approve_mode": {
+                          "ui:widget": "boolean"
+                        },
+                        "ui:order": [
+                          "post_create",
+                          "group_info_update",
+                          "group_member_update",
+                          "group_member_add",
+                          "group_member_remove",
+                          "group_category_create",
+                          "group_category_update",
+                          "group_category_delete",
+                          "group_menu_item_create",
+                          "group_menu_item_update",
+                          "tweet_delete",
+                          "group_reports_manage",
+                          "group_interface_setting_manage",
+                          "tweet_store_create",
+                          "tweet_store_manage",
+                          "tweet_reject_create",
+                          "tweet_reject_manage",
+                          "tweet_waiting_create",
+                          "tweet_waiting_manage",
+                          "tweet_approve",
+                          "tweet_send_to_review_manage",
+                          "tweet_approve_mode",
+                          "tweet_edited_approve_mode"
+                        ]
+                      },
+                      "ui:order": [
+                        "cover",
+                        "title",
+                        "slug",
+                        "description",
+                        "type",
+                        "status",
+                        "permissions"
+                      ]
+                    },
+                    "entity_group": null,
+                    "use_seo_path": false,
+                    "use_parent_delete_childs": false,
+                    "entity_setting": {},
+                    "settings": {}
+                  }
+                ],
+                "data": {
+                  "id": "a63460e2-5020-4b4f-a74b-564aa5db4563",
+                  "rules": [
+                    {
+                      "id": "9c09af7a-5902-4af7-957b-f2e2aaa83166",
+                      "field": "mge-group._id",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "$mge-group._id:body.social_group"
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                },
+                "required": [],
+                "queryMongodb": "{\"mge-group._id\":\"$mge-group._id:body.social_group\"}",
+                "locale": null,
+                "locale_id": null,
+                "created_at": "2025-01-10T10:02:06.000Z",
+                "created_by": {
+                  "_id": "6711e8a47b45b2974bd6133c",
+                  "username": "admin2024@gmail.com",
+                  "featured_image": [
+                    {
+                      "_id": "67c52c92cb2d3f0de049849f",
+                      "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                      "disk": "satellite",
+                      "mime": "image/jpeg",
+                      "size": 95662,
+                      "title": "AVA-AI-Voice-Assistant.jpg",
+                      "alt": "AVA-AI-Voice-Assistant.jpg",
+                      "tenant_id": "674028d2611a654e763a73e8",
+                      "created_by": "6711e8a47b45b2974bd6133c",
+                      "created_at": "2025-03-03T11:14:10.000Z",
+                      "updated_at": "2025-03-03T11:14:10.000Z",
+                      "is_draft": true,
+                      "__v": 0,
+                      "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                    }
+                  ],
+                  "first_name": "Không Tên",
+                  "last_name": "Không Tên."
+                },
+                "updated_at": "2025-01-10T10:02:06.000Z",
+                "updated_by": {
+                  "_id": "6711e8a47b45b2974bd6133c",
+                  "username": "admin2024@gmail.com",
+                  "featured_image": [
+                    {
+                      "_id": "67c52c92cb2d3f0de049849f",
+                      "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                      "disk": "satellite",
+                      "mime": "image/jpeg",
+                      "size": 95662,
+                      "title": "AVA-AI-Voice-Assistant.jpg",
+                      "alt": "AVA-AI-Voice-Assistant.jpg",
+                      "tenant_id": "674028d2611a654e763a73e8",
+                      "created_by": "6711e8a47b45b2974bd6133c",
+                      "created_at": "2025-03-03T11:14:10.000Z",
+                      "updated_at": "2025-03-03T11:14:10.000Z",
+                      "is_draft": true,
+                      "__v": 0,
+                      "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                    }
+                  ],
+                  "first_name": "Không Tên",
+                  "last_name": "Không Tên."
+                },
+                "tenant_id": "674028d2611a654e763a73e8",
+                "advance": null,
+                "body": null,
+                "categories": null,
+                "documents": null,
+                "error_code": null,
+                "headers": null,
+                "logged": null,
+                "params": null,
+                "pre": null,
+                "count": 1
+              },
+              {
+                "_id": "677ba29844af0385d64b4053",
+                "title": "is-comment-belongs-to-group",
+                "note": "",
+                "entity": [
+                  {
+                    "_id": "6764e3926e57acaf6815ab97",
+                    "title": "mge tweet comment",
+                    "mongodb_collection_name": "mge-tweet-comment",
+                    "json_schema": {
+                      "type": "object",
+                      "properties": {
+                        "parent_id": {
+                          "title": "Parent ID",
+                          "type": "string",
+                          "widget": "relation",
+                          "typeRelation": {
+                            "title": "mge-tweet-comment",
+                            "id": "mge-tweet-comment",
+                            "filter": {
+                              "combinator": "and",
+                              "rules": [],
+                              "id": "a5031b91-2f8b-4a61-ae73-b1b65c207224"
+                            },
+                            "type": "n-1"
+                          },
+                          "filter": true
+                        },
+                        "content": {
+                          "widget": "longAnswer",
+                          "customRole": "textarea",
+                          "title": "content",
+                          "type": "string",
+                          "filter": true
+                        },
+                        "tweet": {
+                          "title": "tweet",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "social_group": {
+                          "title": "social_group",
+                          "type": "string",
+                          "widget": "relation",
+                          "typeRelation": {
+                            "title": "mge-group",
+                            "_id": "mge-group",
+                            "type": "n-1",
+                            "filter": {
+                              "combinator": "and",
+                              "rules": [],
+                              "id": "ab51f19d-9552-4d7d-bd51-4472e77ccedc"
+                            }
+                          },
+                          "filter": true
+                        }
+                      },
+                      "required": [
+                        "content",
+                        "tweet",
+                        "social_group"
+                      ],
+                      "dependencies": {}
+                    },
+                    "ui_schema": {
+                      "parent_id": {
+                        "ui:widget": "relation"
+                      },
+                      "content": {
+                        "ui:widget": "longAnswer"
+                      },
+                      "tweet": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "social_group": {
+                        "ui:widget": "relation"
+                      },
+                      "ui:order": [
+                        "parent_id",
+                        "content",
+                        "tweet",
+                        "social_group"
+                      ]
+                    },
+                    "languages": [],
+                    "is_active": true,
+                    "use_locale": false,
+                    "use_parent": true,
+                    "use_block": false,
+                    "use_content_review": false,
+                    "use_like": false,
+                    "use_comment": false,
+                    "use_save": false,
+                    "use_seo_path": false,
+                    "entity_group": null,
+                    "created_by": "6711e8a47b45b2974bd6133c",
+                    "updated_by": "6711e8a47b45b2974bd6133c",
+                    "created_at": "2024-12-20T03:25:06.904Z",
+                    "updated_at": "2025-01-06T09:29:49.410Z",
+                    "__v": 0
+                  }
+                ],
+                "data": {
+                  "id": "261da8a8-7afe-44b2-9d9d-510e78c76ef3",
+                  "rules": [
+                    {
+                      "id": "5cc98c3e-8481-480d-8459-7c7f920ff161",
+                      "field": "mge-tweet-comment._id",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "$mge-tweet-comment._id:param._id"
+                    },
+                    {
+                      "id": "3512c229-0094-4b8f-82f6-0d47c0aeb1c7",
+                      "field": "mge-tweet-comment.social_group",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "$mge-tweet-comment.social_group:param.group_id"
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                },
+                "required": [],
+                "queryMongodb": "{\"$and\":[{\"mge-tweet-comment._id\":\"$mge-tweet-comment._id:param._id\"},{\"mge-tweet-comment.social_group\":\"$mge-tweet-comment.social_group:param.group_id\"}]}",
+                "locale": null,
+                "locale_id": null,
+                "created_at": "2025-01-06T16:30:00.000Z",
+                "created_by": {
+                  "_id": "6711e8a47b45b2974bd6133c",
+                  "username": "admin2024@gmail.com",
+                  "featured_image": [
+                    {
+                      "_id": "67c52c92cb2d3f0de049849f",
+                      "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                      "disk": "satellite",
+                      "mime": "image/jpeg",
+                      "size": 95662,
+                      "title": "AVA-AI-Voice-Assistant.jpg",
+                      "alt": "AVA-AI-Voice-Assistant.jpg",
+                      "tenant_id": "674028d2611a654e763a73e8",
+                      "created_by": "6711e8a47b45b2974bd6133c",
+                      "created_at": "2025-03-03T11:14:10.000Z",
+                      "updated_at": "2025-03-03T11:14:10.000Z",
+                      "is_draft": true,
+                      "__v": 0,
+                      "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                    }
+                  ],
+                  "first_name": "Không Tên",
+                  "last_name": "Không Tên."
+                },
+                "updated_at": "2025-01-06T16:30:00.000Z",
+                "updated_by": {
+                  "_id": "6711e8a47b45b2974bd6133c",
+                  "username": "admin2024@gmail.com",
+                  "featured_image": [
+                    {
+                      "_id": "67c52c92cb2d3f0de049849f",
+                      "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                      "disk": "satellite",
+                      "mime": "image/jpeg",
+                      "size": 95662,
+                      "title": "AVA-AI-Voice-Assistant.jpg",
+                      "alt": "AVA-AI-Voice-Assistant.jpg",
+                      "tenant_id": "674028d2611a654e763a73e8",
+                      "created_by": "6711e8a47b45b2974bd6133c",
+                      "created_at": "2025-03-03T11:14:10.000Z",
+                      "updated_at": "2025-03-03T11:14:10.000Z",
+                      "is_draft": true,
+                      "__v": 0,
+                      "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                    }
+                  ],
+                  "first_name": "Không Tên",
+                  "last_name": "Không Tên."
+                },
+                "tenant_id": "674028d2611a654e763a73e8",
+                "advance": null,
+                "body": null,
+                "documents": [],
+                "headers": null,
+                "logged": null,
+                "params": null,
+                "pre": null,
+                "count": 1
+              },
+              {
+                "_id": "677b9ef844af0385d64b3f68",
+                "title": "is-comment-belongs-to-tweet",
+                "note": "",
+                "entity": [
+                  {
+                    "_id": "6764e3926e57acaf6815ab97",
+                    "title": "mge tweet comment",
+                    "mongodb_collection_name": "mge-tweet-comment",
+                    "json_schema": {
+                      "type": "object",
+                      "properties": {
+                        "parent_id": {
+                          "title": "Parent ID",
+                          "type": "string",
+                          "widget": "relation",
+                          "typeRelation": {
+                            "title": "mge-tweet-comment",
+                            "id": "mge-tweet-comment",
+                            "filter": {
+                              "combinator": "and",
+                              "rules": [],
+                              "id": "a5031b91-2f8b-4a61-ae73-b1b65c207224"
+                            },
+                            "type": "n-1"
+                          },
+                          "filter": true
+                        },
+                        "content": {
+                          "widget": "longAnswer",
+                          "customRole": "textarea",
+                          "title": "content",
+                          "type": "string",
+                          "filter": true
+                        },
+                        "tweet": {
+                          "title": "tweet",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "social_group": {
+                          "title": "social_group",
+                          "type": "string",
+                          "widget": "relation",
+                          "typeRelation": {
+                            "title": "mge-group",
+                            "_id": "mge-group",
+                            "type": "n-1",
+                            "filter": {
+                              "combinator": "and",
+                              "rules": [],
+                              "id": "ab51f19d-9552-4d7d-bd51-4472e77ccedc"
+                            }
+                          },
+                          "filter": true
+                        }
+                      },
+                      "required": [
+                        "content",
+                        "tweet",
+                        "social_group"
+                      ],
+                      "dependencies": {}
+                    },
+                    "ui_schema": {
+                      "parent_id": {
+                        "ui:widget": "relation"
+                      },
+                      "content": {
+                        "ui:widget": "longAnswer"
+                      },
+                      "tweet": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "social_group": {
+                        "ui:widget": "relation"
+                      },
+                      "ui:order": [
+                        "parent_id",
+                        "content",
+                        "tweet",
+                        "social_group"
+                      ]
+                    },
+                    "languages": [],
+                    "is_active": true,
+                    "use_locale": false,
+                    "use_parent": true,
+                    "use_block": false,
+                    "use_content_review": false,
+                    "use_like": false,
+                    "use_comment": false,
+                    "use_save": false,
+                    "use_seo_path": false,
+                    "entity_group": null,
+                    "created_by": "6711e8a47b45b2974bd6133c",
+                    "updated_by": "6711e8a47b45b2974bd6133c",
+                    "created_at": "2024-12-20T03:25:06.904Z",
+                    "updated_at": "2025-01-06T09:29:49.410Z",
+                    "__v": 0
+                  }
+                ],
+                "data": {
+                  "id": "ba4dfe59-1c02-4f14-ac13-e5e73ec9fea5",
+                  "rules": [
+                    {
+                      "id": "8578b387-a225-4b81-b719-0dbaca96e119",
+                      "field": "mge-tweet-comment._id",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "$mge-tweet-comment._id:param._id"
+                    },
+                    {
+                      "id": "1e3779f3-1ca0-432a-b85e-5adfdf6d4ac0",
+                      "field": "mge-tweet-comment.tweet",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "$mge-tweet-comment.tweet:param.tweet_id"
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                },
+                "required": [],
+                "queryMongodb": "{\"$and\":[{\"mge-tweet-comment._id\":\"$mge-tweet-comment._id:param._id\"},{\"mge-tweet-comment.tweet\":\"$mge-tweet-comment.tweet:param.tweet_id\"}]}",
+                "locale": null,
+                "locale_id": null,
+                "created_at": "2025-01-06T16:14:32.000Z",
+                "created_by": {
+                  "_id": "6711e8a47b45b2974bd6133c",
+                  "username": "admin2024@gmail.com",
+                  "featured_image": [
+                    {
+                      "_id": "67c52c92cb2d3f0de049849f",
+                      "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                      "disk": "satellite",
+                      "mime": "image/jpeg",
+                      "size": 95662,
+                      "title": "AVA-AI-Voice-Assistant.jpg",
+                      "alt": "AVA-AI-Voice-Assistant.jpg",
+                      "tenant_id": "674028d2611a654e763a73e8",
+                      "created_by": "6711e8a47b45b2974bd6133c",
+                      "created_at": "2025-03-03T11:14:10.000Z",
+                      "updated_at": "2025-03-03T11:14:10.000Z",
+                      "is_draft": true,
+                      "__v": 0,
+                      "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                    }
+                  ],
+                  "first_name": "Không Tên",
+                  "last_name": "Không Tên."
+                },
+                "updated_at": "2025-01-06T16:14:32.000Z",
+                "updated_by": {
+                  "_id": "6711e8a47b45b2974bd6133c",
+                  "username": "admin2024@gmail.com",
+                  "featured_image": [
+                    {
+                      "_id": "67c52c92cb2d3f0de049849f",
+                      "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                      "disk": "satellite",
+                      "mime": "image/jpeg",
+                      "size": 95662,
+                      "title": "AVA-AI-Voice-Assistant.jpg",
+                      "alt": "AVA-AI-Voice-Assistant.jpg",
+                      "tenant_id": "674028d2611a654e763a73e8",
+                      "created_by": "6711e8a47b45b2974bd6133c",
+                      "created_at": "2025-03-03T11:14:10.000Z",
+                      "updated_at": "2025-03-03T11:14:10.000Z",
+                      "is_draft": true,
+                      "__v": 0,
+                      "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                    }
+                  ],
+                  "first_name": "Không Tên",
+                  "last_name": "Không Tên."
+                },
+                "tenant_id": "674028d2611a654e763a73e8",
+                "count": 1
+              },
+              {
+                "_id": "677b9d3744af0385d64b3ec6",
+                "title": "is-tweet-belongs-to-group",
+                "note": "",
+                "entity": [
+                  {
+                    "_id": "6747ef07c47463d88f8c5ab1",
+                    "title": "mge group",
+                    "mongodb_collection_name": "mge-group",
+                    "languages": [],
+                    "is_active": true,
+                    "use_locale": false,
+                    "use_parent": false,
+                    "use_block": false,
+                    "use_content_review": false,
+                    "use_like": false,
+                    "use_comment": false,
+                    "use_save": false,
+                    "created_by": "6711e8a47b45b2974bd6133c",
+                    "updated_by": "6711e8a47b45b2974bd6133c",
+                    "created_at": "2024-11-28T04:18:15.740Z",
+                    "updated_at": "2025-03-04T01:55:50.121Z",
+                    "__v": 0,
+                    "json_schema": {
+                      "title": "groups",
+                      "description": "",
+                      "type": "object",
+                      "properties": {
+                        "cover": {
+                          "type": "string",
+                          "widget": "file",
+                          "title": "Cover"
+                        },
+                        "title": {
+                          "title": "Title",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "slug": {
+                          "title": "Slug",
+                          "type": "string",
+                          "widget": "UriKeyGen",
+                          "filter": true,
+                          "depend_field": "root_title"
+                        },
+                        "description": {
+                          "title": "Description",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "type": {
+                          "widget": "select",
+                          "returnValue": 2,
+                          "choices": [
+                            {
+                              "key": "public",
+                              "value": "public"
+                            },
+                            {
+                              "key": "private",
+                              "value": "private"
+                            },
+                            {
+                              "key": "secret",
+                              "value": "secret"
+                            }
+                          ],
+                          "allowNull": false,
+                          "isMultiple": false,
+                          "title": "Type",
+                          "type": "string",
+                          "filter": true,
+                          "default": "public"
+                        },
+                        "status": {
+                          "widget": "select",
+                          "returnValue": 2,
+                          "choices": [
+                            {
+                              "key": "active",
+                              "value": "active"
+                            },
+                            {
+                              "key": "inactive",
+                              "value": "inactive"
+                            },
+                            {
+                              "key": "pause",
+                              "value": "pause"
+                            }
+                          ],
+                          "default": [],
+                          "allowNull": false,
+                          "isMultiple": false,
+                          "title": "Status",
+                          "type": "string",
+                          "filter": true
+                        },
+                        "permissions": {
+                          "title": "Permissions",
+                          "type": "object",
+                          "description": " Setup permission's group",
+                          "properties": {
+                            "post_create": {
+                              "title": "post_create",
+                              "type": "string",
+                              "widget": "select",
+                              "isMultiple": true,
+                              "choices": [
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                },
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                }
+                              ],
+                              "description": "Ai có quyền tạo bài viết trong nhóm",
+                              "default": "owner"
+                            },
+                            "group_info_update": {
+                              "title": "group_info_update",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                },
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true,
+                              "description": "Ai có quyền chỉnh sửa thông tin nhóm"
+                            },
+                            "group_member_update": {
+                              "title": "group_member_update",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                },
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                }
+                              ],
+                              "isMultiple": true,
+                              "description": "update là cập nhật trạng thái và role user",
+                              "default": "owner"
+                            },
+                            "group_member_add": {
+                              "title": "group_member_add",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "isMultiple": true,
+                              "default": "owner"
+                            },
+                            "group_member_remove": {
+                              "title": "group_member_remove",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "isMultiple": true,
+                              "default": "owner"
+                            },
+                            "group_category_create": {
+                              "title": "group_category_create",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "isMultiple": true,
+                              "default": "owner"
+                            },
+                            "group_category_update": {
+                              "title": "group_category_update",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "isMultiple": true,
+                              "default": "owner"
+                            },
+                            "group_category_delete": {
+                              "title": "group_category_delete",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "isMultiple": true,
+                              "default": "owner"
+                            },
+                            "group_menu_item_create": {
+                              "type": "string",
+                              "widget": "select",
+                              "title": "group_menu_item_create",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "isMultiple": true,
+                              "default": "owner"
+                            },
+                            "group_menu_item_update": {
+                              "title": "group_menu_item_update",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true
+                            },
+                            "tweet_delete": {
+                              "widget": "select",
+                              "returnValue": 2,
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "allowNull": false,
+                              "isMultiple": true,
+                              "title": "tweet_delete",
+                              "type": "string",
+                              "filter": false,
+                              "default": "owner"
+                            },
+                            "group_reports_manage": {
+                              "title": "group_reports_manage",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true
+                            },
+                            "group_interface_setting_manage": {
+                              "title": "group_interface_setting_manage",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true
+                            },
+                            "tweet_store_create": {
+                              "widget": "select",
+                              "returnValue": 2,
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "allowNull": false,
+                              "isMultiple": true,
+                              "title": "tweet_store_create",
+                              "type": "string",
+                              "default": "owner"
+                            },
+                            "tweet_store_manage": {
+                              "widget": "select",
+                              "returnValue": 2,
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "allowNull": false,
+                              "isMultiple": true,
+                              "title": "tweet_store_manage",
+                              "type": "string",
+                              "default": "owner"
+                            },
+                            "tweet_reject_create": {
+                              "title": "tweet_reject_create",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true
+                            },
+                            "tweet_reject_manage": {
+                              "title": "tweet_reject_manage",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true
+                            },
+                            "tweet_waiting_create": {
+                              "title": "tweet_waiting_create",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true
+                            },
+                            "tweet_waiting_manage": {
+                              "title": "tweet_waiting_manage",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true
+                            },
+                            "tweet_approve": {
+                              "title": "tweet_approve",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true
+                            },
+                            "tweet_send_to_review_manage": {
+                              "title": "tweet_send_to_review_manage",
+                              "type": "string",
+                              "widget": "select",
+                              "choices": [
+                                {
+                                  "key": "owner",
+                                  "value": "owner"
+                                },
+                                {
+                                  "key": "manager",
+                                  "value": "manager"
+                                },
+                                {
+                                  "key": "member",
+                                  "value": "member"
+                                }
+                              ],
+                              "default": "owner",
+                              "isMultiple": true,
+                              "allowNull": false
+                            },
+                            "tweet_approve_mode": {
+                              "title": "tweet_approve_mode",
+                              "type": "string",
+                              "widget": "boolean",
+                              "default": false
+                            },
+                            "tweet_edited_approve_mode": {
+                              "title": "tweet_edited_approve_mode",
+                              "type": "string",
+                              "default": false,
+                              "widget": "boolean"
+                            }
+                          },
+                          "required": [
+                            "post_create",
+                            "group_info_update",
+                            "group_member_update",
+                            "group_member_add",
+                            "group_member_remove",
+                            "group_category_create",
+                            "group_category_update",
+                            "group_category_delete",
+                            "group_menu_item_create",
+                            "group_menu_item_update",
+                            "tweet_delete",
+                            "group_reports_manage",
+                            "group_interface_setting_manage",
+                            "tweet_store_create",
+                            "tweet_store_manage",
+                            "tweet_reject_create",
+                            "tweet_reject_manage",
+                            "tweet_waiting_create",
+                            "tweet_waiting_manage",
+                            "tweet_approve",
+                            "tweet_send_to_review_manage",
+                            "tweet_approve_mode",
+                            "tweet_edited_approve_mode"
+                          ],
+                          "dependencies": {}
+                        }
+                      },
+                      "required": [
+                        "title",
+                        "slug",
+                        "type",
+                        "status"
+                      ],
+                      "dependencies": {}
+                    },
+                    "ui_schema": {
+                      "cover": {
+                        "ui:widget": "file"
+                      },
+                      "title": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "slug": {
+                        "ui:widget": "UriKeyGen"
+                      },
+                      "description": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "type": {
+                        "ui:widget": "select"
+                      },
+                      "status": {
+                        "ui:widget": "select"
+                      },
+                      "permissions": {
+                        "post_create": {
+                          "ui:widget": "select"
+                        },
+                        "group_info_update": {
+                          "ui:widget": "select"
+                        },
+                        "group_member_update": {
+                          "ui:widget": "select"
+                        },
+                        "group_member_add": {
+                          "ui:widget": "select"
+                        },
+                        "group_member_remove": {
+                          "ui:widget": "select"
+                        },
+                        "group_category_create": {
+                          "ui:widget": "select"
+                        },
+                        "group_category_update": {
+                          "ui:widget": "select"
+                        },
+                        "group_category_delete": {
+                          "ui:widget": "select"
+                        },
+                        "group_menu_item_create": {
+                          "ui:widget": "select"
+                        },
+                        "group_menu_item_update": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_delete": {
+                          "ui:widget": "select"
+                        },
+                        "group_reports_manage": {
+                          "ui:widget": "select"
+                        },
+                        "group_interface_setting_manage": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_store_create": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_store_manage": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_reject_create": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_reject_manage": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_waiting_create": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_waiting_manage": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_approve": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_send_to_review_manage": {
+                          "ui:widget": "select"
+                        },
+                        "tweet_approve_mode": {
+                          "ui:widget": "boolean"
+                        },
+                        "tweet_edited_approve_mode": {
+                          "ui:widget": "boolean"
+                        },
+                        "ui:order": [
+                          "post_create",
+                          "group_info_update",
+                          "group_member_update",
+                          "group_member_add",
+                          "group_member_remove",
+                          "group_category_create",
+                          "group_category_update",
+                          "group_category_delete",
+                          "group_menu_item_create",
+                          "group_menu_item_update",
+                          "tweet_delete",
+                          "group_reports_manage",
+                          "group_interface_setting_manage",
+                          "tweet_store_create",
+                          "tweet_store_manage",
+                          "tweet_reject_create",
+                          "tweet_reject_manage",
+                          "tweet_waiting_create",
+                          "tweet_waiting_manage",
+                          "tweet_approve",
+                          "tweet_send_to_review_manage",
+                          "tweet_approve_mode",
+                          "tweet_edited_approve_mode"
+                        ]
+                      },
+                      "ui:order": [
+                        "cover",
+                        "title",
+                        "slug",
+                        "description",
+                        "type",
+                        "status",
+                        "permissions"
+                      ]
+                    },
+                    "entity_group": null,
+                    "use_seo_path": false,
+                    "use_parent_delete_childs": false,
+                    "entity_setting": {},
+                    "settings": {}
+                  }
+                ],
+                "advance": "[\n  {\n    \"$match\": {\n      \"_id\": { \"$exists\": false }\n    }\n  },\n  {\n    \"$unionWith\": {\n      \"coll\": \"mge-tweet-social-image\",\n      \"pipeline\": [\n        {\n          \"$addFields\": {\n            \"type\": \"images\"\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"$unionWith\": {\n      \"coll\": \"mge-tweet-social-videos\",\n      \"pipeline\": [\n        {\n          \"$addFields\": {\n            \"type\": \"videos\"\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"$unionWith\": {\n      \"coll\": \"mge-tweet-social-news\",\n      \"pipeline\": [\n        {\n          \"$addFields\": {\n            \"type\": \"news\"\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"$unionWith\": {\n      \"coll\": \"mge-tweet-social-votes\",\n      \"pipeline\": [\n        {\n          \"$addFields\": {\n            \"type\": \"votes\"\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"_id\": \"@param:tweet_id\",\n      \"social_group\": \"@param:group_id\"\n    }\n  }\n]\n",
+                "locale": null,
+                "locale_id": null,
+                "created_at": "2025-01-06T16:07:03.000Z",
+                "created_by": {
+                  "_id": "6711e8a47b45b2974bd6133c",
+                  "username": "admin2024@gmail.com",
+                  "featured_image": [
+                    {
+                      "_id": "67c52c92cb2d3f0de049849f",
+                      "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                      "disk": "satellite",
+                      "mime": "image/jpeg",
+                      "size": 95662,
+                      "title": "AVA-AI-Voice-Assistant.jpg",
+                      "alt": "AVA-AI-Voice-Assistant.jpg",
+                      "tenant_id": "674028d2611a654e763a73e8",
+                      "created_by": "6711e8a47b45b2974bd6133c",
+                      "created_at": "2025-03-03T11:14:10.000Z",
+                      "updated_at": "2025-03-03T11:14:10.000Z",
+                      "is_draft": true,
+                      "__v": 0,
+                      "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                    }
+                  ],
+                  "first_name": "Không Tên",
+                  "last_name": "Không Tên."
+                },
+                "updated_at": "2025-01-06T16:07:03.000Z",
+                "updated_by": {
+                  "_id": "6711e8a47b45b2974bd6133c",
+                  "username": "admin2024@gmail.com",
+                  "featured_image": [
+                    {
+                      "_id": "67c52c92cb2d3f0de049849f",
+                      "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                      "disk": "satellite",
+                      "mime": "image/jpeg",
+                      "size": 95662,
+                      "title": "AVA-AI-Voice-Assistant.jpg",
+                      "alt": "AVA-AI-Voice-Assistant.jpg",
+                      "tenant_id": "674028d2611a654e763a73e8",
+                      "created_by": "6711e8a47b45b2974bd6133c",
+                      "created_at": "2025-03-03T11:14:10.000Z",
+                      "updated_at": "2025-03-03T11:14:10.000Z",
+                      "is_draft": true,
+                      "__v": 0,
+                      "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                    }
+                  ],
+                  "first_name": "Không Tên",
+                  "last_name": "Không Tên."
+                },
+                "tenant_id": "674028d2611a654e763a73e8",
+                "count": 2
+              },
+              {
+                "_id": "6777ae9db46e5acc95f40509",
+                "title": "is-tweet_saved-mine",
+                "note": "",
+                "entity": [
+                  {
+                    "_id": "675b9a4a9279b9d81247c3cc",
+                    "title": "mge tweet saved",
+                    "mongodb_collection_name": "mge-tweet-saved",
+                    "json_schema": {
+                      "type": "object",
+                      "properties": {
+                        "user_collection": {
+                          "title": "user_collection",
+                          "type": "string",
+                          "widget": "relation",
+                          "typeRelation": {
+                            "title": "mge-user-collections",
+                            "_id": "mge-user-collections",
+                            "type": "n-1",
+                            "filter": {
+                              "combinator": "and",
+                              "rules": [],
+                              "id": "e8184260-d22a-4a14-b2fd-8cf435fcc4f2"
+                            }
+                          },
+                          "filter": true
+                        },
+                        "tweet_id": {
+                          "widget": "shortAnswer",
+                          "title": "tweet_id",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "tweet_id"
+                      ],
+                      "dependencies": {}
+                    },
+                    "ui_schema": {
+                      "user_collection": {
+                        "ui:widget": "relation"
+                      },
+                      "tweet_id": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "ui:order": [
+                        "user_collection",
+                        "tweet_id"
+                      ]
+                    },
+                    "languages": [],
+                    "is_active": true,
+                    "use_locale": false,
+                    "use_parent": false,
+                    "use_block": false,
+                    "use_content_review": false,
+                    "use_like": false,
+                    "use_comment": false,
+                    "use_save": false,
+                    "use_seo_path": false,
+                    "entity_group": null,
+                    "created_by": "674989a410905d9ddbd00d57",
+                    "updated_by": "6711e8a47b45b2974bd6133c",
+                    "created_at": "2024-12-13T02:22:02.584Z",
+                    "updated_at": "2025-03-02T07:49:32.789Z",
+                    "__v": 0,
+                    "unique_keys": "[\n  {\n    \"user_collection\":1,\n    \"tweet_id\":1\n  }\n]",
+                    "settings": {}
+                  }
+                ],
+                "data": {
+                  "id": "634679e1-b607-4c02-83ca-88d9d6579832",
+                  "rules": [
+                    {
+                      "id": "b8cf5e5c-ec21-4567-9ff1-3697c3c6a17d",
+                      "field": "mge-tweet-saved._id",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "$mge-tweet-saved._id:param._id"
+                    },
+                    {
+                      "id": "d68159f5-de0f-43f5-ad35-b97678523bab",
+                      "field": "mge-tweet-saved.created_by",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "$mge-tweet-saved.created_by:jwt.user@id"
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                },
+                "advance": "",
+                "required": [],
+                "queryMongodb": "{\"$and\":[{\"mge-tweet-saved._id\":\"$mge-tweet-saved._id:param._id\"},{\"mge-tweet-saved.created_by\":\"$mge-tweet-saved.created_by:jwt.user@id\"}]}",
+                "locale": null,
+                "locale_id": null,
+                "created_at": "2025-01-03T16:32:13.000Z",
+                "created_by": {
+                  "_id": "6711e8a47b45b2974bd6133c",
+                  "username": "admin2024@gmail.com",
+                  "featured_image": [
+                    {
+                      "_id": "67c52c92cb2d3f0de049849f",
+                      "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                      "disk": "satellite",
+                      "mime": "image/jpeg",
+                      "size": 95662,
+                      "title": "AVA-AI-Voice-Assistant.jpg",
+                      "alt": "AVA-AI-Voice-Assistant.jpg",
+                      "tenant_id": "674028d2611a654e763a73e8",
+                      "created_by": "6711e8a47b45b2974bd6133c",
+                      "created_at": "2025-03-03T11:14:10.000Z",
+                      "updated_at": "2025-03-03T11:14:10.000Z",
+                      "is_draft": true,
+                      "__v": 0,
+                      "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                    }
+                  ],
+                  "first_name": "Không Tên",
+                  "last_name": "Không Tên."
+                },
+                "updated_at": "2025-01-03T16:32:13.000Z",
+                "updated_by": {
+                  "_id": "6711e8a47b45b2974bd6133c",
+                  "username": "admin2024@gmail.com",
+                  "featured_image": [
+                    {
+                      "_id": "67c52c92cb2d3f0de049849f",
+                      "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                      "disk": "satellite",
+                      "mime": "image/jpeg",
+                      "size": 95662,
+                      "title": "AVA-AI-Voice-Assistant.jpg",
+                      "alt": "AVA-AI-Voice-Assistant.jpg",
+                      "tenant_id": "674028d2611a654e763a73e8",
+                      "created_by": "6711e8a47b45b2974bd6133c",
+                      "created_at": "2025-03-03T11:14:10.000Z",
+                      "updated_at": "2025-03-03T11:14:10.000Z",
+                      "is_draft": true,
+                      "__v": 0,
+                      "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                    }
+                  ],
+                  "first_name": "Không Tên",
+                  "last_name": "Không Tên."
+                },
+                "tenant_id": "674028d2611a654e763a73e8",
+                "body": null,
+                "documents": [],
+                "headers": null,
+                "logged": null,
+                "params": null,
+                "pre": null,
+                "count": 0
+              },
+              {
+                "_id": "675a8e9b0f44fc1769fdea90",
+                "title": "is-user-active 1",
+                "logged": true,
+                "entity": [
+                  {
+                    "_id": "6749933810905d9ddbd0104b",
+                    "title": "user",
+                    "mongodb_collection_name": "user",
+                    "languages": [],
+                    "is_active": true,
+                    "use_locale": false,
+                    "use_parent": false,
+                    "use_block": false,
+                    "use_content_review": false,
+                    "use_like": false,
+                    "use_comment": false,
+                    "use_save": false,
+                    "created_by": "6711e8a47b45b2974bd6133c",
+                    "updated_by": "6711e8a47b45b2974bd6133c",
+                    "created_at": "2024-11-29T10:11:04.190Z",
+                    "updated_at": "2025-02-19T12:27:23.510Z",
+                    "__v": 0,
+                    "entity_group": null,
+                    "json_schema": {
+                      "type": "object",
+                      "properties": {
+                        "username": {
+                          "title": "username1",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "email": {
+                          "title": "email",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "first_name": {
+                          "title": "first_name",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "last_name": {
+                          "title": "last_name",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "full_name": {
+                          "title": "full_name",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "featured_image": {
+                          "type": "string",
+                          "widget": "file",
+                          "title": "featured_image"
+                        },
+                        "cover": {
+                          "title": "cover",
+                          "type": "string",
+                          "widget": "file",
+                          "filter": false
+                        },
+                        "phone": {
+                          "title": "phone",
+                          "type": "string",
+                          "widget": "numberInput"
+                        },
+                        "password": {
+                          "title": "password",
+                          "type": "string",
+                          "widget": "shortAnswer"
+                        },
+                        "birthday": {
+                          "title": "birthday",
+                          "type": "string",
+                          "widget": "date",
+                          "displayFormat": "YYYY/MM/DD",
+                          "formatDate": "date"
+                        },
+                        "role_system": {
+                          "title": "role_system",
+                          "type": "string",
+                          "widget": "select",
+                          "choices": [
+                            {
+                              "key": "user",
+                              "value": "user"
+                            }
+                          ],
+                          "default": "user"
+                        },
+                        "is_active": {
+                          "title": "is_active",
+                          "type": "string",
+                          "default": false,
+                          "widget": "boolean"
+                        }
+                      },
+                      "required": [
+                        "username",
+                        "email",
+                        "first_name",
+                        "last_name",
+                        "full_name",
+                        "password",
+                        "role_system",
+                        "is_active"
+                      ],
+                      "dependencies": {}
+                    },
+                    "ui_schema": {
+                      "username": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "email": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "first_name": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "last_name": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "full_name": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "featured_image": {
+                        "ui:widget": "file"
+                      },
+                      "cover": {
+                        "ui:widget": "file"
+                      },
+                      "phone": {
+                        "ui:widget": "numberInput"
+                      },
+                      "password": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "birthday": {
+                        "ui:widget": "date"
+                      },
+                      "role_system": {
+                        "ui:widget": "select"
+                      },
+                      "is_active": {
+                        "ui:widget": "boolean"
+                      },
+                      "ui:order": [
+                        "username",
+                        "email",
+                        "first_name",
+                        "last_name",
+                        "full_name",
+                        "featured_image",
+                        "cover",
+                        "phone",
+                        "password",
+                        "birthday",
+                        "role_system",
+                        "is_active"
+                      ]
+                    },
+                    "use_seo_path": false,
+                    "use_parent_delete_childs": false,
+                    "entity_setting": {}
+                  }
+                ],
+                "data": {
+                  "id": "18d03496-dbbe-4d75-969c-7298217e9332",
+                  "rules": [
+                    {
+                      "id": "49d77bcd-2a23-4251-a4c4-8b7e766c6b3b",
+                      "field": "user._id",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "$user._id:jwt.user@id"
+                    },
+                    {
+                      "id": "23f95f12-da69-4634-b589-19e4d2a4bf70",
+                      "field": "user.is_active",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": true
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                },
+                "required": [],
+                "queryMongodb": "{\"$and\":[{\"user._id\":\"$user._id:jwt.user@id\"},{\"user.is_active\":true}]}",
+                "params": [],
+                "headers": [],
+                "body": [],
+                "locale": null,
+                "locale_id": null,
+                "created_at": "2024-12-12T14:19:55.000Z",
+                "updated_at": "2024-12-26T14:48:04.000Z",
+                "tenant_id": "674028d2611a654e763a73e8",
+                "note": "",
+                "documents": [],
+                "advance": "",
+                "pre": null,
+                "categories": null,
+                "error_code": null,
+                "count": 108
+              }
+            ],
+            "response": [],
+            "query-validate": {
+              "combinator": "and",
+              "rules": [
+                {
+                  "id": "6e6f0976-4bb5-4576-bbd3-302117694f75",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "675a8e9b0f44fc1769fdea90"
+                }
+              ],
+              "id": "db2ec5d5-3fdc-406b-8115-91a839597252"
+            },
+            "required": [],
+            "advance": "[\n  {\n    \"type\": \"find\",\n    \"name\": \"Find Group Member\",\n    \"mongodb_collection_name\": \"mge-group-member\",\n    \"query_mongodb_pre_lookup\": [\n      {\n        \"$match\": {\n          \"social_group\": \"@param:group_id\"\n        }\n      }\n    ],\n    \"auto_lookup\": {\n      \"social_group\": \"mge-group\",\n      \"updated_by\": {\n        \"_index\": \"user\",\n        \"_index@featured_image\": \"media\"\n      }\n    },\n    \"query_mongodb_post_lookup\": [\n      {\n        \"$project\": {\n          \"updated_by.password\": 0\n        }\n      }\n    ],\n    \"commit_stage\": false,\n    \"show_result\": true,\n    \"get_first\": true\n  },\n  {\n    \"type\": \"create\",\n    \"name\": \"create test log\",\n    \"mongodb_collection_name\": \"test-log\",\n    \"dto\": {\n      \"title\": 1,\n      \"short_description\": 0,\n      \"status\": \"okela,hehe,hihi\",\n      \"is_active\": \"true,false\",\n      \"year\": 0\n    },\n    \"commit_stage\": false,\n    \"show_result\": true\n  }\n]"
+          }
+        ],
+        "headers": [],
+        "params": [],
+        "body": [],
+        "default": {
+          "param": [
+            "_id",
+            "tweet_id",
+            "group_id"
+          ],
+          "body": [],
+          "header": []
+        }
+      },
+      "get-list": {
+        "validate": [
+          {
+            "data": [
+              {
+                "_id": "675a8e9b0f44fc1769fdea90",
+                "title": "is-user-active 1",
+                "logged": true,
+                "entity": [
+                  {
+                    "_id": "6749933810905d9ddbd0104b",
+                    "title": "user",
+                    "mongodb_collection_name": "user",
+                    "languages": [],
+                    "is_active": true,
+                    "use_locale": false,
+                    "use_parent": false,
+                    "use_block": false,
+                    "use_content_review": false,
+                    "use_like": false,
+                    "use_comment": false,
+                    "use_save": false,
+                    "created_by": "6711e8a47b45b2974bd6133c",
+                    "updated_by": "6711e8a47b45b2974bd6133c",
+                    "created_at": "2024-11-29T10:11:04.190Z",
+                    "updated_at": "2025-02-19T12:27:23.510Z",
+                    "__v": 0,
+                    "entity_group": null,
+                    "json_schema": {
+                      "type": "object",
+                      "properties": {
+                        "username": {
+                          "title": "username1",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "email": {
+                          "title": "email",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "first_name": {
+                          "title": "first_name",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "last_name": {
+                          "title": "last_name",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "full_name": {
+                          "title": "full_name",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "featured_image": {
+                          "type": "string",
+                          "widget": "file",
+                          "title": "featured_image"
+                        },
+                        "cover": {
+                          "title": "cover",
+                          "type": "string",
+                          "widget": "file",
+                          "filter": false
+                        },
+                        "phone": {
+                          "title": "phone",
+                          "type": "string",
+                          "widget": "numberInput"
+                        },
+                        "password": {
+                          "title": "password",
+                          "type": "string",
+                          "widget": "shortAnswer"
+                        },
+                        "birthday": {
+                          "title": "birthday",
+                          "type": "string",
+                          "widget": "date",
+                          "displayFormat": "YYYY/MM/DD",
+                          "formatDate": "date"
+                        },
+                        "role_system": {
+                          "title": "role_system",
+                          "type": "string",
+                          "widget": "select",
+                          "choices": [
+                            {
+                              "key": "user",
+                              "value": "user"
+                            }
+                          ],
+                          "default": "user"
+                        },
+                        "is_active": {
+                          "title": "is_active",
+                          "type": "string",
+                          "default": false,
+                          "widget": "boolean"
+                        }
+                      },
+                      "required": [
+                        "username",
+                        "email",
+                        "first_name",
+                        "last_name",
+                        "full_name",
+                        "password",
+                        "role_system",
+                        "is_active"
+                      ],
+                      "dependencies": {}
+                    },
+                    "ui_schema": {
+                      "username": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "email": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "first_name": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "last_name": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "full_name": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "featured_image": {
+                        "ui:widget": "file"
+                      },
+                      "cover": {
+                        "ui:widget": "file"
+                      },
+                      "phone": {
+                        "ui:widget": "numberInput"
+                      },
+                      "password": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "birthday": {
+                        "ui:widget": "date"
+                      },
+                      "role_system": {
+                        "ui:widget": "select"
+                      },
+                      "is_active": {
+                        "ui:widget": "boolean"
+                      },
+                      "ui:order": [
+                        "username",
+                        "email",
+                        "first_name",
+                        "last_name",
+                        "full_name",
+                        "featured_image",
+                        "cover",
+                        "phone",
+                        "password",
+                        "birthday",
+                        "role_system",
+                        "is_active"
+                      ]
+                    },
+                    "use_seo_path": false,
+                    "use_parent_delete_childs": false,
+                    "entity_setting": {}
+                  }
+                ],
+                "data": {
+                  "id": "18d03496-dbbe-4d75-969c-7298217e9332",
+                  "rules": [
+                    {
+                      "id": "49d77bcd-2a23-4251-a4c4-8b7e766c6b3b",
+                      "field": "user._id",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "$user._id:jwt.user@id"
+                    },
+                    {
+                      "id": "23f95f12-da69-4634-b589-19e4d2a4bf70",
+                      "field": "user.is_active",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": true
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                },
+                "required": [],
+                "queryMongodb": "{\"$and\":[{\"user._id\":\"$user._id:jwt.user@id\"},{\"user.is_active\":true}]}",
+                "params": [],
+                "headers": [],
+                "body": [],
+                "locale": null,
+                "locale_id": null,
+                "created_at": "2024-12-12T14:19:55.000Z",
+                "updated_at": "2024-12-26T14:48:04.000Z",
+                "tenant_id": "674028d2611a654e763a73e8",
+                "note": "",
+                "documents": [],
+                "advance": "",
+                "pre": null,
+                "categories": null,
+                "error_code": null,
+                "count": 108
+              }
+            ],
+            "required": [],
+            "custom-fields": {
+              "combinator": "and",
+              "rules": []
+            },
+            "query-validate": {
+              "combinator": "and",
+              "rules": [
+                {
+                  "id": "7c74c2d5-3b41-4a44-9606-cb67c21149cf",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "675a8e9b0f44fc1769fdea90"
+                }
+              ],
+              "id": "49bfc31d-d631-4d28-94c0-68750e987b0c"
+            },
+            "advance": "[\n  {\n    \"type\": \"find\",\n    \"name\": \"Find Group Member\",\n    \"mongodb_collection_name\": \"mge-group-member\",\n    \"query_mongodb_pre_lookup\": [\n      {\n        \"$match\": {\n          \"social_group\": \"@param:group_id\"\n        }\n      }\n    ],\n    \"auto_lookup\": {\n      \"social_group\": \"mge-group\",\n      \"user\": \"user\",\n      \"updated_by\": {\n        \"_index\": \"user\",\n        \"_index@featured_image\": \"media\"\n      }\n    },\n    \"query_mongodb_post_lookup\": [\n      {\n        \"$project\": {\n          \"updated_by.password\": 0\n        }\n      }\n    ],\n    \"commit_stage\": false,\n    \"show_result\": false\n  },\n  {\n    \"type\": \"create\",\n    \"name\": \"Update member to owner\",\n    \"mongodb_collection_name\": \"mge-group-member\",\n    \"dto\": {\n      \"user_id\": \"@replace('pipeline[0][0].user_id._id')\",\n      \"role\": \"@type('select',['owner','member'],true);@default('member')\",\n      \"title\": \"@default('default title');@type('string',5,100);@required(true);@regex('^[A-Z][a-zA-Z0-9\\\\s]*$')\",\n      \"menu\": \"@required(false)\",\n      \"object_test\": {\n        \"title\": \"@default('default title');@type('string',5,100);@required(true)\",\n        \"oke\": [\n          {\n            \"oke_title\": \"@default('default title');@type('string',5,100);@required(true)\",\n            \"menu\": \"@required(true)\"\n          }\n        ]\n      },\n      \"array_test\": [\n        {\n          \"oke_title\": \"@default('default title');@type('string',5,100);@required(true)\",\n          \"menu\": \"@required(true)\"\n        }\n      ]\n    },\n    \"is_commit_stage\": false,\n    \"show_result\": true\n  }\n]"
+          }
+        ],
+        "headers": [],
+        "params": [],
+        "body": [],
+        "default": {
+          "param": [],
+          "body": [],
+          "header": []
+        }
+      },
+      "get-detail": {
+        "validate": [
+          {
+            "data": [
+              {
+                "_id": "675a8e9b0f44fc1769fdea90",
+                "title": "is-user-active 1",
+                "logged": true,
+                "entity": [
+                  {
+                    "_id": "6749933810905d9ddbd0104b",
+                    "title": "user",
+                    "mongodb_collection_name": "user",
+                    "languages": [],
+                    "is_active": true,
+                    "use_locale": false,
+                    "use_parent": false,
+                    "use_block": false,
+                    "use_content_review": false,
+                    "use_like": false,
+                    "use_comment": false,
+                    "use_save": false,
+                    "created_by": "6711e8a47b45b2974bd6133c",
+                    "updated_by": "6711e8a47b45b2974bd6133c",
+                    "created_at": "2024-11-29T10:11:04.190Z",
+                    "updated_at": "2025-02-19T12:27:23.510Z",
+                    "__v": 0,
+                    "entity_group": null,
+                    "json_schema": {
+                      "type": "object",
+                      "properties": {
+                        "username": {
+                          "title": "username1",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "email": {
+                          "title": "email",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "first_name": {
+                          "title": "first_name",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "last_name": {
+                          "title": "last_name",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "full_name": {
+                          "title": "full_name",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "featured_image": {
+                          "type": "string",
+                          "widget": "file",
+                          "title": "featured_image"
+                        },
+                        "cover": {
+                          "title": "cover",
+                          "type": "string",
+                          "widget": "file",
+                          "filter": false
+                        },
+                        "phone": {
+                          "title": "phone",
+                          "type": "string",
+                          "widget": "numberInput"
+                        },
+                        "password": {
+                          "title": "password",
+                          "type": "string",
+                          "widget": "shortAnswer"
+                        },
+                        "birthday": {
+                          "title": "birthday",
+                          "type": "string",
+                          "widget": "date",
+                          "displayFormat": "YYYY/MM/DD",
+                          "formatDate": "date"
+                        },
+                        "role_system": {
+                          "title": "role_system",
+                          "type": "string",
+                          "widget": "select",
+                          "choices": [
+                            {
+                              "key": "user",
+                              "value": "user"
+                            }
+                          ],
+                          "default": "user"
+                        },
+                        "is_active": {
+                          "title": "is_active",
+                          "type": "string",
+                          "default": false,
+                          "widget": "boolean"
+                        }
+                      },
+                      "required": [
+                        "username",
+                        "email",
+                        "first_name",
+                        "last_name",
+                        "full_name",
+                        "password",
+                        "role_system",
+                        "is_active"
+                      ],
+                      "dependencies": {}
+                    },
+                    "ui_schema": {
+                      "username": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "email": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "first_name": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "last_name": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "full_name": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "featured_image": {
+                        "ui:widget": "file"
+                      },
+                      "cover": {
+                        "ui:widget": "file"
+                      },
+                      "phone": {
+                        "ui:widget": "numberInput"
+                      },
+                      "password": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "birthday": {
+                        "ui:widget": "date"
+                      },
+                      "role_system": {
+                        "ui:widget": "select"
+                      },
+                      "is_active": {
+                        "ui:widget": "boolean"
+                      },
+                      "ui:order": [
+                        "username",
+                        "email",
+                        "first_name",
+                        "last_name",
+                        "full_name",
+                        "featured_image",
+                        "cover",
+                        "phone",
+                        "password",
+                        "birthday",
+                        "role_system",
+                        "is_active"
+                      ]
+                    },
+                    "use_seo_path": false,
+                    "use_parent_delete_childs": false,
+                    "entity_setting": {}
+                  }
+                ],
+                "data": {
+                  "id": "18d03496-dbbe-4d75-969c-7298217e9332",
+                  "rules": [
+                    {
+                      "id": "49d77bcd-2a23-4251-a4c4-8b7e766c6b3b",
+                      "field": "user._id",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "$user._id:jwt.user@id"
+                    },
+                    {
+                      "id": "23f95f12-da69-4634-b589-19e4d2a4bf70",
+                      "field": "user.is_active",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": true
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                },
+                "required": [],
+                "queryMongodb": "{\"$and\":[{\"user._id\":\"$user._id:jwt.user@id\"},{\"user.is_active\":true}]}",
+                "params": [],
+                "headers": [],
+                "body": [],
+                "locale": null,
+                "locale_id": null,
+                "created_at": "2024-12-12T14:19:55.000Z",
+                "updated_at": "2024-12-26T14:48:04.000Z",
+                "tenant_id": "674028d2611a654e763a73e8",
+                "note": "",
+                "documents": [],
+                "advance": "",
+                "pre": null,
+                "categories": null,
+                "error_code": null,
+                "count": 108
+              }
+            ],
+            "required": [],
+            "custom-fields": {
+              "combinator": "and",
+              "rules": []
+            },
+            "query-validate": {
+              "combinator": "and",
+              "rules": [
+                {
+                  "id": "142e7c5c-d5b3-41b3-a649-08ca06f95ce9",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "675a8e9b0f44fc1769fdea90"
+                }
+              ],
+              "id": "c4f4bbe0-3f5d-4b8e-b5f2-d2062dc0ccc1"
+            },
+            "advance": "[\n  {\n    \"type\": \"find\",\n    \"name\": \"Find Group Member\",\n    \"mongodb_collection_name\": \"mge-group-member\",\n    \"query_mongodb_pre_lookup\": [\n      {\n        \"$match\": {\n          \"social_group\": \"@param:group_id\"\n        }\n      }\n    ],\n    \"auto_lookup\": {\n      \"social_group\": \"mge-group\",\n      \"updated_by\": {\n        \"_index\": \"user\",\n        \"_index@featured_image\": \"media\"\n      }\n    },\n    \"query_mongodb_post_lookup\": [\n      {\n        \"$project\": {\n          \"updated_by.password\": 0\n        }\n      }\n    ],\n    \"commit_stage\": false,\n    \"show_result\": true,\n    \"get_first\": true\n  },\n  {\n    \"type\": \"find\",\n    \"name\": \"Find Group Member\",\n    \"mongodb_collection_name\": \"mge-group-member\",\n    \"query_mongodb_pre_lookup\": [\n      {\n        \"$match\": {\n          \"social_group\": \"@param:group_id\"\n        }\n      }\n    ],\n    \"auto_lookup\": {\n      \"social_group\": \"mge-group\",\n      \"updated_by\": {\n        \"_index\": \"user\",\n        \"_index@featured_image\": \"media\"\n      }\n    },\n    \"query_mongodb_post_lookup\": [\n      {\n        \"$project\": {\n          \"updated_by.password\": 0\n        }\n      }\n    ],\n    \"commit_stage\": false,\n    \"show_result\": false\n  },\n  {\n    \"type\": \"create\",\n    \"name\": \"create test log\",\n    \"mongodb_collection_name\": \"test-log\",\n    \"dto\": {\n      \"title\": 1,\n      \"short_description\": 0,\n      \"status\": \"okela,hehe,hihi\",\n      \"is_active\": \"true,false\",\n      \"year\": 0,\n      \"user_id\": \"@jwt:user@id\"\n    },\n    \"commit_stage\": false,\n    \"show_result\": true\n  }\n]"
+          }
+        ],
+        "headers": [],
+        "params": [],
+        "body": [],
+        "default": {
+          "param": [],
+          "body": [],
+          "header": []
+        }
+      },
+      "delete": {
+        "validate": [],
+        "headers": [],
+        "params": [],
+        "body": []
+      },
+      "post": {
+        "validate": [
+          {
+            "data": [
+              {
+                "_id": "675a8e9b0f44fc1769fdea90",
+                "title": "is-user-active 1",
+                "logged": true,
+                "entity": [
+                  {
+                    "_id": "6749933810905d9ddbd0104b",
+                    "title": "user",
+                    "mongodb_collection_name": "user",
+                    "languages": [],
+                    "is_active": true,
+                    "use_locale": false,
+                    "use_parent": false,
+                    "use_block": false,
+                    "use_content_review": false,
+                    "use_like": false,
+                    "use_comment": false,
+                    "use_save": false,
+                    "created_by": "6711e8a47b45b2974bd6133c",
+                    "updated_by": "6711e8a47b45b2974bd6133c",
+                    "created_at": "2024-11-29T10:11:04.190Z",
+                    "updated_at": "2025-02-19T12:27:23.510Z",
+                    "__v": 0,
+                    "entity_group": null,
+                    "json_schema": {
+                      "type": "object",
+                      "properties": {
+                        "username": {
+                          "title": "username1",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "email": {
+                          "title": "email",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "first_name": {
+                          "title": "first_name",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "last_name": {
+                          "title": "last_name",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "full_name": {
+                          "title": "full_name",
+                          "type": "string",
+                          "widget": "shortAnswer",
+                          "filter": true
+                        },
+                        "featured_image": {
+                          "type": "string",
+                          "widget": "file",
+                          "title": "featured_image"
+                        },
+                        "cover": {
+                          "title": "cover",
+                          "type": "string",
+                          "widget": "file",
+                          "filter": false
+                        },
+                        "phone": {
+                          "title": "phone",
+                          "type": "string",
+                          "widget": "numberInput"
+                        },
+                        "password": {
+                          "title": "password",
+                          "type": "string",
+                          "widget": "shortAnswer"
+                        },
+                        "birthday": {
+                          "title": "birthday",
+                          "type": "string",
+                          "widget": "date",
+                          "displayFormat": "YYYY/MM/DD",
+                          "formatDate": "date"
+                        },
+                        "role_system": {
+                          "title": "role_system",
+                          "type": "string",
+                          "widget": "select",
+                          "choices": [
+                            {
+                              "key": "user",
+                              "value": "user"
+                            }
+                          ],
+                          "default": "user"
+                        },
+                        "is_active": {
+                          "title": "is_active",
+                          "type": "string",
+                          "default": false,
+                          "widget": "boolean"
+                        }
+                      },
+                      "required": [
+                        "username",
+                        "email",
+                        "first_name",
+                        "last_name",
+                        "full_name",
+                        "password",
+                        "role_system",
+                        "is_active"
+                      ],
+                      "dependencies": {}
+                    },
+                    "ui_schema": {
+                      "username": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "email": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "first_name": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "last_name": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "full_name": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "featured_image": {
+                        "ui:widget": "file"
+                      },
+                      "cover": {
+                        "ui:widget": "file"
+                      },
+                      "phone": {
+                        "ui:widget": "numberInput"
+                      },
+                      "password": {
+                        "ui:widget": "shortAnswer"
+                      },
+                      "birthday": {
+                        "ui:widget": "date"
+                      },
+                      "role_system": {
+                        "ui:widget": "select"
+                      },
+                      "is_active": {
+                        "ui:widget": "boolean"
+                      },
+                      "ui:order": [
+                        "username",
+                        "email",
+                        "first_name",
+                        "last_name",
+                        "full_name",
+                        "featured_image",
+                        "cover",
+                        "phone",
+                        "password",
+                        "birthday",
+                        "role_system",
+                        "is_active"
+                      ]
+                    },
+                    "use_seo_path": false,
+                    "use_parent_delete_childs": false,
+                    "entity_setting": {}
+                  }
+                ],
+                "data": {
+                  "id": "18d03496-dbbe-4d75-969c-7298217e9332",
+                  "rules": [
+                    {
+                      "id": "49d77bcd-2a23-4251-a4c4-8b7e766c6b3b",
+                      "field": "user._id",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "$user._id:jwt.user@id"
+                    },
+                    {
+                      "id": "23f95f12-da69-4634-b589-19e4d2a4bf70",
+                      "field": "user.is_active",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": true
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                },
+                "required": [],
+                "queryMongodb": "{\"$and\":[{\"user._id\":\"$user._id:jwt.user@id\"},{\"user.is_active\":true}]}",
+                "params": [],
+                "headers": [],
+                "body": [],
+                "locale": null,
+                "locale_id": null,
+                "created_at": "2024-12-12T14:19:55.000Z",
+                "updated_at": "2024-12-26T14:48:04.000Z",
+                "tenant_id": "674028d2611a654e763a73e8",
+                "note": "",
+                "documents": [],
+                "advance": "",
+                "pre": null,
+                "categories": null,
+                "error_code": null,
+                "count": 108
+              }
+            ],
+            "required": [],
+            "custom-fields": {
+              "combinator": "and",
+              "rules": []
+            },
+            "query-validate": {
+              "combinator": "and",
+              "rules": [
+                {
+                  "id": "ede65c30-7f05-4d6b-afea-338814f05ef1",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "675a8e9b0f44fc1769fdea90"
+                }
+              ],
+              "id": "074cdb0a-e36c-49f9-a357-bd5cd616c01e"
+            },
+            "advance": "[\n  {\n    \"type\": \"find\",\n    \"name\": \"Find Group Member\",\n    \"mongodb_collection_name\": \"mge-group-member\",\n    \"query_mongodb_pre_lookup\": [\n      {\n        \"$match\": {\n          \"social_group\": \"@param:group_id\"\n        }\n      }\n    ],\n    \"auto_lookup\": {\n      \"social_group\": \"mge-group\",\n      \"updated_by\": {\n        \"_index\": \"user\",\n        \"_index@featured_image\": \"media\"\n      }\n    },\n    \"query_mongodb_post_lookup\": [\n      {\n        \"$project\": {\n          \"updated_by.password\": 0\n        }\n      }\n    ],\n    \"commit_stage\": false,\n    \"show_result\": true,\n    \"get_first\": true\n  },\n  {\n    \"type\": \"create\",\n    \"name\": \"create test log\",\n    \"mongodb_collection_name\": \"test-log\",\n    \"payload_src\": \"request.body\",\n    \"dto\": {\n      \"title\": \"@default('Default title');@type('string',{'min':5,'max':100});@required(true);@regex('^[A-Z][a-zA-Z0-9\\\\s]*$')\",\n      \"role\": \"@default('owner');@type('select',['owner','member'])\",\n      \"menu\": \"@required(false)\",\n        \"object_test\": {\n          \"title\": \"@default('default title');@type('string',{'min':5,'max':100});@required(true)\",\n          \"oke\": [\n            {\n              \"oke_title\": \"@default('default title');@type('string',{'min':5,'max':100});@required(true)\",\n              \"menu\": \"@required(false)\"\n            }\n          ]\n        }\n    },\n    \"commit_stage\": false,\n    \"show_result\": true\n  }\n]"
+          }
+        ],
+        "headers": [],
+        "params": [],
+        "body": [],
+        "default": {
+          "param": [],
+          "body": [],
+          "header": []
+        }
+      }
+    },
+    "title": "Submit answer exam",
+    "created_by": null,
+    "tenant_id": "674028d2611a654e763a73e8",
+    "updated_by": null
+  }
+]

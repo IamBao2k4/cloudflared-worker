@@ -1,0 +1,52 @@
+{
+  "_id": "677b4e7df99e7327567de23e",
+  "title": "view user statistics (self)",
+  "outputEntity": [
+    "67b6a286606da18e6c1976f1"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"status\": \"active\",\n      \"created_by\": \"@param:user_id\",\n      \"tenant_id\":\"@header:x-tenant-id\"\n    }\n  },\n  {\n    \"$group\": {\n      \"_id\": null,\n      \"post_count\": {\n        \"$sum\": 1\n      }\n    }\n  },\n  {\n    \"$unionWith\": {\n      \"coll\": \"mge-group-member\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"user\": \"@param:user_id\",\n            \"status\": \"joined\",\n            \"tenant_id\":\"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$group\": {\n            \"_id\": null,\n            \"group_count\": {\n              \"$sum\": 1\n            }\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"$unionWith\": {\n      \"coll\": \"mge-user-follow\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"to\": \"@param:user_id\",\n            \"tenant_id\":\"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$group\": {\n            \"_id\": \"$to\",\n            \"count\": {\n              \"$sum\": 1\n            }\n          }\n        },\n        {\n          \"$project\": {\n            \"_id\": 0,\n            \"count\": 1\n          }\n        },\n        {\n          \"$addFields\": {\n            \"follower_count\": \"$count\"\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"$group\": {\n      \"_id\": null,\n      \"post_count\": {\n        \"$max\": \"$post_count\"\n      },\n      \"group_count\": {\n        \"$max\": \"$group_count\"\n      },\n      \"follower_count\": {\n        \"$max\": \"$follower_count\"\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"_id\": 0,\n      \"post_count\": {\n        \"$ifNull\": [\n          \"$post_count\",\n          0\n        ]\n      },\n      \"group_count\": {\n        \"$ifNull\": [\n          \"$group_count\",\n          0\n        ]\n      },\n      \"follower_count\": {\n        \"$ifNull\": [\n          \"$follower_count\",\n          0\n        ]\n      }\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "note": "user xem thống kê số bài viết, số follower, số  group đã tham gia của bản thân",
+  "method": "get-list",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "body": null,
+  "documents": [],
+  "headers": null,
+  "params": [
+    {
+      "value": {
+        "value": "skip",
+        "key": "skip"
+      },
+      "key": {
+        "value": "skip",
+        "key": "skip"
+      }
+    },
+    {
+      "value": {
+        "value": "limit",
+        "key": "limit"
+      },
+      "key": {
+        "value": "limit",
+        "key": "limit"
+      }
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "user_id",
+      "key": "user_id"
+    }
+  ],
+  "categories": [],
+  "cache_time": ""
+}

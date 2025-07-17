@@ -1,0 +1,75 @@
+{
+  "_id": "67ac6caa8ed29f66ada20b9b",
+  "title": "get detail user tenant profile",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "67aad740a67aaa1951ca64b0"
+  ],
+  "queryAdvance": "[\n  {\n    \"$addFields\": {\n      \"id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"tenant_id\": \"@header:x-tenant-id\",\n      \"user\": \"@param:_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"profile.social.full_name\": {\n        \"$concat\": [\n          \"$profile.first_name\",\n          \" \",\n          \"$profile.last_name\"\n        ]\n      },\n      \"profile.course.full_name\": {\n        \"$concat\": [\n          \"$profile.first_name\",\n          \" \",\n          \"$profile.last_name\"\n        ]\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"user-tenant-level-mapping\",\n      \"localField\": \"id\",\n      \"foreignField\": \"user\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"tenant_level\": {\n              \"$cond\": {\n                \"if\": {\n                  \"$and\": [\n                    {\n                      \"$ne\": [\n                        \"$tenant_level\",\n                        null\n                      ]\n                    },\n                    {\n                      \"$isArray\": \"$tenant_level\"\n                    }\n                  ]\n                },\n                \"then\": {\n                  \"$map\": {\n                    \"input\": \"$tenant_level\",\n                    \"as\": \"u\",\n                    \"in\": {\n                      \"$toObjectId\": \"$$u\"\n                    }\n                  }\n                },\n                \"else\": \"$tenant_level\"\n              }\n            }\n          }\n        },\n        {\n          \"$lookup\": {\n            \"from\": \"user-tenant-level\",\n            \"localField\": \"tenant_level\",\n            \"foreignField\": \"_id\",\n            \"pipeline\": [\n              {\n                \"$addFields\": {\n                  \"id\": {\n                    \"$toString\": \"$_id\"\n                  }\n                }\n              }\n            ],\n            \"as\": \"tenant_level\"\n          }\n        }\n      ],\n      \"as\": \"role\"\n    }\n  },\n  {\n    \"$unwind\": {\n      \"path\": \"$role\",\n      \"preserveNullAndEmptyArrays\": true\n    }\n  },\n  {\n    \"$unwind\": {\n      \"path\": \"$role.tenant_level\",\n      \"preserveNullAndEmptyArrays\": true\n    }\n  },\n  {\n    \"$addFields\": {\n      \"tenant_id_object\": {\n        \"$toObjectId\": \"$tenant_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"tenant\",\n      \"localField\": \"tenant_id_object\",\n      \"foreignField\": \"_id\",\n      \"as\": \"tenant_info\"\n    }\n  },\n  {\n    \"$unwind\": \"$tenant_info\"\n  },\n{\n  \"$addFields\": {\n    \"permissions.social.create_group\": {\n      \"$in\": [\n        \"$role.tenant_level.id\",\n        { \"$ifNull\": [\"$tenant_info.mge_setting.setting_permissions.setting_group_create\", []] }\n      ]\n    },\n    \"permissions.course.full_permission\": {\n      \"$in\": [\n        \"$role.tenant_level.id\",\n        { \"$ifNull\": [\"$tenant_info.course_setting.full_permission\", []] }\n      ]\n    },\n    \"permissions.course.create_course\": {\n      \"$in\": [\n        \"$role.tenant_level.id\",\n        { \"$ifNull\": [\"$tenant_info.course_setting.create_course\", []] }\n      ]\n    },\n    \"permissions.course.create_question\": {\n      \"$in\": [\n        \"$role.tenant_level.id\",\n        { \"$ifNull\": [\"$tenant_info.course_setting.create_question\", []] }\n      ]\n    },\n    \"permissions.course.create_learning_path\": {\n      \"$in\": [\n        \"$role.tenant_level.id\",\n        { \"$ifNull\": [\"$tenant_info.course_setting.create_learning_path\", []] }\n      ]\n    }\n  }\n},\n  {\n    \"$project\": {\n      \"tenant_id\": 1,\n      \"user\": 1,\n      \"email\": 1,\n      \"nickname\": 1,\n      \"profile.social.first_name\": \"$profile.first_name\",\n      \"profile.social.last_name\": \"$profile.last_name\",\n      \"profile.social.full_name\": 1,\n      \"profile.social.featured_image\": 1,\n      \"profile.social.cover\": 1,\n      \"profile.social.birthday\": 1,\n      \"profile.social.description\": 1,\n      \"profile.course.first_name\": \"$profile.first_name\",\n      \"profile.course.last_name\": \"$profile.last_name\",\n      \"profile.course.full_name\": 1,\n      \"profile.course.featured_image\": 1,\n      \"profile.course.cover\": 1,\n      \"profile.course.birthday\": 1,\n      \"profile.course.description\": 1,\n      \"role\": \"$role.tenant_level.title\",\n      \"permissions\": 1\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "data": {
+    "id": "f516b3c1-9a49-44da-9d4d-817500ad604e",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "_id",
+      "key": "_id"
+    }
+  ],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    },
+    {
+      "value": "x-tenant_id",
+      "key": "x-tenant_id"
+    }
+  ],
+  "restricted": [
+    {
+      "key": "email",
+      "value": "email"
+    },
+    {
+      "key": "user",
+      "value": "user"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "id": "67ac6caa8ed29f66ada20b9b"
+}

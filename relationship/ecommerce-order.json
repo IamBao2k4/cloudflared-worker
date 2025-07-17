@@ -1,0 +1,23 @@
+[
+  {
+    "name": "customer",
+    "targetTable": "user",
+    "localField": "customer",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "applied_discounts[].discount_code",
+    "targetTable": "ecommerce-discount-code",
+    "localField": "applied_discounts[].discount_code",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "applied_discounts[].price_rule",
+    "targetTable": "ecommerce-price-rule",
+    "localField": "applied_discounts[].price_rule",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

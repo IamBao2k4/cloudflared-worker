@@ -1,0 +1,28 @@
+{
+  "tweet-relative": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67b3f7fd4cd70d34a3ef55a4",
+          "title": "get list relative tweet",
+          "entity": "mge-group",
+          "path_file": "json/response/67b3f7fd4cd70d34a3ef55a4.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "5cce3327-9a91-43b2-a2b3-726046da33b5"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

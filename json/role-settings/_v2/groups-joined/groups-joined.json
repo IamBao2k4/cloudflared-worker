@@ -1,0 +1,48 @@
+{
+  "groups-joined": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6763ca940ac6cdefe65cdd88",
+          "title": "Get list group joined",
+          "path_file": "json/response/6763ca940ac6cdefe65cdd88.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "4037ca86-0f36-4be2-a581-1fbe14d4f0fe",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            }
+          ],
+          "id": "df400f03-20c3-4d90-98af-a18986b7a5d6"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "3810735b-6782-4380-ac9b-70928ddfc93b",
+          "rules": [],
+          "combinator": "and",
+          "not": false
+        }
+      }
+    ]
+  }
+}

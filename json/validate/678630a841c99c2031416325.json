@@ -1,0 +1,12 @@
+{
+  "_id": "678630a841c99c2031416325",
+  "title": "is-user-has-permission-to-manage-chapter",
+  "note": "",
+  "entity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "advance": "[\n  {\n    \"$match\": {\n      \"user\": \"@jwt:user.id\",\n      \"course\": \"@params:course_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"course\": {\n        \"$map\": {\n          \"input\": \"$course\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-courses\",\n      \"localField\": \"course\",\n      \"foreignField\": \"_id\",\n      \"as\": \"course_info\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"course_info\": { \"$arrayElemAt\": [\"$course_info\", 0] }\n    }\n  },\n{\n  \"$addFields\": {\n    \"can_manage_chapter_in_course\": {\n      \"$cond\": {\n        \"if\": {\n          \"$gt\": [\n            { \"$size\": { \"$setIntersection\": [\"$role\", \"$course_info.permissions.course_chapter_manage\"] } },\n            0\n          ]\n        },\n        \"then\": true,\n        \"else\": false\n      }\n    }\n  }\n},\n  { \"$match\": { \"can_manage_chapter_in_course\": true } }\n]",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

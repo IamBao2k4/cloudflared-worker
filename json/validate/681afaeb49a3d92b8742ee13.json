@@ -1,0 +1,33 @@
+{
+  "_id": "681afaeb49a3d92b8742ee13",
+  "title": "is-event-registration-mine",
+  "note": "",
+  "entity": [
+    "681af9ce49a3d92b8742ec8a"
+  ],
+  "categories": [],
+  "data": {
+    "id": "8ac62f0e-8032-482f-be57-6b15c9782a55",
+    "rules": [
+      {
+        "id": "8a32fa3c-0024-447d-92ed-69ccd114679a",
+        "field": "mge-social-event-registration._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-social-event-registration._id:param._id"
+      },
+      {
+        "id": "c6541dad-913f-46a3-ba6f-8f04ea0ca37c",
+        "field": "mge-social-event-registration.user",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-social-event-registration.user:jwt.user@id"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"mge-social-event-registration._id\":\"$mge-social-event-registration._id:param._id\"},{\"mge-social-event-registration.user\":\"$mge-social-event-registration.user:jwt.user@id\"}]}",
+  "required": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

@@ -1,0 +1,87 @@
+{
+  "_id": "681980ed15cf915ba520b645",
+  "title": "get list group media",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "67b6a286606da18e6c1976f1"
+  ],
+  "categories": [],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"tenant_id\": \"@header:x-tenant-id\",\n      \"social_group\": \"@param:group_id\",\n      \"type\":\"file\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$unwind\": {\n      \"path\": \"$attachments\",\n      \"preserveNullAndEmptyArrays\": true\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"media\",\n      \"let\": {\n        \"attachmentId\": {\n          \"$toObjectId\": \"$attachments.attachment\"\n        }\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$eq\": [\"$_id\", \"$$attachmentId\"]\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"path\": {\n              \"$concat\": [\n                {\n                  \"$cond\": [\n                    {\n                      \"$eq\": [\"minio\", \"@app_settings:storage_type\"]\n                    },\n                    \"@app_settings:minio.public\",\n                    \"@app_settings:doSpace.public\"\n                  ]\n                },\n                \"/\",\n                \"$disk\",\n                \"/\",\n                \"$filename\"\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"attachment_detail\"\n    }\n  },\n  {\n    \"$unwind\": {\n      \"path\": \"$attachment_detail\",\n      \"preserveNullAndEmptyArrays\": true\n    }\n  },\n  {\n    \"$addFields\": {\n      \"attachments.attachment\": \"$attachment_detail\"\n    }\n  },\n  {\n    \"$group\": {\n      \"_id\": \"$_id\",\n      \"doc\": {\n        \"$mergeObjects\": \"$$ROOT\"\n      },\n      \"attachments\": {\n        \"$push\": \"$attachments\"\n      }\n    }\n  },\n  {\n    \"$replaceRoot\": {\n      \"newRoot\": {\n        \"$mergeObjects\": [\n          \"$doc\",\n          {\n            \"attachments\": \"$attachments\"\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$unwind\": {\n      \"path\": \"$attachments\",\n      \"preserveNullAndEmptyArrays\": true\n    }\n  },\n  {\n    \"$sort\": {\n      \"created_at\": -1\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"user-tenant-profile\",\n      \"localField\": \"created_by\",\n      \"foreignField\": \"user\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"tenant_id\": \"67b2bc288ac7a801d196b4b0\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"full_name\": {\n              \"$concat\": [\n                {\n                  \"$ifNull\": [\"$profile.last_name\", \"\"]\n                },\n                \" \",\n                {\n                  \"$ifNull\": [\"$profile.first_name\", \"\"]\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"$project\": {\n            \"_id\": \"$user\",\n            \"full_name\": 1,\n            \"featured_image\": \"$profile.social.featured_image\"\n          }\n        }\n      ],\n      \"as\": \"user\"\n    }\n  },\n  {\n    \"$project\": {\n      \"_id\": 0,\n      \"attachment\": \"$attachments.attachment\",\n      \"type\": \"$attachments.type\",\n      \"user\": 1,\n      \"title\": 1\n    }\n  },\n  {\n    \"$sort\": {\n      \"created_at\": -1\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$or\": [\n          {\n            \"$eq\": [\"@param:type\", null]\n          },\n          {\n            \"$eq\": [\"$type\", \"@param:type\"]\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]\n",
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "type",
+      "value": "type"
+    },
+    {
+      "key": "social_group",
+      "value": "social_group"
+    },
+    {
+      "key": "status",
+      "value": "status"
+    },
+    {
+      "key": "like_count",
+      "value": "like_count"
+    },
+    {
+      "key": "comment_count",
+      "value": "comment_count"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    },
+    {
+      "value": "type",
+      "key": "type"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ],
+  "postQueryAdvance": "",
+  "preQueryAdvance": "",
+  "id": "681980ed15cf915ba520b645"
+}

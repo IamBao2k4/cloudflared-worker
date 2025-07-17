@@ -1,0 +1,12 @@
+{
+  "_id": "6833e17e8151a797cf8b8acc",
+  "title": "is-start-learning-time-exist",
+  "note": "",
+  "entity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "categories": [],
+  "advance": "[\r\n  {\r\n    \"$match\":{\r\n      \"course\":\"@param:course_id\",\r\n      \"user\":\"@jwt:user.id\",\r\n      \"start_learning_time\": {\r\n        \"$exists\": true,\r\n        \"$ne\": null\r\n      }\r\n    }\r\n    }\r\n]",
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "id": "6833e17e8151a797cf8b8acc"
+}

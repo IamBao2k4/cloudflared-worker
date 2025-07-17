@@ -1,0 +1,30 @@
+{
+  "_id": "67ea0bb57463d047317d32ad",
+  "title": "get list user notifications",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "67a1b30e1aaf205cfbd70e02"
+  ],
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "queryAdvance": "[\r\n  {\r\n    \"$match\": {\r\n      \"tenant_id\": \"@header:x-tenant-id\",\r\n      \"to\": \"@jwt:user.id\"\r\n    }\r\n  },\r\n  {\r\n    \"$sort\": {\r\n      \"created_at\": -1\r\n    }\r\n  },\r\n  {\r\n    \"$unionWith\": {\r\n      \"coll\": \"notification-record\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$match\": {\r\n            \"tenant_id\": \"@header:x-tenant-id\",\r\n            \"to\": \"@jwt:user.id\",\r\n            \"status\": \"unread\"\r\n          }\r\n        },\r\n        {\r\n          \"$group\": {\r\n            \"_id\": null,\r\n            \"total_unread\": {\r\n              \"$sum\": 1\r\n            }\r\n          }\r\n        },\r\n        {\r\n          \"$project\": {\r\n            \"_id\": 0\r\n          }\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  {\r\n    \"$facet\": {\r\n      \"meta_data\": [\r\n        {\r\n          \"$count\": \"count\"\r\n        },\r\n        {\r\n          \"$addFields\": {\r\n            \"skip\": \"@param:skip\",\r\n            \"limit\": \"@param:limit\"\r\n          }\r\n        }\r\n      ],\r\n      \"data\": [\r\n        {\r\n          \"$skip\": \"@param:skip\"\r\n        },\r\n        {\r\n          \"$limit\": \"@param:limit\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n]",
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ]
+}

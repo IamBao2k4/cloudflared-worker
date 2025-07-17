@@ -1,0 +1,29 @@
+{
+  "_id": "67614855ebb7be3bc27d91de",
+  "title": "Create group pin",
+  "outputEntity": [
+    "676000575a1356463269d0b0"
+  ],
+  "queryAdvance": "{\n  \"user\": \"@jwt:user.id\",\n  \"social_group\": 1,\n  \"position\":\"0\"\n}",
+  "note": "",
+  "method": "post",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "body": null,
+  "documents": [],
+  "headers": [
+    {
+      "value": "user.id",
+      "key": "user.id"
+    }
+  ],
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    }
+  ],
+  "categories": [],
+  "cache_time": ""
+}

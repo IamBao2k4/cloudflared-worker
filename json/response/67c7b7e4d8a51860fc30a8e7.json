@@ -1,0 +1,28 @@
+{
+  "_id": "67c7b7e4d8a51860fc30a8e7",
+  "title": "get detail topic",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "6752bd9c65017d942f75955a"
+  ],
+  "queryAdvance": "[\r\n  {\r\n    \"$addFields\": {\r\n      \"_id\": {\r\n        \"$toString\": \"$_id\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$match\": {\r\n      \"_id\": \"@param:_id\"\r\n    }\r\n  },\r\n  {\r\n    \"$project\": {\r\n      \"title\": 1,\r\n      \"description\": 1\r\n    }\r\n  },\r\n   {\r\n    \"$facet\": {\r\n      \"meta_data\": [\r\n        {\r\n          \"$count\": \"count\"\r\n        },\r\n        {\r\n          \"$addFields\": {\r\n            \"skip\": \"@param:skip\",\r\n            \"limit\": \"@param:limit\"\r\n          }\r\n        }\r\n      ],\r\n      \"data\": [\r\n        {\r\n          \"$skip\": \"@param:skip\"\r\n        },\r\n        {\r\n          \"$limit\": \"@param:limit\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n]",
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "params": [
+    {
+      "value": "_id",
+      "key": "_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ]
+}

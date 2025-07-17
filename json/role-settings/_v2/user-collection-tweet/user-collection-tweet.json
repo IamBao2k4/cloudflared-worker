@@ -1,0 +1,28 @@
+{
+  "user-collection-tweet": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67bc44af2692eef9b7ab7f02",
+          "title": "get list tweet in collection",
+          "entity": "mge-user-collections",
+          "path_file": "json/response/67bc44af2692eef9b7ab7f02.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "9b7f9d49-4c88-47a6-a383-12cc71ba4d82"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

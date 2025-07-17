@@ -1,0 +1,16 @@
+[
+  {
+    "name": "customer",
+    "targetTable": "user",
+    "localField": "customer",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "applied_vouchers",
+    "targetTable": "emc-vouchers",
+    "localField": "applied_vouchers",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  }
+]

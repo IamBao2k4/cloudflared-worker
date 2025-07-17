@@ -1,0 +1,31 @@
+{
+  "_id": "6773c0d9ab2649a80d75bd79",
+  "title": "is-tweet-has-like-off-is-false",
+  "note": "",
+  "entity": [
+    "67b6a286606da18e6c1976f1"
+  ],
+  "advance": "[\n    {\n        \"$match\": {\n            \"tenant_id\": \"@header:x-tenant-id\"\n        }\n    },\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"$or\": [\n        {\"_id\": \"@param:tweet_id\"},\n        {\"_id\": \"@param:entity_id\"}\n        ]\n      ,\n      \"like_off\": false\n    }\n  }\n]",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "data": {
+    "id": "107fb167-0e2d-476a-8e5c-c299815f000b",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "documents": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "required": [],
+  "params": [
+    {
+      "value": "tweet_id",
+      "key": "tweet_id"
+    },
+    {
+      "value": "entity_id",
+      "key": "entity_id"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "_id": "67cfd9bedada26e67e87ffc3",
+  "title": "mge listing tweet report",
+  "mongodb_collection_name": "mge-listing-tweet-report",
+  "unique_keys": "",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "tweet": {
+        "title": "tweet",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-listing-tweet",
+          "_id": "mge-listing-tweet",
+          "type": "n-1"
+        }
+      },
+      "reasons": {
+        "title": "reasons",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "Địa chỉ của bất động sản",
+            "value": "address_of_real_estate"
+          },
+          {
+            "key": "Thông tin sai sự thật",
+            "value": "incorrect_information"
+          },
+          {
+            "key": "Ảnh",
+            "value": "incorrect_images"
+          },
+          {
+            "key": "Trùng với tin rao khác",
+            "value": "duplicate_listing"
+          },
+          {
+            "key": "Không liên lạc được",
+            "value": "unreachable_contact"
+          },
+          {
+            "key": "Tin không có thật",
+            "value": "fake_listing"
+          },
+          {
+            "key": "Bất động sản đã bán",
+            "value": "sold_real_estate"
+          },
+          {
+            "key": "Tốc độ load chậm",
+            "value": "slow_loading"
+          },
+          {
+            "key": "Vị trí bất động sản chưa chính xác",
+            "value": "incorrect_real_estate_location"
+          },
+          {
+            "key": "Vị trí tiện ích chưa chính xác",
+            "value": "incorrect_amenity_location"
+          },
+          {
+            "key": "Bản đồ lỗi",
+            "value": "map_error"
+          },
+          {
+            "key": "Khác",
+            "value": "other"
+          }
+        ]
+      },
+      "another_reason": {
+        "title": "another_reason",
+        "type": "string",
+        "widget": "shortAnswer",
+        "description": "Field điền khi user chọn field reasons là khác"
+      }
+    },
+    "required": [
+      "tweet",
+      "reasons"
+    ]
+  },
+  "ui_schema": {
+    "tweet": {
+      "ui:widget": "relation"
+    },
+    "reasons": {
+      "ui:widget": "select"
+    },
+    "another_reason": {
+      "ui:widget": "shortAnswer"
+    },
+    "ui:order": [
+      "tweet",
+      "reasons",
+      "another_reason"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-03-11T06:35:42.550Z",
+  "__v": 0
+}

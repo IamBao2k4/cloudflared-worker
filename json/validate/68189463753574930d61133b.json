@@ -1,0 +1,20 @@
+{
+  "_id": "68189463753574930d61133b",
+  "title": "is-tweet-file",
+  "note": "",
+  "entity": [
+    "68188ea9753574930d6110a1"
+  ],
+  "categories": [],
+  "data": {
+    "id": "70b414a2-0872-4454-aefd-ed0ade00536a",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "required": [],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "advance": "[\r\n  {\r\n    \"$addFields\": {\r\n      \"_id\": {\r\n        \"$toString\": \"$_id\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$match\":{\r\n      \"_id\":\"@param:_id\"\r\n    }\r\n  }\r\n]",
+  "id": "68189463753574930d61133b"
+}

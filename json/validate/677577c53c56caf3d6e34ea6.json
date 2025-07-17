@@ -1,0 +1,30 @@
+{
+  "_id": "677577c53c56caf3d6e34ea6",
+  "title": "was-user-joined-group-of-comment",
+  "note": "",
+  "entity": [
+    "6764e3926e57acaf6815ab97"
+  ],
+  "data": {
+    "id": "29ca1b23-b8fd-440b-8d7d-cfa55bcf415e",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "advance": "[\n      {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"$or\": [\n        {\"_id\": \"@param:_id\"},\n        {\"_id\": \"@param:comment_id\"}\n        ]\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group-member\",\n      \"localField\": \"social_group\",\n      \"foreignField\": \"social_group\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"user\": \"@jwt:user.id\",\n            \"status\":\"joined\"\n          }\n        }\n      ],\n      \"as\": \"memberStatus\"\n    }\n  },\n  {\n    \"$match\": {\n      \"memberStatus\": { \"$ne\": [] }\n    }\n  }\n]",
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "params": [
+    {
+      "value": "_id",
+      "key": "_id"
+    },
+    {
+      "value": "comment_id",
+      "key": "comment_id"
+    }
+  ]
+}

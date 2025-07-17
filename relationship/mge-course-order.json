@@ -1,0 +1,23 @@
+[
+  {
+    "name": "user",
+    "targetTable": "user",
+    "localField": "user",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "coupon",
+    "targetTable": "entity",
+    "localField": "coupon",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "payment_method",
+    "targetTable": "entity",
+    "localField": "payment_method",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

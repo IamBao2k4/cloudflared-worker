@@ -1,0 +1,30 @@
+{
+  "_id": "67c42946cb2d3f0de0484c61",
+  "title": "Get detail watch later collection",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "675b9a4a9279b9d81247c3cc"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"tenant_id\": \"@header:x-tenant-id\",\n      \"created_by\": \"@jwt:user.id\",\n      \"$or\": [\n        {\n          \"user_collection\": {\n            \"$exists\": false\n          }\n        },\n        {\n          \"user_collection\": null\n        },\n        {\n          \"user_collection\": {\n            \"$size\": 0\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"$addFields\": {\n      \"tweet_id_object\": {\n        \"$toObjectId\": \"$tweet_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-tweet\",\n      \"localField\": \"tweet_id_object\",\n      \"foreignField\": \"_id\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"status\": \"active\",\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        }\n      ],\n      \"as\": \"is_active\"\n    }\n  },\n  {\n    \"$match\": {\n      \"is_active\": {\n        \"$ne\": []\n      }\n    }\n  },\n  {\n    \"$group\": {\n      \"_id\": \"$created_by\",\n      \"tweet_saved\": {\n        \"$push\": \"$$ROOT\"\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"title\": \"Xem sau\",\n      \"position\": 0,\n      \"tweet_count\": {\n        \"$size\": \"$tweet_saved\"\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"_id\": 0,\n      \"title\": 1,\n      \"tweet_count\": 1,\n      \"featured_image\": 1,\n      \"tweet_saved\": 1,\n      \"position\": 1\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ]
+}

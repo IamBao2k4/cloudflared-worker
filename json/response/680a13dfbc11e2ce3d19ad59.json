@@ -1,0 +1,67 @@
+{
+  "_id": "680a13dfbc11e2ce3d19ad59",
+  "title": "get list course team",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "680608aaaac841dab05e1907"
+  ],
+  "categories": [],
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "code",
+      "value": "code"
+    },
+    {
+      "key": "department",
+      "value": "department"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"tenant_id\": \"@header:x-tenant-id\"\n    }\n  },\n{\n    \"$match\": {\n      \"$expr\": {\n        \"$and\": [\n          {\n            \"$cond\": {\n              \"if\": { \"$ne\": [\"@param:department\", null] },\n              \"then\": { \"$eq\": [\"$department\", [\"@param:department\"]] },\n              \"else\": true\n            }\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]\n",
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ],
+  "postQueryAdvance": "",
+  "preQueryAdvance": "",
+  "id": "680a13dfbc11e2ce3d19ad59"
+}

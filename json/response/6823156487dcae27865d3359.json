@@ -1,0 +1,44 @@
+{
+  "_id": "6823156487dcae27865d3359",
+  "title": "get detail course user statistic",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "67aad740a67aaa1951ca64b0"
+  ],
+  "categories": [],
+  "queryAdvance": "[\r\n  {\r\n    \"$match\": {\r\n      \"tenant_id\": \"677f6b3da3131eb0d3f9906d\"\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-course-member\",\r\n      \"localField\": \"user\",\r\n      \"foreignField\": \"user\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$match\": {\r\n            \"tenant_id\": \"677f6b3da3131eb0d3f9906d\",\r\n            \"status\": \"joined\"\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"course_joined\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"total_course\": {\r\n        \"$size\": \"$course_joined\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-course-member\",\r\n      \"localField\": \"user\",\r\n      \"foreignField\": \"created_by\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$match\": {\r\n            \"tenant_id\": \"677f6b3da3131eb0d3f9906d\",\r\n            \"status\": \"joined\",\r\n            \"is_finished\": true\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"is_course_finished\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"total_course_finished\": {\r\n        \"$size\": \"$is_course_finished\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"avg_completion_rate\": {\r\n        \"$cond\": [\r\n          {\r\n            \"$gt\": [\r\n              \"$total_course\",\r\n              0\r\n            ]\r\n          },\r\n          {\r\n            \"$multiply\": [\r\n              {\r\n                \"$divide\": [\r\n                  \"$total_course_finished\",\r\n                  \"$total_course\"\r\n                ]\r\n              },\r\n              100\r\n            ]\r\n          },\r\n          0\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-discussions\",\r\n      \"localField\": \"user\",\r\n      \"foreignField\": \"created_by\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$match\": {\r\n            \"tenant_id\": \"677f6b3da3131eb0d3f9906d\"\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"total_discussions\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"total_discussions\": {\r\n        \"$size\": \"$total_discussions\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-discussion-comment\",\r\n      \"localField\": \"user\",\r\n      \"foreignField\": \"created_by\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$match\": {\r\n            \"tenant_id\": \"677f6b3da3131eb0d3f9906d\"\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"total_comments\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"total_comments\": {\r\n        \"$size\": \"$total_comments\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-discussion-like\",\r\n      \"localField\": \"user\",\r\n      \"foreignField\": \"created_by\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$match\": {\r\n            \"tenant_id\": \"677f6b3da3131eb0d3f9906d\"\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"discussion_liked\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"discussion_liked\": {\r\n        \"$size\": \"$discussion_liked\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-discussion-comment-like\",\r\n      \"localField\": \"user\",\r\n      \"foreignField\": \"created_by\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$match\": {\r\n            \"tenant_id\": \"677f6b3da3131eb0d3f9906d\"\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"discussion_comment_liked\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"discussion_comment_liked\": {\r\n        \"$size\": \"$discussion_comment_liked\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"total_likes\": {\r\n        \"$add\": [\r\n          \"$discussion_liked\",\r\n          \"$discussion_comment_liked\"\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"interaction_score\": {\r\n        \"$add\": [\r\n          {\r\n            \"$multiply\": [\r\n              \"$total_discussions\",\r\n              5\r\n            ]\r\n          },\r\n          {\r\n            \"$multiply\": [\r\n              \"$total_comments\",\r\n              3\r\n            ]\r\n          },\r\n          {\r\n            \"$multiply\": [\r\n              \"$total_likes\",\r\n              1\r\n            ]\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-user-learning-path\",\r\n      \"localField\": \"user\",\r\n      \"foreignField\": \"user\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$match\": {\r\n            \"tenant_id\": \"677f6b3da3131eb0d3f9906d\"\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"total_learning_paths\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"total_learning_paths\": {\r\n        \"$size\": \"$total_learning_paths\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$project\": {\r\n      \"user\": 1,\r\n      \"total_course\": 1,\r\n      \"avg_completion_rate\": 1,\r\n      \"pass_rate\": 1,\r\n      \"total_discussions\": 1,\r\n      \"total_comments\": 1,\r\n      \"total_likes\": 1,\r\n      \"interaction_score\": 1,\r\n      \"total_learning_paths\": 1,\r\n      \"tenant_id\": 1\r\n    }\r\n  }\r\n]",
+  "restricted": [
+    {
+      "key": "email",
+      "value": "email"
+    },
+    {
+      "key": "user",
+      "value": "user"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "id": "6823156487dcae27865d3359"
+}

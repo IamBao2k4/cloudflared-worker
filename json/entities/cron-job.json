@@ -1,0 +1,165 @@
+{
+  "_id": "6819720a15cf915ba520aff7",
+  "title": "cron job",
+  "mongodb_collection_name": "cron-job",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "type": {
+        "title": "type",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "classic",
+            "value": "classic"
+          },
+          {
+            "key": "flow",
+            "value": "flow"
+          }
+        ],
+        "default": "classic"
+      },
+      "timeout": {
+        "title": "timeout",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "watcher": {
+        "title": "watcher",
+        "type": "string",
+        "widget": "function"
+      }
+    },
+    "required": [
+      "title",
+      "type",
+      "timeout"
+    ],
+    "dependencies": {
+      "type": {
+        "oneOf": [
+          {
+            "properties": {
+              "type": {
+                "enum": [
+                  "classic"
+                ]
+              },
+              "arrgregate": {
+                "title": "arrgregate",
+                "type": "string",
+                "widget": "function"
+              },
+              "collection_name": {
+                "title": "collection_name",
+                "type": "string",
+                "widget": "shortAnswer"
+              },
+              "setup": {
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "merge": {
+                      "widget": "longAnswer",
+                      "customRole": "textarea",
+                      "title": "merge",
+                      "type": "string"
+                    }
+                  },
+                  "required": []
+                },
+                "title": "setup",
+                "type": "array"
+              }
+            },
+            "required": [
+              "collection_name"
+            ]
+          },
+          {
+            "properties": {
+              "type": {
+                "enum": [
+                  "flow"
+                ]
+              },
+              "flow": {
+                "title": "flow",
+                "type": "string",
+                "widget": "function"
+              }
+            },
+            "required": []
+          }
+        ]
+      }
+    }
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "type": {
+      "ui:widget": "select"
+    },
+    "timeout": {
+      "ui:widget": "shortAnswer"
+    },
+    "watcher": {
+      "ui:widget": "function"
+    },
+    "collection_name": {
+      "ui:widget": "shortAnswer"
+    },
+    "arrgregate": {
+      "ui:widget": "function"
+    },
+    "setup": {
+      "items": {
+        "merge": {
+          "ui:widget": "longAnswer"
+        },
+        "ui:order": [
+          "merge"
+        ]
+      }
+    },
+    "flow": {
+      "ui:widget": "function"
+    },
+    "ui:order": [
+      "title",
+      "type",
+      "timeout",
+      "watcher",
+      "collection_name",
+      "arrgregate",
+      "setup",
+      "flow"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": [
+    "6819db74bf114615637f6e20"
+  ],
+  "created_at": "2025-05-06T02:20:58.923Z",
+  "__v": 0
+}

@@ -1,0 +1,23 @@
+{
+  "_id": "67fc816936ac50fe56067804",
+  "title": "has-user-not-reached-maximum-exam-attempts-yet",
+  "note": "Kiểm tra xem người dùng vẫn chưa đạt đến số lần thi tối đa",
+  "entity": [
+    "6752cbec65017d942f7595dc"
+  ],
+  "advance": "[\r\n  {\r\n    \"$facet\": {\r\n      \"attempts\": [\r\n        {\r\n          \"$match\": {\r\n            \"exam\": \"@param:exam_id\",\r\n            \"created_by\": \"@jwt:user.id\",\r\n            \"tenant_id\": \"@header:x-tenant-id\",\r\n            \"status\": \"finished\"\r\n          }\r\n        },\r\n        {\r\n          \"$group\": {\r\n            \"_id\": null,\r\n            \"attempt_count\": {\r\n              \"$sum\": 1\r\n            }\r\n          }\r\n        },\r\n        {\r\n          \"$project\": {\r\n            \"_id\": 0,\r\n            \"attempt_count\": 1\r\n          }\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  {\r\n    \"$project\": {\r\n      \"attempt_count\": {\r\n        \"$ifNull\": [\r\n          {\r\n            \"$arrayElemAt\": [\r\n              \"$attempts.attempt_count\",\r\n              0\r\n            ]\r\n          },\r\n          0\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-exams\",\r\n      \"let\": {\r\n        \"exam_id\": {\r\n          \"$toObjectId\": \"@param:exam_id\"\r\n        }\r\n      },\r\n      \"pipeline\": [\r\n        {\r\n          \"$match\": {\r\n            \"$expr\": {\r\n              \"$eq\": [\r\n                \"$_id\",\r\n                \"$$exam_id\"\r\n              ]\r\n            }\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"exam_info\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"exam_info\": {\r\n        \"$arrayElemAt\": [\r\n          \"$exam_info\",\r\n          0\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"max_attempts\": \"$exam_info.member_retries_allowed\",\r\n      \"has_reached_max\": {\r\n        \"$gte\": [\r\n          \"$attempt_count\",\r\n          \"$exam_info.member_retries_allowed\"\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$match\": {\r\n      \"has_reached_max\": false\r\n    }\r\n  }\r\n]",
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "categories": [],
+  "params": [
+    {
+      "value": "exam_id",
+      "key": "exam_id"
+    }
+  ],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ]
+}

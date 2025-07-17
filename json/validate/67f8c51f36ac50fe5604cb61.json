@@ -1,0 +1,45 @@
+{
+  "_id": "67f8c51f36ac50fe5604cb61",
+  "title": "user-joined-group-2",
+  "note": "User đã tham gia nhóm chưa?",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "categories": [],
+  "advance": "[\r\n  {\r\n    \"$match\": {\r\n      \"user\": \"@jwt:user.id\",\r\n      \"status\": \"joined\",\r\n      \"$or\": [\r\n        {\r\n          \"social_group\": \"@param:group_id\"\r\n        },\r\n        {\r\n          \"social_group\": \"@param:_id\"\r\n        },\r\n        {\r\n          \"social_group\": \"@body:social_group\"\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"social_group_as_objectId\": {\r\n        \"$map\": {\r\n          \"input\": \"$social_group\",\r\n          \"as\": \"sg\",\r\n          \"in\": {\r\n            \"$toObjectId\": \"$$sg\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-group\",\r\n      \"localField\": \"social_group_as_objectId\",\r\n      \"foreignField\": \"_id\",\r\n      \"as\": \"group_data\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$match\": {\r\n            \"status\": \"active\"\r\n          }\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  {\r\n    \"$match\": {\r\n      \"group_data\": {\r\n        \"$ne\": []\r\n      }\r\n    }\r\n  }\r\n]",
+  "params": [
+    {
+      "key": "",
+      "value": "group_id",
+      "description": ""
+    },
+    {
+      "key": "",
+      "value": "_id",
+      "description": ""
+    }
+  ],
+  "headers": [
+    {
+      "key": "",
+      "value": "user.id",
+      "description": ""
+    }
+  ],
+  "body": [
+    {
+      "key": "",
+      "value": "social_group",
+      "description": ""
+    }
+  ],
+  "data": {
+    "id": "4cef4f65-45ba-4936-ac02-c8207f2604b3",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "required": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

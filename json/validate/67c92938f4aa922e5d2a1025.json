@@ -1,0 +1,90 @@
+{
+  "_id": "67c92938f4aa922e5d2a1025",
+  "title": "is-user-superadmin",
+  "note": "",
+  "entity": [
+    "6757b1998659c9e98a2f1e2b"
+  ],
+  "data": {
+    "id": "0fd3924e-2e51-4775-ada4-5024149539b6",
+    "rules": [
+      {
+        "id": "7516353c-5de5-4e74-b054-9633c498fa9b",
+        "field": "user-tenant-level-mapping.user",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$user-tenant-level-mapping.user:jwt.user@id"
+      },
+      {
+        "id": "75c7fb3b-6161-41f5-84f8-7aa0dd78076b",
+        "field": "user-tenant-level-mapping.tenant_level",
+        "operator": "=",
+        "valueSource": "value",
+        "value": [
+          {
+            "_id": "67c92836f4aa922e5d2a0eac",
+            "title": "super admin ",
+            "locale": null,
+            "locale_id": null,
+            "created_at": "2025-03-06T11:44:38.000Z",
+            "created_by": {
+              "_id": "6711e8a47b45b2974bd6133c",
+              "username": "admin2024@gmail.com",
+              "featured_image": [
+                {
+                  "_id": "67c52c92cb2d3f0de049849f",
+                  "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                  "disk": "satellite",
+                  "mime": "image/jpeg",
+                  "size": 95662,
+                  "title": "AVA-AI-Voice-Assistant.jpg",
+                  "alt": "AVA-AI-Voice-Assistant.jpg",
+                  "tenant_id": "674028d2611a654e763a73e8",
+                  "created_by": "6711e8a47b45b2974bd6133c",
+                  "created_at": "2025-03-03T11:14:10.000Z",
+                  "updated_at": "2025-03-03T11:14:10.000Z",
+                  "is_draft": true,
+                  "__v": 0,
+                  "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                }
+              ],
+              "first_name": "Không Tên",
+              "last_name": "Không Tên"
+            },
+            "updated_at": "2025-03-06T11:44:38.000Z",
+            "updated_by": {
+              "_id": "6711e8a47b45b2974bd6133c",
+              "username": "admin2024@gmail.com",
+              "featured_image": [
+                {
+                  "_id": "67c52c92cb2d3f0de049849f",
+                  "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                  "disk": "satellite",
+                  "mime": "image/jpeg",
+                  "size": 95662,
+                  "title": "AVA-AI-Voice-Assistant.jpg",
+                  "alt": "AVA-AI-Voice-Assistant.jpg",
+                  "tenant_id": "674028d2611a654e763a73e8",
+                  "created_by": "6711e8a47b45b2974bd6133c",
+                  "created_at": "2025-03-03T11:14:10.000Z",
+                  "updated_at": "2025-03-03T11:14:10.000Z",
+                  "is_draft": true,
+                  "__v": 0,
+                  "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                }
+              ],
+              "first_name": "Không Tên",
+              "last_name": "Không Tên"
+            },
+            "tenant_id": "67c6ad0ccb2d3f0de04c67eb"
+          }
+        ]
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"user-tenant-level-mapping.user\":\"$user-tenant-level-mapping.user:jwt.user@id\"},{\"user-tenant-level-mapping.tenant_level\":[\"67c92836f4aa922e5d2a0eac\"]}]}",
+  "required": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb"
+}

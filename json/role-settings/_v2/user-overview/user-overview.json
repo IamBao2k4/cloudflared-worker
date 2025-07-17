@@ -1,0 +1,85 @@
+{
+  "user-overview": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "677b4e7df99e7327567de23e",
+          "title": "view user statistics (self)",
+          "entity": "mge-group",
+          "path_file": "json/response/677b4e7df99e7327567de23e.json"
+        },
+        "query_validate": {
+          "combinator": "or",
+          "rules": [
+            {
+              "id": "f0f7c9ba-a9f4-4565-8739-851306524c70",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6763a69466e06fcc01e7540e"
+            },
+            {
+              "id": "5f4432e0-e8b7-433d-a5a1-0316591955cd",
+              "rules": [
+                {
+                  "id": "3415fd54-9e91-4fec-ad7e-09b0509c503b",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "6763a6c166e06fcc01e75420"
+                },
+                {
+                  "id": "c6a76ef9-411f-450b-92e7-c16066b46ae9",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "675a8e9b0f44fc1769fdea90"
+                }
+              ],
+              "combinator": "and",
+              "not": false
+            }
+          ],
+          "id": "747c41f1-8792-4929-8c55-38306329aabf"
+        },
+        "list_validate": [
+          {
+            "_id": "6763a69466e06fcc01e7540e",
+            "title": "is-tenant-public",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/6763a69466e06fcc01e7540e.json"
+          },
+          {
+            "_id": "6763a6c166e06fcc01e75420",
+            "title": "is-tenant-private",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/6763a6c166e06fcc01e75420.json"
+          },
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

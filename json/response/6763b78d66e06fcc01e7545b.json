@@ -1,0 +1,36 @@
+{
+  "_id": "6763b78d66e06fcc01e7545b",
+  "title": "Get list group public",
+  "outputEntity": [
+    "6747ef07c47463d88f8c5ab1"
+  ],
+  "queryAdvance": "[\n    {\n        \"$match\": {\n            \"type\": \"public\",\n            \"tenant_id\":\"@header:x-tenant-id\"\n        }\n    },\n    {\n        \"$addFields\": {\n            \"_id\": {\n                \"$toString\": \"$_id\"\n            }\n        }\n    },\n    {\n        \"$lookup\": {\n            \"from\": \"mge-group-member\",\n            \"localField\": \"_id\",\n            \"foreignField\": \"social_group\",\n            \"pipeline\": [\n                {\n                    \"$match\": {\n                        \"status\": \"joined\"\n                    }\n                }\n            ],\n            \"as\": \"group_members\"\n        }\n    },\n    {\n        \"$addFields\": {\n            \"member_count\": {\n                \"$size\": \"$group_members\"\n            }\n        }\n    },\n  {\n        \"$lookup\": {\n            \"from\": \"mge-group-member\",\n            \"localField\": \"_id\",\n            \"foreignField\": \"social_group\",\n            \"pipeline\": [\n                {\n                    \"$match\": {\n                        \"$or\": [\n                        {\"status\": \"joined\"},\n                        {\"status\": \"pending\"}\n                        ],\n                        \"user\":\"@jwt:user.id\"\n                    }\n                }\n            ],\n            \"as\": \"user_joined_groups\"\n        }\n    },\n    {\n        \"$addFields\": {\n            \"is_user_in_group\": {\n                \"$gt\": [{ \"$size\": \"$user_joined_groups\" }, 0]\n            }\n        }\n    },\n    {\n        \"$match\": {\n            \"is_user_in_group\": false\n        }\n    },\n    {\n        \"$project\": {\n            \"group_members\": 0,\n            \"id\": 0,\n            \"user_joined_groups\": 0,\n            \"is_user_in_group\": 0\n        }\n    },\n    {\n          \"$lookup\": {\n            \"from\": \"media\",\n            \"let\": { \"featuredImageId\": { \"$arrayElemAt\": [ \"$cover\", 0 ] } },\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"$expr\": {\n                    \"$eq\": [ \"$_id\", { \"$toObjectId\": \"$$featuredImageId\" } ]\n                  }\n                }\n              },\n              {\n                \"$addFields\": {\n                  \"path\": {\n                    \"$concat\": [\n                      {\n                        \"$cond\": [\n                          { \"$eq\": [ \"minio\", \"@app_settings:storage_type\" ] },\n                          \"@app_settings:minio.public\",\n                          \"@app_settings:doSpace.public\"\n                        ]\n                      },\n                      \"/\",\n                      \"$disk\",\n                      \"/\",\n                      \"$filename\"\n                    ]\n                  }\n                }\n              }\n            ],\n            \"as\": \"cover\"\n          }\n        },\n        {\n          \"$lookup\": {\n            \"from\": \"media\",\n            \"let\": { \"featuredImageId\": { \"$arrayElemAt\": [ \"$featured_image\", 0 ] } },\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"$expr\": {\n                    \"$eq\": [ \"$_id\", { \"$toObjectId\": \"$$featuredImageId\" } ]\n                  }\n                }\n              },\n              {\n                \"$addFields\": {\n                  \"path\": {\n                    \"$concat\": [\n                      {\n                        \"$cond\": [\n                          { \"$eq\": [ \"minio\", \"@app_settings:storage_type\" ] },\n                          \"@app_settings:minio.public\",\n                          \"@app_settings:doSpace.public\"\n                        ]\n                      },\n                      \"/\",\n                      \"$disk\",\n                      \"/\",\n                      \"$filename\"\n                    ]\n                  }\n                }\n              }\n            ],\n            \"as\": \"featured_image\"\n          }\n        },\n        {\n    \"$match\": {\n      \"$expr\": {\n        \"$or\": [\n          { \"$eq\": [ \"@param:title\", null ] },\n          {\n            \"$regexMatch\": {\n              \"input\": \"$title\",\n              \"regex\": \"@param:title\",\n              \"options\": \"i\"\n            }\n          }\n        ]\n      },\n      \"status\": \"active\"\n    }\n  },\n    {\n        \"$facet\": {\n            \"meta_data\": [\n                { \"$count\": \"count\" },\n                {\n                    \"$addFields\": {\n                        \"skip\": \"@param:skip\",\n                        \"limit\": \"@param:limit\"\n                    }\n                }\n            ],\n            \"data\": [\n                { \"$skip\": \"@param:skip\" },\n                { \"$limit\": \"@param:limit\" }\n            ]\n        }\n    }\n]\n",
+  "note": "",
+  "method": "get-list",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "categories": [],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "title",
+      "key": "title"
+    }
+  ],
+  "cache_time": "",
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ]
+}

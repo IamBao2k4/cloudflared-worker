@@ -1,0 +1,20 @@
+{
+  "_id": "67cfe37adada26e67e8807cf",
+  "title": "create discussion comment like",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "6752c71d65017d942f7595a5"
+  ],
+  "queryAdvance": "{\r\n  \"comment\": \"@param:discussion_comment_id\"\r\n}",
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "params": [
+    {
+      "value": "discussion_comment_id",
+      "key": "discussion_comment_id"
+    }
+  ]
+}

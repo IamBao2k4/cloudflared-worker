@@ -1,0 +1,43 @@
+{
+  "_id": "675aa539049b30e1807cf103",
+  "title": "is-tweet-votes",
+  "note": "Check type của tweet",
+  "entity": [
+    "674e8f8885bc5241dd6405fb"
+  ],
+  "data": {
+    "id": "aed58176-b81d-4af3-a1e3-f1b2579dedfe",
+    "rules": [
+      {
+        "id": "f23ca076-9cdf-481a-b4eb-6fe040de7af2",
+        "field": "mge-tweet-social-votes._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-tweet-social-votes._id:param._id"
+      },
+      {
+        "id": "909ea0b8-f437-421a-8ac8-c44851298701",
+        "field": "mge-tweet-social-votes._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-tweet-social-votes._id:body._id"
+      }
+    ],
+    "combinator": "or",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$or\":[{\"mge-tweet-social-votes._id\":\"$mge-tweet-social-votes._id:param._id\"},{\"mge-tweet-social-votes._id\":\"$mge-tweet-social-votes._id:body._id\"}]}",
+  "params": [],
+  "headers": [],
+  "body": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "advance": "",
+  "documents": [],
+  "categories": null,
+  "error_code": null,
+  "logged": null,
+  "pre": null
+}

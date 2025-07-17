@@ -1,0 +1,32 @@
+{
+  "_id": "67624c76991509746b6a3c7c",
+  "title": "Create menu item",
+  "outputEntity": [
+    "67493d3f10905d9ddbd007cc"
+  ],
+  "queryAdvance": "{\n  \"name\":1,\n  \"type\":1,\n  \"position\":0,\n  \"link\":0,\n  \"status\":1,\n  \"social_group\": \"@param:group_id\",\n  \"category\": \"@param:category_id\",\n  \"parent_id\":0\n}",
+  "note": "",
+  "method": "post",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "categories": [],
+  "documents": [],
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    },
+    {
+      "value": "category_id",
+      "key": "category_id"
+    }
+  ],
+  "cache_time": "",
+  "data": {
+    "id": "04fa76e7-7272-4767-9ac1-32f1230e07ee",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  }
+}

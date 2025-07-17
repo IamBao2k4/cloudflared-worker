@@ -1,0 +1,79 @@
+{
+  "_id": "681af9ce49a3d92b8742ec8a",
+  "title": "mge social event registration",
+  "mongodb_collection_name": "mge-social-event-registration",
+  "unique_keys": "[\n  {\n    \"user\": 1,\n    \"tweet\": 1\n  }\n]",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "user": {
+        "title": "user",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "n-1"
+        },
+        "filter": true
+      },
+      "tweet": {
+        "title": "tweet",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-social-tweet-event",
+          "_id": "mge-social-tweet-event",
+          "type": "n-1"
+        },
+        "filter": true
+      },
+      "social_group": {
+        "title": "social_group",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group",
+          "_id": "mge-group",
+          "type": "n-1"
+        },
+        "filter": true
+      }
+    },
+    "required": [
+      "user",
+      "tweet",
+      "social_group"
+    ]
+  },
+  "ui_schema": {
+    "user": {
+      "ui:widget": "relation"
+    },
+    "tweet": {
+      "ui:widget": "relation"
+    },
+    "social_group": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "user",
+      "tweet",
+      "social_group"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-05-07T06:12:30.056Z",
+  "__v": 0
+}

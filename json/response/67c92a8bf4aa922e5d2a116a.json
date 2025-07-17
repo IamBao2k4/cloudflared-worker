@@ -1,0 +1,14 @@
+{
+  "_id": "67c92a8bf4aa922e5d2a116a",
+  "title": "update category",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "67c6b37acb2d3f0de04c762e"
+  ],
+  "queryAdvance": "{\r\n  \"title\": 0,\r\n  \"slug\":0,\r\n  \"short_description\": 0,\r\n  \"parent_id\": 0\r\n}",
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb",
+  "documents": []
+}

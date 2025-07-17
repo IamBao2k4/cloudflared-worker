@@ -1,0 +1,13 @@
+{
+  "_id": "67db8c8cbab79a925cd3b79b",
+  "title": "upgrade role of group's member",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "queryAdvance": "{\r\n  \"user\":\"@param:user_id\",\r\n  \"social_group\":\"@param:group_id\",\r\n  \"role\":\"manager\"\r\n}",
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

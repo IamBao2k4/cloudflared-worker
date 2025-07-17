@@ -1,0 +1,14 @@
+{
+  "_id": "67723ae3e240a7d43f0ef557",
+  "title": "update tweet news",
+  "outputEntity": [
+    "674e8ed585bc5241dd6405d3"
+  ],
+  "queryAdvance": "{\n  \"title\":0,\n  \"slug\":0,\n  \"short_description\":0,\n  \"long_description\":0,\n  \"featured_image\":0,\n  \"categories\":0,\n  \"tag\":0,\n  \"comment_off\":0,\n  \"like_off\":0,\n  \"status\":\"active,send_to_review,archive,reject\",\n  \"approve_at\":0,\n  \"published_at\":0,\n  \"report_tweet_off\":0\n}",
+  "note": "",
+  "method": "put",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": []
+}

@@ -1,0 +1,28 @@
+{
+  "listing-tag": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67d7d1d254892e3b0fb7d33f",
+          "title": "get list tag",
+          "entity": "mge-listing-tag",
+          "path_file": "json/response/67d7d1d254892e3b0fb7d33f.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "74d60c25-d6c8-4cd7-871f-04701d011eba"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

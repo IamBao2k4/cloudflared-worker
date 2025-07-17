@@ -1,0 +1,11 @@
+{
+  "_id": "67da3db5bab79a925cd2f69b",
+  "is_active": true,
+  "meta_data": {},
+  "title": "[Cá nhân] Bài viết đợi lịch đã đăng",
+  "title_input": "Bài viết lên lịch của bạn đã được đăng trong [@main_result:social_group.title]",
+  "advance": "{\r\n  \"collection_name_find_user_to\": \"mge-tweet\",\r\n  \"field_get_id\": \"created_by\",\r\n  \"query_pipeline\": [\r\n    {\r\n      \"$addFields\": {\r\n        \"id\": {\r\n          \"$toString\": \"$_id\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"$match\": {\r\n        \"id\": \"@main_result:_id\"\r\n      }\r\n    }\r\n  ]\r\n}",
+  "type": "SOCIAL_TWEET_WAITING_ACTIVE",
+  "blocks": {},
+  "tenant_id": "674028d2611a654e763a73e8"
+}

@@ -1,0 +1,12 @@
+{
+  "_id": "67cff85379b3dc87b27a5724",
+  "title": "delete discussion comment like",
+  "note": "",
+  "cache_time": "",
+  "method": "delete",
+  "outputEntity": [
+    "6752c71d65017d942f7595a5"
+  ],
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

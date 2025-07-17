@@ -1,0 +1,12 @@
+{
+  "_id": "67d3d59abb2f439d190299af",
+  "title": "get detail project",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "67d29b47b6962f9420f43ebb"
+  ],
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb"
+}

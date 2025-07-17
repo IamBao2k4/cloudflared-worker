@@ -1,0 +1,428 @@
+{
+  "exam": {},
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67873ebe34d6d83688404685",
+          "title": "create exam",
+          "entity": "mge-exams",
+          "path_file": "json/response/67873ebe34d6d83688404685.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "7758b1f2-7e9e-4eb9-882b-775cb655b54f",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "baa490a0-256d-484f-8109-169010172eaa",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            },
+            {
+              "id": "882d2558-9f9a-4343-bd16-e1c02f44320b",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678636df6d9b09071159c329"
+            },
+            {
+              "id": "e72dd354-9fd5-4f61-acc0-c4919e358a99",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6787401334d6d836884046f4"
+            }
+          ],
+          "id": "6e87734d-c29d-4a8c-b463-612503f73035"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          },
+          {
+            "_id": "678636df6d9b09071159c329",
+            "title": "is-course-instructor or course-assistant",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/678636df6d9b09071159c329.json"
+          },
+          {
+            "_id": "6787401334d6d836884046f4",
+            "title": "is-user-has-permission-to-create-exam",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/6787401334d6d836884046f4.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "678ca39b163e79d8529b4a7e",
+          "title": "get list exam",
+          "entity": "mge-exams",
+          "path_file": "json/response/678ca39b163e79d8529b4a7e.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "5e9252c1-3c3a-493f-84d2-9ff610b478f8",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "8ceea5f6-cc77-4409-9b17-5756edc554bf",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            },
+            {
+              "id": "94b91482-15a9-4fdd-a54c-8259b88b18d4",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678636df6d9b09071159c329"
+            },
+            {
+              "id": "8cd5f046-460b-4cdf-a7a2-f4fdd51907a3",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67888d0893cfedfbb508c18b"
+            }
+          ],
+          "id": "f9acc906-b03b-4026-861a-161018b6648c"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "678636df6d9b09071159c329",
+            "title": "is-course-instructor or course-assistant",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/678636df6d9b09071159c329.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          },
+          {
+            "_id": "67888d0893cfedfbb508c18b",
+            "title": "is-user-has-permission-to-manage-exam",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67888d0893cfedfbb508c18b.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67888251918452081cc5b163",
+          "title": "update exam",
+          "entity": "mge-exams",
+          "path_file": "json/response/67888251918452081cc5b163.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "8103cc11-088b-418c-9fcf-b43464572fc4",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "f13c3e48-c880-4dbd-93f0-9e60d80e52f7",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            },
+            {
+              "id": "e6561a73-4972-494c-a3c8-4c952f0689c2",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678636df6d9b09071159c329"
+            },
+            {
+              "id": "c0c3ec26-3db5-41f2-87cf-db0f427f7a65",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67888d0893cfedfbb508c18b"
+            }
+          ],
+          "id": "71cdb734-16a7-4dba-a02d-e0bc92b11d46"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          },
+          {
+            "_id": "678636df6d9b09071159c329",
+            "title": "is-course-instructor or course-assistant",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/678636df6d9b09071159c329.json"
+          },
+          {
+            "_id": "67888d0893cfedfbb508c18b",
+            "title": "is-user-has-permission-to-manage-exam",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67888d0893cfedfbb508c18b.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [
+      {
+        "value": "course_id",
+        "key": "course_id"
+      },
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67bd3fb02692eef9b7ac371f",
+          "title": "delete exam",
+          "entity": "mge-exams",
+          "path_file": "json/response/67bd3fb02692eef9b7ac371f.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "3216f9ba-f194-4383-8b1c-a59c1ba0c6f2",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "1d13a314-dd67-46e4-80c0-9258049b3ac8",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            },
+            {
+              "id": "8f1e6489-f3a6-4bd8-ad34-2f0e81d78a4c",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67888d0893cfedfbb508c18b"
+            }
+          ],
+          "id": "592c5e64-5b3a-408d-9ebb-f4d4bf675a5e"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          },
+          {
+            "_id": "67888d0893cfedfbb508c18b",
+            "title": "is-user-has-permission-to-manage-exam",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67888d0893cfedfbb508c18b.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-detail": {
+    "headers": [],
+    "params": [
+      {
+        "value": "course_id",
+        "key": "course_id"
+      },
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67bd479b2692eef9b7ac491b",
+          "title": "get detail exam",
+          "entity": "mge-exams",
+          "path_file": "json/response/67bd479b2692eef9b7ac491b.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "c9a30672-5740-4fb8-868b-01871d846f1b",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "94bafe56-e272-4206-9c69-afb724fdc61e",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            }
+          ],
+          "id": "35f632ac-e4d4-45b7-b6be-45f6894fcecb"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

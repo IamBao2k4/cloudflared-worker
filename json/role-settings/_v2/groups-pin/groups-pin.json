@@ -1,0 +1,207 @@
+{
+  "groups-pin": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67642fc5c34159fb897b6f7b",
+          "title": "Get list groups pin",
+          "entity": "mge-group-pin",
+          "path_file": "json/response/67642fc5c34159fb897b6f7b.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "0f4130ad-85db-4c45-920d-7fc549c96291",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            }
+          ],
+          "id": "ddb9b857-826e-42a5-bba3-ad1af3021670"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67614855ebb7be3bc27d91de",
+          "title": "Create group pin",
+          "path_file": "json/response/67614855ebb7be3bc27d91de.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "fe409474-0d70-418f-a71f-db614e9d764d",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "5c3ff955-e556-4b45-8a2a-c6dce2161f61",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            },
+            {
+              "id": "defbeef4-aa8f-4052-bae0-8f5d18ca0b89",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67808dae04c6c6669c35bf7f"
+            }
+          ],
+          "id": "0a20ac1a-44a5-4f2b-8038-038a1513fb55"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          },
+          {
+            "_id": "67808dae04c6c6669c35bf7f",
+            "title": "is-group-id-from-body-exist",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/67808dae04c6c6669c35bf7f.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        },
+        "trigger_pipeline": ""
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67878f55a4af196f44604c48",
+          "title": "unpin group",
+          "entity": "mge-group-pin",
+          "path_file": "json/response/67878f55a4af196f44604c48.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "b4796cc3-c69c-4ac9-ad70-75ab62b21d33",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            }
+          ],
+          "id": "efffa523-07bf-4dbf-9460-a11c778b53f2"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6808580217c9cce3de7aec1c",
+          "title": "update group pin",
+          "entity": "mge-group-pin",
+          "path_file": "json/response/6808580217c9cce3de7aec1c.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "0bf038ad-e0c7-4205-b5dc-38f073f0c366",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            }
+          ],
+          "id": "23b04dc5-b749-4c1e-8c13-efdd795988f5"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

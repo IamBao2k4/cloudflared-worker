@@ -1,0 +1,99 @@
+{
+  "_id": "6752c9c065017d942f7595c4",
+  "title": "mge user answer",
+  "mongodb_collection_name": "mge-user-answer",
+  "json_schema": {
+    "type": "object",
+    "expanded": true,
+    "required": [
+      "question",
+      "answer",
+      "created_by"
+    ],
+    "properties": {
+      "question": {
+        "title": "Question",
+        "type": "string",
+        "widget": "relation",
+        "expanded": true,
+        "require": true,
+        "typeRelation": {
+          "title": "mge-questions",
+          "_id": "mge-questions",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "a2085e2f-d1e9-4c34-8917-c6a96b7c998e"
+          }
+        }
+      },
+      "answer": {
+        "items": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "answer_id": {
+              "widget": "shortAnswer",
+              "title": "answer_id",
+              "type": "string",
+              "expanded": true
+            }
+          }
+        },
+        "title": "Answer",
+        "type": "array",
+        "description": "Đáp án người dùng chọn",
+        "expanded": true,
+        "require": false
+      },
+      "created_by": {
+        "title": "Created By",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "n-1"
+        },
+        "description": "ID của người dùng đã trả lời câu hỏi, liên kết đến collection users."
+      }
+    }
+  },
+  "ui_schema": {
+    "question": {
+      "ui:widget": "relation"
+    },
+    "answer": {
+      "items": {
+        "ui:order": [
+          "answer_id"
+        ]
+      }
+    },
+    "created_by": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "question",
+      "answer",
+      "created_by"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "entity_group": [
+    "677f8ef04bac6329557659ef"
+  ],
+  "created_at": "2024-12-06T09:54:08.480Z",
+  "__v": 0,
+  "use_seo_path": false,
+  "use_parent_delete_childs": false
+}

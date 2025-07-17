@@ -1,0 +1,34 @@
+{
+  "_id": "67b60b8adaf8793d547d81e3",
+  "title": "get list all group (except secret group)",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "6747ef07c47463d88f8c5ab1"
+  ],
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "queryAdvance": "[\n    {\n        \"$match\": {\n          \"$or\": [\n            {\"type\": \"public\"},\n            {\"type\": \"private\"}\n            ],\n            \"status\":\"active\",\n            \"tenant_id\":\"@header:x-tenant-id\"\n        }\n    },\n    {\n        \"$addFields\": {\n            \"_id\": {\n                \"$toString\": \"$_id\"\n            }\n        }\n    },\n    {\n        \"$lookup\": {\n            \"from\": \"mge-group-member\",\n            \"localField\": \"_id\",\n            \"foreignField\": \"social_group\",\n            \"pipeline\": [\n                {\n                    \"$match\": {\n                        \"status\": \"joined\",\n                        \"tenant_id\":\"@header:x-tenant-id\"\n                    }\n                }\n            ],\n            \"as\": \"group_members\"\n        }\n    },\n    {\n        \"$addFields\": {\n            \"member_count\": {\n                \"$size\": \"$group_members\"\n            }\n        }\n    },\n    {\n          \"$lookup\": {\n            \"from\": \"media\",\n            \"let\": { \"featuredImageId\": { \"$arrayElemAt\": [ \"$cover\", 0 ] } },\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"$expr\": {\n                    \"$eq\": [ \"$_id\", { \"$toObjectId\": \"$$featuredImageId\" } ]\n                  }\n                }\n              },\n              {\n                \"$addFields\": {\n                  \"path\": {\n                    \"$concat\": [\n                      {\n                        \"$cond\": [\n                          { \"$eq\": [ \"minio\", \"@app_settings:storage_type\" ] },\n                          \"@app_settings:minio.public\",\n                          \"@app_settings:doSpace.public\"\n                        ]\n                      },\n                      \"/\",\n                      \"$disk\",\n                      \"/\",\n                      \"$filename\"\n                    ]\n                  }\n                }\n              }\n            ],\n            \"as\": \"cover\"\n          }\n        },\n        {\n          \"$lookup\": {\n            \"from\": \"media\",\n            \"let\": { \"featuredImageId\": { \"$arrayElemAt\": [ \"$featured_image\", 0 ] } },\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"$expr\": {\n                    \"$eq\": [ \"$_id\", { \"$toObjectId\": \"$$featuredImageId\" } ]\n                  }\n                }\n              },\n              {\n                \"$addFields\": {\n                  \"path\": {\n                    \"$concat\": [\n                      {\n                        \"$cond\": [\n                          { \"$eq\": [ \"minio\", \"@app_settings:storage_type\" ] },\n                          \"@app_settings:minio.public\",\n                          \"@app_settings:doSpace.public\"\n                        ]\n                      },\n                      \"/\",\n                      \"$disk\",\n                      \"/\",\n                      \"$filename\"\n                    ]\n                  }\n                }\n              }\n            ],\n            \"as\": \"featured_image\"\n          }\n        },\n        {\n    \"$match\": {\n      \"$expr\": {\n        \"$or\": [\n          { \"$eq\": [ \"@param:title\", null ] },\n          {\n            \"$regexMatch\": {\n              \"input\": \"$title\",\n              \"regex\": \"@param:title\",\n              \"options\": \"i\"\n            }\n          }\n        ]\n      }\n    }\n  },\n    {\n        \"$facet\": {\n            \"meta_data\": [\n                { \"$count\": \"count\" },\n                {\n                    \"$addFields\": {\n                        \"skip\": \"@param:skip\",\n                        \"limit\": \"@param:limit\"\n                    }\n                }\n            ],\n            \"data\": [\n                { \"$skip\": \"@param:skip\" },\n                { \"$limit\": \"@param:limit\" }\n            ]\n        }\n    }\n]\n",
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "title",
+      "key": "title"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ]
+}

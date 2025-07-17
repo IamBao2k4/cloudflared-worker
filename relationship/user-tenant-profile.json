@@ -1,0 +1,30 @@
+[
+  {
+    "name": "user",
+    "targetTable": "user",
+    "localField": "user",
+    "foreignField": "_id",
+    "type": "one-to-one"
+  },
+  {
+    "name": "profile.course.department",
+    "targetTable": "mge-department",
+    "localField": "profile.course.department",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "profile.course.team",
+    "targetTable": "mge-team",
+    "localField": "profile.course.team",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "profile.course.job_position",
+    "targetTable": "mge-job-position",
+    "localField": "profile.course.job_position",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

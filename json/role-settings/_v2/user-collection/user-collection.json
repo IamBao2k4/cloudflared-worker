@@ -1,0 +1,309 @@
+{
+  "user-collection": {},
+  "get-detail": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67765173c2c296256a442e64",
+          "title": "get detail user collection",
+          "entity": "mge-user-collections",
+          "path_file": "json/response/67765173c2c296256a442e64.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "a423b060-8910-4088-992f-adbbc77a8357",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "6b60f86e-94da-446b-b01d-3589275d9dcc",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67629dec827c314d42b97a98"
+            }
+          ],
+          "id": "7ef3149d-6c46-4f35-b03d-ee0085306828"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "67629dec827c314d42b97a98",
+            "title": "is-user-collection-is-mine",
+            "entity": {
+              "_id": "675b99f99279b9d81247c3ba",
+              "mongodb_collection_name": "mge-user-collections"
+            },
+            "path_file": "json/validate/67629dec827c314d42b97a98.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "e1905e0a-1ec0-4b11-b958-10f07ec0b2b2",
+          "rules": [
+            {
+              "id": "c850e383-d533-42c7-a8c2-ced160c5ff57",
+              "field": "@param:is_root",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "false"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        }
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "67c42946cb2d3f0de0484c61",
+          "title": "Get detail watch later collection",
+          "entity": "mge-tweet-saved",
+          "path_file": "json/response/67c42946cb2d3f0de0484c61.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "a7e500ae-4d74-45f8-8bbc-fe4cbfdf9588",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            }
+          ],
+          "id": "91004d66-0f0f-4942-815b-6c3e7d69ed86"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "5c13acae-cd4f-4c08-9500-d55432a7be5c",
+          "rules": [
+            {
+              "id": "f95ead8b-71df-4348-a21b-47033c3a0e47",
+              "field": "@param:is_root",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "true"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        }
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "676a7019a188bea5e073db22",
+          "title": "Get list user's collections",
+          "path_file": "json/response/676a7019a188bea5e073db22.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "664e95f6-e5ae-4ebb-b7d3-7f998a7e8de8",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            }
+          ],
+          "id": "d66113f9-8ac3-428b-a359-4278db945fc8"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "675bae981a1964f83959e573",
+          "title": "Create new user collection",
+          "entity": "mge-user-collections",
+          "path_file": "json/response/675bae981a1964f83959e573.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "97b87f12-069b-4671-8240-c2dc29ba60aa",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            }
+          ],
+          "id": "65f0a02a-b46f-46ce-8208-05f560be436a"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        },
+        "trigger_pipeline": "[\n    {\n        \"collection_name\": \"mge-user-collections\",\n        \"action\": \"update\",\n        \"query_advance\": \n            [\n              {\n                \"$addFields\": {\n                  \"id\": {\n                    \"$toString\": \"$_id\"\n                  }\n                }\n              },\n              {\n                \"$match\": {\n                  \"tenant_id\":\"@header:x-tenant-id\",\n                  \"created_by\":\"@jwt:user.id\",\n                  \"id\":{ \"$ne\": [\"@main_result:_id\"] }\n                }\n              }\n            ],\n        \"advance\": {\n            \"position\": \"$$inc\"\n        }\n    }\n]"
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "676d27984ec833ce93a0874d",
+          "title": "Delete user's collection",
+          "entity": "mge-user-collections",
+          "path_file": "json/response/676d27984ec833ce93a0874d.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "3712d619-16df-497b-ab35-ddf21899821a",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            }
+          ],
+          "id": "990c93d0-da88-4430-a4fa-afff417ff760"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "678e0603c9f11199898e4546",
+          "title": "update collection",
+          "entity": "mge-user-collections",
+          "path_file": "json/response/678e0603c9f11199898e4546.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "ac434b3e-c94a-495e-896d-41141efe5fed",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "62fcd7ef-a018-4a93-a5a0-bd28e262e427",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67629dec827c314d42b97a98"
+            }
+          ],
+          "id": "b5b98a08-2eb6-4ddf-9ba5-488d7249bbd3"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "67629dec827c314d42b97a98",
+            "title": "is-user-collection-is-mine",
+            "entity": {
+              "_id": "675b99f99279b9d81247c3ba",
+              "mongodb_collection_name": "mge-user-collections"
+            },
+            "path_file": "json/validate/67629dec827c314d42b97a98.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        },
+        "trigger_pipeline": ""
+      }
+    ]
+  }
+}

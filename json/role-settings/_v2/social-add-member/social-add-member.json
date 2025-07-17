@@ -1,0 +1,28 @@
+{
+  "social-add-member": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "68021d52887875ca1b8c7902",
+          "title": "get list tenant's user except social's members",
+          "entity": "user-tenant-profile",
+          "path_file": "json/response/68021d52887875ca1b8c7902.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "eca70786-eb27-4b0b-a37d-479abdfad7f1"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

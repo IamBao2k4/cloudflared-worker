@@ -1,0 +1,36 @@
+{
+  "_id": "675bd63da598611d57bb3118",
+  "title": "is-user-has-permission-delete-tweet",
+  "note": "Xác thực user xem có quyền xóa tweet không",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "data": {
+    "id": "47fbee75-8aac-42b4-aab5-35fc3070257b",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "advance": "[\n  {\n    \"$match\": {\n      \"user\": \"@jwt:user.id\",\n      \"social_group\": \"@param:group_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"social_group_object_id\": {\n        \"$map\": {\n          \"input\": \"$social_group\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group\",\n      \"localField\": \"social_group_object_id\",\n      \"foreignField\": \"_id\",\n      \"as\": \"group_info\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"group_info\": {\n        \"$arrayElemAt\": [\n          \"$group_info\",\n          0\n        ]\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"can_delete_tweet_group\": {\n        \"$gt\": [\n          {\n            \"$size\": {\n              \"$setIntersection\": [\n                \"$role\",\n                \"$group_info.permissions.tweet_delete\"\n              ]\n            }\n          },\n          0\n        ]\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"can_delete_tweet_group\": true\n    }\n  }\n]",
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "body": null,
+  "headers": null,
+  "logged": null,
+  "params": [
+    {
+      "value": "_id",
+      "key": "_id"
+    },
+    {
+      "value": "group_id",
+      "key": "group_id"
+    }
+  ],
+  "pre": null,
+  "categories": []
+}

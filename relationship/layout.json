@@ -1,0 +1,16 @@
+[
+  {
+    "name": "entity",
+    "targetTable": "post-type",
+    "localField": "entity",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "templates",
+    "targetTable": "templates",
+    "localField": "templates",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "_id": "677ba29844af0385d64b4053",
+  "title": "is-comment-belongs-to-group",
+  "note": "",
+  "entity": [
+    "6764e3926e57acaf6815ab97"
+  ],
+  "data": {
+    "id": "261da8a8-7afe-44b2-9d9d-510e78c76ef3",
+    "rules": [
+      {
+        "id": "5cc98c3e-8481-480d-8459-7c7f920ff161",
+        "field": "mge-tweet-comment._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-tweet-comment._id:param._id"
+      },
+      {
+        "id": "3512c229-0094-4b8f-82f6-0d47c0aeb1c7",
+        "field": "mge-tweet-comment.social_group",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-tweet-comment.social_group:param.group_id"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"mge-tweet-comment._id\":\"$mge-tweet-comment._id:param._id\"},{\"mge-tweet-comment.social_group\":\"$mge-tweet-comment.social_group:param.group_id\"}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "advance": null,
+  "body": null,
+  "documents": [],
+  "headers": null,
+  "logged": null,
+  "params": null,
+  "pre": null
+}

@@ -1,0 +1,13 @@
+{
+  "_id": "6780ecfaf5c015cd8496d5d8",
+  "title": "delete group's report",
+  "outputEntity": [
+    "6764e4046e57acaf6815ab9f"
+  ],
+  "note": "",
+  "method": "delete",
+  "categories": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

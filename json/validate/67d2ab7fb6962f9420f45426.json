@@ -1,0 +1,32 @@
+{
+  "_id": "67d2ab7fb6962f9420f45426",
+  "title": "is-user-contact-creator",
+  "note": "",
+  "entity": [
+    "67d29b47b6962f9420f43ebb"
+  ],
+  "data": {
+    "id": "63017eed-efed-4dbf-bfa2-0fa35f0ea9a4",
+    "rules": [
+      {
+        "id": "e71350d2-c207-4508-81c7-2bf4f9d5cdba",
+        "field": "mge-listing-contact._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-listing-contact._id:param._id"
+      },
+      {
+        "id": "141212ac-a828-40f8-84d4-cafa9c06e45a",
+        "field": "mge-listing-contact.created_by",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-listing-contact.created_by:jwt.user@id"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"mge-listing-contact._id\":\"$mge-listing-contact._id:param._id\"},{\"mge-listing-contact.created_by\":\"$mge-listing-contact.created_by:jwt.user@id\"}]}",
+  "required": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb"
+}

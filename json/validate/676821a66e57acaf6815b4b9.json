@@ -1,0 +1,21 @@
+{
+  "_id": "676821a66e57acaf6815b4b9",
+  "title": "is-user-has-permission-to-manage-tweet-send-to-review",
+  "note": "",
+  "entity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "data": {
+    "id": "b56784b2-cfd6-44ab-a420-5e70047975fe",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "advance": "[\n  {\n    \"$addFields\": {\n      \"social_group_object_id\": {\n        \"$map\": {\n          \"input\": \"$social_group\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"user\": \"@jwt:user.id\",\n      \"social_group\": \"@params:group_id\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group\",\n      \"localField\": \"social_group_object_id\",\n      \"foreignField\": \"_id\",\n      \"as\": \"group_info\"\n    }\n  },\n   {\n    \"$addFields\": {\n      \"can_update_group_info\": {\n        \"$anyElementTrue\": {\n          \"$map\": {\n            \"input\": { \n              \"$ifNull\": [\n                { \"$arrayElemAt\": [\"$group_info.permissions.tweet_send_to_review_manage\", 0] }, \n                []\n              ] \n            },\n            \"as\": \"permission\",\n            \"in\": { \"$eq\": [\"$$permission\", \"$role\"] }\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"can_update_group_info\": true\n    }\n  }\n]\n",
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": []
+}

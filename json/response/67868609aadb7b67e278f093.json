@@ -1,0 +1,60 @@
+{
+  "_id": "67868609aadb7b67e278f093",
+  "title": "get list course's lessons",
+  "outputEntity": [
+    "6752a70b65017d942f75941d"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"course\": \"@param:course_id\"\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$and\": [\n          {\n            \"$cond\": {\n              \"if\": {\n                \"$ne\": [\n                  \"@param:chapter[]\",\n                  null\n                ]\n              },\n              \"then\": {\n                \"$or\": [\n                  {\n                    \"$in\": [\n                      \"$chapters\",\n                      [\n                        \"@param:chapter[]\"\n                      ]\n                    ]\n                  },\n                  {\n                    \"$in\": [\n                      \"$chapters\",\n                      [\n                        [\n                          \"@param:chapter[]\"\n                        ]\n                      ]\n                    ]\n                  }\n                ]\n              },\n              \"else\": true\n            }\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"chapters\": {\n        \"$map\": {\n          \"input\": \"$chapters\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-chapters\",\n      \"localField\": \"chapters\",\n      \"foreignField\": \"_id\",\n      \"as\": \"chapters\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"video_file\": {\n        \"$cond\": {\n          \"if\": {\n            \"$isArray\": \"$video_file\"\n          },\n          \"then\": {\n            \"$toObjectId\": {\n              \"$arrayElemAt\": [\n                \"$video_file\",\n                0\n              ]\n            }\n          },\n          \"else\": {\n            \"$toObjectId\": \"$video_file\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"media\",\n      \"localField\": \"video_file\",\n      \"foreignField\": \"_id\",\n      \"pipeline\": [\n        {\n          \"$addFields\": {\n            \"path\": {\n              \"$concat\": [\n                {\n                  \"$cond\": [\n                    {\n                      \"$eq\": [\n                        \"minio\",\n                        \"@app_settings:storage_type\"\n                      ]\n                    },\n                    \"@app_settings:minio.public\",\n                    \"@app_settings:doSpace.public\"\n                  ]\n                },\n                \"/\",\n                \"$disk\",\n                \"/\",\n                \"$filename\"\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"video_file\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"is_using\": {\n        \"$cond\": {\n          \"if\": {\n            \"$and\": [\n              {\n                \"$ne\": [\n                  \"$chapters\",\n                  null\n                ]\n              },\n              {\n                \"$gt\": [\n                  {\n                    \"$size\": \"$chapters\"\n                  },\n                  0\n                ]\n              }\n            ]\n          },\n          \"then\": true,\n          \"else\": false\n        }\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"is_using_chapter\": {\n        \"$cond\": {\n          \"if\": \"$is_using\",\n          \"then\": \"true\",\n          \"else\": \"false\"\n        }\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$cond\": {\n          \"if\": {\n            \"$ne\": [\n              \"@param:is_using\",\n              null\n            ]\n          },\n          \"then\": {\n            \"$eq\": [\n              \"$is_using_chapter\",\n              \"@param:is_using\"\n            ]\n          },\n          \"else\": true\n        }\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"is_using_chapter\": 0\n    }\n  },\n  {\n    \"$sort\": {\n      \"created_at\": -1\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "note": "",
+  "method": "get-list",
+  "categories": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "body": null,
+  "documents": [],
+  "headers": null,
+  "params": [
+    {
+      "value": "course_id",
+      "key": "course_id"
+    },
+    {
+      "value": "status[]",
+      "key": "status[]"
+    },
+    {
+      "value": "type[]",
+      "key": "type[]"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "is-using-chapter",
+      "key": "is-using-chapter"
+    },
+    {
+      "value": "is_using_chapter",
+      "key": "is_using_chapter"
+    },
+    {
+      "value": "is_using",
+      "key": "is_using"
+    },
+    {
+      "value": "_is_using",
+      "key": "_is_using"
+    },
+    {
+      "value": "chapter[]",
+      "key": "chapter[]"
+    }
+  ],
+  "cache_time": ""
+}

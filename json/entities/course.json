@@ -1,0 +1,129 @@
+{
+  "_id": "67ef9dccb3f8c11eb1bd61e4",
+  "title": "course",
+  "mongodb_collection_name": "course",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Tên khóa học",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "slug": {
+        "title": "Slug",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "filter": true,
+        "depend_field": "root_title"
+      },
+      "description": {
+        "title": "Mô tả khóa học",
+        "type": "string",
+        "widget": "textarea",
+        "customRole": "texteditor",
+        "filter": true
+      },
+      "thumbnail": {
+        "title": "Hình ảnh thumbnail",
+        "type": "string",
+        "widget": "file",
+        "filter": false
+      },
+      "intro_video": {
+        "title": "Video giới thiệu",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "media",
+          "_id": "677cce5b676bc057e16690ed",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "d1a7f350-e82c-451b-a3b5-b1c88e3df9ef"
+          }
+        },
+        "filter": false
+      },
+      "status": {
+        "title": "Trạng thái",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "Nháp",
+            "value": "draft"
+          },
+          {
+            "key": "Công khai",
+            "value": "published"
+          },
+          {
+            "key": "Đóng",
+            "value": "closed"
+          }
+        ],
+        "filter": true,
+        "default": "draft"
+      },
+      "newInput1": {
+        "title": "New Input 1",
+        "type": "string",
+        "widget": "shortAnswer"
+      }
+    },
+    "required": [
+      "title",
+      "description",
+      "status"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "description": {
+      "ui:widget": "textarea"
+    },
+    "thumbnail": {
+      "ui:widget": "file"
+    },
+    "intro_video": {
+      "ui:widget": "relation"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "newInput1": {
+      "ui:widget": "shortAnswer"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "description",
+      "thumbnail",
+      "intro_video",
+      "status",
+      "newInput1"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "created_at": "2025-04-04T08:52:28.082Z",
+  "__v": 0,
+  "entity_group": null
+}

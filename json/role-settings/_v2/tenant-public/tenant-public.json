@@ -1,0 +1,28 @@
+{
+  "tenant-public": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67c08a860bb62abd56e896c7",
+          "title": "get list tenant publics",
+          "entity": "tenant",
+          "path_file": "json/response/67c08a860bb62abd56e896c7.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "fe37cb9e-84ee-4717-b5ba-739495ec494a"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

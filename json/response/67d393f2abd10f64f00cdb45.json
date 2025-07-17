@@ -1,0 +1,28 @@
+{
+  "_id": "67d393f2abd10f64f00cdb45",
+  "title": "get list contact",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "67d29b47b6962f9420f43ebb"
+  ],
+  "queryAdvance": "[\r\n  {\r\n    \"$match\": {\r\n      \"$expr\": {\r\n        \"$and\": [\r\n          {\r\n            \"$cond\": {\r\n              \"if\": {\r\n                \"$ne\": [\r\n                  \"@param:type[]\",\r\n                  null\r\n                ]\r\n              },\r\n              \"then\": {\r\n                \"$gt\": [\r\n                  {\r\n                    \"$size\": {\r\n                      \"$filter\": {\r\n                        \"input\": \"@param:type[]\",\r\n                        \"as\": \"typeItem\",\r\n                        \"cond\": {\r\n                          \"$in\": [\r\n                            \"$$typeItem\",\r\n                            \"$type\"\r\n                          ]\r\n                        }\r\n                      }\r\n                    }\r\n                  },\r\n                  0\r\n                ]\r\n              },\r\n              \"else\": true\r\n            }\r\n          },\r\n          {\r\n            \"$cond\": {\r\n              \"if\": {\r\n                \"$ne\": [\r\n                  \"@param:city\",\r\n                  null\r\n                ]\r\n              },\r\n              \"then\": {\r\n                \"$and\": [\r\n                  {\r\n                    \"$eq\": [\r\n                      \"$address.city\",\r\n                      \"@param:city\"\r\n                    ]\r\n                  },\r\n                  {\r\n                    \"$cond\": {\r\n                      \"if\": {\r\n                        \"$ne\": [\r\n                          \"@param:district\",\r\n                          null\r\n                        ]\r\n                      },\r\n                      \"then\": {\r\n                        \"$and\": [\r\n                          {\r\n                            \"$eq\": [\r\n                              \"$address.district\",\r\n                              \"@param:district\"\r\n                            ]\r\n                          },\r\n                          {\r\n                            \"$cond\": {\r\n                              \"if\": {\r\n                                \"$ne\": [\r\n                                  \"@param:ward\",\r\n                                  null\r\n                                ]\r\n                              },\r\n                              \"then\": {\r\n                                \"$eq\": [\r\n                                  \"$address.ward\",\r\n                                  \"@param:ward\"\r\n                                ]\r\n                              },\r\n                              \"else\": true\r\n                            }\r\n                          }\r\n                        ]\r\n                      },\r\n                      \"else\": true\r\n                    }\r\n                  }\r\n                ]\r\n              },\r\n              \"else\": true\r\n            }\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$facet\": {\r\n      \"meta_data\": [\r\n        {\r\n          \"$count\": \"count\"\r\n        },\r\n        {\r\n          \"$addFields\": {\r\n            \"skip\": \"@param:skip\",\r\n            \"limit\": \"@param:limit\"\r\n          }\r\n        }\r\n      ],\r\n      \"data\": [\r\n        {\r\n          \"$skip\": \"@param:skip\"\r\n        },\r\n        {\r\n          \"$limit\": \"@param:limit\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n]",
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb",
+  "documents": [],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "type[]",
+      "key": "type[]"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "course-user-statistic": {},
+  "get-detail": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6822c6d61d50e98cb4b496cc",
+          "title": "get detail user's course statistic",
+          "entity": "mge-course-member",
+          "path_file": "json/response/6822c6d61d50e98cb4b496cc.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "7b8c7bd8-b847-4b66-b576-fc7d0984b83b",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678636df6d9b09071159c329"
+            }
+          ],
+          "id": "52fb46ec-67e4-440c-a726-b357ddd616c4"
+        },
+        "list_validate": [
+          {
+            "_id": "678636df6d9b09071159c329",
+            "title": "is-course-instructor or course-assistant",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/678636df6d9b09071159c329.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

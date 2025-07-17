@@ -1,0 +1,9 @@
+[
+  {
+    "name": "tag_group",
+    "targetTable": "mge-listing-tag-group",
+    "localField": "tag_group",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

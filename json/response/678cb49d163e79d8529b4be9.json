@@ -1,0 +1,33 @@
+{
+  "_id": "678cb49d163e79d8529b4be9",
+  "title": "get list course overview",
+  "note": "",
+  "method": "get-list",
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"course\":\"@param:course_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-lessons\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"chapters\",\n      \"as\": \"lessons\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-exams\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"chapter\",\n      \"as\": \"exams\"\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "categories": [],
+  "outputEntity": [
+    "67529e3265017d942f759319"
+  ],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "data": {
+    "id": "b824665b-a138-413c-8690-34619d5e7eaf",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "documents": [],
+  "params": [
+    {
+      "value": "course_id",
+      "key": "course_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "_id": "67d8ff0d41a9e2f0e877af4f",
+  "is_active": true,
+  "meta_data": {},
+  "title": "[Quản lý] Bài viết cần được phê duyệt",
+  "title_input": "Bài viết của [@main_result:created_by.full_name] trong nhóm [@main_result:social_group.title] cần được phê duyệt [@main_result:title]",
+  "advance": "{\n  \"collection_name_find_user_to\": \"mge-group\",\n  \"field_get_id\": \"user\",\n  \"query_pipeline\": [\n    {\n      \"$addFields\": {\n        \"id\": {\n          \"$toString\": \"$_id\"\n        }\n      }\n    },\n    {\n      \"$match\": {\n        \"tenant_id\": \"@header:x-tenant-id\",\n        \"id\": \"@main_result:social_group._id\"\n      }\n    },\n    {\n      \"$unwind\": \"$permissions.tweet_approve\"\n    },\n    {\n      \"$lookup\": {\n        \"from\": \"mge-group-member\",\n        \"localField\": \"permissions.tweet_approve\",\n        \"foreignField\": \"role\",\n        \"pipeline\": [\n          {\n            \"$match\": {\n              \"social_group\": \"@main_result:social_group._id\",\n              \"status\": \"joined\"\n            }\n          }\n        ],\n        \"as\": \"tweet_approved_permission_user\"\n      }\n    },\n    {\n      \"$unwind\": \"$tweet_approved_permission_user\"\n    },\n    {\n      \"$replaceRoot\": {\n        \"newRoot\": \"$tweet_approved_permission_user\"\n      }\n    }\n  ]\n}",
+  "blocks": {},
+  "tenant_id": "674028d2611a654e763a73e8",
+  "type": "SOCIAL_TWEET_GROUP_APPROVE"
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "from",
+    "targetTable": "user",
+    "localField": "from",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "to",
+    "targetTable": "user",
+    "localField": "to",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

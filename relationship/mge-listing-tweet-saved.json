@@ -1,0 +1,9 @@
+[
+  {
+    "name": "tweet_id",
+    "targetTable": "mge-listing-tweet",
+    "localField": "tweet_id",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

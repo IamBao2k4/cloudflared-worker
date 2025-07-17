@@ -1,0 +1,46 @@
+{
+  "_id": "678ca39b163e79d8529b4a7e",
+  "title": "get list exam",
+  "note": "Dùng cho giảng viên và quản trị viên khóa học",
+  "method": "get-list",
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"course\": \"@param:course_id\"\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$and\": [\n          {\n            \"$cond\": {\n              \"if\": {\n                \"$ne\": [\n                  \"@param:status[]\",\n                  null\n                ]\n              },\n              \"then\": {\n                \"$in\": [\n                  \"$status\",\n                  \"@param:status[]\"\n                ]\n              },\n              \"else\": true\n            }\n          },\n          {\n            \"$cond\": {\n              \"if\": {\n                \"$ne\": [\n                  \"@param:type[]\",\n                  null\n                ]\n              },\n              \"then\": {\n                \"$in\": [\n                  \"$type\",\n                  \"@param:type[]\"\n                ]\n              },\n              \"else\": true\n            }\n          },\n          {\n            \"$cond\": {\n              \"if\": {\n                \"$ne\": [\n                  \"@param:chapter[]\",\n                  null\n                ]\n              },\n              \"then\": {\n                \"$or\": [\n                  {\n                    \"$in\": [\n                      \"$chapters\",\n                      [\n                        \"@param:chapter[]\"\n                      ]\n                    ]\n                  },\n                  {\n                    \"$in\": [\n                      \"$chapters\",\n                      [\n                        [\n                          \"@param:chapter[]\"\n                        ]\n                      ]\n                    ]\n                  }\n                ]\n              },\n              \"else\": true\n            }\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$set\": {\n      \"chapters\": {\n        \"$map\": {\n          \"input\": \"$chapters\",\n          \"as\": \"ch\",\n          \"in\": {\n            \"$toObjectId\": \"$$ch\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-chapters\",\n      \"localField\": \"chapters\",\n      \"foreignField\": \"_id\",\n      \"as\": \"chapters\"\n    }\n  },\n  {\n    \"$set\": {\n      \"course\": {\n        \"$map\": {\n          \"input\": \"$course\",\n          \"as\": \"ch\",\n          \"in\": {\n            \"$toObjectId\": \"$$ch\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-courses\",\n      \"localField\": \"course\",\n      \"foreignField\": \"_id\",\n      \"as\": \"course\"\n    }\n  },\n  {\n    \"$sort\": {\n      \"created_at\": -1\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "outputEntity": [
+    "6752ad7665017d942f759440"
+  ],
+  "data": {
+    "id": "db2400b5-f377-47e6-838e-d5ea559ae27a",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "params": [
+    {
+      "value": "course_id",
+      "key": "course_id"
+    },
+    {
+      "value": "status[]",
+      "key": "status[]"
+    },
+    {
+      "value": "type[]",
+      "key": "type[]"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "chapter[]",
+      "key": "chapter[]"
+    }
+  ],
+  "cache_time": ""
+}

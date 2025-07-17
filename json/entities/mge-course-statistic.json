@@ -1,0 +1,151 @@
+{
+  "_id": "681dbedfa8a8906b8fa78291",
+  "title": "mge course statistic",
+  "mongodb_collection_name": "mge-course-statistic",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "total_lessons": {
+        "title": "total_lessons",
+        "type": "string",
+        "widget": "numberInput",
+        "description": "Tổng số bài học trong khóa",
+        "default": "0"
+      },
+      "total_members": {
+        "title": "total_members",
+        "type": "string",
+        "widget": "numberInput",
+        "description": "Tổng số thành viên trong khóa",
+        "default": "0"
+      },
+      "completed_members": {
+        "title": "completed_members",
+        "type": "string",
+        "widget": "numberInput",
+        "description": "Tổng số thành viên đã hoàn thành khóa học",
+        "default": "0"
+      },
+      "dropped_members": {
+        "title": "dropped_members",
+        "type": "string",
+        "widget": "numberInput",
+        "description": "Tổng số thành viên chưa hoàn thành khóa học",
+        "default": "0"
+      },
+      "avg_completion_rate": {
+        "title": "avg_completion_rate",
+        "type": "string",
+        "widget": "numberInput",
+        "description": "Tỷ lệ hoàn thành trung bình",
+        "unit": "̀̀̀̀̀̀%",
+        "default": "0"
+      },
+      "total_discussions": {
+        "title": "total_discussions",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "total_comments": {
+        "title": "total_comments",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "total_likes": {
+        "title": "total_likes",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "members": {
+        "title": "members",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "entity",
+          "entity": "entity",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "d1bbeec6-343a-45c8-b522-e1dd3f24a38c"
+          }
+        }
+      },
+      "course": {
+        "title": "course",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-courses",
+          "_id": "mge-courses",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "86f01b17-7734-40e8-9c8a-1477f8f0defb"
+          }
+        }
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "total_lessons": {
+      "ui:widget": "numberInput"
+    },
+    "total_members": {
+      "ui:widget": "numberInput"
+    },
+    "completed_members": {
+      "ui:widget": "numberInput"
+    },
+    "dropped_members": {
+      "ui:widget": "numberInput"
+    },
+    "avg_completion_rate": {
+      "ui:widget": "numberInput"
+    },
+    "total_discussions": {
+      "ui:widget": "numberInput"
+    },
+    "total_comments": {
+      "ui:widget": "numberInput"
+    },
+    "total_likes": {
+      "ui:widget": "numberInput"
+    },
+    "members": {
+      "ui:widget": "relation"
+    },
+    "course": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "total_lessons",
+      "total_members",
+      "completed_members",
+      "dropped_members",
+      "avg_completion_rate",
+      "total_discussions",
+      "total_comments",
+      "total_likes",
+      "members",
+      "course"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-05-09T08:37:51.609Z",
+  "__v": 0,
+  "id": "681dbedfa8a8906b8fa78291"
+}

@@ -1,0 +1,41 @@
+{
+  "tenant-setting": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67b4bad14cd70d34a3f028fb",
+          "title": "get info tenant ",
+          "entity": "tenant",
+          "path_file": "json/response/67b4bad14cd70d34a3f028fb.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "ccf3208d-801d-489d-b463-f6523fcb618e"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      },
+      {
+        "notification": {},
+        "response": {},
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "0b59f9a4-099a-4eec-b71a-45b4082b0614"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

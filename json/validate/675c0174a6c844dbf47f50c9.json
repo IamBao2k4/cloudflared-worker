@@ -1,0 +1,39 @@
+{
+  "_id": "675c0174a6c844dbf47f50c9",
+  "title": "is-tweet-active",
+  "note": "dang xai cho api tweet saved",
+  "entity": [
+    "67b6a286606da18e6c1976f1"
+  ],
+  "data": {
+    "id": "929b96f5-c238-4c5a-9969-94adb6e54077",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "advance": "[\n  {\n    \"$addFields\": {\n      \"id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"tenant_id\": \"@header:x-tenant-id\",\n      \"status\":\"active\",\n      \"$or\": [\n        {\"id\": \"@param:tweet_id\"},\n        {\"id\": \"@body:tweet_id\"}\n        ]\n    }\n  }\n]",
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "tweet_id",
+      "key": "tweet_id"
+    }
+  ],
+  "body": [
+    {
+      "value": "tweet_id",
+      "key": "tweet_id"
+    }
+  ]
+}

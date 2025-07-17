@@ -1,0 +1,362 @@
+{
+  "_id": "681889f3753574930d610f82",
+  "title": "EMC orders",
+  "mongodb_collection_name": "emc-orders",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "customer": {
+        "type": "string",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "318f84b8-ecc4-4c5b-bfc8-32630f1cc50d"
+          }
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "Customer",
+        "filter": true
+      },
+      "products": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "product_id": {
+              "type": "string",
+              "widget": "shortAnswer",
+              "title": "Product ID"
+            },
+            "sku_id": {
+              "type": "string",
+              "widget": "shortAnswer",
+              "title": "SKU ID"
+            },
+            "product_title": {
+              "type": "string",
+              "widget": "shortAnswer",
+              "title": "Product Title"
+            },
+            "variant_specs": {
+              "title": "Variant Specs",
+              "type": "string",
+              "widget": "shortAnswer"
+            },
+            "quantity": {
+              "title": "Quantity",
+              "type": "string",
+              "widget": "numberInput",
+              "description": "Số lượng mua",
+              "min": 1
+            },
+            "price": {
+              "title": "Price",
+              "type": "string",
+              "widget": "select",
+              "description": "Giá sản phẩm",
+              "choices": [
+                {
+                  "key": "VND",
+                  "value": "VND"
+                },
+                {
+                  "key": "USD",
+                  "value": "USD"
+                }
+              ],
+              "default": "VND"
+            },
+            "sale_price": {
+              "title": "Sale Price",
+              "type": "string",
+              "widget": "numberInput",
+              "description": "Giá bán thực tế một đơn vị"
+            },
+            "total": {
+              "title": "Total",
+              "type": "string",
+              "widget": "numberInput",
+              "description": "Tổng giá của sản phẩm"
+            },
+            "image": {
+              "title": "Image",
+              "type": "string",
+              "widget": "multipleFiles",
+              "description": "Ảnh sản phẩm"
+            }
+          },
+          "required": [],
+          "title": ""
+        },
+        "type": "array",
+        "title": "Products",
+        "description": "Danh sách sản phẩm trong đơn hàng",
+        "filter": true
+      },
+      "status": {
+        "title": "Status",
+        "type": "string",
+        "widget": "select",
+        "description": "Trạng thái đơn hàng",
+        "choices": [
+          {
+            "key": "Đã đặt hàng",
+            "value": "Đã đặt hàng"
+          },
+          {
+            "key": "Đang xử lý",
+            "value": "Đang xử lý"
+          },
+          {
+            "key": "Đang giao hàng",
+            "value": "Đang giao hàng"
+          },
+          {
+            "key": "Hoàn thành",
+            "value": "Hoàn thành"
+          },
+          {
+            "key": "Đã hủy",
+            "value": "Đã hủy"
+          },
+          {
+            "key": "Hoàn trả",
+            "value": "Hoàn trả"
+          }
+        ],
+        "default": "Đang xử lý",
+        "filter": true
+      },
+      "status_history": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "title": "Status",
+              "type": "string",
+              "widget": "select",
+              "choices": [
+                {
+                  "key": "Đã đặt hàng",
+                  "value": "Đã đặt hàng"
+                },
+                {
+                  "key": "Đang xử lý",
+                  "value": "Đang xử lý"
+                },
+                {
+                  "key": "Đang giao hàng",
+                  "value": "Đang giao hàng"
+                },
+                {
+                  "key": "Hoàn thành",
+                  "value": "Hoàn thành"
+                },
+                {
+                  "key": "Đã hủy",
+                  "value": "Đã hủy"
+                },
+                {
+                  "key": "Hoàn trả",
+                  "value": "Hoàn trả"
+                }
+              ],
+              "default": "Đang xử lý",
+              "description": "Trạng thái đơn hàng"
+            },
+            "timestamp": {
+              "title": "Timestamp",
+              "type": "string",
+              "widget": "dateTime",
+              "displayFormat": "yyyy/MM/dd HH:mm:ss",
+              "formatDate": "date-time",
+              "disabled": false,
+              "field": "single",
+              "mode": "dateTime",
+              "description": "Thời gian cập nhật trạng thái"
+            },
+            "noteNo": {
+              "type": "string",
+              "widget": "shortAnswer",
+              "description": "Ghi chú về trạng thái",
+              "title": "Note"
+            }
+          },
+          "required": [],
+          "title": ""
+        },
+        "title": "Status History",
+        "type": "array",
+        "description": "Lịch sử trạng thái đơn hàng",
+        "filter": true
+      },
+      "applied_vouchers": {
+        "type": "string",
+        "typeRelation": {
+          "title": "emc-vouchers",
+          "_id": "emc-vouchers",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "3331a387-6cdb-4a08-a868-313474474b11"
+          }
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "Applied Vouchers",
+        "filter": true
+      },
+      "shipping": {
+        "title": "Shipping",
+        "type": "object",
+        "description": "Thông tin vận chuyển",
+        "properties": {
+          "full_name": {
+            "title": "Full name",
+            "type": "string",
+            "widget": "shortAnswer"
+          },
+          "address": {
+            "type": "string",
+            "widget": "shortAnswer",
+            "title": "Address"
+          },
+          "email": {
+            "type": "string",
+            "widget": "shortAnswer",
+            "title": "Email",
+            "format-data": "email",
+            "autocomplete": "email"
+          },
+          "phone": {
+            "type": "string",
+            "widget": "shortAnswer",
+            "title": "Phone",
+            "format-data": "phone",
+            "autocomplete": "tel"
+          }
+        },
+        "required": []
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "customer": {
+      "ui:widget": "relation"
+    },
+    "products": {
+      "items": {
+        "product_id": {
+          "ui:widget": "shortAnswer"
+        },
+        "sku_id": {
+          "ui:widget": "shortAnswer"
+        },
+        "product_title": {
+          "ui:widget": "shortAnswer"
+        },
+        "variant_specs": {
+          "ui:widget": "shortAnswer"
+        },
+        "quantity": {
+          "ui:widget": "numberInput"
+        },
+        "price": {
+          "ui:widget": "select"
+        },
+        "sale_price": {
+          "ui:widget": "numberInput"
+        },
+        "total": {
+          "ui:widget": "numberInput"
+        },
+        "image": {
+          "ui:widget": "multipleFiles"
+        },
+        "ui:order": [
+          "product_id",
+          "sku_id",
+          "product_title",
+          "variant_specs",
+          "quantity",
+          "price",
+          "sale_price",
+          "total",
+          "image"
+        ]
+      }
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "status_history": {
+      "items": {
+        "status": {
+          "ui:widget": "select"
+        },
+        "timestamp": {
+          "ui:widget": "dateTime"
+        },
+        "noteNo": {
+          "ui:widget": "shortAnswer"
+        },
+        "ui:order": [
+          "status",
+          "timestamp",
+          "noteNo"
+        ]
+      }
+    },
+    "applied_vouchers": {
+      "ui:widget": "relation"
+    },
+    "shipping": {
+      "full_name": {
+        "ui:widget": "shortAnswer"
+      },
+      "address": {
+        "ui:widget": "shortAnswer"
+      },
+      "email": {
+        "ui:widget": "shortAnswer"
+      },
+      "phone": {
+        "ui:widget": "shortAnswer"
+      },
+      "ui:order": [
+        "full_name",
+        "address",
+        "email",
+        "phone"
+      ]
+    },
+    "ui:order": [
+      "customer",
+      "products",
+      "status",
+      "status_history",
+      "applied_vouchers",
+      "shipping"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-05-05T09:50:43.466Z",
+  "__v": 0
+}

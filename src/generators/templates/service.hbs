@@ -1,0 +1,19 @@
+import { commonService } from "../../common.service";
+
+export const {{camelCase name}}Service = {
+  async findAll() {
+    return await commonService.findAllQuery("{{lowerCase name}}", {}, ["default"]);
+  },
+  async findOne(id: string) {
+    return await commonService.findOne("{{lowerCase name}}", id, ["default"], "mongodb");
+  },
+  async create(data: any) {
+    return await commonService.create("{{lowerCase name}}", data, ["default"], "mongodb");
+  },
+  async update(id: string, data: any) {
+    return await commonService.update("{{lowerCase name}}", id, data, ["default"], "mongodb");
+  },
+  async remove(id: string) {
+    return await commonService.hardDelete("{{lowerCase name}}", id, ["default"], "mongodb");
+  },
+};

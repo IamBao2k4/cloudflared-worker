@@ -1,0 +1,143 @@
+{
+  "_id": "6818b11d16b8839443f9a22b",
+  "title": "EMC Carts",
+  "mongodb_collection_name": "emc-carts",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "products": {
+        "type": "string",
+        "typeRelation": {
+          "title": "emc-post",
+          "_id": "emc-post",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [
+              {
+                "id": "e597c0f4-5b50-40c6-995d-a0ef4116a32e",
+                "field": "tag_posttype",
+                "operator": "equal",
+                "valueSource": "value",
+                "value": [
+                  {
+                    "_id": "68187361753574930d610440",
+                    "title": "Sản phẩm",
+                    "locale": null,
+                    "locale_id": null,
+                    "created_at": "2025-05-05T15:14:25.000Z",
+                    "created_by": {
+                      "_id": "6711e8a47b45b2974bd6133c",
+                      "username": "admin2024@gmail.com",
+                      "featured_image": [
+                        {
+                          "_id": "67c52c92cb2d3f0de049849f",
+                          "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                          "disk": "satellite",
+                          "mime": "image/jpeg",
+                          "size": 95662,
+                          "title": "AVA-AI-Voice-Assistant.jpg",
+                          "alt": "AVA-AI-Voice-Assistant.jpg",
+                          "tenant_id": "674028d2611a654e763a73e8",
+                          "created_by": "6711e8a47b45b2974bd6133c",
+                          "created_at": "2025-03-03T11:14:10.000Z",
+                          "updated_at": "2025-03-03T11:14:10.000Z",
+                          "is_draft": true,
+                          "__v": 0,
+                          "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                        }
+                      ],
+                      "first_name": "Nguyễn Văn",
+                      "last_name": "Toàn"
+                    },
+                    "updated_at": "2025-05-05T15:14:25.000Z",
+                    "updated_by": {
+                      "_id": "6711e8a47b45b2974bd6133c",
+                      "username": "admin2024@gmail.com",
+                      "featured_image": [
+                        {
+                          "_id": "67c52c92cb2d3f0de049849f",
+                          "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                          "disk": "satellite",
+                          "mime": "image/jpeg",
+                          "size": 95662,
+                          "title": "AVA-AI-Voice-Assistant.jpg",
+                          "alt": "AVA-AI-Voice-Assistant.jpg",
+                          "tenant_id": "674028d2611a654e763a73e8",
+                          "created_by": "6711e8a47b45b2974bd6133c",
+                          "created_at": "2025-03-03T11:14:10.000Z",
+                          "updated_at": "2025-03-03T11:14:10.000Z",
+                          "is_draft": true,
+                          "__v": 0,
+                          "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                        }
+                      ],
+                      "first_name": "Nguyễn Văn",
+                      "last_name": "Toàn"
+                    },
+                    "tenant_id": "6801bf1b887875ca1b8c3ee4"
+                  }
+                ]
+              }
+            ],
+            "id": "29e72a13-1568-4f3b-97e9-831e962edef8"
+          }
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "Products",
+        "filter": true
+      },
+      "customer": {
+        "type": "string",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "1-n"
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "Customer",
+        "filter": true
+      },
+      "quantity": {
+        "title": "Quantity",
+        "type": "string",
+        "widget": "numberInput",
+        "min": 1,
+        "filter": true
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "products": {
+      "ui:widget": "relation"
+    },
+    "customer": {
+      "ui:widget": "relation"
+    },
+    "quantity": {
+      "ui:widget": "numberInput"
+    },
+    "ui:order": [
+      "products",
+      "customer",
+      "quantity"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-05-05T12:37:49.383Z",
+  "__v": 0
+}

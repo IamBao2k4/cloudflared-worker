@@ -1,0 +1,43 @@
+{
+  "_id": "680a0e7217c9cce3de7bbe34",
+  "title": "get list course department",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "6806086faac841dab05e182e"
+  ],
+  "categories": [],
+  "queryAdvance": "[\r\n  {\r\n    \"$match\":{\r\n      \"tenant_id\":\"@header:x-tenant-id\"\r\n    }\r\n  },\r\n    {\r\n      \"$facet\": {\r\n        \"meta_data\": [\r\n          {\r\n            \"$count\": \"count\"\r\n          },\r\n          {\r\n            \"$addFields\": {\r\n              \"skip\": \"@param:skip\",\r\n              \"limit\": \"@param:limit\"\r\n            }\r\n          }\r\n        ],\r\n        \"data\": [\r\n          {\r\n            \"$skip\": \"@param:skip\"\r\n          },\r\n          {\r\n            \"$limit\": \"@param:limit\"\r\n          }\r\n        ]\r\n      }\r\n    }\r\n]",
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "code",
+      "value": "code"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

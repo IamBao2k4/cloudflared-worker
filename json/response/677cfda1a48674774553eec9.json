@@ -1,0 +1,33 @@
+{
+  "_id": "677cfda1a48674774553eec9",
+  "title": "tweet/get list tweet type",
+  "outputEntity": [
+    "674eaf8ac43906b58198de5e"
+  ],
+  "queryAdvance": "[\n  {\n    \"$addFields\": {\n      \"entity_group\": {\n        \"$map\": {\n          \"input\": \"$entity_group\",\n          \"as\": \"u\",\n          \"in\": {\n            \"$toObjectId\": \"$$u\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"entity-group\",\n      \"localField\": \"entity_group\",\n      \"foreignField\": \"_id\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"title\":\"tweet\"\n          }\n        }\n      ],\n      \"as\": \"entity_group_info\"\n    }\n  },\n    {\n    \"$match\": {\n      \"entity_group_info\": { \"$ne\": [] }\n    }\n  },\n  {\n    \"$project\": {\n      \"title\":1,\n      \"mongodb_collection_name\":1,\n      \"type\":1\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "note": "",
+  "method": "get-list",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "body": null,
+  "categories": [],
+  "documents": [],
+  "headers": null,
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ],
+  "data": {
+    "id": "a921b831-0206-4de9-9fbb-44f89a9fe13d",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  }
+}

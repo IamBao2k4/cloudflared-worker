@@ -1,0 +1,21 @@
+{
+  "_id": "6746ca0ec47463d88f8c5a60",
+  "title": "Xác nhận là member của tenant",
+  "note": "Với userID xác thực trong bảng user với field status xem user đó có ở trạng thái active hay không?",
+  "entity": [
+    "672d7c7f1bc536db5817342f",
+    "6717504e1ed82866d5e1c034"
+  ],
+  "data": {
+    "id": "64a54d0a-b68b-49aa-9916-b48655d0486a",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "671f5023a966a71127e5b483",
+  "group_id": null
+}

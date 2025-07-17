@@ -1,0 +1,314 @@
+{
+  "_id": "6850ecf878b0fe4b3a799645",
+  "title": "all-fields",
+  "mongodb_collection_name": "all-fields",
+  "unique_keys": "",
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-06-17T04:20:08.908Z",
+  "__v": 0,
+  "id": "6850ecf878b0fe4b3a799645",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "short-answer": {
+        "title": "short-answer",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "password": {
+        "title": "password",
+        "type": "string",
+        "widget": "password",
+        "description": "admin2024@gmail.com",
+        "default": "loginto123"
+      },
+      "long-answer": {
+        "title": "long-answer",
+        "type": "string",
+        "widget": "textarea",
+        "customRole": "textarea"
+      },
+      "slug": {
+        "title": "slug",
+        "type": "string",
+        "widget": "UriKeyGen"
+      },
+      "number": {
+        "title": "number",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "range": {
+        "title": "range",
+        "type": "string",
+        "widget": "range"
+      },
+      "date-time": {
+        "title": "date-time",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": false,
+        "field": "single",
+        "mode": "dateTime"
+      },
+      "date": {
+        "title": "date",
+        "type": "string",
+        "widget": "date",
+        "displayFormat": "yyyy/MM/dd",
+        "formatDate": "date",
+        "disabled": false,
+        "field": "single",
+        "mode": "date"
+      },
+      "time": {
+        "title": "time",
+        "type": "string",
+        "widget": "time",
+        "displayFormat": "HH:mm:ss",
+        "formatDate": "time",
+        "disabled": false,
+        "min": "00:00:00",
+        "max": "23:59:59",
+        "field": "single",
+        "mode": "time"
+      },
+      "radio": {
+        "title": "radio",
+        "type": "string",
+        "widget": "radio",
+        "choices": "a:a\nb:b",
+        "default": "a",
+        "allowNull": true,
+        "allowCustom": true
+      },
+      "select": {
+        "title": "select",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "a",
+            "value": "a"
+          },
+          {
+            "key": "b",
+            "value": "b"
+          }
+        ],
+        "default": "a",
+        "allowNull": true,
+        "isMultiple": true
+      },
+      "checkbox": {
+        "title": "checkbox",
+        "type": "string",
+        "default": "a",
+        "widget": "checkbox",
+        "choices": [
+          {
+            "key": "a",
+            "value": "a"
+          },
+          {
+            "key": "b",
+            "value": "b"
+          }
+        ],
+        "allowCustom": false,
+        "returnValue": 2,
+        "layout": 0,
+        "toggleAll": true
+      },
+      "true-false": {
+        "title": "true-false",
+        "type": "string",
+        "default": true,
+        "widget": "boolean",
+        "appearance": "checkbox"
+      },
+      "relation": {
+        "title": "relation",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "entity",
+          "entity": "entity",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "a2428063-ad93-4b40-810d-cba9f149319c"
+          }
+        }
+      },
+      "single-image": {
+        "title": "single-image",
+        "type": "string",
+        "widget": "file",
+        "meta": "desc here"
+      },
+      "multi-image": {
+        "title": "multi-image",
+        "type": "string",
+        "widget": "multipleFiles",
+        "meta": "desc here"
+      },
+      "multi-images-resp": {
+        "title": "multi-images-resp",
+        "type": "string",
+        "widget": "multiImage",
+        "fields": [
+          "main",
+          "mainMb",
+          "bg",
+          "bgMb"
+        ]
+      },
+      "condition": {
+        "title": "condition",
+        "type": "string",
+        "widget": "condition",
+        "typeUI": "filter"
+      },
+      "array": {
+        "title": "array",
+        "type": "array",
+        "items": {
+          "type": "object"
+        },
+        "minItems": 1,
+        "maxItems": 1111
+      },
+      "data": {
+        "title": "data",
+        "type": "string",
+        "widget": "dataWidget"
+      },
+      "href": {
+        "title": "href",
+        "type": "string",
+        "widget": "href",
+        "hiddenTitle": true
+      },
+      "icon": {
+        "title": "icon",
+        "type": "string",
+        "widget": "icon",
+        "default": "AArrowDown"
+      },
+      "function": {
+        "title": "function",
+        "type": "string",
+        "widget": "function"
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "short-answer": {
+      "ui:widget": "shortAnswer"
+    },
+    "password": {
+      "ui:widget": "password"
+    },
+    "long-answer": {
+      "ui:widget": "textarea"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "number": {
+      "ui:widget": "numberInput"
+    },
+    "range": {
+      "ui:widget": "range"
+    },
+    "date-time": {
+      "ui:widget": "dateTime"
+    },
+    "date": {
+      "ui:widget": "date"
+    },
+    "time": {
+      "ui:widget": "time"
+    },
+    "radio": {
+      "ui:widget": "radio"
+    },
+    "select": {
+      "ui:widget": "select"
+    },
+    "checkbox": {
+      "ui:widget": "checkbox"
+    },
+    "true-false": {
+      "ui:widget": "boolean"
+    },
+    "relation": {
+      "ui:widget": "relation"
+    },
+    "single-image": {
+      "ui:widget": "file"
+    },
+    "multi-image": {
+      "ui:widget": "multipleFiles"
+    },
+    "multi-images-resp": {
+      "ui:widget": "multiImage"
+    },
+    "condition": {
+      "ui:widget": "condition"
+    },
+    "data": {
+      "ui:widget": "dataWidget"
+    },
+    "href": {
+      "ui:widget": "href"
+    },
+    "icon": {
+      "ui:widget": "icon"
+    },
+    "function": {
+      "ui:widget": "function"
+    },
+    "ui:order": [
+      "short-answer",
+      "password",
+      "long-answer",
+      "slug",
+      "number",
+      "range",
+      "date-time",
+      "date",
+      "time",
+      "radio",
+      "select",
+      "checkbox",
+      "true-false",
+      "relation",
+      "single-image",
+      "multi-image",
+      "multi-images-resp",
+      "condition",
+      "array",
+      "data",
+      "href",
+      "icon",
+      "function"
+    ]
+  }
+}

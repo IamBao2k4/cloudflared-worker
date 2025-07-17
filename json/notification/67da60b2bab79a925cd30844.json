@@ -1,0 +1,11 @@
+{
+  "_id": "67da60b2bab79a925cd30844",
+  "is_active": true,
+  "meta_data": {},
+  "title": "[Cá nhân] Followings đăng bài viết mới",
+  "title_input": "[@main_result:created_by.full_name] mới đăng bài viết trong nhóm [@main_result:social_group.title]",
+  "advance": "{\r\n  \"collection_name_find_user_to\": \"mge-group-member\",\r\n  \"field_get_id\": \"user\",\r\n  \"query_pipeline\": [\r\n  {\r\n    \"$match\": {\r\n      \"social_group\":\"@main_result:social_group._id\",\r\n      \"status\":\"joined\",\r\n      \"user\":{ \"$ne\": \"@main_result:created_by._id\" }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-user-follow\",\r\n      \"localField\": \"user\",\r\n      \"foreignField\": \"from\",\r\n      \"pipeline\":[\r\n        {\r\n          \"$match\":{\r\n            \"to\":\"@main_result:created_by._id\"\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"follower_info\"\r\n    }\r\n  },\r\n {\r\n    \"$match\": {\r\n      \"follower_info\": { \"$ne\": [] }\r\n    }\r\n  }\r\n]\r\n}",
+  "type": "SOCIAL_NEW_TWEET_ACTIVE",
+  "blocks": {},
+  "tenant_id": "674028d2611a654e763a73e8"
+}

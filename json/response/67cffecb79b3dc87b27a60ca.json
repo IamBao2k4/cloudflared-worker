@@ -1,0 +1,12 @@
+{
+  "_id": "67cffecb79b3dc87b27a60ca",
+  "title": "delete tweet report",
+  "note": "",
+  "cache_time": "",
+  "method": "delete",
+  "outputEntity": [
+    "67cfd9bedada26e67e87ffc3"
+  ],
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb"
+}

@@ -1,0 +1,18 @@
+{
+  "_id": "67a573fab45a45be2aa96118",
+  "title": "user-has-permission-to-response-course-rating",
+  "note": "",
+  "entity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "advance": "[\n  {\n    \"$match\": {\n      \"user\": \"@jwt:user.id\",\n      \"course\": \"@params:course_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"course\": {\n        \"$map\": {\n          \"input\": \"$course\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-courses\",\n      \"localField\": \"course\",\n      \"foreignField\": \"_id\",\n      \"as\": \"course_info\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"course_info\": {\n        \"$arrayElemAt\": [\n          \"$course_info\",\n          0\n        ]\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"can_response_course_rating_in_course\": {\n        \"$gt\": [\n          {\n            \"$size\": {\n              \"$setIntersection\": [\n                \"$role\",\n                \"$course_info.permissions.course_rating_response\"\n              ]\n            }\n          },\n          0\n        ]\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"can_response_course_rating_in_course\": true\n    }\n  }\n]",
+  "data": {
+    "id": "d93f0b5a-9d50-4463-aa47-15c510c47cb9",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "required": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

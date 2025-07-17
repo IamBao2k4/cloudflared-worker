@@ -1,0 +1,13 @@
+{
+  "_id": "677603603c56caf3d6e3502e",
+  "title": "update me",
+  "outputEntity": [
+    "6749933810905d9ddbd0104b"
+  ],
+  "queryAdvance": "{\n  \"username\":0,\n  \"first_name\":0,\n  \"last_name\":0,\n  \"birthday\":0,\n  \"nickname\":0,\n  \"featured_image\":0,\n  \"cover\":0\n}",
+  "note": "",
+  "method": "put",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

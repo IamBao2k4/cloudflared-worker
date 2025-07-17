@@ -1,0 +1,35 @@
+{
+  "_id": "678724875ca6233671cb0e3e",
+  "title": "is-lesson-active",
+  "note": "",
+  "entity": [
+    "6752a70b65017d942f75941d"
+  ],
+  "data": {
+    "id": "45bf98e9-7809-4981-8d51-08bf28e42b52",
+    "rules": [
+      {
+        "id": "b9c4c69e-bb4e-47e9-9f58-dd303ffbe434",
+        "field": "mge-lessons._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-lessons._id:param._id"
+      },
+      {
+        "id": "b75a64fd-0ba2-4956-a6c5-b1585808641f",
+        "field": "mge-lessons._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-lessons._id:param.lesson_id"
+      }
+    ],
+    "combinator": "or",
+    "not": false
+  },
+  "advance": "",
+  "required": [],
+  "queryMongodb": "{\"$or\":[{\"mge-lessons._id\":\"$mge-lessons._id:param._id\"},{\"mge-lessons._id\":\"$mge-lessons._id:param.lesson_id\"}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

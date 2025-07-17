@@ -1,0 +1,18 @@
+{
+  "_id": "67ea1ad27463d047317d3c8d",
+  "title": "delete user notification",
+  "note": "",
+  "cache_time": "",
+  "method": "delete",
+  "outputEntity": [
+    "67a1b30e1aaf205cfbd70e02"
+  ],
+  "data": {
+    "id": "6ed256e9-74cf-4ad7-ac6a-926846c8e119",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

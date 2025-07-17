@@ -1,0 +1,36 @@
+{
+  "_id": "67c91c70f4aa922e5d2a01a5",
+  "title": "update exam submission",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "6752cbec65017d942f7595dc"
+  ],
+  "queryAdvance": "{\n  \"user_answer\": [\n    {\n      \"question_id\": 0,\n      \"multiple_choice_answer\": 0,\n      \"essay_answer_text\": 0,\n      \"essay_answer_file\": 0\n    }\n  ],\n  \"status\":\"finished\"\n}",
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "restricted": [
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ]
+}

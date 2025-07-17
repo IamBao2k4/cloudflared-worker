@@ -1,0 +1,89 @@
+{
+  "use_parent_delete_childs": false,
+  "_id": "6769412651505605e15f819c",
+  "title": "topic",
+  "mongodb_collection_name": "topic",
+  "json_schema": {
+    "title": "topic",
+    "description": "topic",
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "widget": "shortAnswer",
+        "type": "string",
+        "objectKey": "title",
+        "filter": true
+      },
+      "headings": {
+        "title": "headings",
+        "type": "array",
+        "objectKey": "headings",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "title": "title",
+              "widget": "shortAnswer",
+              "type": "string",
+              "objectKey": "title"
+            },
+            "content": {
+              "title": "content",
+              "widget": "longAnswer",
+              "customRole": "texteditor",
+              "type": "string",
+              "objectKey": "content"
+            },
+            "featured_image": {
+              "title": "featured_image",
+              "type": "string",
+              "widget": "file",
+              "library_setting": "all",
+              "objectKey": "featured_image"
+            }
+          }
+        }
+      }
+    }
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "headings": {
+      "items": {
+        "title": {
+          "ui:widget": "shortAnswer"
+        },
+        "content": {
+          "ui:widget": "longAnswer"
+        },
+        "featured_image": {
+          "ui:widget": "file"
+        },
+        "ui:order": [
+          "title",
+          "content",
+          "featured_image"
+        ]
+      }
+    },
+    "ui:order": [
+      "title",
+      "headings"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "created_at": "2024-12-23T10:53:26.619Z",
+  "__v": 0
+}

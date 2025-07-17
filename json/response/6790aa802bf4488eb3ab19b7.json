@@ -1,0 +1,12 @@
+{
+  "_id": "6790aa802bf4488eb3ab19b7",
+  "title": "delete user vote result",
+  "note": "",
+  "cache_time": "",
+  "method": "delete",
+  "outputEntity": [
+    "678f159a34775cefc244f408"
+  ],
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

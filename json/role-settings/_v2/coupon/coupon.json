@@ -1,0 +1,201 @@
+{
+  "coupon": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "68061e95aac841dab05e296f",
+          "title": "GET danh sách coupon",
+          "entity": "ecommerce-discount-code",
+          "path_file": "json/response/68061e95aac841dab05e296f.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "429642bc-0b64-4cf6-b0bc-2f345f398ddb",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "e76f643f-72eb-43e6-bb88-6c2e6ab05335"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-detail": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "68061ecbaac841dab05e297c",
+          "title": "GET chi tiết coupon",
+          "entity": "ecommerce-discount-code",
+          "path_file": "json/response/68061ecbaac841dab05e297c.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "e6c71b7e-abca-46e1-a5e4-3c39ad7e29c0",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "d2a4c8c1-2f2d-4bda-9404-235f207cda1d"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "68061f47aac841dab05e29a6",
+          "title": "CREATE coupon",
+          "entity": "ecommerce-discount-code",
+          "path_file": "json/response/68061f47aac841dab05e29a6.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "e9bb14fa-03a7-4602-9008-dc95fe8f0e40",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "c5704470-8b37-4fa6-9744-bd4e707cbfcb"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6806204eaac841dab05e2a6d",
+          "title": "UPDATE coupon",
+          "entity": "ecommerce-discount-code",
+          "path_file": "json/response/6806204eaac841dab05e2a6d.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "fdb45ebc-57ef-4d6a-a6d9-b20081dc87a0",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6805c41e484b959b5ecda5fc"
+            }
+          ],
+          "id": "58575b3e-8ce2-432f-b210-3024683cf067"
+        },
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {},
+        "query_validate": {},
+        "list_validate": [
+          {
+            "_id": "6805c41e484b959b5ecda5fc",
+            "title": "Kiểm tra trạng thái active của người dùng",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/6805c41e484b959b5ecda5fc.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "_id": "683e64f5f75b9891a43fbdfc",
+  "title": "Test entity",
+  "mongodb_collection_name": "test-entity",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "getData": {
+        "title": "getData",
+        "type": "string",
+        "widget": "dataWidget"
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "getData": {
+      "ui:widget": "dataWidget"
+    },
+    "ui:order": [
+      "getData"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-06-03T02:59:01.931Z",
+  "__v": 0,
+  "id": "683e64f5f75b9891a43fbdfc"
+}

@@ -1,0 +1,35 @@
+{
+  "_id": "680768e3fa0fd1ce85988ee6",
+  "title": "CREATE shipping",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "68076802fa0fd1ce85988e85"
+  ],
+  "categories": [],
+  "queryAdvance": "{\n  \"title\": 1,\n  \"code\": 1,\n  \"description\": 1\n}",
+  "restricted": [
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "6801bf1b887875ca1b8c3ee4"
+}

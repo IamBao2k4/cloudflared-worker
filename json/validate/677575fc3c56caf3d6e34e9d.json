@@ -1,0 +1,12 @@
+{
+  "_id": "677575fc3c56caf3d6e34e9d",
+  "title": "is-group-type-of-comment-public",
+  "note": "",
+  "entity": [
+    "6764e3926e57acaf6815ab97"
+  ],
+  "advance": "[\n      {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"_id\": \"@param:comment_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"groupObject\": {\n        \"$map\": {\n          \"input\": \"$social_group\",\n          \"as\": \"u\",\n          \"in\": {\n            \"$toObjectId\": \"$$u\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group\",\n      \"localField\": \"groupObject\",\n      \"foreignField\": \"_id\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"type\": \"public\"\n          }\n        }\n      ],\n      \"as\": \"is_public\"\n    }\n  },\n  {\n    \"$match\": {\n      \"is_public\": { \"$ne\": [] }\n    }\n  }\n]",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

@@ -1,0 +1,46 @@
+{
+  "_id": "675a99760f44fc1769fdeee9",
+  "title": "is-group-private",
+  "logged": true,
+  "entity": [
+    "6747ef07c47463d88f8c5ab1"
+  ],
+  "data": {
+    "id": "7a8fb87b-488b-4815-b44a-3e2be570b0a9",
+    "rules": [
+      {
+        "id": "310efffd-13f3-46d6-a860-1cba98f9abf1",
+        "field": "mge-group._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-group._id:param.group_id"
+      },
+      {
+        "id": "bc4ad196-0b8b-4480-97b3-43015faa0cc1",
+        "field": "mge-group.type",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "private"
+      },
+      {
+        "id": "78e50afb-c380-4a01-9ebe-91a76242d3eb",
+        "field": "mge-group.status",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "active"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"mge-group._id\":\"$mge-group._id:param.group_id\"},{\"mge-group.type\":\"private\"},{\"mge-group.status\":\"active\"}]}",
+  "params": [],
+  "headers": [],
+  "body": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "note": "",
+  "documents": []
+}

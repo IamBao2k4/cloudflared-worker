@@ -1,0 +1,68 @@
+{
+  "_id": "68021d52887875ca1b8c7902",
+  "title": "get list tenant's user except social's members",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "67aad740a67aaa1951ca64b0"
+  ],
+  "categories": [],
+  "queryAdvance": "[\n  {\n    \"$addFields\": {\n      \"id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"tenant_id\": \"@header:x-tenant-id\",\n      \"user\": {\n        \"$ne\": \"@jwt:user.id\"\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"profile.full_name\": {\n        \"$concat\": [\n          \"$profile.first_name\",\n          \" \",\n          \"$profile.last_name\"\n        ]\n      }\n    }\n  },\n  {\n    \"$unwind\": {\n      \"path\": \"$user\",\n      \"preserveNullAndEmptyArrays\": true\n    }\n  },\n  {\n    \"$addFields\": {\n      \"profile.social._id\": \"$user\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"profile.course._id\": \"$user\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group-member\",\n      \"localField\": \"user\",\n      \"foreignField\": \"user\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"social_group\": \"@param:group_id\",\n            \"$or\": [\n              {\n                \"status\": \"joined\"\n              },\n              {\n                \"status\": \"pending\"\n              }\n            ]\n          }\n        }\n      ],\n      \"as\": \"matchedMembers\"\n    }\n  },\n  {\n    \"$match\": {\n      \"matchedMembers\": {\n        \"$eq\": []\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"_id\": \"$profile.social._id\",\n      \"full_name\": \"$profile.full_name\",\n      \"featured_image\": \"$profile.social.featured_image\",\n      \"description\": \"$profile.social.description\",\n      \"phone\": \"$profile.social.phone\",\n      \"birthday\": \"$profile.social.birthday\",\n      \"email\":1\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$or\": [\n          {\n            \"$eq\": [\n              \"@param:title\",\n              null\n            ]\n          },\n          {\n            \"$regexMatch\": {\n              \"input\": \"$full_name\",\n              \"regex\": \"@param:title\",\n              \"options\": \"i\"\n            }\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "restricted": [
+    {
+      "key": "email",
+      "value": "email"
+    },
+    {
+      "key": "user",
+      "value": "user"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    },
+    {
+      "value": "title",
+      "key": "title"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ]
+}

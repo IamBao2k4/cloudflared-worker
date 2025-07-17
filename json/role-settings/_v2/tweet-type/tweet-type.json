@@ -1,0 +1,28 @@
+{
+  "tweet-type": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "677cfda1a48674774553eec9",
+          "title": "get list tweet type",
+          "entity": "entity",
+          "path_file": "json/response/677cfda1a48674774553eec9.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "4ddacb9b-a92a-4b08-a451-fc997b366552"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

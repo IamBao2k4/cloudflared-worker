@@ -1,0 +1,48 @@
+{
+  "_id": "6808580217c9cce3de7aec1c",
+  "title": "update group pin",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "676000575a1356463269d0b0"
+  ],
+  "categories": [],
+  "queryAdvance": "{\n  \"user\": \"@jwt:user.id\",\n  \"social_group\": 0,\n  \"position\": 0\n}",
+  "restricted": [
+    {
+      "key": "social_group",
+      "value": "social_group"
+    },
+    {
+      "key": "user",
+      "value": "user"
+    },
+    {
+      "key": "position",
+      "value": "position"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": []
+}

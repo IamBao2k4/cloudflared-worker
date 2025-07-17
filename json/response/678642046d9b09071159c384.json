@@ -1,0 +1,63 @@
+{
+  "_id": "678642046d9b09071159c384",
+  "title": "request to join public course",
+  "outputEntity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "queryAdvance": "{\n  \"user\": \"@jwt:user.id\",\n  \"course\": \"@param:course_id\",\n  \"status\": \"joined\",\n  \"role\": \"member\"\n}",
+  "note": "",
+  "method": "post",
+  "categories": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "body": null,
+  "documents": [],
+  "headers": null,
+  "params": [
+    {
+      "value": "course_id",
+      "key": "course_id"
+    }
+  ],
+  "cache_time": "",
+  "restricted": [
+    {
+      "key": "course",
+      "value": "course",
+      "required": true
+    },
+    {
+      "key": "user",
+      "value": "user"
+    },
+    {
+      "key": "status",
+      "value": "status"
+    },
+    {
+      "key": "role",
+      "value": "role"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ]
+}

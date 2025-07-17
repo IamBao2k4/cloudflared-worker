@@ -1,0 +1,12 @@
+{
+  "_id": "67726d6ee240a7d43f0efe12",
+  "title": "delete tweet news",
+  "outputEntity": [
+    "674e8ed585bc5241dd6405d3"
+  ],
+  "note": "",
+  "method": "delete",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

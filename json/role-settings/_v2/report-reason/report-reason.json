@@ -1,0 +1,28 @@
+{
+  "report-reason": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "678490f8f143e1be3763d42f",
+          "title": "get list report's reason",
+          "entity": "entity",
+          "path_file": "json/response/678490f8f143e1be3763d42f.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "776d4e97-6774-49e7-9405-216a712fd118"
+        },
+        "list_validate": [],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

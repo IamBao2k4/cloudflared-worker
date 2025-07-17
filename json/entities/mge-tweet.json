@@ -1,0 +1,189 @@
+{
+  "_id": "67b6a286606da18e6c1976f1",
+  "title": "mge tweet",
+  "mongodb_collection_name": "mge-tweet",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "type": {
+        "title": "type",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "social_group": {
+        "title": "social_group",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group",
+          "_id": "mge-group",
+          "type": "n-1"
+        },
+        "filter": true
+      },
+      "status": {
+        "title": "status",
+        "type": "string",
+        "widget": "select",
+        "filter": true,
+        "choices": [
+          {
+            "key": "ACTIVE",
+            "value": "active"
+          },
+          {
+            "key": "DELETED",
+            "value": "deleted"
+          },
+          {
+            "key": "APPROVE",
+            "value": "approve"
+          },
+          {
+            "key": "HIDDEN",
+            "value": "hidden"
+          },
+          {
+            "key": "DRAFT",
+            "value": "draft"
+          },
+          {
+            "key": "ARCHIVE",
+            "value": "archive"
+          },
+          {
+            "key": "WAITING",
+            "value": "waiting"
+          },
+          {
+            "key": "REJECT",
+            "value": "reject"
+          },
+          {
+            "key": "SEND TO REVIEW",
+            "value": "send_to_review"
+          }
+        ]
+      },
+      "like_count": {
+        "title": "like_count",
+        "type": "string",
+        "widget": "numberInput",
+        "filter": true,
+        "default": "0"
+      },
+      "comment_count": {
+        "title": "comment_count",
+        "type": "string",
+        "widget": "numberInput",
+        "default": "0",
+        "filter": true
+      },
+      "event_registration_count": {
+        "title": "event_registration_count",
+        "type": "string",
+        "widget": "numberInput",
+        "default": "0",
+        "filter": true
+      },
+      "$inc": {
+        "title": "$inc",
+        "type": "object",
+        "properties": {
+          "like_count": {
+            "title": "like_count",
+            "type": "string",
+            "widget": "numberInput"
+          },
+          "comment_count": {
+            "title": "comment_count",
+            "type": "string",
+            "widget": "numberInput"
+          },
+          "event_registration_count": {
+            "title": "event_registration_count",
+            "type": "string",
+            "widget": "numberInput"
+          }
+        },
+        "required": [],
+        "description": "Thêm field này chỉ để qua bộ lọc thôi :>"
+      }
+    },
+    "required": [
+      "title",
+      "type",
+      "social_group"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "type": {
+      "ui:widget": "shortAnswer"
+    },
+    "social_group": {
+      "ui:widget": "relation"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "like_count": {
+      "ui:widget": "numberInput"
+    },
+    "comment_count": {
+      "ui:widget": "numberInput"
+    },
+    "event_registration_count": {
+      "ui:widget": "numberInput"
+    },
+    "$inc": {
+      "like_count": {
+        "ui:widget": "numberInput"
+      },
+      "comment_count": {
+        "ui:widget": "numberInput"
+      },
+      "event_registration_count": {
+        "ui:widget": "numberInput"
+      },
+      "ui:order": [
+        "like_count",
+        "comment_count",
+        "event_registration_count"
+      ]
+    },
+    "ui:order": [
+      "title",
+      "type",
+      "social_group",
+      "status",
+      "like_count",
+      "comment_count",
+      "event_registration_count",
+      "$inc"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-02-20T03:33:26.875Z",
+  "__v": 0
+}

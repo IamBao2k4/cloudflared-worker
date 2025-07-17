@@ -1,0 +1,28 @@
+{
+  "_id": "676e31572cff0e67149ebaf8",
+  "title": "create comment reports",
+  "outputEntity": [
+    "6764e4046e57acaf6815ab9f"
+  ],
+  "queryAdvance": "{\n  \"type\": \"comment\",\n  \"reason\": 1,\n  \"document_id\": \"@param:comment_id\",\n  \"social_group\": \"@param:group_id\"\n}",
+  "note": "",
+  "method": "post",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "body": null,
+  "categories": [],
+  "documents": [],
+  "headers": null,
+  "params": [
+    {
+      "value": "comment_id",
+      "key": "comment_id"
+    },
+    {
+      "value": "group_id",
+      "key": "group_id"
+    }
+  ],
+  "cache_time": ""
+}

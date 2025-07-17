@@ -1,0 +1,62 @@
+{
+  "_id": "675b9a4a9279b9d81247c3cc",
+  "title": "mge tweet saved",
+  "mongodb_collection_name": "mge-tweet-saved",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "user_collection": {
+        "title": "user_collection",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-user-collections",
+          "_id": "mge-user-collections",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "e8184260-d22a-4a14-b2fd-8cf435fcc4f2"
+          }
+        },
+        "filter": true
+      },
+      "tweet_id": {
+        "widget": "shortAnswer",
+        "title": "tweet_id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "tweet_id"
+    ]
+  },
+  "ui_schema": {
+    "user_collection": {
+      "ui:widget": "relation"
+    },
+    "tweet_id": {
+      "ui:widget": "shortAnswer"
+    },
+    "ui:order": [
+      "user_collection",
+      "tweet_id"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2024-12-13T02:22:02.584Z",
+  "__v": 0,
+  "unique_keys": "[\r\n  {\r\n    \"user_collection\": 1,\r\n    \"tweet_id\": 1,\r\n    \"created_by\":1\r\n  }\r\n]",
+  "use_parent_delete_childs": false,
+  "id": "675b9a4a9279b9d81247c3cc"
+}

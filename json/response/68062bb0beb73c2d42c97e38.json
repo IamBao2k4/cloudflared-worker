@@ -1,0 +1,49 @@
+{
+  "_id": "68062bb0beb73c2d42c97e38",
+  "title": "UPDATE order",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "6805b058f4d18535c7e63656"
+  ],
+  "categories": [],
+  "queryAdvance": "{\n  \"order_number\": 0,\n  \"customer\": 0,\n  \"payment_status\": 0,\n  \"currency\": 0,\n  \"subtotal\": 0,\n  \"tax_amount\": 0,\n  \"shipping_amount\": 0,\n  \"discount_amount\": 0,\n  \"total_price\": 0,\n  \"shipping_address\": {\n    \"full_name\": 0,\n    \"phone\": 0,\n    \"email\": 0,\n    \"address\": 0,\n    \"city\": 0,\n    \"state\": 0,\n    \"country\": 0\n  }\n}",
+  "restricted": [
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "6801bf1b887875ca1b8c3ee4",
+  "documents": [],
+  "params": [
+    {
+      "key": "",
+      "value": "order_status",
+      "description": "",
+      "relation": "string"
+    },
+    {
+      "key": "",
+      "value": "",
+      "description": ""
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "_id": "67cff82579b3dc87b27a5718",
+  "title": "did-user-like-discussion-comment",
+  "note": "",
+  "entity": [
+    "6752c71d65017d942f7595a5"
+  ],
+  "data": {
+    "id": "8ed84447-641b-4420-b704-110cad44b8cc",
+    "rules": [
+      {
+        "id": "7fe9cd88-86f1-44b3-a482-d8a10a05e0a7",
+        "field": "mge-discussion-comment-like._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-discussion-comment-like._id:param._id"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"mge-discussion-comment-like._id\":\"$mge-discussion-comment-like._id:param._id\"}",
+  "required": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

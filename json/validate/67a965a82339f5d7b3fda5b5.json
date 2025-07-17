@@ -1,0 +1,25 @@
+{
+  "_id": "67a965a82339f5d7b3fda5b5",
+  "title": "is-lesson-exist",
+  "note": "",
+  "entity": [
+    "6752a70b65017d942f75941d"
+  ],
+  "data": {
+    "id": "e2b5819f-4052-43b5-908a-f5327cf97b52",
+    "rules": [
+      {
+        "id": "dcf8c3e9-e096-404f-ba5b-baed73456d03",
+        "field": "mge-lessons._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-lessons._id:body.lesson"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"mge-lessons._id\":\"$mge-lessons._id:body.lesson\"}",
+  "required": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

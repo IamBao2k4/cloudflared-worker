@@ -1,0 +1,12 @@
+{
+  "_id": "677505b13c56caf3d6e34d10",
+  "title": "delete group's category",
+  "outputEntity": [
+    "674835d876462b61b5df90d1"
+  ],
+  "note": "",
+  "method": "delete",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

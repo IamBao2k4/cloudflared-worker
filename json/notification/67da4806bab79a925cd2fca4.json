@@ -1,0 +1,11 @@
+{
+  "_id": "67da4806bab79a925cd2fca4",
+  "is_active": true,
+  "meta_data": {},
+  "title": "[Cá nhân] Yêu cầu tham gia nhóm được phê duyệt",
+  "title_input": "Yêu cầu tham gia nhóm [@main_result:social_group.title] của bạn đã được phê duyệt",
+  "advance": "{\r\n  \"collection_name_find_user_to\": \"mge-group-member\",\r\n  \"field_get_id\": \"user\",\r\n  \"query_pipeline\": [\r\n    {\r\n      \"$match\": {\r\n        \"social_group\": \"@main_result:social_group._id\",\r\n        \"user\": \"@main_result:user._id\",\r\n        \"role\": \"member\"\r\n      }\r\n    }\r\n  ]\r\n}",
+  "type": "SOCIAL_REQUEST_JOIN_GROUP_APPROVED",
+  "blocks": {},
+  "tenant_id": "674028d2611a654e763a73e8"
+}

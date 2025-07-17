@@ -1,0 +1,341 @@
+{
+  "comment": {},
+  "post": {
+    "headers": [],
+    "params": [
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6790a7d32bf4488eb3ab1978",
+          "title": "create discussion's comment",
+          "entity": "mge-discussion-comment",
+          "path_file": "json/response/6790a7d32bf4488eb3ab1978.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "8f05c548-ba8b-4fce-b16a-7b7480ff17be",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "0204736c-5e07-4dbf-a962-5ef05abdc248",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678e1af7cabf809df48a6976"
+            }
+          ],
+          "id": "1fe8c9bd-7eae-40c3-8746-3bab05a50465"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "678e1af7cabf809df48a6976",
+            "title": "is-user-joined-course-through-discussion",
+            "entity": {
+              "_id": "6752bcd265017d942f759541",
+              "mongodb_collection_name": "mge-discussions"
+            },
+            "path_file": "json/validate/678e1af7cabf809df48a6976.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6791ad68d5b517819522e2c1",
+          "title": "update discussion's comment",
+          "entity": "mge-discussion-comment",
+          "path_file": "json/response/6791ad68d5b517819522e2c1.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "973b31c1-7339-42ea-a175-0282edc68a8e",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "ab52c912-beb2-496c-aac8-61f1e28ebe97",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6791b299d5b517819522e6e1"
+            },
+            {
+              "id": "0424e3b9-bb40-4bd6-9644-3695bb134e11",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6791ae21d5b517819522e363"
+            }
+          ],
+          "id": "ba4c2c66-4999-46cd-b025-1289d3b0da66"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "6791ae21d5b517819522e363",
+            "title": "is-user-discussion-comment-creator",
+            "entity": {
+              "_id": "6752c64565017d942f759585",
+              "mongodb_collection_name": "mge-discussion-comment"
+            },
+            "path_file": "json/validate/6791ae21d5b517819522e363.json"
+          },
+          {
+            "_id": "6791b299d5b517819522e6e1",
+            "title": "did-user-join-course (through discussion comment)",
+            "entity": {
+              "_id": "6752c64565017d942f759585",
+              "mongodb_collection_name": "mge-discussion-comment"
+            },
+            "path_file": "json/validate/6791b299d5b517819522e6e1.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [],
+    "params": [
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6792045942dbfffa43bef819",
+          "title": "get list discussion comment (level 1)",
+          "entity": "mge-discussion-comment",
+          "path_file": "json/response/6792045942dbfffa43bef819.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "8ec076a9-4ece-44dd-a422-d580ee2daad7",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "31b370ab-f127-4ee1-9ca7-90abbf6d0519",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678e1af7cabf809df48a6976"
+            }
+          ],
+          "id": "6a404bb5-90b8-4b08-92f0-d2f57bdd95c9"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "678e1af7cabf809df48a6976",
+            "title": "is-user-joined-course-through-discussion",
+            "entity": {
+              "_id": "6752bcd265017d942f759541",
+              "mongodb_collection_name": "mge-discussions"
+            },
+            "path_file": "json/validate/678e1af7cabf809df48a6976.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [
+      {
+        "value": "_id",
+        "key": "_id"
+      },
+      {
+        "value": "discussion_id",
+        "key": "discussion_id"
+      }
+    ],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67931546a022810eedbe0b1e",
+          "title": "delete discussion comment",
+          "entity": "mge-discussion-comment",
+          "path_file": "json/response/67931546a022810eedbe0b1e.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "22bdc29d-d8c0-4c87-bf97-75a7ae654624",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "b08d78c5-9685-4504-aef7-30b499012782",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6791b299d5b517819522e6e1"
+            },
+            {
+              "id": "b50c19c9-0236-4ee7-add4-287d9f75a3be",
+              "rules": [
+                {
+                  "id": "ab5302bd-03ee-4250-9305-2eb6ef62f99d",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "6791ae21d5b517819522e363"
+                },
+                {
+                  "id": "2e499647-038f-457e-ad38-d8e045d3897c",
+                  "rules": [
+                    {
+                      "id": "7d301d28-754c-40ba-a293-bca6ec75f817",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "67931691a022810eedbe0b57"
+                    },
+                    {
+                      "id": "ac2e89eb-6f12-4748-bf98-a70295a38390",
+                      "field": "data",
+                      "operator": "=",
+                      "valueSource": "value",
+                      "value": "67933cea2cc6ae85baca4a8e"
+                    }
+                  ],
+                  "combinator": "and",
+                  "not": false
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "3b5dc254-1177-407a-91c3-e548c4327e96"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "6791ae21d5b517819522e363",
+            "title": "is-user-discussion-comment-creator",
+            "entity": {
+              "_id": "6752c64565017d942f759585",
+              "mongodb_collection_name": "mge-discussion-comment"
+            },
+            "path_file": "json/validate/6791ae21d5b517819522e363.json"
+          },
+          {
+            "_id": "67931691a022810eedbe0b57",
+            "title": "is-user-role-instructor-or-assistant-through-discussion-comment",
+            "entity": {
+              "_id": "6752c64565017d942f759585",
+              "mongodb_collection_name": "mge-discussion-comment"
+            },
+            "path_file": "json/validate/67931691a022810eedbe0b57.json"
+          },
+          {
+            "_id": "6791b299d5b517819522e6e1",
+            "title": "did-user-join-course (through discussion comment)",
+            "entity": {
+              "_id": "6752c64565017d942f759585",
+              "mongodb_collection_name": "mge-discussion-comment"
+            },
+            "path_file": "json/validate/6791b299d5b517819522e6e1.json"
+          },
+          {
+            "_id": "67933cea2cc6ae85baca4a8e",
+            "title": "is-user-has-permission-to-manage-discussion (through discussion_comment)",
+            "entity": {
+              "_id": "6752c64565017d942f759585",
+              "mongodb_collection_name": "mge-discussion-comment"
+            },
+            "path_file": "json/validate/67933cea2cc6ae85baca4a8e.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

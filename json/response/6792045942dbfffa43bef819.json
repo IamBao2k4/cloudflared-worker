@@ -1,0 +1,61 @@
+{
+  "_id": "6792045942dbfffa43bef819",
+  "title": "get list discussion comment (level 1)",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "6752c64565017d942f759585"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"discussion\": \"@param:discussion_id\",\n      \"$or\": [\n        { \"parent_id\": null },\n        { \"parent_id\": { \"$size\": 0 } },\n        { \"parent_id\": { \"$exists\": false } }\n      ]\n    }\n  },\n  {\n    \"$addFields\": {\n      \"discussion_id\": {\n        \"$map\": {\n          \"input\": \"$discussion\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-discussions\",\n      \"localField\": \"discussion_id\",\n      \"foreignField\": \"_id\",\n      \"pipeline\": [\n        // {\n        //   \"$lookup\": {\n        //     \"from\": \"mge-course-member\",\n        //     \"localField\": \"course\",\n        //     \"foreignField\": \"course\",\n        //     \"pipeline\": [\n        //       {\n        //         \"$match\": {\n        //           \"user\": \"@jwt:user.id\",\n        //           \"status\": \"joined\"\n        //         }\n        //       }\n        //     ],\n        //     \"as\": \"memberStatus\"\n        //   }\n        // },\n        {\n          \"$addFields\": {\n            \"course\": {\n              \"$map\": {\n                \"input\": \"$course\",\n                \"as\": \"sg\",\n                \"in\": {\n                  \"$toObjectId\": \"$$sg\"\n                }\n              }\n            }\n          }\n        },\n        {\n          \"$lookup\": {\n            \"from\": \"mge-courses\",\n            \"localField\": \"course\",\n            \"foreignField\": \"_id\",\n            \"as\": \"course_data\",\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"status\": \"active\"\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"as\": \"discussion_info\"\n    }\n  },\n  {\n    \"$match\": {\n      // \"discussion_info.memberStatus\": {\n      //   \"$ne\": []\n      // },\n      \"discussion_info.course_data\": {\n        \"$ne\": []\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"user-tenant-profile\",\n      \"localField\": \"created_by\",\n      \"foreignField\": \"user\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"full_name\": {\n              \"$concat\": [\n                \"$profile.last_name\",\n                \" \",\n                \"$profile.first_name\"\n              ]\n            }\n          }\n        },\n        {\n          \"$unwind\": {\n            \"path\": \"$user\",\n            \"preserveNullAndEmptyArrays\": true\n          }\n        },\n        {\n          \"$project\": {\n            \"_id\": \"$user\",\n            \"full_name\": 1,\n            \"featured_image\": \"$profile.course.featured_image\"\n          }\n        }\n      ],\n      \"as\": \"user\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-discussion-comment\",\n      \"let\": {\n        \"id\": \"$id\"\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$eq\": [\n                [\n                  \"$$id\"\n                ],\n                \"$parent_id\"\n              ]\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"id\": {\n              \"$toString\": \"$_id\"\n            }\n          }\n        }\n      ],\n      \"as\": \"sub_comments\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"sub_comment_quantity\": {\n        \"$size\": \"$sub_comments\"\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"sub_comments\": 0\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-discussion-comment-like\",\n      \"localField\": \"id\",\n      \"foreignField\": \"comment\",\n      \"as\": \"liked_details\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"like_count\": {\n        \"$size\": \"$liked_details\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-discussion-comment-like\",\n      \"localField\": \"id\",\n      \"foreignField\": \"comment\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"created_by\": \"@jwt:user.id\"\n          }\n        }\n      ],\n      \"as\": \"liked_info\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"liked\": {\n        \"$cond\": {\n          \"if\": {\n            \"$gt\": [\n              {\n                \"$size\": \"$liked_info\"\n              },\n              0\n            ]\n          },\n          \"then\": true,\n          \"else\": false\n        }\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"liked_details\": 0,\n      \"discussion_id\": 0,\n      \"id\": 0\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "params": [
+    {
+      "value": "discussion_id",
+      "key": "discussion_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ],
+  "restricted": [
+    {
+      "key": "discussion",
+      "value": "discussion"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "id": "6792045942dbfffa43bef819"
+}

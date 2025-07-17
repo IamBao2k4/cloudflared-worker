@@ -1,0 +1,11 @@
+{
+  "_id": "67da6c11bab79a925cd31388",
+  "is_active": true,
+  "meta_data": {},
+  "title": "[Cá nhân] Bàn giao trưởng nhóm",
+  "title_input": "[@main_result:updated_by.full_name] đã bàn giao vai trò trưởng nhóm cho bạn trong nhóm [@main_result:social_group.title]",
+  "advance": "{\r\n  \"collection_name_find_user_to\": \"mge-group-member\",\r\n  \"field_get_id\": \"user\",\r\n  \"query_pipeline\": [\r\n    {\r\n      \"$match\": {\r\n        \"social_group\": \"@main_result:social_group._id\",\r\n        \"user\": \"@main_result:user._id\",\r\n        \"status\": \"joined\"\r\n      }\r\n    }\r\n  ]\r\n}",
+  "type": "SOCIAL_GROUP_TRANSFER_OWNER",
+  "blocks": {},
+  "tenant_id": "674028d2611a654e763a73e8"
+}

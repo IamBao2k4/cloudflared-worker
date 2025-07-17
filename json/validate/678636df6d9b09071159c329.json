@@ -1,0 +1,78 @@
+{
+  "_id": "678636df6d9b09071159c329",
+  "title": "is-course-instructor or course-assistant",
+  "note": "",
+  "entity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "data": {
+    "id": "cb56b2ac-67ef-4ff0-8641-9f6da634e5e8",
+    "rules": [
+      {
+        "id": "8c94cfd7-c3d6-4c29-9344-0d16f6516fbf",
+        "field": "mge-course-member.user",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-course-member.user:jwt.user@id"
+      },
+      {
+        "id": "f2aa0f4e-6473-46cc-9f0f-f030cb5d49e0",
+        "rules": [
+          {
+            "id": "036e57e4-3655-4826-adb6-427aa00788df",
+            "field": "mge-course-member.course",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-course-member.course:param._id"
+          },
+          {
+            "id": "518c439a-74cf-48cb-a6a8-a383eb570317",
+            "field": "mge-course-member.course",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "$mge-course-member.course:param.course_id"
+          }
+        ],
+        "combinator": "or",
+        "not": false
+      },
+      {
+        "id": "62af8a3b-2266-4b2e-ad46-f432fabe03c4",
+        "rules": [
+          {
+            "id": "6daa5ded-45e9-4f50-a89e-ae5686bc15cc",
+            "field": "mge-course-member.role",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "instructor"
+          },
+          {
+            "id": "6d94f1fb-c7a3-4bee-ae91-da998dfe8758",
+            "field": "mge-course-member.role",
+            "operator": "=",
+            "valueSource": "value",
+            "value": "assistant"
+          }
+        ],
+        "combinator": "or",
+        "not": false
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"mge-course-member.user\":\"$mge-course-member.user:jwt.user@id\"},{\"$or\":[{\"mge-course-member.course\":\"$mge-course-member.course:param._id\"},{\"mge-course-member.course\":\"$mge-course-member.course:param.course_id\"}]},{\"$or\":[{\"mge-course-member.role\":\"instructor\"},{\"mge-course-member.role\":\"assistant\"}]}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "advance": "",
+  "body": null,
+  "categories": null,
+  "documents": null,
+  "error_code": null,
+  "headers": null,
+  "logged": null,
+  "params": null,
+  "pre": null
+}

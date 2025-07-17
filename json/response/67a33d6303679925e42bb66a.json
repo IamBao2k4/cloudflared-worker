@@ -1,0 +1,28 @@
+{
+  "_id": "67a33d6303679925e42bb66a",
+  "title": "get detail user exam result",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "6752cbec65017d942f7595dc"
+  ],
+  "queryAdvance": "[\n    {\n    \"$addFields\": {\n      \"id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"tenant_id\":\"@header:x-tenant-id\",\n      \"created_by\": \"@jwt:user.id\",\n      \"exam\": \"@param:exam_id\",\n      \"id\":\"@param:_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"exam\": {\n        \"$map\": {\n          \"input\": \"$exam\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-exams\",\n      \"localField\": \"exam\",\n      \"foreignField\": \"_id\",\n      \"as\": \"exam\"\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "params": [
+    {
+      "value": "exam_id",
+      "key": "exam_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ]
+}

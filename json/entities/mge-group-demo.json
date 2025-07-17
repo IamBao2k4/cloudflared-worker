@@ -1,0 +1,93 @@
+{
+  "_id": "67aef709d1c6615c63d63aaf",
+  "title": "mge group demo",
+  "mongodb_collection_name": "mge-group-demo",
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-02-14T07:55:53.555Z",
+  "__v": 0,
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "slug": {
+        "title": "Slug",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "short_description": {
+        "widget": "shortAnswer",
+        "title": "Short_description",
+        "type": "string"
+      },
+      "slect": {
+        "title": "Select",
+        "type": "string",
+        "widget": "select",
+        "description": "( Chọn type nhóm )",
+        "isMultiple": true
+      },
+      "cover_image": {
+        "title": "Cover Image",
+        "type": "string",
+        "widget": "file",
+        "description": "( Chọn ảnh bìa cho nhóm ) "
+      },
+      "relation": {
+        "title": "Relation",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group",
+          "_id": "mge-group",
+          "type": "n-1"
+        },
+        "description": "( Thêm thành viên cho nhóm )",
+        "is_tree": false
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "shortAnswer"
+    },
+    "short_description": {
+      "ui:widget": "shortAnswer"
+    },
+    "slect": {
+      "ui:widget": "select"
+    },
+    "cover_image": {
+      "ui:widget": "file"
+    },
+    "relation": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "short_description",
+      "slect",
+      "cover_image",
+      "relation"
+    ]
+  }
+}

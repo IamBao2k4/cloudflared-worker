@@ -1,0 +1,243 @@
+{
+  "_id": "67c12e1a2733dc6d78927f25",
+  "title": "Task",
+  "mongodb_collection_name": "task",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "description": {
+        "title": "Description",
+        "type": "string",
+        "widget": "textarea",
+        "customRole": "texteditor",
+        "filter": false
+      },
+      "files": {
+        "title": "Files",
+        "type": "string",
+        "widget": "multipleFiles",
+        "filter": true
+      },
+      "checklist": {
+        "title": "Checklist",
+        "type": "string",
+        "widget": "textarea",
+        "customRole": "textarea",
+        "filter": false
+      },
+      "label": {
+        "title": "Label",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "Done#28a745",
+            "value": "done"
+          },
+          {
+            "key": "In Progress#ffc107",
+            "value": "in_progress"
+          },
+          {
+            "key": "Priority#dc3545",
+            "value": "priority"
+          },
+          {
+            "key": "Testing#17a2b8",
+            "value": "testing"
+          },
+          {
+            "key": "Bug#e63946",
+            "value": "bug"
+          },
+          {
+            "key": "BE#6c757d",
+            "value": "be"
+          },
+          {
+            "key": "Updating#6610f2",
+            "value": "updating"
+          },
+          {
+            "key": "Frontend#007bff",
+            "value": "frontend"
+          },
+          {
+            "key": "Backend#6f42c1",
+            "value": "backend"
+          },
+          {
+            "key": "Done dev#20c997",
+            "value": "done_dev"
+          },
+          {
+            "key": "Hot fix#d63384",
+            "value": "hot_fix"
+          },
+          {
+            "key": "Closed#343a40",
+            "value": "closed"
+          }
+        ],
+        "filter": true
+      },
+      "members": {
+        "title": "Members",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "2c2afae8-c2a3-42e3-b858-02d70e50275c"
+          }
+        },
+        "filter": true
+      },
+      "deadline": {
+        "title": "Deadline",
+        "type": "string",
+        "widget": "date",
+        "displayFormat": "yyyy/MM/dd",
+        "formatDate": "date",
+        "disabled": false,
+        "field": "single",
+        "mode": "date",
+        "filter": true
+      },
+      "api": {
+        "title": "API",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "role-settings",
+          "_id": "role-settings",
+          "type": "n-1"
+        },
+        "filter": true
+      },
+      "status": {
+        "type": "string",
+        "widget": "select",
+        "title": "Status",
+        "choices": [
+          {
+            "key": "Done#28a745",
+            "value": "done"
+          },
+          {
+            "key": "In Progress#ffc107",
+            "value": "in_progress"
+          },
+          {
+            "key": "Priority#dc3545",
+            "value": "priority"
+          },
+          {
+            "key": "Testing#17a2b8",
+            "value": "testing"
+          },
+          {
+            "key": "Bug#e63946",
+            "value": "bug"
+          },
+          {
+            "key": "BE#6c757d",
+            "value": "be"
+          },
+          {
+            "key": "Updating#6610f2",
+            "value": "updating"
+          },
+          {
+            "key": "Frontend#007bff",
+            "value": "frontend"
+          },
+          {
+            "key": "Backend#6f42c1",
+            "value": "backend"
+          },
+          {
+            "key": "Done dev#20c997",
+            "value": "done_dev"
+          },
+          {
+            "key": "Hot fix#d63384",
+            "value": "hot_fix"
+          },
+          {
+            "key": "Closed#343a40",
+            "value": "closed"
+          }
+        ],
+        "filter": true
+      }
+    },
+    "required": [
+      "title"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "description": {
+      "ui:widget": "textarea"
+    },
+    "files": {
+      "ui:widget": "multipleFiles"
+    },
+    "checklist": {
+      "ui:widget": "textarea"
+    },
+    "label": {
+      "ui:widget": "select"
+    },
+    "members": {
+      "ui:widget": "relation"
+    },
+    "deadline": {
+      "ui:widget": "date"
+    },
+    "api": {
+      "ui:widget": "relation"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "ui:order": [
+      "title",
+      "description",
+      "files",
+      "checklist",
+      "label",
+      "members",
+      "deadline",
+      "api",
+      "status"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-02-28T03:31:38.041Z",
+  "__v": 0
+}

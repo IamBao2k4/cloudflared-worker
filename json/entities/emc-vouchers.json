@@ -1,0 +1,559 @@
+{
+  "_id": "6818993e753574930d611546",
+  "title": "EMC vouchers",
+  "mongodb_collection_name": "emc-vouchers",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "code": {
+        "title": "Code",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "type": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "Giảm giá trực tiếp",
+            "value": "Giảm giá trực tiếp"
+          },
+          {
+            "key": "Giảm giá theo phầm trăm",
+            "value": "Giảm giá theo phầm trăm"
+          }
+        ],
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "Type",
+        "type": "string",
+        "filter": true,
+        "default": "Giảm giá trực tiếp"
+      },
+      "value": {
+        "widget": "numberInput",
+        "title": "Value",
+        "type": "string",
+        "filter": true
+      },
+      "free_ship": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "active",
+            "value": "active"
+          },
+          {
+            "key": "inactive",
+            "value": "inactive"
+          }
+        ],
+        "default": "inactive",
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "Free Ship",
+        "type": "string",
+        "filter": true
+      },
+      "start_date": {
+        "title": "Start Date",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": false,
+        "field": "single",
+        "mode": "dateTime",
+        "filter": true
+      },
+      "end_date": {
+        "title": "End Date",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "yyyy/MM/dd HH:mm:ss",
+        "formatDate": "date-time",
+        "disabled": false,
+        "field": "single",
+        "mode": "dateTime",
+        "hidden": false,
+        "filter": true
+      },
+      "status": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "active",
+            "value": "active"
+          },
+          {
+            "key": "inactive",
+            "value": "inactive"
+          }
+        ],
+        "default": "active",
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "Status",
+        "type": "string",
+        "hidden": false,
+        "filter": true
+      },
+      "min_price": {
+        "title": "Min Price",
+        "type": "string",
+        "widget": "numberInput",
+        "description": "Chi tiêu tối thiểu",
+        "filter": true
+      },
+      "max_price": {
+        "title": "Max Price",
+        "type": "string",
+        "widget": "numberInput",
+        "description": "Chi tiêu tối đa",
+        "filter": true
+      },
+      "include_products": {
+        "type": "string",
+        "typeRelation": {
+          "title": "emc-post",
+          "_id": "emc-post",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [
+              {
+                "id": "5a1f6a7b-7229-40e6-9917-f361ed9f1e10",
+                "field": "tag_posttype",
+                "operator": "equal",
+                "valueSource": "value",
+                "value": [
+                  {
+                    "_id": "68187361753574930d610440",
+                    "title": "Sản phẩm",
+                    "locale": null,
+                    "locale_id": null,
+                    "created_at": "2025-05-05T15:14:25.000Z",
+                    "created_by": {
+                      "_id": "6711e8a47b45b2974bd6133c",
+                      "username": "admin2024@gmail.com",
+                      "featured_image": [
+                        {
+                          "_id": "67c52c92cb2d3f0de049849f",
+                          "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                          "disk": "satellite",
+                          "mime": "image/jpeg",
+                          "size": 95662,
+                          "title": "AVA-AI-Voice-Assistant.jpg",
+                          "alt": "AVA-AI-Voice-Assistant.jpg",
+                          "tenant_id": "674028d2611a654e763a73e8",
+                          "created_by": "6711e8a47b45b2974bd6133c",
+                          "created_at": "2025-03-03T11:14:10.000Z",
+                          "updated_at": "2025-03-03T11:14:10.000Z",
+                          "is_draft": true,
+                          "__v": 0,
+                          "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                        }
+                      ],
+                      "first_name": "Nguyễn Văn",
+                      "last_name": "Toàn"
+                    },
+                    "updated_at": "2025-05-05T15:14:25.000Z",
+                    "updated_by": {
+                      "_id": "6711e8a47b45b2974bd6133c",
+                      "username": "admin2024@gmail.com",
+                      "featured_image": [
+                        {
+                          "_id": "67c52c92cb2d3f0de049849f",
+                          "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                          "disk": "satellite",
+                          "mime": "image/jpeg",
+                          "size": 95662,
+                          "title": "AVA-AI-Voice-Assistant.jpg",
+                          "alt": "AVA-AI-Voice-Assistant.jpg",
+                          "tenant_id": "674028d2611a654e763a73e8",
+                          "created_by": "6711e8a47b45b2974bd6133c",
+                          "created_at": "2025-03-03T11:14:10.000Z",
+                          "updated_at": "2025-03-03T11:14:10.000Z",
+                          "is_draft": true,
+                          "__v": 0,
+                          "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                        }
+                      ],
+                      "first_name": "Nguyễn Văn",
+                      "last_name": "Toàn"
+                    },
+                    "tenant_id": "6801bf1b887875ca1b8c3ee4"
+                  }
+                ]
+              }
+            ],
+            "id": "ff1fd4ea-a8dc-41ac-80c3-b538339be4fa"
+          }
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "Include Products",
+        "description": "Bao gồm sản phẩm",
+        "filter": true
+      },
+      "exclude_products-11": {
+        "type": "string",
+        "typeRelation": {
+          "title": "emc-post",
+          "_id": "emc-post",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [
+              {
+                "id": "5a1f6a7b-7229-40e6-9917-f361ed9f1e10",
+                "field": "tag_posttype",
+                "operator": "equal",
+                "valueSource": "value",
+                "value": [
+                  {
+                    "_id": "68187361753574930d610440",
+                    "title": "Sản phẩm",
+                    "locale": null,
+                    "locale_id": null,
+                    "created_at": "2025-05-05T15:14:25.000Z",
+                    "created_by": {
+                      "_id": "6711e8a47b45b2974bd6133c",
+                      "username": "admin2024@gmail.com",
+                      "featured_image": [
+                        {
+                          "_id": "67c52c92cb2d3f0de049849f",
+                          "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                          "disk": "satellite",
+                          "mime": "image/jpeg",
+                          "size": 95662,
+                          "title": "AVA-AI-Voice-Assistant.jpg",
+                          "alt": "AVA-AI-Voice-Assistant.jpg",
+                          "tenant_id": "674028d2611a654e763a73e8",
+                          "created_by": "6711e8a47b45b2974bd6133c",
+                          "created_at": "2025-03-03T11:14:10.000Z",
+                          "updated_at": "2025-03-03T11:14:10.000Z",
+                          "is_draft": true,
+                          "__v": 0,
+                          "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                        }
+                      ],
+                      "first_name": "Nguyễn Văn",
+                      "last_name": "Toàn"
+                    },
+                    "updated_at": "2025-05-05T15:14:25.000Z",
+                    "updated_by": {
+                      "_id": "6711e8a47b45b2974bd6133c",
+                      "username": "admin2024@gmail.com",
+                      "featured_image": [
+                        {
+                          "_id": "67c52c92cb2d3f0de049849f",
+                          "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                          "disk": "satellite",
+                          "mime": "image/jpeg",
+                          "size": 95662,
+                          "title": "AVA-AI-Voice-Assistant.jpg",
+                          "alt": "AVA-AI-Voice-Assistant.jpg",
+                          "tenant_id": "674028d2611a654e763a73e8",
+                          "created_by": "6711e8a47b45b2974bd6133c",
+                          "created_at": "2025-03-03T11:14:10.000Z",
+                          "updated_at": "2025-03-03T11:14:10.000Z",
+                          "is_draft": true,
+                          "__v": 0,
+                          "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                        }
+                      ],
+                      "first_name": "Nguyễn Văn",
+                      "last_name": "Toàn"
+                    },
+                    "tenant_id": "6801bf1b887875ca1b8c3ee4"
+                  }
+                ]
+              }
+            ],
+            "id": "ff1fd4ea-a8dc-41ac-80c3-b538339be4fa"
+          }
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "Exclude Products",
+        "description": "Không bao gồm sản phẩm",
+        "filter": true
+      },
+      "include_categories": {
+        "type": "string",
+        "typeRelation": {
+          "title": "emc-category",
+          "_id": "emc-category",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [
+              {
+                "id": "a6ee55ad-cc5f-4038-bd1b-7faeb27cd69e",
+                "field": "tag_posttype",
+                "operator": "equal",
+                "valueSource": "value",
+                "value": [
+                  {
+                    "_id": "68187361753574930d610440",
+                    "title": "Sản phẩm",
+                    "locale": null,
+                    "locale_id": null,
+                    "created_at": "2025-05-05T15:14:25.000Z",
+                    "created_by": {
+                      "_id": "6711e8a47b45b2974bd6133c",
+                      "username": "admin2024@gmail.com",
+                      "featured_image": [
+                        {
+                          "_id": "67c52c92cb2d3f0de049849f",
+                          "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                          "disk": "satellite",
+                          "mime": "image/jpeg",
+                          "size": 95662,
+                          "title": "AVA-AI-Voice-Assistant.jpg",
+                          "alt": "AVA-AI-Voice-Assistant.jpg",
+                          "tenant_id": "674028d2611a654e763a73e8",
+                          "created_by": "6711e8a47b45b2974bd6133c",
+                          "created_at": "2025-03-03T11:14:10.000Z",
+                          "updated_at": "2025-03-03T11:14:10.000Z",
+                          "is_draft": true,
+                          "__v": 0,
+                          "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                        }
+                      ],
+                      "first_name": "Nguyễn Văn",
+                      "last_name": "Toàn"
+                    },
+                    "updated_at": "2025-05-05T15:14:25.000Z",
+                    "updated_by": {
+                      "_id": "6711e8a47b45b2974bd6133c",
+                      "username": "admin2024@gmail.com",
+                      "featured_image": [
+                        {
+                          "_id": "67c52c92cb2d3f0de049849f",
+                          "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                          "disk": "satellite",
+                          "mime": "image/jpeg",
+                          "size": 95662,
+                          "title": "AVA-AI-Voice-Assistant.jpg",
+                          "alt": "AVA-AI-Voice-Assistant.jpg",
+                          "tenant_id": "674028d2611a654e763a73e8",
+                          "created_by": "6711e8a47b45b2974bd6133c",
+                          "created_at": "2025-03-03T11:14:10.000Z",
+                          "updated_at": "2025-03-03T11:14:10.000Z",
+                          "is_draft": true,
+                          "__v": 0,
+                          "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                        }
+                      ],
+                      "first_name": "Nguyễn Văn",
+                      "last_name": "Toàn"
+                    },
+                    "tenant_id": "6801bf1b887875ca1b8c3ee4"
+                  }
+                ]
+              }
+            ],
+            "id": "ea053b2e-f9c9-43f8-83c8-5b1db523015d"
+          }
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "Include Categories",
+        "description": "Bao gồm các danh mục",
+        "filter": true
+      },
+      "exclude_categories": {
+        "type": "string",
+        "typeRelation": {
+          "title": "emc-category",
+          "_id": "emc-category",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [
+              {
+                "id": "1d6c69ad-668f-4a70-8cbd-78fdec7f1c8c",
+                "field": "tag_posttype",
+                "operator": "equal",
+                "valueSource": "value",
+                "value": [
+                  {
+                    "_id": "68187361753574930d610440",
+                    "title": "Sản phẩm",
+                    "locale": null,
+                    "locale_id": null,
+                    "created_at": "2025-05-05T15:14:25.000Z",
+                    "created_by": {
+                      "_id": "6711e8a47b45b2974bd6133c",
+                      "username": "admin2024@gmail.com",
+                      "featured_image": [
+                        {
+                          "_id": "67c52c92cb2d3f0de049849f",
+                          "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                          "disk": "satellite",
+                          "mime": "image/jpeg",
+                          "size": 95662,
+                          "title": "AVA-AI-Voice-Assistant.jpg",
+                          "alt": "AVA-AI-Voice-Assistant.jpg",
+                          "tenant_id": "674028d2611a654e763a73e8",
+                          "created_by": "6711e8a47b45b2974bd6133c",
+                          "created_at": "2025-03-03T11:14:10.000Z",
+                          "updated_at": "2025-03-03T11:14:10.000Z",
+                          "is_draft": true,
+                          "__v": 0,
+                          "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                        }
+                      ],
+                      "first_name": "Nguyễn Văn",
+                      "last_name": "Toàn"
+                    },
+                    "updated_at": "2025-05-05T15:14:25.000Z",
+                    "updated_by": {
+                      "_id": "6711e8a47b45b2974bd6133c",
+                      "username": "admin2024@gmail.com",
+                      "featured_image": [
+                        {
+                          "_id": "67c52c92cb2d3f0de049849f",
+                          "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+                          "disk": "satellite",
+                          "mime": "image/jpeg",
+                          "size": 95662,
+                          "title": "AVA-AI-Voice-Assistant.jpg",
+                          "alt": "AVA-AI-Voice-Assistant.jpg",
+                          "tenant_id": "674028d2611a654e763a73e8",
+                          "created_by": "6711e8a47b45b2974bd6133c",
+                          "created_at": "2025-03-03T11:14:10.000Z",
+                          "updated_at": "2025-03-03T11:14:10.000Z",
+                          "is_draft": true,
+                          "__v": 0,
+                          "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+                        }
+                      ],
+                      "first_name": "Nguyễn Văn",
+                      "last_name": "Toàn"
+                    },
+                    "tenant_id": "6801bf1b887875ca1b8c3ee4"
+                  }
+                ]
+              }
+            ],
+            "id": "a5a3a10a-211d-4c62-98ec-92263d8f9547"
+          }
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "Exclude Categories",
+        "description": "Không bao gồm các danh mục",
+        "filter": true
+      },
+      "limit_of_uses_per_coupon": {
+        "widget": "numberInput",
+        "title": "Limit of uses per coupon",
+        "type": "string",
+        "description": "Giới hạn sử dụng trên mỗi phiếu giảm giá",
+        "filter": true
+      },
+      "usage_limit_per_customer": {
+        "widget": "numberInput",
+        "title": "Usage limit per customer",
+        "type": "string",
+        "description": "Giới hạn sử dụng cho mỗi khách hàng",
+        "filter": true
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "code": {
+      "ui:widget": "shortAnswer"
+    },
+    "type": {
+      "ui:widget": "select"
+    },
+    "value": {
+      "ui:widget": "numberInput"
+    },
+    "free_ship": {
+      "ui:widget": "select"
+    },
+    "start_date": {
+      "ui:widget": "dateTime"
+    },
+    "end_date": {
+      "ui:widget": "dateTime"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "min_price": {
+      "ui:widget": "numberInput"
+    },
+    "max_price": {
+      "ui:widget": "numberInput"
+    },
+    "include_products": {
+      "ui:widget": "relation"
+    },
+    "exclude_products-11": {
+      "ui:widget": "relation"
+    },
+    "include_categories": {
+      "ui:widget": "relation"
+    },
+    "exclude_categories": {
+      "ui:widget": "relation"
+    },
+    "limit_of_uses_per_coupon": {
+      "ui:widget": "numberInput"
+    },
+    "usage_limit_per_customer": {
+      "ui:widget": "numberInput"
+    },
+    "ui:order": [
+      "title",
+      "code",
+      "type",
+      "value",
+      "free_ship",
+      "start_date",
+      "end_date",
+      "status",
+      "min_price",
+      "max_price",
+      "include_products",
+      "exclude_products-11",
+      "include_categories",
+      "exclude_categories",
+      "limit_of_uses_per_coupon",
+      "usage_limit_per_customer"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-05-05T10:55:58.122Z",
+  "__v": 0
+}

@@ -1,0 +1,91 @@
+{
+  "_id": "67529e3265017d942f759319",
+  "title": "mge chapters",
+  "mongodb_collection_name": "mge-chapters",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "min": 2,
+        "filter": true
+      },
+      "slug": {
+        "title": "slug",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "description": " Đường dẫn URL ngắn gọn của chương, được tự động sinh dựa trên title.",
+        "depend_field": "root_name",
+        "filter": true
+      },
+      "position": {
+        "type": "string",
+        "widget": "numberInput",
+        "title": "position",
+        "description": " Thứ tự sắp xếp của chương trong khóa học",
+        "filter": true,
+        "default": "0"
+      },
+      "course": {
+        "title": "course",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-courses",
+          "_id": "mge-courses",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "21cbb26d-f8d6-4417-971f-e88343e57839"
+          }
+        },
+        "description": " ID của khóa học mà chương này thuộc về, dùng để liên kết với khóa học",
+        "filter": true
+      }
+    },
+    "required": [
+      "title",
+      "slug",
+      "course"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "position": {
+      "ui:widget": "numberInput"
+    },
+    "course": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "position",
+      "course"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "entity_group": [
+    "677f8ef04bac6329557659ef"
+  ],
+  "created_at": "2024-12-06T06:48:18.067Z",
+  "__v": 0,
+  "use_seo_path": false,
+  "use_parent_delete_childs": false
+}

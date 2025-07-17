@@ -1,0 +1,23 @@
+{
+  "_id": "678623415b126d1f3fd59196",
+  "title": "create chapter",
+  "outputEntity": [
+    "67529e3265017d942f759319"
+  ],
+  "queryAdvance": "{\n  \"title\":1,\n  \"slug\":1,\n  \"position\":0,\n  \"course\": \"@param:course_id\"\n}",
+  "note": "",
+  "method": "post",
+  "categories": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "body": null,
+  "documents": [],
+  "headers": null,
+  "params": [
+    {
+      "value": "course_id",
+      "key": "course_id"
+    }
+  ]
+}

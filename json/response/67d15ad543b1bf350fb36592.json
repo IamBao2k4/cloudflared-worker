@@ -1,0 +1,20 @@
+{
+  "_id": "67d15ad543b1bf350fb36592",
+  "title": "get list areas",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "67cfbbfddada26e67e87f029"
+  ],
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb",
+  "documents": [],
+  "data": {
+    "id": "4de6cbf7-c452-4ff7-b92c-192a546dfff3",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "queryAdvance": "[\r\n    {\r\n    \"$facet\": {\r\n      \"meta_data\": [\r\n        { \"$count\": \"count\" },\r\n        {\r\n          \"$addFields\": {\r\n          \"skip\": \"@param:skip\",\r\n          \"limit\": \"@param:limit\"\r\n        }\r\n        }\r\n      ],\r\n      \"data\": [\r\n        { \"$skip\": \"@param:skip\" },\r\n        { \"$limit\": \"@param:limit\" }\r\n      ]\r\n    }\r\n  }\r\n]"
+}

@@ -1,0 +1,16 @@
+{
+  "_id": "67601b5df9dc86d36ed2ba46",
+  "title": "Create category",
+  "outputEntity": [
+    "674835d876462b61b5df90d1"
+  ],
+  "queryAdvance": "{\n  \"title\":1,\n  \"slug\":1,\n  \"short_description\":0,\n  \"parent_id\":0,\n  \"social_group\":\"@params:group_id\"\n}",
+  "note": "",
+  "method": "post",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "categories": [],
+  "documents": [],
+  "cache_time": ""
+}

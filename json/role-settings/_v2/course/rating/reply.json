@@ -1,0 +1,103 @@
+{
+  "reply": {},
+  "put": {
+    "headers": [],
+    "params": [
+      {
+        "value": "course_id",
+        "key": "course_id"
+      },
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67c90365f4aa922e5d29e45c",
+          "title": "reply rating in course",
+          "entity": "mge-user-rating",
+          "path_file": "json/response/67c90365f4aa922e5d29e45c.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "7ccf7e44-9c7c-45f1-bb7e-34e0d0bb16f3",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "30ae2a0d-930c-40de-90d1-623d1472d8b3",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            },
+            {
+              "id": "8a74ade6-769a-48c6-80c0-1c641ffabc48",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678636df6d9b09071159c329"
+            },
+            {
+              "id": "ca2ec080-2bca-4f6b-846c-9259c429e8ec",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67a573fab45a45be2aa96118"
+            }
+          ],
+          "id": "2848cdd6-766e-4ec4-812a-3d5334097a09"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "678636df6d9b09071159c329",
+            "title": "is-course-instructor or course-assistant",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/678636df6d9b09071159c329.json"
+          },
+          {
+            "_id": "67a573fab45a45be2aa96118",
+            "title": "user-has-permission-to-response-course-rating",
+            "entity": {
+              "_id": "6780ca7ca78c4e63fee5ab77",
+              "mongodb_collection_name": "mge-user-rating"
+            },
+            "path_file": "json/validate/67a573fab45a45be2aa96118.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

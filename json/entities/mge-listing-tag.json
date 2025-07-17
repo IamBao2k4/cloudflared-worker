@@ -1,0 +1,67 @@
+{
+  "_id": "67d2617ab6962f9420f4035a",
+  "title": "mge listing tag",
+  "mongodb_collection_name": "mge-listing-tag",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "color": {
+        "title": "color",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": false
+      },
+      "tag_group": {
+        "title": "tag_group",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-listing-tag-group",
+          "_id": "mge-listing-tag-group",
+          "type": "n-1"
+        },
+        "filter": true
+      }
+    },
+    "required": [
+      "title",
+      "tag_group"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "color": {
+      "ui:widget": "shortAnswer"
+    },
+    "tag_group": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "title",
+      "color",
+      "tag_group"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-03-13T04:39:22.371Z",
+  "__v": 0
+}

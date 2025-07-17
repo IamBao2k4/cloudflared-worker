@@ -1,0 +1,12 @@
+{
+  "_id": "676e5a08beadbd78b8083e89",
+  "title": "delete comment",
+  "outputEntity": [
+    "6764e3926e57acaf6815ab97"
+  ],
+  "note": "",
+  "method": "delete",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

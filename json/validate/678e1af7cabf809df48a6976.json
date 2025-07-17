@@ -1,0 +1,24 @@
+{
+  "_id": "678e1af7cabf809df48a6976",
+  "title": "is-user-joined-course-through-discussion",
+  "note": "",
+  "entity": [
+    "6752bcd265017d942f759541"
+  ],
+  "advance": "[\n    {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"$or\": [\n      {\"_id\": \"@param:_id\"},\n      {\"_id\": \"@param:discussion_id\"}\n      ]\n    }\n  },\n  {\n        \"$lookup\": {\n            \"from\": \"mge-course-member\",\n            \"localField\": \"course\",\n            \"foreignField\": \"course\",\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"user\":\"@jwt:user.id\",\n                  \"status\":\"joined\"\n                }\n              }\n            ],\n            \"as\": \"memberStatus\"\n        }\n    },\n      {\n        \"$addFields\": {\n            \"course\": {\n                \"$map\": {\n                    \"input\": \"$course\",\n                    \"as\": \"sg\",\n                    \"in\": { \"$toObjectId\": \"$$sg\" }\n                }\n            }\n        }\n    },\n    {\n        \"$lookup\": {\n            \"from\": \"mge-courses\",\n            \"localField\": \"course\",\n            \"foreignField\": \"_id\",\n            \"as\": \"course_data\",\n            \"pipeline\": [\n                {\n                    \"$match\": {\n                        \"status\": \"active\"\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"$match\": {\n            \"memberStatus\": { \"$ne\": [] },\n            \"course_data\": { \"$ne\": [] }\n          \n        }\n    }\n]",
+  "data": {
+    "id": "61a1b155-e1a9-49e5-ba34-2990272e2f04",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "required": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "params": [
+    {
+      "value": "_id",
+      "key": "_id"
+    }
+  ]
+}

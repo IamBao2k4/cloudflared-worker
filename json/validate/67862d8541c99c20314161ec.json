@@ -1,0 +1,20 @@
+{
+  "_id": "67862d8541c99c20314161ec",
+  "title": "is-user-has-permission-to-create-chapter",
+  "note": "",
+  "entity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "data": {
+    "id": "9580212b-ae22-4a1a-98e4-d642edf229b9",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "advance": "[\n  {\n    \"$match\": {\n      \"user\": \"@jwt:user.id\",\n      \"course\": \"@params:course_id\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"course\": {\n        \"$map\": {\n          \"input\": \"$course\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-courses\",\n      \"localField\": \"course\",\n      \"foreignField\": \"_id\",\n      \"as\": \"course_info\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"course_info\": { \"$arrayElemAt\": [\"$course_info\", 0] }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"can_create_chapter_in_course\": {\n        \"$gt\": [\n          {\n            \"$size\": {\n              \"$setIntersection\": [\n                \"$role\",\n                \"$course_info.permissions.course_chapter_create\"\n              ]\n            }\n          },\n          0\n        ]\n      }\n    }\n  },\n  { \"$match\": { \"can_create_chapter_in_course\": true } }\n]",
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

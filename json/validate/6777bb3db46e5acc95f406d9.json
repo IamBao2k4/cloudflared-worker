@@ -1,0 +1,43 @@
+{
+  "_id": "6777bb3db46e5acc95f406d9",
+  "title": "is-profile-mine",
+  "note": "",
+  "entity": [
+    "6749933810905d9ddbd0104b"
+  ],
+  "data": {
+    "id": "aaa0e888-fc31-4bed-b331-353a83e90bb7",
+    "rules": [
+      {
+        "id": "a155a55b-c810-45bc-9fb4-69f4ea3802c8",
+        "field": "user._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$user._id:jwt.user@id"
+      },
+      {
+        "id": "fb3c88f4-2ad6-4e0c-81fe-f9a7d631c812",
+        "field": "user._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$user._id:param.user_id"
+      }
+    ],
+    "combinator": "or",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$or\":[{\"user._id\":\"$user._id:jwt.user@id\"},{\"user._id\":\"$user._id:param.user_id\"}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "advance": "",
+  "body": null,
+  "documents": [],
+  "headers": null,
+  "logged": false,
+  "params": null,
+  "pre": null,
+  "categories": null,
+  "error_code": null
+}

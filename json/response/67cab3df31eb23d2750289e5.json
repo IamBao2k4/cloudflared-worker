@@ -1,0 +1,88 @@
+{
+  "_id": "67cab3df31eb23d2750289e5",
+  "title": "update listing tweet",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "67c66d92cb2d3f0de04bccc1"
+  ],
+  "queryAdvance": "{\r\n  \"title\": 0,\r\n  \"slug\": 0,\r\n  \"list_image\": 0,\r\n  \"short_description\": 0,\r\n  \"long_description\": 0,\r\n  \"category\": 0,\r\n  \"status\": \"active,deleted,approve,hidden,draft,archive,waiting,reject,send_to_review,expire\",\r\n  \"approve_at\": 0,\r\n  \"approve_by\": 0,\r\n  \"expire_at\": 0,\r\n  \"reject_reason\": 0,\r\n  \"type\": \"posts,news\",\r\n  \"real_estate_features\": {\r\n    \"price\": 0,\r\n    \"acreage\": 0,\r\n    \"price_type\": \"vnd,price_unit_m2,agreement\",\r\n    \"legal_document\": \"ownership_certificate,commodity_trading_contracts,waiting_certificate,more\",\r\n    \"another_legal_document\": 0,\r\n    \"furniture\": \"full,basic,none,more\",\r\n    \"another_furniture\": 0,\r\n    \"bed_room\": 0,\r\n    \"rest_room\": 0,\r\n    \"floor\": 0,\r\n    \"house_direction\": \"east,west,south,north,north_east,north_west,south_east,south_west\",\r\n    \"balcony_direction\": \"east,west,south,north,north_east,north_west,south_east,south_west\",\r\n    \"weight_house\": 0,\r\n    \"weight_street\": 0\r\n  },\r\n  \"address\": 0,\r\n  \"project\": 0\r\n}",
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "slug",
+      "value": "slug"
+    },
+    {
+      "key": "list_image",
+      "value": "list_image"
+    },
+    {
+      "key": "short_description",
+      "value": "short_description"
+    },
+    {
+      "key": "long_description",
+      "value": "long_description"
+    },
+    {
+      "key": "images",
+      "value": "images"
+    },
+    {
+      "key": "featured_image",
+      "value": "featured_image"
+    },
+    {
+      "key": "categories.id",
+      "value": "categories.id"
+    },
+    {
+      "key": "status",
+      "value": "status"
+    },
+    {
+      "key": "approve_at",
+      "value": "approve_at"
+    },
+    {
+      "key": "approve_by",
+      "value": "approve_by"
+    },
+    {
+      "key": "expire_at",
+      "value": "expire_at"
+    },
+    {
+      "key": "reject_reason",
+      "value": "reject_reason"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb",
+  "documents": []
+}

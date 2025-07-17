@@ -1,0 +1,20 @@
+{
+  "_id": "67cfdc02dada26e67e88016b",
+  "title": "create tweet report",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "67cfd9bedada26e67e87ffc3"
+  ],
+  "queryAdvance": "{\r\n  \"tweet\": \"@param:tweet_id\",\r\n  \"reasons\": \"address_of_real_estate,incorrect_information,incorrect_images,duplicate_listing,unreachable_contact,fake_listing,sold_real_estate,slow_loading,incorrect_real_estate_location,incorrect_amenity_location,map_error,other\",\r\n  \"another_reason\": 0\r\n}",
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb",
+  "documents": [],
+  "params": [
+    {
+      "value": "tweet_id",
+      "key": "tweet_id"
+    }
+  ]
+}

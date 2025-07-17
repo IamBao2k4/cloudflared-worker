@@ -1,0 +1,151 @@
+{
+  "_id": "68198d2815cf915ba520be5c",
+  "title": "EMC Tags Groups",
+  "mongodb_collection_name": "emc-tags-groups",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string",
+        "widget": "shortAnswer",
+        "title": "Title",
+        "filter": true
+      },
+      "is_active": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "active",
+            "value": "active"
+          },
+          {
+            "key": "inactive",
+            "value": "inactive"
+          }
+        ],
+        "default": "active",
+        "allowNull": false,
+        "isMultiple": false,
+        "type": "string",
+        "title": "Is Active"
+      }
+    },
+    "required": [
+      "title",
+      "is_active"
+    ]
+  },
+  "permission": {
+    "default": [
+      {
+        "action": "GET",
+        "list_field": "title,is_active"
+      }
+    ],
+    "admin": [
+      {
+        "action": "GET",
+        "list_field": "*"
+      },
+      {
+        "action": "POST",
+        "list_field": "title,is_active",
+        "custom_field": [
+          {
+            "field": "title",
+            "pattern": "^[a-zA-Z0-9\\s]+$"
+          },
+          {
+            "field": "is_active",
+            "enum": [
+              "active",
+              "inactive"
+            ]
+          }
+        ]
+      },
+      {
+        "action": "PUT",
+        "list_field": "title,is_active",
+        "custom_field": [
+          {
+            "field": "title",
+            "pattern": "^[a-zA-Z0-9\\s]+$"
+          },
+          {
+            "field": "is_active",
+            "enum": [
+              "active",
+              "inactive"
+            ]
+          }
+        ]
+      },
+      {
+        "action": "PATCH",
+        "list_field": "title,is_active",
+        "custom_field": [
+          {
+            "field": "title",
+            "pattern": "^[a-zA-Z0-9\\s]+$"
+          },
+          {
+            "field": "is_active",
+            "enum": [
+              "active",
+              "inactive"
+            ]
+          }
+        ]
+      },
+      {
+        "action": "DELETE"
+      }
+    ],
+    "user": [
+      {
+        "action": "GET",
+        "list_field": "title,is_active"
+      },
+      {
+        "action": "POST",
+        "list_field": "title,is_active"
+      },
+      {
+        "action": "PUT",
+        "list_field": "title,is_active"
+      },
+      {
+        "action": "PATCH",
+        "list_field": "title,is_active"
+      }
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "is_active": {
+      "ui:widget": "select"
+    },
+    "ui:order": [
+      "title",
+      "is_active"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-05-06T04:16:40.353Z",
+  "__v": 0
+}

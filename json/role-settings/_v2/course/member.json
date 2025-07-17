@@ -1,0 +1,428 @@
+{
+  "member": {},
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67a181a11aaf205cfbd7084b",
+          "title": "add course's member",
+          "entity": "mge-course-member",
+          "path_file": "json/response/67a181a11aaf205cfbd7084b.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "547b6605-3692-4abd-b9d5-0360a0b1cfc2",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "4d4cfaf1-8cb0-42ee-9619-8deba297b157",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            },
+            {
+              "id": "fcdd55f8-6348-4704-9323-63935db91f25",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67a1834f1aaf205cfbd70890"
+            }
+          ],
+          "id": "e168cb3d-ba62-477e-ac8c-86280fc1ca0e"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          },
+          {
+            "_id": "67a1834f1aaf205cfbd70890",
+            "title": "user-has-permission-add-course-member",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67a1834f1aaf205cfbd70890.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        },
+        "trigger_pipeline": "[\n  {\n    \"collection_name\": \"user-tenant-profile\",\n    \"action\": \"find-one\",\n    \"query_advance\": [\n      {\n        \"$addFields\": {\n          \"_id\": {\n            \"$toString\": \"$_id\"\n          }\n        }\n      },\n      {\n        \"$match\": {\n          \"tenant_id\": \"@header:x-tenant-id\",\n          \"user\": \"@main_result:user._id\"\n        }\n      },\n      {\n        \"$addFields\": {\n          \"full_name\": {\n            \"$concat\": [\n              {\n                \"$ifNull\": [\"$profile.last_name\", \"\"]\n              },\n              \" \",\n              {\n                \"$ifNull\": [\"$profile.first_name\", \"\"]\n              }\n            ]\n          }\n        }\n      }\n    ]\n  },\n  {\n    \"collection_name\": \"mge-course-log-record\",\n    \"action\": \"create\",\n    \"advance\": {\n      \"title\": \"@user_full_name đã tham gia khóa học @course_title\",\n      \"type\": \"course_joined\",\n      \"from\": \"@jwt:user.id\",\n      \"value_replace\": [\n        {\n          \"title\": \"user_full_name\",\n          \"value\": \"@pipeline_result[0]:full_name\",\n          \"entity_type\": \"user-tenant-profile\",\n          \"entity_id\": \"@main_result:user._id\"\n        },\n        {\n          \"title\": \"course_title\",\n          \"value\": \"@main_result:course.title\",\n          \"entity_type\": \"mge-courses\",\n          \"entity_id\": \"@main_result:course._id\"\n        }\n      ],\n      \"course\": \"@param:course_id\"\n    }\n  }\n]\n"
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67a1c6191aaf205cfbd7110e",
+          "title": "get list course's member with status is pending",
+          "entity": "mge-course-member",
+          "path_file": "json/response/67a1c6191aaf205cfbd7110e.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "129189fe-6730-482f-a3e7-e2610d64e155",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "0c85ad6d-1fd6-43ba-bf34-2909f40ee896",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            },
+            {
+              "id": "f1678d60-fe35-4785-8d41-df91390682a0",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678636df6d9b09071159c329"
+            },
+            {
+              "id": "984f981f-f1a0-4a26-a901-cce3527ee4ee",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67a1cd3c1aaf205cfbd7128d"
+            }
+          ],
+          "id": "fa1a7c29-4bee-4858-b8af-0262a88519c1"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "678636df6d9b09071159c329",
+            "title": "is-course-instructor or course-assistant",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/678636df6d9b09071159c329.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          },
+          {
+            "_id": "67a1cd3c1aaf205cfbd7128d",
+            "title": "is-user-has-permission-to-manage-course-member",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67a1cd3c1aaf205cfbd7128d.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "31e8f55f-7561-45e9-b011-08e52fc96bf9",
+          "rules": [
+            {
+              "id": "d2f05570-50a9-4487-9189-bff0c6da6f83",
+              "field": "@param:status",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "pending"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        }
+      },
+      {
+        "notification": {},
+        "response": {
+          "_id": "67a1c5731aaf205cfbd710ba",
+          "title": "get list course's member",
+          "entity": "mge-course-member",
+          "path_file": "json/response/67a1c5731aaf205cfbd710ba.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "f87235ee-7be9-4cfb-90d7-9200e82944d1",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "9af44ad6-f0d7-4fbc-9a37-0632ceab680e",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            }
+          ],
+          "id": "02efb75b-3671-40d9-a9f4-979309888b0f"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          }
+        ],
+        "custom_filter": {
+          "id": "91c0fd9a-f6d9-4040-a8a3-8e3790fbbe6b",
+          "rules": [
+            {
+              "id": "15536519-c627-497d-8cdb-47512049961a",
+              "field": "@param:status",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "joined"
+            }
+          ],
+          "combinator": "and",
+          "not": false
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67a1cfc61aaf205cfbd7136f",
+          "title": "delete course's member",
+          "entity": "mge-course-member",
+          "path_file": "json/response/67a1cfc61aaf205cfbd7136f.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "954001a0-0f6f-41f8-b693-214ec25bef73",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "24272fc8-fc51-4f18-a4f8-45981f4dfb3d",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67862ea941c99c2031416254"
+            },
+            {
+              "id": "cf38a548-7d8b-4eda-beaf-7048f92f00d0",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678636df6d9b09071159c329"
+            },
+            {
+              "id": "d16e96c3-2170-4f38-a1c0-df66a60ebf16",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67a1cd3c1aaf205cfbd7128d"
+            }
+          ],
+          "id": "89b4c6a2-8fbd-454e-b59c-f931d57ca18d"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "678636df6d9b09071159c329",
+            "title": "is-course-instructor or course-assistant",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/678636df6d9b09071159c329.json"
+          },
+          {
+            "_id": "67862ea941c99c2031416254",
+            "title": "user-joined-course",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67862ea941c99c2031416254.json"
+          },
+          {
+            "_id": "67a1cd3c1aaf205cfbd7128d",
+            "title": "is-user-has-permission-to-manage-course-member",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67a1cd3c1aaf205cfbd7128d.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        },
+        "trigger_pipeline": "[\n  {\n    \"collection_name\": \"mge-course-log-record\",\n    \"action\": \"delete\",\n    \"query_advance\": [\n        {\n    \"$addFields\": {\n      \"user\": \"@main_result:user\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"user\": {\n        \"$arrayElemAt\": [\"$user\", 0]\n      }\n    }\n  },\n      {\n        \"$match\": {\n          \"tenant_id\": \"@header:x-tenant-id\",\n          \"type\": \"course_joined\",\n          \"course\": \"@param:course_id\"\n        }\n      },\n        {\n    \"$match\": {\n      \"$expr\": {\n        \"$in\": [\"$user\", \"$value_replace.entity_id\"]\n      }\n    }\n  }\n    ]\n  }\n]"
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67b6b3a9be39342125108868",
+          "title": "update member status from pending to joined",
+          "entity": "mge-course-member",
+          "path_file": "json/response/67b6b3a9be39342125108868.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "9fabef6a-57f4-46af-bfd1-08644be66f27",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "72f2fbfc-7056-4869-9b50-78bc207f4d01",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678636df6d9b09071159c329"
+            },
+            {
+              "id": "1aa1a913-0e5a-47d0-b662-8b81ac6c83cc",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67a1cd3c1aaf205cfbd7128d"
+            },
+            {
+              "id": "079ba766-8162-4a28-9022-d14d96c7f5bb",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67b6b41bbe393421251088c9"
+            }
+          ],
+          "id": "c513626a-228b-43ac-82e8-3814a47d1f6c"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "678636df6d9b09071159c329",
+            "title": "is-course-instructor or course-assistant",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/678636df6d9b09071159c329.json"
+          },
+          {
+            "_id": "67a1cd3c1aaf205cfbd7128d",
+            "title": "is-user-has-permission-to-manage-course-member",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67a1cd3c1aaf205cfbd7128d.json"
+          },
+          {
+            "_id": "67b6b41bbe393421251088c9",
+            "title": "is-member-status-pending",
+            "entity": {
+              "_id": "67853fcd4c9747dfaeed5f84",
+              "mongodb_collection_name": "mge-course-member"
+            },
+            "path_file": "json/validate/67b6b41bbe393421251088c9.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        },
+        "trigger_pipeline": "[\n  {\n    \"collection_name\": \"user-tenant-profile\",\n    \"action\": \"find-one\",\n    \"query_advance\": [\n      {\n        \"$addFields\": {\n          \"_id\": {\n            \"$toString\": \"$_id\"\n          }\n        }\n      },\n      {\n        \"$match\": {\n          \"tenant_id\": \"@header:x-tenant-id\",\n          \"user\": \"@jwt:user.id\"\n        }\n      },\n      {\n        \"$addFields\": {\n          \"full_name\": {\n            \"$concat\": [\n              {\n                \"$ifNull\": [\n                  \"$profile.last_name\",\n                  \"\"\n                ]\n              },\n              \" \",\n              {\n                \"$ifNull\": [\n                  \"$profile.first_name\",\n                  \"\"\n                ]\n              }\n            ]\n          }\n        }\n      }\n    ]\n  },\n  {\n    \"collection_name\": \"mge-course-log-record\",\n    \"action\": \"create\",\n    \"advance\": {\n      \"title\": \"@user_full_name đã tham gia khóa học @course_title\",\n      \"type\": \"course_invitation_approved\",\n      \"from\": \"@jwt:user.id\",\n      \"value_replace\": [\n        {\n          \"title\": \"user_full_name\",\n          \"value\": \"@pipeline_result[0]:full_name\",\n          \"entity_type\": \"user_tenant_profile\",\n          \"entity_id\": \"@jwt:user.id\"\n        },\n        {\n          \"title\": \"course_title\",\n          \"value\": \"@main_result:course.title\",\n          \"entity_type\": \"mge-courses\",\n          \"entity_id\": \"@main_result:course._id\"\n        }\n      ],\n      \"course\": [\n        \"@param:course_id\"\n      ]\n    }\n  }\n]"
+      }
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "joined": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6785dc14d6d51abef2b11863",
+          "title": "get list course user joined",
+          "entity": "mge-courses",
+          "path_file": "json/response/6785dc14d6d51abef2b11863.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [],
+          "id": "6fa6308e-83fb-488c-8340-3aa556f5c5c7"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

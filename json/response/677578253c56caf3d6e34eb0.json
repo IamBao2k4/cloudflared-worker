@@ -1,0 +1,22 @@
+{
+  "_id": "677578253c56caf3d6e34eb0",
+  "title": "user like comment",
+  "outputEntity": [
+    "676a2762dedfcf1bf1c55abf"
+  ],
+  "queryAdvance": "{\n  \"entity_id\": \"@param:comment_id\",\n  \"entity_name\": 1,\n  \"type\": \"like\",\n  \"social_group\":\"@param:group_id\"\n}",
+  "note": "",
+  "method": "post",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "cache_time": "",
+  "categories": [],
+  "documents": [],
+  "params": [
+    {
+      "value": "comment_id",
+      "key": "comment_id"
+    }
+  ]
+}

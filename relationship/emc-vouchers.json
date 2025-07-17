@@ -1,0 +1,30 @@
+[
+  {
+    "name": "include_products",
+    "targetTable": "emc-post",
+    "localField": "include_products",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "exclude_products-11",
+    "targetTable": "emc-post",
+    "localField": "exclude_products-11",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "include_categories",
+    "targetTable": "emc-category",
+    "localField": "include_categories",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "exclude_categories",
+    "targetTable": "emc-category",
+    "localField": "exclude_categories",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  }
+]

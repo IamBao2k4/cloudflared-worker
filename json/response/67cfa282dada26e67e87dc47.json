@@ -1,0 +1,32 @@
+{
+  "_id": "67cfa282dada26e67e87dc47",
+  "title": "get detail project",
+  "note": "",
+  "cache_time": "",
+  "method": "get-detail",
+  "outputEntity": [
+    "67c6ccd9412d5b4c1e2bf08c"
+  ],
+  "queryAdvance": "[\r\n  {\r\n    \"$addFields\": {\r\n      \"id\": {\r\n        \"$toString\": \"$_id\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$match\": {\r\n      \"$or\": [\r\n        {\r\n          \"id\": \"@param:_id\"\r\n        },\r\n        {\r\n          \"slug\": \"@param:slug\"\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"created_by\": {\r\n        \"$toObjectId\": \"$created_by\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"user\",\r\n      \"localField\": \"created_by\",\r\n      \"foreignField\": \"_id\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$addFields\": {\r\n            \"featured_image\": {\r\n              \"$map\": {\r\n                \"input\": \"$featured_image\",\r\n                \"as\": \"u\",\r\n                \"in\": {\r\n                  \"$toObjectId\": \"$$u\"\r\n                }\r\n              }\r\n            }\r\n          }\r\n        },\r\n        {\r\n          \"$lookup\": {\r\n            \"from\": \"media\",\r\n            \"localField\": \"featured_image\",\r\n            \"foreignField\": \"_id\",\r\n            \"pipeline\": [\r\n              {\r\n                \"$addFields\": {\r\n                  \"path\": {\r\n                    \"$concat\": [\r\n                      {\r\n                        \"$cond\": [\r\n                          {\r\n                            \"$eq\": [\r\n                              \"minio\",\r\n                              \"@app_settings:storage_type\"\r\n                            ]\r\n                          },\r\n                          \"@app_settings:minio.public\",\r\n                          \"@app_settings:doSpace.public\"\r\n                        ]\r\n                      },\r\n                      \"/\",\r\n                      \"$disk\",\r\n                      \"/\",\r\n                      \"$filename\"\r\n                    ]\r\n                  }\r\n                }\r\n              }\r\n            ],\r\n            \"as\": \"featured_image\"\r\n          }\r\n        },\r\n        {\r\n          \"$project\": {\r\n            \"password\": 0,\r\n            \"role_system\": 0\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"created_by\"\r\n    }\r\n  },\r\n  {\r\n    \"$addFields\": {\r\n      \"contact\": {\r\n        \"$map\": {\r\n          \"input\": \"$contact\",\r\n          \"as\": \"u\",\r\n          \"in\": {\r\n            \"$toObjectId\": \"$$u\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$lookup\": {\r\n      \"from\": \"mge-listing-contact\",\r\n      \"localField\": \"contact\",\r\n      \"foreignField\": \"_id\",\r\n      \"pipeline\": [\r\n        {\r\n          \"$addFields\": {\r\n            \"logo\": {\r\n              \"$map\": {\r\n                \"input\": \"$logo\",\r\n                \"as\": \"u\",\r\n                \"in\": {\r\n                  \"$toObjectId\": \"$$u\"\r\n                }\r\n              }\r\n            }\r\n          }\r\n        },\r\n        {\r\n          \"$lookup\": {\r\n            \"from\": \"media\",\r\n            \"localField\": \"logo\",\r\n            \"foreignField\": \"_id\",\r\n            \"pipeline\": [\r\n              {\r\n                \"$addFields\": {\r\n                  \"path\": {\r\n                    \"$concat\": [\r\n                      {\r\n                        \"$cond\": [\r\n                          {\r\n                            \"$eq\": [\r\n                              \"minio\",\r\n                              \"@app_settings:storage_type\"\r\n                            ]\r\n                          },\r\n                          \"@app_settings:minio.public\",\r\n                          \"@app_settings:doSpace.public\"\r\n                        ]\r\n                      },\r\n                      \"/\",\r\n                      \"$disk\",\r\n                      \"/\",\r\n                      \"$filename\"\r\n                    ]\r\n                  }\r\n                }\r\n              }\r\n            ],\r\n            \"as\": \"logo\"\r\n          }\r\n        }\r\n      ],\r\n      \"as\": \"contact\"\r\n    }\r\n  },\r\n  {\r\n    \"$facet\": {\r\n      \"meta_data\": [\r\n        {\r\n          \"$count\": \"count\"\r\n        },\r\n        {\r\n          \"$addFields\": {\r\n            \"skip\": \"@param:skip\",\r\n            \"limit\": \"@param:limit\"\r\n          }\r\n        }\r\n      ],\r\n      \"data\": [\r\n        {\r\n          \"$skip\": \"@param:skip\"\r\n        },\r\n        {\r\n          \"$limit\": \"@param:limit\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n]",
+  "categories": [],
+  "tenant_id": "67c6ad0ccb2d3f0de04c67eb",
+  "documents": [],
+  "params": [
+    {
+      "value": "_id",
+      "key": "_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "slug",
+      "key": "slug"
+    }
+  ]
+}

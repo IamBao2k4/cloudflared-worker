@@ -1,0 +1,9 @@
+[
+  {
+    "name": "entity",
+    "targetTable": "entity",
+    "localField": "entity",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

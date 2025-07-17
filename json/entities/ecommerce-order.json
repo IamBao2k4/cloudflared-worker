@@ -1,0 +1,597 @@
+{
+  "_id": "6805b058f4d18535c7e63656",
+  "title": "ecommerce order",
+  "mongodb_collection_name": "ecommerce-order",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "order_number": {
+        "title": "Mã đơn hàng",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "customer": {
+        "type": "string",
+        "typeRelation": {
+          "title": "user",
+          "_id": "user",
+          "type": "1-n",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "77f5886f-488e-45bd-8c87-348f8cc5a15d"
+          }
+        },
+        "widget": "relation",
+        "typeSelect": "multiple",
+        "title": "Khách hàng"
+      },
+      "payment_status": {
+        "title": "Trạng thái thanh toán",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "pending",
+            "value": "Chưa thanh toán"
+          },
+          {
+            "key": "paid",
+            "value": "Đã thanh toán"
+          },
+          {
+            "key": "partially_paid",
+            "value": "Thanh toán một phần"
+          },
+          {
+            "key": "refunded",
+            "value": "Hoàn tiền"
+          },
+          {
+            "key": "partially_refunded",
+            "value": "Hoàn tiền một phần"
+          },
+          {
+            "key": "failed",
+            "value": "Thất bại"
+          }
+        ],
+        "default": "Chưa thanh toán"
+      },
+      "currency": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "VND",
+            "value": "VND"
+          },
+          {
+            "key": "USD",
+            "value": "USD"
+          }
+        ],
+        "default": "VND",
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "Loại tiền tệ",
+        "type": "string"
+      },
+      "subtotal": {
+        "widget": "shortAnswer",
+        "title": "Tổng tiền sản phẩm",
+        "type": "string",
+        "description": "Tổng tiền sản phẩm (chưa tính thuế, phí ship, giảm giá)"
+      },
+      "tax_amount": {
+        "widget": "shortAnswer",
+        "title": "Tiền thuế",
+        "type": "string",
+        "description": "Tiền thuế"
+      },
+      "shipping_amount": {
+        "widget": "shortAnswer",
+        "title": "Phí vận chuyển",
+        "type": "string",
+        "description": "Phí vận chuyển"
+      },
+      "discount_amount": {
+        "widget": "shortAnswer",
+        "type": "string",
+        "description": "Tổng tiền giảm giá",
+        "title": "Tổng tiền giảm giá"
+      },
+      "total_price": {
+        "widget": "shortAnswer",
+        "type": "string",
+        "description": "Tổng tiền giảm giá",
+        "title": " Tổng tiền phải thanh toán",
+        "default": "Tổng tiền phải thanh toán: subtotal + tax_amount + shipping_amount - discount_amount"
+      },
+      "order_status": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "new",
+            "value": "new"
+          },
+          {
+            "key": "processing",
+            "value": "processing"
+          },
+          {
+            "key": "confirmed",
+            "value": "confirmed"
+          },
+          {
+            "key": "shipping",
+            "value": "shipping"
+          },
+          {
+            "key": "delivered",
+            "value": "delivered"
+          },
+          {
+            "key": "completed",
+            "value": "completed"
+          },
+          {
+            "key": "cancelled",
+            "value": "cancelled"
+          },
+          {
+            "key": "returned",
+            "value": "returned"
+          },
+          {
+            "key": "partially_returned",
+            "value": "partially_returned"
+          }
+        ],
+        "default": "new",
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "Trạng thái đơn hàng",
+        "type": "string"
+      },
+      "shipping_address": {
+        "title": "Thông tin vận chuyển",
+        "type": "object",
+        "properties": {
+          "full_name": {
+            "title": "Họ tên",
+            "type": "string",
+            "widget": "shortAnswer"
+          },
+          "phone": {
+            "title": "Số điện thoại",
+            "type": "string",
+            "widget": "shortAnswer",
+            "format-data": "phone"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string",
+            "widget": "shortAnswer",
+            "format-data": "email"
+          },
+          "address": {
+            "title": "Địa chỉ",
+            "type": "string",
+            "widget": "shortAnswer"
+          },
+          "city": {
+            "title": "Thành phố",
+            "type": "string",
+            "widget": "shortAnswer"
+          },
+          "state": {
+            "title": "Tỉnh/Thành",
+            "type": "string",
+            "widget": "shortAnswer"
+          },
+          "country": {
+            "title": "Quốc gia",
+            "type": "string",
+            "widget": "shortAnswer"
+          }
+        },
+        "required": [
+          "full_name",
+          "phone",
+          "email",
+          "address",
+          "city",
+          "state",
+          "country"
+        ]
+      },
+      "fulfillments": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "fulfillment_id": {
+              "title": "Mã giao hàng",
+              "type": "string",
+              "widget": "shortAnswer"
+            },
+            "tracking_number": {
+              "title": "Mã vận đơn",
+              "type": "string",
+              "widget": "shortAnswer"
+            },
+            "carrier": {
+              "title": "Đơn vị vận chuyển",
+              "type": "string",
+              "widget": "shortAnswer"
+            },
+            "status": {
+              "title": "Trạng thái",
+              "type": "string",
+              "widget": "select",
+              "choices": [
+                {
+                  "key": "preparing",
+                  "value": "preparing"
+                },
+                {
+                  "key": "shipped",
+                  "value": "shipped"
+                },
+                {
+                  "key": "in_transit",
+                  "value": "in_transit"
+                },
+                {
+                  "key": "delivered",
+                  "value": "delivered"
+                },
+                {
+                  "key": "failed",
+                  "value": "failed"
+                }
+              ],
+              "default": "preparing"
+            },
+            "shipped_at": {
+              "title": "Thời gian gửi hàng",
+              "type": "string",
+              "widget": "dateTime",
+              "displayFormat": "yyyy/MM/dd HH:mm:ss",
+              "formatDate": "date-time",
+              "disabled": false,
+              "field": "single",
+              "mode": "dateTime"
+            },
+            "delivered_at": {
+              "title": "Thời gian giao hàng",
+              "type": "string",
+              "widget": "dateTime",
+              "displayFormat": "yyyy/MM/dd HH:mm:ss",
+              "formatDate": "date-time",
+              "disabled": false,
+              "field": "single",
+              "mode": "dateTime"
+            },
+            "shipper_info": {
+              "title": "Thông tin người giao",
+              "type": "object",
+              "properties": {
+                "full_name": {
+                  "type": "string",
+                  "widget": "shortAnswer",
+                  "title": "Họ tên"
+                },
+                "phone": {
+                  "type": "string",
+                  "widget": "shortAnswer",
+                  "title": "Số điện thoại",
+                  "format-data": "phone"
+                },
+                "staff_code": {
+                  "widget": "shortAnswer",
+                  "title": "Mã nhân viên",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "full_name",
+                "phone",
+                "staff_code"
+              ]
+            }
+          },
+          "required": [
+            "fulfillment_id",
+            "tracking_number",
+            "carrier",
+            "status",
+            "shipped_at",
+            "delivered_at"
+          ]
+        },
+        "title": "Thông tin giao hàng",
+        "type": "array"
+      },
+      "applied_discounts": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "discount_code": {
+              "type": "string",
+              "typeRelation": {
+                "title": "ecommerce-discount-code",
+                "_id": "ecommerce-discount-code",
+                "type": "1-n",
+                "filter": {
+                  "combinator": "and",
+                  "rules": [],
+                  "id": "1c8ad878-77ad-40c3-8ea5-e35d34aa103d"
+                }
+              },
+              "widget": "relation",
+              "typeSelect": "multiple",
+              "title": "ID mã giảm giá"
+            },
+            "code_value": {
+              "title": "Giá trị mã",
+              "type": "string",
+              "widget": "shortAnswer"
+            },
+            "price_rule": {
+              "title": "ID quy tắc giá",
+              "type": "string",
+              "widget": "relation",
+              "typeRelation": {
+                "title": "ecommerce-price-rule",
+                "_id": "ecommerce-price-rule",
+                "type": "n-1"
+              }
+            },
+            "discount_type": {
+              "title": "Loại giảm giá",
+              "type": "string",
+              "widget": "select",
+              "choices": [
+                {
+                  "key": "percentage",
+                  "value": "percentage"
+                },
+                {
+                  "key": "fixed_amount",
+                  "value": "fixed_amount"
+                },
+                {
+                  "key": "free_shipping",
+                  "value": "free_shipping"
+                },
+                {
+                  "key": "buy_x_get_y",
+                  "value": "buy_x_get_y"
+                }
+              ]
+            },
+            "value": {
+              "widget": "numberInput",
+              "title": "Giá trị",
+              "type": "string"
+            },
+            "amount": {
+              "widget": "numberInput",
+              "title": "Số tiền giảm",
+              "type": "string"
+            },
+            "applied_at": {
+              "title": "Thời gian áp dụng",
+              "type": "string",
+              "widget": "dateTime",
+              "displayFormat": "yyyy/MM/dd HH:mm:ss",
+              "formatDate": "date-time",
+              "disabled": false,
+              "field": "single",
+              "mode": "dateTime"
+            }
+          },
+          "required": [
+            "discount_code",
+            "code_value",
+            "price_rule",
+            "discount_type",
+            "value",
+            "amount",
+            "applied_at"
+          ]
+        },
+        "title": "Thông tin mã giảm giá đã áp dụng",
+        "type": "array"
+      }
+    },
+    "required": [
+      "order_number",
+      "customer",
+      "payment_status",
+      "currency",
+      "subtotal",
+      "tax_amount",
+      "shipping_amount",
+      "discount_amount",
+      "total_price",
+      "order_status"
+    ]
+  },
+  "ui_schema": {
+    "order_number": {
+      "ui:widget": "shortAnswer"
+    },
+    "customer": {
+      "ui:widget": "relation"
+    },
+    "payment_status": {
+      "ui:widget": "select"
+    },
+    "currency": {
+      "ui:widget": "select"
+    },
+    "subtotal": {
+      "ui:widget": "shortAnswer"
+    },
+    "tax_amount": {
+      "ui:widget": "shortAnswer"
+    },
+    "shipping_amount": {
+      "ui:widget": "shortAnswer"
+    },
+    "discount_amount": {
+      "ui:widget": "shortAnswer"
+    },
+    "total_price": {
+      "ui:widget": "shortAnswer"
+    },
+    "order_status": {
+      "ui:widget": "select"
+    },
+    "shipping_address": {
+      "full_name": {
+        "ui:widget": "shortAnswer"
+      },
+      "phone": {
+        "ui:widget": "shortAnswer"
+      },
+      "email": {
+        "ui:widget": "shortAnswer"
+      },
+      "address": {
+        "ui:widget": "shortAnswer"
+      },
+      "city": {
+        "ui:widget": "shortAnswer"
+      },
+      "state": {
+        "ui:widget": "shortAnswer"
+      },
+      "country": {
+        "ui:widget": "shortAnswer"
+      },
+      "ui:order": [
+        "full_name",
+        "phone",
+        "email",
+        "address",
+        "city",
+        "state",
+        "country"
+      ]
+    },
+    "fulfillments": {
+      "items": {
+        "fulfillment_id": {
+          "ui:widget": "shortAnswer"
+        },
+        "tracking_number": {
+          "ui:widget": "shortAnswer"
+        },
+        "carrier": {
+          "ui:widget": "shortAnswer"
+        },
+        "status": {
+          "ui:widget": "select"
+        },
+        "shipped_at": {
+          "ui:widget": "dateTime"
+        },
+        "delivered_at": {
+          "ui:widget": "dateTime"
+        },
+        "shipper_info": {
+          "full_name": {
+            "ui:widget": "shortAnswer"
+          },
+          "phone": {
+            "ui:widget": "shortAnswer"
+          },
+          "staff_code": {
+            "ui:widget": "shortAnswer"
+          },
+          "ui:order": [
+            "full_name",
+            "phone",
+            "staff_code"
+          ]
+        },
+        "ui:order": [
+          "fulfillment_id",
+          "tracking_number",
+          "carrier",
+          "status",
+          "shipped_at",
+          "delivered_at",
+          "shipper_info"
+        ]
+      }
+    },
+    "applied_discounts": {
+      "items": {
+        "discount_code": {
+          "ui:widget": "relation"
+        },
+        "code_value": {
+          "ui:widget": "shortAnswer"
+        },
+        "price_rule": {
+          "ui:widget": "relation"
+        },
+        "discount_type": {
+          "ui:widget": "select"
+        },
+        "value": {
+          "ui:widget": "numberInput"
+        },
+        "amount": {
+          "ui:widget": "numberInput"
+        },
+        "applied_at": {
+          "ui:widget": "dateTime"
+        },
+        "ui:order": [
+          "discount_code",
+          "code_value",
+          "price_rule",
+          "discount_type",
+          "value",
+          "amount",
+          "applied_at"
+        ]
+      }
+    },
+    "ui:order": [
+      "order_number",
+      "customer",
+      "payment_status",
+      "currency",
+      "subtotal",
+      "tax_amount",
+      "shipping_amount",
+      "discount_amount",
+      "total_price",
+      "order_status",
+      "shipping_address",
+      "fulfillments",
+      "applied_discounts"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-04-21T02:41:28.855Z",
+  "__v": 0
+}

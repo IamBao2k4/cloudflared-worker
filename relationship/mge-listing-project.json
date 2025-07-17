@@ -1,0 +1,23 @@
+[
+  {
+    "name": "tag",
+    "targetTable": "mge-listing-tag",
+    "localField": "tag",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "category",
+    "targetTable": "mge-listing-category",
+    "localField": "category",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "contact",
+    "targetTable": "mge-listing-contact",
+    "localField": "contact",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

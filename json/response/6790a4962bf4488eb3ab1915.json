@@ -1,0 +1,18 @@
+{
+  "_id": "6790a4962bf4488eb3ab1915",
+  "title": "delete discussion like",
+  "note": "",
+  "cache_time": "",
+  "method": "delete",
+  "outputEntity": [
+    "6752be9865017d942f759573"
+  ],
+  "data": {
+    "id": "c38d3a8b-f217-43ab-b747-dee9efdc4469",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

@@ -1,0 +1,62 @@
+{
+  "_id": "67a038a3545d084698a9adf0",
+  "title": "Query sample",
+  "mongodb_collection_name": "query-sample",
+  "unique_keys": "[\n  {\n    \"title\": 1\n  }\n]",
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-02-03T03:31:47.871Z",
+  "__v": 0,
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "slug_name": {
+        "title": "slug_name",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "depend_field": "root_title"
+      },
+      "query": {
+        "title": "query",
+        "type": "string",
+        "widget": "function"
+      }
+    },
+    "required": [
+      "title",
+      "slug_name",
+      "query"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug_name": {
+      "ui:widget": "UriKeyGen"
+    },
+    "query": {
+      "ui:widget": "function"
+    },
+    "ui:order": [
+      "title",
+      "slug_name",
+      "query"
+    ]
+  }
+}

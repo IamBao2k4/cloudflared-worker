@@ -1,0 +1,413 @@
+{
+  "project": {},
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67cec826dada26e67e877d29",
+          "title": "create project",
+          "entity": "mge-listing-project",
+          "path_file": "json/response/67cec826dada26e67e877d29.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "1fdd2bfa-417b-4c44-9a84-1e97d4572cbb",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67c92992f4aa922e5d2a1074"
+            },
+            {
+              "id": "5bc91e76-af16-43c6-84ea-77d6966abffa",
+              "rules": [
+                {
+                  "id": "aa1ed9fe-8e5d-4bc9-a081-4392ae86d726",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67cfa11fdada26e67e87db69"
+                },
+                {
+                  "id": "2c8b78d9-9a8f-4175-a962-af1e10ee4c25",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67c92938f4aa922e5d2a1025"
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "00d952a7-380a-4a4a-a2d4-adff6fafe138"
+        },
+        "list_validate": [
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          },
+          {
+            "_id": "67cfa11fdada26e67e87db69",
+            "title": "is-user-organizational-account",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67cfa11fdada26e67e87db69.json"
+          },
+          {
+            "_id": "67c92938f4aa922e5d2a1025",
+            "title": "is-user-superadmin",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92938f4aa922e5d2a1025.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67cf9899dada26e67e87d4c8",
+          "title": "update project",
+          "entity": "mge-listing-project",
+          "path_file": "json/response/67cf9899dada26e67e87d4c8.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "7a22a40e-4f0f-42db-a722-17d790cb856d",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67c92992f4aa922e5d2a1074"
+            },
+            {
+              "id": "bd86728e-019a-4176-aa4c-36e313caa094",
+              "rules": [
+                {
+                  "id": "2da7de8b-e839-46a6-9a3a-770b2b4d84eb",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67cf9969dada26e67e87d55d"
+                },
+                {
+                  "id": "eef0cb24-cc03-4f80-94c5-47b057c2fd3f",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67c92938f4aa922e5d2a1025"
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "d99a6b43-6f30-416a-b930-15581754f4e9"
+        },
+        "list_validate": [
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          },
+          {
+            "_id": "67cf9969dada26e67e87d55d",
+            "title": "is-user-project-creator",
+            "entity": {
+              "_id": "67c6ccd9412d5b4c1e2bf08c",
+              "mongodb_collection_name": "mge-listing-project"
+            },
+            "path_file": "json/validate/67cf9969dada26e67e87d55d.json"
+          },
+          {
+            "_id": "67c92938f4aa922e5d2a1025",
+            "title": "is-user-superadmin",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92938f4aa922e5d2a1025.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67cfa026dada26e67e87da31",
+          "title": "delete project",
+          "entity": "mge-listing-project",
+          "path_file": "json/response/67cfa026dada26e67e87da31.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "bdab5662-fd02-49b1-a078-056fac325324",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67c92992f4aa922e5d2a1074"
+            },
+            {
+              "id": "51d2b0ea-18b3-4566-9d1f-451725162ea6",
+              "rules": [
+                {
+                  "id": "07fecd5f-283b-4fbb-9a96-623e4678d7a0",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67cf9969dada26e67e87d55d"
+                },
+                {
+                  "id": "7fe85d57-32df-40ca-a890-141e6cbf500b",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67c92938f4aa922e5d2a1025"
+                }
+              ],
+              "combinator": "or",
+              "not": false
+            }
+          ],
+          "id": "1db5bb2a-d928-4c05-956c-bdac4c6999a4"
+        },
+        "list_validate": [
+          {
+            "_id": "67c92938f4aa922e5d2a1025",
+            "title": "is-user-superadmin",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92938f4aa922e5d2a1025.json"
+          },
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          },
+          {
+            "_id": "67cf9969dada26e67e87d55d",
+            "title": "is-user-project-creator",
+            "entity": {
+              "_id": "67c6ccd9412d5b4c1e2bf08c",
+              "mongodb_collection_name": "mge-listing-project"
+            },
+            "path_file": "json/validate/67cf9969dada26e67e87d55d.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-detail": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67cfa282dada26e67e87dc47",
+          "title": "get detail project",
+          "entity": "mge-listing-project",
+          "path_file": "json/response/67cfa282dada26e67e87dc47.json"
+        },
+        "query_validate": {
+          "combinator": "or",
+          "rules": [
+            {
+              "id": "7e83276c-b9c9-464f-9f42-3d17a29bc407",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67cdc8d3c4550fe33c2a6c34"
+            },
+            {
+              "id": "33ec692b-6c35-4369-8cc8-ff6201771e3c",
+              "rules": [
+                {
+                  "id": "d9efe076-d3cf-4616-b1c1-1df0ba884928",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67cdc90fc4550fe33c2a6c43"
+                },
+                {
+                  "id": "5976ba90-6a15-4dd0-bbc4-78ae6ba62187",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67c92992f4aa922e5d2a1074"
+                }
+              ],
+              "combinator": "and",
+              "not": false
+            }
+          ],
+          "id": "92105799-ce8f-4c30-b368-eba291da39d2"
+        },
+        "list_validate": [
+          {
+            "_id": "67cdc8d3c4550fe33c2a6c34",
+            "title": "is-tenant-public",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/67cdc8d3c4550fe33c2a6c34.json"
+          },
+          {
+            "_id": "67cdc90fc4550fe33c2a6c43",
+            "title": "is-tenant-private",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/67cdc90fc4550fe33c2a6c43.json"
+          },
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67cfa4e8dada26e67e87de40",
+          "title": "get list project",
+          "entity": "mge-listing-project",
+          "path_file": "json/response/67cfa4e8dada26e67e87de40.json"
+        },
+        "query_validate": {
+          "combinator": "or",
+          "rules": [
+            {
+              "id": "9f11d3fa-9b54-47f5-910b-9cc153b6c647",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67cdc8d3c4550fe33c2a6c34"
+            },
+            {
+              "id": "3aa7c069-5620-42bc-b2c9-2bf4ae61cf85",
+              "rules": [
+                {
+                  "id": "2b5125ba-2439-4812-b410-bab33122a791",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67cdc90fc4550fe33c2a6c43"
+                },
+                {
+                  "id": "94dfcb61-efa6-4dfa-96d0-6c229cc86a59",
+                  "field": "data",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": "67c92992f4aa922e5d2a1074"
+                }
+              ],
+              "combinator": "and",
+              "not": false
+            }
+          ],
+          "id": "018f6d28-aee4-49d3-b043-1ea80dddbaaf"
+        },
+        "list_validate": [
+          {
+            "_id": "67cdc8d3c4550fe33c2a6c34",
+            "title": "is-tenant-public",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/67cdc8d3c4550fe33c2a6c34.json"
+          },
+          {
+            "_id": "67cdc90fc4550fe33c2a6c43",
+            "title": "is-tenant-private",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/67cdc90fc4550fe33c2a6c43.json"
+          },
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

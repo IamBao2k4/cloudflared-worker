@@ -1,0 +1,79 @@
+{
+  "_id": "68061564aac841dab05e2735",
+  "title": "GET danh sách price rule",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "6801c6e2887875ca1b8c4945"
+  ],
+  "categories": [],
+  "queryAdvance": "[\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "value_type",
+      "value": "value_type"
+    },
+    {
+      "key": "value",
+      "value": "value"
+    },
+    {
+      "key": "starts_at",
+      "value": "starts_at"
+    },
+    {
+      "key": "ends_at",
+      "value": "ends_at"
+    },
+    {
+      "key": "status",
+      "value": "status"
+    },
+    {
+      "key": "minimum_subtotal",
+      "value": "minimum_subtotal"
+    },
+    {
+      "key": "usage_limit",
+      "value": "usage_limit"
+    },
+    {
+      "key": "usage_limit_per_customer",
+      "value": "usage_limit_per_customer"
+    },
+    {
+      "key": "can_combine",
+      "value": "can_combine"
+    },
+    {
+      "key": "once_per_customer",
+      "value": "once_per_customer"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "6801bf1b887875ca1b8c3ee4"
+}

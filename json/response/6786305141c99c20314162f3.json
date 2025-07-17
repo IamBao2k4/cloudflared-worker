@@ -1,0 +1,16 @@
+{
+  "_id": "6786305141c99c20314162f3",
+  "title": "update chapter",
+  "outputEntity": [
+    "67529e3265017d942f759319"
+  ],
+  "queryAdvance": "{\n  \"title\":0,\n  \"slug\":0,\n  \"position\":0\n}",
+  "note": "",
+  "method": "put",
+  "categories": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "cache_time": "",
+  "documents": []
+}

@@ -1,0 +1,13 @@
+{
+  "_id": "67c5352ecb2d3f0de0499cdb",
+  "title": "[Quản lý] Yêu cầu tham gia group",
+  "title_input": "[@main_result:created_by.full_name] yêu cầu tham gia nhóm [@main_result:social_group.title]",
+  "advance": "{\n  \"collection_name_find_user_to\": \"mge-group-member\",\n  \"field_get_id\": \"user\",\n  \"query_pipeline\": [\n    {\n      \"$match\": {\n        \"social_group\": \"@main_result:social_group._id\",\n        \"status\": \"joined\",\n        \"role\": \"owner\"\n      }\n    }\n  ]\n}",
+  "locale": "vi",
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "blocks": {},
+  "is_active": true,
+  "meta_data": {},
+  "type": "request_join_group"
+}

@@ -1,0 +1,210 @@
+{
+  "submit-answer-exam": {},
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "advance": "[\n  {\n    \"type\": \"find\",\n    \"name\": \"Find Group Member\",\n    \"mongodb_collection_name\": \"mge-group-member\",\n    \"query_mongodb_pre_lookup\": [\n      {\n        \"$match\": {\n          \"social_group\": \"@param:group_id\"\n        }\n      }\n    ],\n    \"auto_lookup\": {\n      \"social_group\": \"mge-group\",\n      \"updated_by\": {\n        \"_index\": \"user\",\n        \"_index@featured_image\": \"media\"\n      }\n    },\n    \"query_mongodb_post_lookup\": [\n      {\n        \"$project\": {\n          \"updated_by.password\": 0\n        }\n      }\n    ],\n    \"commit_stage\": false,\n    \"show_result\": true,\n    \"get_first\": true\n  },\n  {\n    \"type\": \"create\",\n    \"name\": \"create test log\",\n    \"mongodb_collection_name\": \"test-log\",\n    \"dto\": {\n      \"title\": 1,\n      \"short_description\": 0,\n      \"status\": \"okela,hehe,hihi\",\n      \"is_active\": \"true,false\",\n      \"year\": 0\n    },\n    \"commit_stage\": false,\n    \"show_result\": true\n  }\n]",
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "6e6f0976-4bb5-4576-bbd3-302117694f75",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            }
+          ],
+          "id": "db2ec5d5-3fdc-406b-8115-91a839597252"
+        },
+        "list_validate": [
+          {
+            "_id": "678479b12669d501febe3619",
+            "title": "is-user-be-owner-or-manager-through-comment",
+            "entity": {
+              "_id": "6764e4046e57acaf6815ab9f",
+              "mongodb_collection_name": "mge-user-reports"
+            },
+            "path_file": "json/validate/678479b12669d501febe3619.json"
+          },
+          {
+            "_id": "67808dae04c6c6669c35bf7f",
+            "title": "is-group-id-from-body-exist",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/67808dae04c6c6669c35bf7f.json"
+          },
+          {
+            "_id": "677ba29844af0385d64b4053",
+            "title": "is-comment-belongs-to-group",
+            "entity": {
+              "_id": "6764e3926e57acaf6815ab97",
+              "mongodb_collection_name": "mge-tweet-comment"
+            },
+            "path_file": "json/validate/677ba29844af0385d64b4053.json"
+          },
+          {
+            "_id": "677b9ef844af0385d64b3f68",
+            "title": "is-comment-belongs-to-tweet",
+            "entity": {
+              "_id": "6764e3926e57acaf6815ab97",
+              "mongodb_collection_name": "mge-tweet-comment"
+            },
+            "path_file": "json/validate/677b9ef844af0385d64b3f68.json"
+          },
+          {
+            "_id": "677b9d3744af0385d64b3ec6",
+            "title": "is-tweet-belongs-to-group",
+            "entity": {
+              "_id": "6747ef07c47463d88f8c5ab1",
+              "mongodb_collection_name": "mge-group"
+            },
+            "path_file": "json/validate/677b9d3744af0385d64b3ec6.json"
+          },
+          {
+            "_id": "6777ae9db46e5acc95f40509",
+            "title": "is-tweet_saved-mine",
+            "entity": {
+              "_id": "675b9a4a9279b9d81247c3cc",
+              "mongodb_collection_name": "mge-tweet-saved"
+            },
+            "path_file": "json/validate/6777ae9db46e5acc95f40509.json"
+          },
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "advance": "[\n  {\n    \"type\": \"find\",\n    \"name\": \"Find Group Member\",\n    \"mongodb_collection_name\": \"mge-group-member\",\n    \"query_mongodb_pre_lookup\": [\n      {\n        \"$match\": {\n          \"social_group\": \"@param:group_id\"\n        }\n      }\n    ],\n    \"auto_lookup\": {\n      \"social_group\": \"mge-group\",\n      \"user\": \"user\",\n      \"updated_by\": {\n        \"_index\": \"user\",\n        \"_index@featured_image\": \"media\"\n      }\n    },\n    \"query_mongodb_post_lookup\": [\n      {\n        \"$project\": {\n          \"updated_by.password\": 0\n        }\n      }\n    ],\n    \"commit_stage\": false,\n    \"show_result\": false\n  },\n  {\n    \"type\": \"create\",\n    \"name\": \"Update member to owner\",\n    \"mongodb_collection_name\": \"mge-group-member\",\n    \"dto\": {\n      \"user_id\": \"@replace('pipeline[0][0].user_id._id')\",\n      \"role\": \"@type('select',['owner','member'],true);@default('member')\",\n      \"title\": \"@default('default title');@type('string',5,100);@required(true);@regex('^[A-Z][a-zA-Z0-9\\\\s]*$')\",\n      \"menu\": \"@required(false)\",\n      \"object_test\": {\n        \"title\": \"@default('default title');@type('string',5,100);@required(true)\",\n        \"oke\": [\n          {\n            \"oke_title\": \"@default('default title');@type('string',5,100);@required(true)\",\n            \"menu\": \"@required(true)\"\n          }\n        ]\n      },\n      \"array_test\": [\n        {\n          \"oke_title\": \"@default('default title');@type('string',5,100);@required(true)\",\n          \"menu\": \"@required(true)\"\n        }\n      ]\n    },\n    \"is_commit_stage\": false,\n    \"show_result\": true\n  }\n]",
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "7c74c2d5-3b41-4a44-9606-cb67c21149cf",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            }
+          ],
+          "id": "49bfc31d-d631-4d28-94c0-68750e987b0c"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "get-detail": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "advance": "[\n  {\n    \"type\": \"find\",\n    \"name\": \"Find Group Member\",\n    \"mongodb_collection_name\": \"mge-group-member\",\n    \"query_mongodb_pre_lookup\": [\n      {\n        \"$match\": {\n          \"social_group\": \"@param:group_id\"\n        }\n      }\n    ],\n    \"auto_lookup\": {\n      \"social_group\": \"mge-group\",\n      \"updated_by\": {\n        \"_index\": \"user\",\n        \"_index@featured_image\": \"media\"\n      }\n    },\n    \"query_mongodb_post_lookup\": [\n      {\n        \"$project\": {\n          \"updated_by.password\": 0\n        }\n      }\n    ],\n    \"commit_stage\": false,\n    \"show_result\": true,\n    \"get_first\": true\n  },\n  {\n    \"type\": \"find\",\n    \"name\": \"Find Group Member\",\n    \"mongodb_collection_name\": \"mge-group-member\",\n    \"query_mongodb_pre_lookup\": [\n      {\n        \"$match\": {\n          \"social_group\": \"@param:group_id\"\n        }\n      }\n    ],\n    \"auto_lookup\": {\n      \"social_group\": \"mge-group\",\n      \"updated_by\": {\n        \"_index\": \"user\",\n        \"_index@featured_image\": \"media\"\n      }\n    },\n    \"query_mongodb_post_lookup\": [\n      {\n        \"$project\": {\n          \"updated_by.password\": 0\n        }\n      }\n    ],\n    \"commit_stage\": false,\n    \"show_result\": false\n  },\n  {\n    \"type\": \"create\",\n    \"name\": \"create test log\",\n    \"mongodb_collection_name\": \"test-log\",\n    \"dto\": {\n      \"title\": 1,\n      \"short_description\": 0,\n      \"status\": \"okela,hehe,hihi\",\n      \"is_active\": \"true,false\",\n      \"year\": 0,\n      \"user_id\": \"@jwt:user@id\"\n    },\n    \"commit_stage\": false,\n    \"show_result\": true\n  }\n]",
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "142e7c5c-d5b3-41b3-a649-08ca06f95ce9",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            }
+          ],
+          "id": "c4f4bbe0-3f5d-4b8e-b5f2-d2062dc0ccc1"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": []
+  },
+  "post": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "advance": "[\n  {\n    \"type\": \"find\",\n    \"name\": \"Find Group Member\",\n    \"mongodb_collection_name\": \"mge-group-member\",\n    \"query_mongodb_pre_lookup\": [\n      {\n        \"$match\": {\n          \"social_group\": \"@param:group_id\"\n        }\n      }\n    ],\n    \"auto_lookup\": {\n      \"social_group\": \"mge-group\",\n      \"updated_by\": {\n        \"_index\": \"user\",\n        \"_index@featured_image\": \"media\"\n      }\n    },\n    \"query_mongodb_post_lookup\": [\n      {\n        \"$project\": {\n          \"updated_by.password\": 0\n        }\n      }\n    ],\n    \"commit_stage\": false,\n    \"show_result\": true,\n    \"get_first\": true\n  },\n  {\n    \"type\": \"create\",\n    \"name\": \"create test log\",\n    \"mongodb_collection_name\": \"test-log\",\n    \"payload_src\": \"request.body\",\n    \"dto\": {\n      \"title\": \"@default('Default title');@type('string',{'min':5,'max':100});@required(true);@regex('^[A-Z][a-zA-Z0-9\\\\s]*$')\",\n      \"role\": \"@default('owner');@type('select',['owner','member'])\",\n      \"menu\": \"@required(false)\",\n        \"object_test\": {\n          \"title\": \"@default('default title');@type('string',{'min':5,'max':100});@required(true)\",\n          \"oke\": [\n            {\n              \"oke_title\": \"@default('default title');@type('string',{'min':5,'max':100});@required(true)\",\n              \"menu\": \"@required(false)\"\n            }\n          ]\n        }\n    },\n    \"commit_stage\": false,\n    \"show_result\": true\n  }\n]",
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "ede65c30-7f05-4d6b-afea-338814f05ef1",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            }
+          ],
+          "id": "074cdb0a-e36c-49f9-a357-bd5cd616c01e"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active 1",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

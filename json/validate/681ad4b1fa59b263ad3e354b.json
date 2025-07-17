@@ -1,0 +1,30 @@
+{
+  "_id": "681ad4b1fa59b263ad3e354b",
+  "title": "is-tweet-event",
+  "note": "",
+  "entity": [
+    "681ad170fa59b263ad3e2fa4"
+  ],
+  "categories": [],
+  "data": {
+    "id": "440477cb-97a1-4dd4-bb03-df633f6063a9",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "required": [],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "id": "681ad4b1fa59b263ad3e354b",
+  "advance": "[\r\n  {\r\n    \"$addFields\": {\r\n      \"_id\": {\r\n        \"$toString\": \"$_id\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$match\":{\r\n      \"_id\":\"@param:_id\"\r\n    }\r\n  }\r\n]",
+  "params": [
+    {
+      "value": "_id",
+      "key": "_id"
+    },
+    {
+      "value": "id",
+      "key": "id"
+    }
+  ]
+}

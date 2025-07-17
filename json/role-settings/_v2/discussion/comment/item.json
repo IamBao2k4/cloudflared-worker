@@ -1,0 +1,71 @@
+{
+  "item": {},
+  "get-list": {
+    "headers": [],
+    "params": [
+      {
+        "value": "_id",
+        "key": "_id"
+      },
+      {
+        "value": "discussion_id",
+        "key": "discussion_id"
+      }
+    ],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6793107ef19c9b4d4de97a61",
+          "title": "get list discussion sub comments",
+          "entity": "mge-discussion-comment",
+          "path_file": "json/response/6793107ef19c9b4d4de97a61.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "d82f9c2c-30b3-4b61-99c6-c4d357481975",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "678539794c9747dfaeed5f39"
+            },
+            {
+              "id": "0cef1673-78de-4a9b-8bcc-ee0a42afcd8c",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6791b299d5b517819522e6e1"
+            }
+          ],
+          "id": "23767b13-757f-45af-99cf-7b81b353f812"
+        },
+        "list_validate": [
+          {
+            "_id": "678539794c9747dfaeed5f39",
+            "title": "is-user-active",
+            "entity": {
+              "_id": "6749933810905d9ddbd0104b",
+              "mongodb_collection_name": "user"
+            },
+            "path_file": "json/validate/678539794c9747dfaeed5f39.json"
+          },
+          {
+            "_id": "6791b299d5b517819522e6e1",
+            "title": "did-user-join-course (through discussion comment)",
+            "entity": {
+              "_id": "6752c64565017d942f759585",
+              "mongodb_collection_name": "mge-discussion-comment"
+            },
+            "path_file": "json/validate/6791b299d5b517819522e6e1.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

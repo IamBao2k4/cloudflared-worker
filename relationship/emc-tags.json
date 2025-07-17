@@ -1,0 +1,9 @@
+[
+  {
+    "name": "tags_groups",
+    "targetTable": "emc-tags-groups",
+    "localField": "tags_groups",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  }
+]

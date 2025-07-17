@@ -1,0 +1,37 @@
+[
+  {
+    "name": "parent",
+    "targetTable": "category",
+    "localField": "parent",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "post_type",
+    "targetTable": "post-type",
+    "localField": "post_type",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "session_tags",
+    "targetTable": "tag",
+    "localField": "session_tags",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "session_tag_posts",
+    "targetTable": "post-type-content",
+    "localField": "session_tag_posts",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "parent_id",
+    "targetTable": "category",
+    "localField": "parent_id",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  }
+]

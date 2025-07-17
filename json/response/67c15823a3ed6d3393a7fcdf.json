@@ -1,0 +1,20 @@
+{
+  "_id": "67c15823a3ed6d3393a7fcdf",
+  "title": "Create tweet votes with status waiting",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "674e8f8885bc5241dd6405fb"
+  ],
+  "queryAdvance": "{\n  \"title\": 1,\n  \"slug\": 1,\n  \"short_description\": 0,\n  \"long_description\": 0,\n  \"vote_type\": \"multiple_choice,vote\",\n  \"content\": 0,\n  \"answers\": [\n    {\n      \"id\": \"$id()\",\n      \"content\": 0,\n      \"is_correct\": 0,\n      \"ordering\": 0,\n      \"image\": {\n        \"title\":0,\n        \"path\":0\n      }\n    }\n  ],\n  \"reason\": 0,\n  \"featured_image\": 0,\n  \"categories\": 0,\n  \"tag\": 0,\n  \"status\": \"waiting\",\n  \"social_group\": \"@param:group_id\",\n  \"comment_off\": \"false,true\",\n  \"like_off\": \"false,true\",\n  \"report_tweet_off\": \"false,true\",\n  \"report_comment_off\": \"false,true\",\n  \"question_type\": \"image,text\",\n  \"layout\": 0,\n  \"tweet_waiting_time\": 0\n}",
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    }
+  ]
+}

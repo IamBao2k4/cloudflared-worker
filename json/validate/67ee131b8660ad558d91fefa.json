@@ -1,0 +1,83 @@
+{
+  "_id": "67ee131b8660ad558d91fefa",
+  "title": "test á dá da",
+  "note": "",
+  "entity": [
+    "67ed21a48660ad558d915fff"
+  ],
+  "categories-validate": [
+    {
+      "_id": "67ee11a78660ad558d91fd3a",
+      "title": "Neww á dsaf s fs",
+      "slug": "neww-a-dsaf-s-fs",
+      "parent_id": [
+        {
+          "_id": "67ee10df8660ad558d91fc8d",
+          "title": "Newr wẻ wẻ w",
+          "slug": "newr-we-we-w",
+          "locale": null,
+          "locale_id": null,
+          "created_at": "2025-04-03T11:38:55.000Z",
+          "created_by": "6711e8a47b45b2974bd6133c",
+          "updated_at": "2025-04-03T11:38:55.000Z",
+          "updated_by": "6711e8a47b45b2974bd6133c",
+          "tenant_id": "674028d2611a654e763a73e8"
+        }
+      ],
+      "locale": null,
+      "locale_id": null,
+      "created_at": "2025-04-03T11:42:15.000Z",
+      "created_by": {
+        "_id": "6711e8a47b45b2974bd6133c",
+        "username": "admin2024@gmail.com",
+        "featured_image": [
+          {
+            "_id": "67c52c92cb2d3f0de049849f",
+            "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+            "disk": "satellite",
+            "mime": "image/jpeg",
+            "size": 95662,
+            "title": "AVA-AI-Voice-Assistant.jpg",
+            "alt": "AVA-AI-Voice-Assistant.jpg",
+            "tenant_id": "674028d2611a654e763a73e8",
+            "created_by": "6711e8a47b45b2974bd6133c",
+            "created_at": "2025-03-03T11:14:10.000Z",
+            "updated_at": "2025-03-03T11:14:10.000Z",
+            "is_draft": true,
+            "__v": 0,
+            "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+          }
+        ],
+        "first_name": "Nguyễn Văn",
+        "last_name": "Toàn"
+      },
+      "updated_at": "2025-04-03T11:42:15.000Z",
+      "updated_by": {
+        "_id": "6711e8a47b45b2974bd6133c",
+        "username": "admin2024@gmail.com",
+        "featured_image": [
+          {
+            "_id": "67c52c92cb2d3f0de049849f",
+            "filename": "e2327500-f185-4062-8841-c18ca152384c.jpg",
+            "disk": "satellite",
+            "mime": "image/jpeg",
+            "size": 95662,
+            "title": "AVA-AI-Voice-Assistant.jpg",
+            "alt": "AVA-AI-Voice-Assistant.jpg",
+            "tenant_id": "674028d2611a654e763a73e8",
+            "created_by": "6711e8a47b45b2974bd6133c",
+            "created_at": "2025-03-03T11:14:10.000Z",
+            "updated_at": "2025-03-03T11:14:10.000Z",
+            "is_draft": true,
+            "__v": 0,
+            "path": "https://mgs-storage.sgp1.digitaloceanspaces.com/satellite/e2327500-f185-4062-8841-c18ca152384c.jpg"
+          }
+        ],
+        "first_name": "Nguyễn Văn",
+        "last_name": "Toàn"
+      },
+      "tenant_id": "674028d2611a654e763a73e8"
+    }
+  ],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

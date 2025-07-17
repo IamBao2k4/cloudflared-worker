@@ -1,0 +1,30 @@
+import { FastifyRequest, FastifyReply } from "fastify";
+import { {{camelCase name}}Service } from "../services/{{kebabCase name}}.service";
+
+export const {{camelCase name}}Controller = {
+  async findAll(request: FastifyRequest, reply: FastifyReply) {
+    const result = await {{camelCase name}}Service.findAll();
+    reply.send(result);
+  },
+  async findOne(request: FastifyRequest, reply: FastifyReply) {
+    const { id } = request.params as { id: string };
+    const result = await {{camelCase name}}Service.findOne(id);
+    reply.send(result);
+  },
+  async create(request: FastifyRequest, reply: FastifyReply) {
+    const body = request.body;
+    const result = await {{camelCase name}}Service.create(body);
+    reply.send(result);
+  },
+  async update(request: FastifyRequest, reply: FastifyReply) {
+    const { id } = request.params as { id: string };
+    const body = request.body;
+    const result = await {{camelCase name}}Service.update(id, body);
+    reply.send(result);
+  },
+  async remove(request: FastifyRequest, reply: FastifyReply) {
+    const { id } = request.params as { id: string };
+    const result = await {{camelCase name}}Service.remove(id);
+    reply.send(result);
+  },
+};

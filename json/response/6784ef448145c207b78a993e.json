@@ -1,0 +1,87 @@
+{
+  "_id": "6784ef448145c207b78a993e",
+  "title": "get list tweet saved (all)",
+  "outputEntity": [
+    "67b6a286606da18e6c1976f1"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"tenant_id\": \"@header:x-tenant-id\",\n      \"status\": \"active\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"tweet_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-tweet-saved\",\n      \"localField\": \"tweet_id\",\n      \"foreignField\": \"tweet_id\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"created_by\": \"@jwt:user.id\",\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        }\n      ],\n      \"as\": \"saved_info\"\n    }\n  },\n  {\n    \"$match\": {\n      \"saved_info\": {\n        \"$ne\": []\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$and\": [\n          {\n            \"$cond\": {\n              \"if\": {\n                \"$ne\": [\n                  \"@param:type[]\",\n                  null\n                ]\n              },\n              \"then\": {\n                \"$in\": [\n                  \"$type\",\n                  \"@param:type[]\"\n                ]\n              },\n              \"else\": true\n            }\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"user-tenant-profile\",\n      \"localField\": \"created_by\",\n      \"foreignField\": \"user\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"full_name\": {\n              \"$concat\": [\n                \"$profile.last_name\",\n                \" \",\n                \"$profile.first_name\"\n              ]\n            }\n          }\n        },\n        {\n          \"$project\": {\n            \"_id\": \"$user\",\n            \"full_name\": 1,\n            \"featured_image\": \"$profile.social.featured_image\"\n          }\n        }\n      ],\n      \"as\": \"user\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"social_group_object\": {\n        \"$map\": {\n          \"input\": \"$social_group\",\n          \"as\": \"sg\",\n          \"in\": {\n            \"$toObjectId\": \"$$sg\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group\",\n      \"localField\": \"social_group_object\",\n      \"foreignField\": \"_id\",\n      \"as\": \"group\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"media\",\n      \"let\": {\n        \"featuredImageId\": {\n          \"$arrayElemAt\": [\n            \"$cover\",\n            0\n          ]\n        }\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$eq\": [\n                \"$_id\",\n                {\n                  \"$toObjectId\": \"$$featuredImageId\"\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"path\": {\n              \"$concat\": [\n                {\n                  \"$cond\": [\n                    {\n                      \"$eq\": [\n                        \"minio\",\n                        \"@app_settings:storage_type\"\n                      ]\n                    },\n                    \"@app_settings:minio.public\",\n                    \"@app_settings:doSpace.public\"\n                  ]\n                },\n                \"/\",\n                \"$disk\",\n                \"/\",\n                \"$filename\"\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"featured_image\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-entity-like\",\n      \"let\": {\n        \"currentId\": \"$tweet_id\",\n        \"userId\": \"@jwt:user.id\"\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$and\": [\n                {\n                  \"$eq\": [\n                    \"$entity_id\",\n                    \"$$currentId\"\n                  ]\n                },\n                {\n                  \"$eq\": [\n                    \"$created_by\",\n                    \"$$userId\"\n                  ]\n                }\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"liked_info\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"liked\": {\n        \"$cond\": {\n          \"if\": {\n            \"$gt\": [\n              {\n                \"$size\": \"$liked_info\"\n              },\n              0\n            ]\n          },\n          \"then\": true,\n          \"else\": false\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group-member\",\n      \"localField\": \"social_group\",\n      \"foreignField\": \"social_group\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"user\": \"@jwt:user.id\"\n          }\n        }\n      ],\n      \"as\": \"member_status\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-social-event-registration\",\n      \"localField\": \"id\",\n      \"foreignField\": \"tweet\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"user\": \"@jwt:user.id\",\n            \"tenant_id\":\"@header:x-tenant-id\"\n          }\n        }\n      ],\n      \"as\": \"event_registered\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"event_registered\": {\n        \"$cond\": {\n          \"if\": {\n            \"$gt\": [\n              {\n                \"$size\": \"$event_registered\"\n              },\n              0\n            ]\n          },\n          \"then\": true,\n          \"else\": false\n        }\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"event_registered\": {\n        \"$cond\": {\n          \"if\": {\n            \"$eq\": [\n              \"$type\",\n              \"event\"\n            ]\n          },\n          \"then\": \"$event_registered\",\n          \"else\": \"$$REMOVE\" // Xóa field nếu không phải vote\n        }\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$or\": [\n          {\n            \"$eq\": [\n              \"@param:title\",\n              null\n            ]\n          },\n          {\n            \"$regexMatch\": {\n              \"input\": \"$title\",\n              \"regex\": \"@param:title\",\n              \"options\": \"i\"\n            }\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$sort\": {\n      \"tweet_saved.created_at\": -1\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "note": "",
+  "method": "get-list",
+  "categories": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "cache_time": "12",
+  "documents": [],
+  "params": [
+    {
+      "value": "type[]",
+      "key": "type[]"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "title",
+      "key": "title"
+    }
+  ],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "type",
+      "value": "type"
+    },
+    {
+      "key": "social_group",
+      "value": "social_group"
+    },
+    {
+      "key": "status",
+      "value": "status"
+    },
+    {
+      "key": "like_count",
+      "value": "like_count"
+    },
+    {
+      "key": "comment_count",
+      "value": "comment_count"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "id": "6784ef448145c207b78a993e"
+}

@@ -1,0 +1,34 @@
+{
+  "_id": "6790abb02bf4488eb3ab1a43",
+  "title": "did-user-vote",
+  "note": "",
+  "entity": [
+    "678f159a34775cefc244f408"
+  ],
+  "data": {
+    "id": "f91c44e5-b4eb-4154-9d81-7eb4d868e4f9",
+    "rules": [
+      {
+        "id": "de8e920c-fe45-4574-a47c-b2408d410fc6",
+        "field": "mge-user-vote-result._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-user-vote-result._id:param._id"
+      },
+      {
+        "id": "c30184b1-591f-46ea-a0ea-b28a276a6d79",
+        "field": "mge-user-vote-result.created_by",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-user-vote-result.created_by:jwt.user@id"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"mge-user-vote-result._id\":\"$mge-user-vote-result._id:param._id\"},{\"mge-user-vote-result.created_by\":\"$mge-user-vote-result.created_by:jwt.user@id\"}]}",
+  "required": [],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "categories": [],
+  "id": "6790abb02bf4488eb3ab1a43"
+}

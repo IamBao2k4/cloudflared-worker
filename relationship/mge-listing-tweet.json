@@ -1,0 +1,23 @@
+[
+  {
+    "name": "category",
+    "targetTable": "mge-listing-category",
+    "localField": "category",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "approve_by",
+    "targetTable": "entity",
+    "localField": "approve_by",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "project",
+    "targetTable": "mge-listing-project",
+    "localField": "project",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

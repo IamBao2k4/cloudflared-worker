@@ -1,0 +1,20 @@
+{
+  "_id": "6805d1de87dc85638c8e4cb5",
+  "title": "is-user-can-view-payment-methods",
+  "note": "Kiểm tra người dùng có quyền xem danh sách phương thức thanh toán",
+  "entity": [
+    "6805ba9df4d18535c7e63b1d"
+  ],
+  "data": {
+    "id": "f5b65fba-70d3-46d9-89a3-24f4ebf4b663",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "required": [],
+  "tenant_id": "6801bf1b887875ca1b8c3ee4",
+  "advance": "[\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$eq\": [\n          \"$_id\",\n          { \"$toObjectId\": \"@jwt:user.id\" }\n        ]\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"role\",\n      \"localField\": \"role\",\n      \"foreignField\": \"_id\",\n      \"as\": \"roles\"\n    }\n  },\n  {\n    \"$project\": {\n      \"_id\": 0,\n      \"hasPermission\": {\n        \"$cond\": {\n          \"if\": {\n            \"$gt\": [\n              {\n                \"$size\": {\n                  \"$filter\": {\n                    \"input\": \"$roles\",\n                    \"as\": \"role\",\n                    \"cond\": {\n                      \"$gt\": [\n                        {\n                          \"$size\": {\n                            \"$filter\": {\n                              \"input\": \"$$role.permission\",\n                              \"as\": \"perm\",\n                              \"cond\": {\n                                \"$and\": [\n                                  { \"$eq\": [\"$$perm.entity\", \"ecommerce-payment-method\"] },\n                                  { \n                                    \"$gt\": [\n                                      { \n                                        \"$size\": { \n                                          \"$setIntersection\": [\n                                            \"$$perm.filter\", \n                                            [\"get\", \"get-all\"]\n                                          ] \n                                        } \n                                      }, \n                                      0\n                                    ]\n                                  }\n                                ]\n                              }\n                            }\n                          }\n                        },\n                        0\n                      ]\n                    }\n                  }\n                }\n              },\n              0\n            ]\n          },\n          \"then\": true,\n          \"else\": false\n        }\n      }\n    }\n  }\n]\n",
+  "headers": [],
+  "params": []
+}

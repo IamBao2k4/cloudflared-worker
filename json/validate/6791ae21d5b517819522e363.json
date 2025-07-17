@@ -1,0 +1,32 @@
+{
+  "_id": "6791ae21d5b517819522e363",
+  "title": "is-user-discussion-comment-creator",
+  "note": "",
+  "entity": [
+    "6752c64565017d942f759585"
+  ],
+  "data": {
+    "id": "af79ab0a-96f4-43b6-8e6d-f1fff26b5c7e",
+    "rules": [
+      {
+        "id": "28fdd3b4-c23f-4731-be31-288168bbae37",
+        "field": "mge-discussion-comment._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-discussion-comment._id:param._id"
+      },
+      {
+        "id": "a4284fa5-5b05-4f9d-830a-69bcab54b250",
+        "field": "mge-discussion-comment.created_by",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-discussion-comment.created_by:jwt.user@id"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"mge-discussion-comment._id\":\"$mge-discussion-comment._id:param._id\"},{\"mge-discussion-comment.created_by\":\"$mge-discussion-comment.created_by:jwt.user@id\"}]}",
+  "required": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

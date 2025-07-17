@@ -1,0 +1,58 @@
+{
+  "_id": "6818941b753574930d61132d",
+  "title": "update tweet file",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "68188ea9753574930d6110a1"
+  ],
+  "categories": [],
+  "queryAdvance": "{\n  \"title\": 0,\n  \"slug\": 0,\n  \"short_description\": 0,\n  \"attachments\": [\n    {\n      \"attachment\": 0,\n      \"type\": \"pdf,pptx,docx,xlxs,mp4,png,jpg\"\n    }\n  ],\n  \"featured_image\": 0,\n  \"categories\": 0,\n  \"tag\": 0,\n  \"status\": \"send_to_review\",\n  \"social_group\": \"@param:group_id\",\n  \"comment_off\": \"false,true\",\n  \"like_off\": \"false,true\",\n  \"report_tweet_off\": \"false,true\",\n  \"report_comment_off\": \"false,true\",\n  \"tweet_waiting_time\": 0\n}",
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "slug",
+      "value": "slug"
+    },
+    {
+      "key": "attachments",
+      "value": "attachments"
+    },
+    {
+      "key": "social_group",
+      "value": "social_group"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "params": [
+    {
+      "value": "group_id",
+      "key": "group_id"
+    }
+  ]
+}

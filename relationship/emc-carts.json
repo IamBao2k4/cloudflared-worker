@@ -1,0 +1,16 @@
+[
+  {
+    "name": "products",
+    "targetTable": "emc-post",
+    "localField": "products",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "customer",
+    "targetTable": "user",
+    "localField": "customer",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  }
+]

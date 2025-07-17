@@ -1,0 +1,101 @@
+{
+  "_id": "6805ba9df4d18535c7e63b1d",
+  "title": "ecommerce payment method",
+  "mongodb_collection_name": "ecommerce-payment-method",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Tên phương thức",
+        "type": "string",
+        "widget": "shortAnswer",
+        "hidden": false,
+        "filter": true
+      },
+      "code": {
+        "title": "Mã phương thức",
+        "type": "string",
+        "widget": "shortAnswer",
+        "hidden": false,
+        "filter": true
+      },
+      "description": {
+        "title": "Mô tả",
+        "type": "string",
+        "widget": "shortAnswer",
+        "hidden": false,
+        "filter": true
+      },
+      "instructions": {
+        "widget": "longAnswer",
+        "customRole": "textarea",
+        "title": "Hướng dẫn",
+        "type": "string"
+      },
+      "status": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "active",
+            "value": "active"
+          },
+          {
+            "key": "inactive",
+            "value": "inactive"
+          }
+        ],
+        "default": "active",
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "Trạng thái",
+        "type": "string",
+        "hidden": false,
+        "filter": true
+      }
+    },
+    "required": [
+      "title",
+      "code",
+      "description"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "code": {
+      "ui:widget": "shortAnswer"
+    },
+    "description": {
+      "ui:widget": "shortAnswer"
+    },
+    "instructions": {
+      "ui:widget": "longAnswer"
+    },
+    "status": {
+      "ui:widget": "select"
+    },
+    "ui:order": [
+      "title",
+      "code",
+      "description",
+      "instructions",
+      "status"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_parent_delete_childs": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2025-04-21T03:25:17.801Z",
+  "__v": 0
+}

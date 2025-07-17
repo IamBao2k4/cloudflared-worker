@@ -1,0 +1,17 @@
+{
+  "_id": "67878f55a4af196f44604c48",
+  "title": "unpin group",
+  "note": "",
+  "method": "delete",
+  "outputEntity": [
+    "676000575a1356463269d0b0"
+  ],
+  "data": {
+    "id": "3890628c-3917-4ca9-9c9b-db4809ca2564",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

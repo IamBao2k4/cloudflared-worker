@@ -1,0 +1,22 @@
+{
+  "_id": "678682bc6d9b09071159c4f2",
+  "title": "update lesson",
+  "outputEntity": [
+    "6752a70b65017d942f75941d"
+  ],
+  "queryAdvance": "{\n  \"title\":0,\n  \"slug\":0,\n  \"time_learning\":0,\n  \"chapters\":0,\n  \"lesson_type\":\"text,video,file\",\n  \"video_url\":0,\n  \"video_file\":0,\n  \"files\":0,\n  \"lesson_content\":0,\n  \"resources\":0,\n  \"status\":\"active,draft,send_to_review,approved,archived,rejected\",\n  \"position\":0\n}",
+  "note": "",
+  "method": "put",
+  "categories": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "cache_time": "",
+  "data": {
+    "id": "34d5a3a3-1862-4cf8-86aa-0753ba1791ca",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "documents": []
+}

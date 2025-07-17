@@ -1,0 +1,142 @@
+{
+  "social-register-event": {},
+  "post": {
+    "headers": [
+      {
+        "value": "user.id",
+        "key": "user.id"
+      }
+    ],
+    "params": [
+      {
+        "value": "group_id",
+        "key": "group_id"
+      },
+      {
+        "value": "_id",
+        "key": "_id"
+      }
+    ],
+    "body": [
+      {
+        "value": "social_group",
+        "key": "social_group"
+      }
+    ],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "681afa2549a3d92b8742ed17",
+          "title": "register event",
+          "entity": "mge-social-event-registration",
+          "path_file": "json/response/681afa2549a3d92b8742ed17.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "8868aeab-ca5b-4945-b023-0ab31899a8d7",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "1919beac-7ee6-4bea-9641-b97d63051282",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "674d2f9f4b5b2e5f92441d16"
+            }
+          ],
+          "id": "daff4680-9e07-4108-b74c-22e72bae49eb"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "674d2f9f4b5b2e5f92441d16",
+            "title": "user-joined-group",
+            "entity": {
+              "_id": "674810a776462b61b5df8ece",
+              "mongodb_collection_name": "mge-group-member"
+            },
+            "path_file": "json/validate/674d2f9f4b5b2e5f92441d16.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        },
+        "trigger_pipeline": "  [{\n    \"collection_name\": \"mge-tweet\",\n    \"action\": \"update\",\n    \"query_advance\": [\n      {\n        \"$addFields\": {\n          \"id\": {\n            \"$toString\": \"$_id\"\n          }\n        }\n      },\n      {\n        \"$match\": {\n          \"tenant_id\": \"@header:x-tenant-id\",\n          \"id\": \"@param:tweet_id\"\n        }\n      }\n    ],\n    \"advance\": {\n      \"$inc\": {\n        \"event_registration_count\": 1\n      }\n    }\n  }]"
+      }
+    ]
+  },
+  "delete": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "681afb1549a3d92b8742ee86",
+          "title": "delete event registration",
+          "entity": "mge-social-event-registration",
+          "path_file": "json/response/681afb1549a3d92b8742ee86.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "7ceb5d71-f546-45d5-b9f2-b50a7bdb227d",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "675a8e9b0f44fc1769fdea90"
+            },
+            {
+              "id": "b42b9546-35eb-42c3-a654-31cdfbbeb80a",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "681afaeb49a3d92b8742ee13"
+            }
+          ],
+          "id": "9b2952d6-4ff4-41aa-813b-83c21e7b2588"
+        },
+        "list_validate": [
+          {
+            "_id": "675a8e9b0f44fc1769fdea90",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "67aad740a67aaa1951ca64b0",
+              "mongodb_collection_name": "user-tenant-profile"
+            },
+            "path_file": "json/validate/675a8e9b0f44fc1769fdea90.json"
+          },
+          {
+            "_id": "681afaeb49a3d92b8742ee13",
+            "title": "is-event-registration-mine",
+            "entity": {
+              "_id": "681af9ce49a3d92b8742ec8a",
+              "mongodb_collection_name": "mge-social-event-registration"
+            },
+            "path_file": "json/validate/681afaeb49a3d92b8742ee13.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        },
+        "trigger_pipeline": "[\n  {\n    \"collection_name\": \"mge-tweet\",\n    \"action\": \"update\",\n    \"query_advance\": [\n      {\n        \"$addFields\": {\n          \"id\": {\n            \"$toString\": \"$_id\"\n          }\n        }\n      },\n      {\n        \"$match\": {\n          \"tenant_id\": \"@header:x-tenant-id\",\n          \"id\": \"@param:tweet_id\"\n        }\n      }\n    ],\n    \"advance\": {\n      \"$inc\": {\n        \"event_registration_count\": -1\n      }\n    }\n  }\n]"
+      }
+    ]
+  }
+}

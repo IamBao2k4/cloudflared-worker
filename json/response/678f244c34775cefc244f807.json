@@ -1,0 +1,78 @@
+{
+  "_id": "678f244c34775cefc244f807",
+  "title": "get list discussions",
+  "note": "",
+  "cache_time": "",
+  "method": "get-list",
+  "outputEntity": [
+    "6752bcd265017d942f759541"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"course\": \"@param:course_id\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"user-tenant-profile\",\n      \"localField\": \"created_by\",\n      \"foreignField\": \"user\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$addFields\": {\n            \"full_name\": {\n              \"$concat\": [\n                \"$profile.last_name\",\n                \" \",\n                \"$profile.first_name\"\n              ]\n            }\n          }\n        },\n        {\n          \"$unwind\": {\n            \"path\": \"$user\",\n            \"preserveNullAndEmptyArrays\": true\n          }\n        },\n        {\n          \"$project\": {\n            \"_id\": \"$user\",\n            \"full_name\": 1,\n            \"featured_image\": \"$profile.course.featured_image\"\n          }\n        }\n      ],\n      \"as\": \"user\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-discussion-like\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"discussion\",\n      \"as\": \"liked_details\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-discussion-like\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"discussion\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"created_by\": \"@jwt:user.id\"\n          }\n        }\n      ],\n      \"as\": \"liked_info\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-discussion-like\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"discussion\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"created_by\": \"@jwt:user.id\"\n          }\n        }\n      ],\n      \"as\": \"liked\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"liked\": {\n        \"$cond\": {\n          \"if\": {\n            \"$gt\": [\n              {\n                \"$size\": \"$liked\"\n              },\n              0\n            ]\n          },\n          \"then\": true,\n          \"else\": false\n        }\n      }\n    }\n  },\n  {\n    \"$addFields\": {\n      \"like_count\": {\n        \"$size\": \"$liked_details\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-discussion-comment\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"discussion\",\n      \"pipeline\": [\n        {\n          \"$lookup\": {\n            \"from\": \"user-tenant-profile\",\n            \"localField\": \"created_by\",\n            \"foreignField\": \"user\",\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"tenant_id\": \"@header:x-tenant-id\"\n                }\n              },\n              {\n                \"$addFields\": {\n                  \"full_name\": {\n                    \"$concat\": [\n                      \"$profile.last_name\",\n                      \" \",\n                      \"$profile.first_name\"\n                    ]\n                  }\n                }\n              },\n              {\n                \"$project\": {\n                  \"_id\": \"$user\",\n                  \"full_name\": 1,\n                  \"featured_image\": \"$profile.course.featured_image\"\n                }\n              }\n            ],\n            \"as\": \"user\"\n          }\n        }\n      ],\n      \"as\": \"comment\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"comment_count\": {\n        \"$size\": \"$comment\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$or\": [\n          {\n            \"$eq\": [\n              \"@param:title\",\n              null\n            ]\n          },\n          {\n            \"$regexMatch\": {\n              \"input\": \"$title\",\n              \"regex\": \"@param:title\",\n              \"options\": \"i\"\n            }\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"liked_details\": 0,\n      \"comment\": 0\n    }\n  },\n  {\n    \"$sort\": {\n      \"created_at\": \"@sort_param:created_at\"\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "data": {
+    "id": "879b937c-d24c-45a1-be0d-802852d88322",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "params": [
+    {
+      "value": "topic_id",
+      "key": "topic_id"
+    },
+    {
+      "value": "course_id",
+      "key": "course_id"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "title",
+      "key": "title"
+    }
+  ],
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "course",
+      "value": "course"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ]
+}

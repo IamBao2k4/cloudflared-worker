@@ -1,0 +1,91 @@
+{
+  "_id": "67642fc5c34159fb897b6f7b",
+  "title": "Get list groups pin",
+  "outputEntity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"tenant_id\": \"@header:x-tenant-id\",\n      \"user\": \"@jwt:user.id\",\n      \"status\": \"joined\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"groupObject\": {\n        \"$map\": {\n          \"input\": \"$social_group\",\n          \"as\": \"u\",\n          \"in\": {\n            \"$toObjectId\": \"$$u\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group\",\n      \"localField\": \"groupObject\",\n      \"foreignField\": \"_id\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"status\": \"active\",\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        },\n        {\n          \"$lookup\": {\n            \"from\": \"media\",\n            \"let\": {\n              \"featuredImageId\": {\n                \"$arrayElemAt\": [\n                  \"$cover\",\n                  0\n                ]\n              }\n            },\n            \"pipeline\": [\n              {\n                \"$match\": {\n                  \"$expr\": {\n                    \"$eq\": [\n                      \"$_id\",\n                      {\n                        \"$toObjectId\": \"$$featuredImageId\"\n                      }\n                    ]\n                  }\n                }\n              },\n              {\n                \"$addFields\": {\n                  \"path\": {\n                    \"$concat\": [\n                      {\n                        \"$cond\": [\n                          {\n                            \"$eq\": [\n                              \"minio\",\n                              \"@app_settings:storage_type\"\n                            ]\n                          },\n                          \"@app_settings:minio.public\",\n                          \"@app_settings:doSpace.public\"\n                        ]\n                      },\n                      \"/\",\n                      \"$disk\",\n                      \"/\",\n                      \"$filename\"\n                    ]\n                  }\n                }\n              }\n            ],\n            \"as\": \"cover\"\n          }\n        }\n      ],\n      \"as\": \"social_group\"\n    }\n  },\n  {\n    \"$unwind\": \"$social_group\"\n  },\n  {\n    \"$replaceRoot\": {\n      \"newRoot\": \"$social_group\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"group_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group-member\",\n      \"localField\": \"group_id\",\n      \"foreignField\": \"social_group\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"status\": \"joined\",\n            \"tenant_id\": \"@header:x-tenant-id\"\n          }\n        }\n      ],\n      \"as\": \"group_members\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"member_count\": {\n        \"$size\": \"$group_members\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-group-pin\",\n      \"localField\": \"group_id\",\n      \"foreignField\": \"social_group\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"user\": \"@jwt:user.id\"\n          }\n        }\n      ],\n      \"as\": \"pinned_info\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"pinned\": {\n        \"$cond\": {\n          \"if\": {\n            \"$gt\": [\n              {\n                \"$size\": \"$pinned_info\"\n              },\n              0\n            ]\n          },\n          \"then\": true,\n          \"else\": false\n        }\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$and\": [\n          {\n            \"$or\": [\n              {\n                \"$eq\": [\n                  \"@param:title\",\n                  null\n                ]\n              },\n              {\n                \"$regexMatch\": {\n                  \"input\": \"$title\",\n                  \"regex\": \"@param:title\",\n                  \"options\": \"i\"\n                }\n              }\n            ]\n          },\n          {\n            \"$or\": [\n              {\n                \"$eq\": [\n                  \"@param:pinned\",\n                  null\n                ]\n              },\n              {\n                \"$eq\": [\n                  \"$pinned\",\n                  {\n                    \"$convert\": {\n                      \"input\": \"@param:pinned\",\n                      \"to\": \"bool\",\n                      \"onError\": false,\n                      \"onNull\": null\n                    }\n                  }\n                ]\n              }\n            ]\n          }\n        ]\n      }\n    }\n  },\n{\n  \"$addFields\": {\n    \"sort_position\": {\n      \"$cond\": {\n        \"if\": {\n          \"$or\": [\n            { \"$eq\": [{ \"$type\": \"$pinned_info.position\" }, \"missing\"] },\n            { \"$eq\": [\"$pinned_info.position\", null] },\n            { \"$eq\": [{ \"$type\": \"$pinned_info\" }, \"missing\"] },\n            { \"$eq\": [\"$pinned_info\", null] },\n            { \"$eq\": [{ \"$size\": \"$pinned_info\" }, 0] }\n          ]\n        },\n        \"then\": 9999999999999,\n        \"else\": \"$pinned_info.position\"\n      }\n    }\n  }\n},\n  {\n    \"$unwind\": {\n      \"path\": \"$sort_position\",\n      \"preserveNullAndEmptyArrays\": true\n    }\n  },\n  {\n    \"$sort\": {\n      \"sort_position\": 1,\n      \"created_at\": -1\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "note": "",
+  "method": "get-list",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "documents": [],
+  "body": null,
+  "categories": [],
+  "headers": [
+    {
+      "value": "user.id",
+      "key": "user.id"
+    },
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "title",
+      "key": "title"
+    },
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    },
+    {
+      "value": "group_id",
+      "key": "group_id"
+    },
+    {
+      "value": "pinned",
+      "key": "pinned"
+    }
+  ],
+  "cache_time": "",
+  "restricted": [
+    {
+      "key": "social_group",
+      "value": "social_group"
+    },
+    {
+      "key": "user",
+      "value": "user"
+    },
+    {
+      "key": "status",
+      "value": "status"
+    },
+    {
+      "key": "isFollow",
+      "value": "isFollow"
+    },
+    {
+      "key": "role",
+      "value": "role"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ]
+}

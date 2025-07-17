@@ -1,0 +1,9 @@
+{
+  "_id": "67fc7cbe36ac50fe5606739f",
+  "title": "check-user-reached-max-attempt-count",
+  "note": "Kiểm tra xem user đã đạt đến số lần kiểm tra tối đa cho phép hay chưa",
+  "entity": "6749933810905d9ddbd0104b",
+  "advance": "[\n  {\n    \"$match\": {\n      \"_id\": {\n        \"$toObjectId\": \"@jwt:user.id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-user-exam-result\",\n      \"let\": { \"user_id\": \"$_id\" },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$and\": [\n                { \"$eq\": [\"$created_by\", { \"$toString\": \"$$user_id\" }] },\n                { \"$eq\": [\"$exam\", \"@param:exam_id\"] }\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"exam_attempts\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"attempt_count\": { \"$size\": \"$exam_attempts\" },\n      \"max_attempts\": { \"$toInt\": \"@param:max_attempts\" }\n    }\n  },\n  {\n    \"$match\": {\n      \"$expr\": {\n        \"$lt\": [\"$attempt_count\", \"$max_attempts\"]\n      }\n    }\n  }\n]",
+  "logged": true,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

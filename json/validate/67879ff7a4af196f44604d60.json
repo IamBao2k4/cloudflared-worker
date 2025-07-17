@@ -1,0 +1,17 @@
+{
+  "_id": "67879ff7a4af196f44604d60",
+  "title": "is-user-has-permission-to-create-question",
+  "note": "",
+  "entity": [
+    "6740251baefaffc3e4662e6b"
+  ],
+  "advance": "[\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"_id\": \"@header:x-tenant-id\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"user-tenant-level-mapping\",\n      \"localField\": \"course_setting.create_question\",\n      \"foreignField\": \"tenant_level\",\n      \"as\": \"user_tenant_mapping\"\n    }\n  },\n  {\n    \"$project\": {\n      \"user_tenant_mapping.user\": 1\n    }\n  },\n  {\n    \"$unwind\": {\n      \"path\": \"$user_tenant_mapping\",\n      \"preserveNullAndEmptyArrays\": true\n    }\n  },\n  {\n    \"$addFields\": {\n      \"user_tenant_mapping.user\": {\n        \"$map\": {\n          \"input\": \"$user_tenant_mapping.user\",\n          \"as\": \"u\",\n          \"in\": {\n            \"$toObjectId\": \"$$u\"\n          }\n        }\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"user-tenant-profile\",\n      \"localField\": \"user_tenant_mapping.user\",\n      \"foreignField\": \"_id\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"tenant_id\": \"@header:x-tenant-id\",\n            \"user\": \"@jwt:user.id\"\n          }\n        }\n      ],\n      \"as\": \"user_tenant_mapping\"\n    }\n  },\n  {\n    \"$match\": {\n      \"user_tenant_mapping\": {\n        \"$ne\": []\n      }\n    }\n  }\n]",
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "categories": [],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ]
+}

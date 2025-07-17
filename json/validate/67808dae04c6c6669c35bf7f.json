@@ -1,0 +1,36 @@
+{
+  "_id": "67808dae04c6c6669c35bf7f",
+  "title": "is-group-id-from-body-exist",
+  "note": "",
+  "entity": [
+    "6747ef07c47463d88f8c5ab1"
+  ],
+  "data": {
+    "id": "a63460e2-5020-4b4f-a74b-564aa5db4563",
+    "rules": [
+      {
+        "id": "9c09af7a-5902-4af7-957b-f2e2aaa83166",
+        "field": "mge-group._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-group._id:body.social_group"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"mge-group._id\":\"$mge-group._id:body.social_group\"}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8",
+  "advance": null,
+  "body": null,
+  "categories": null,
+  "documents": null,
+  "error_code": null,
+  "headers": null,
+  "logged": null,
+  "params": null,
+  "pre": null
+}

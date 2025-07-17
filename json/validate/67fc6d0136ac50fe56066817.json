@@ -1,0 +1,9 @@
+{
+  "_id": "67fc6d0136ac50fe56066817",
+  "title": "check-user-exam-attempts-limit",
+  "note": "Kiểm tra xem người dùng đã đạt đến giới hạn số lần kiểm tra hay chưa",
+  "entity": "mge-user-exam-result",
+  "logged": true,
+  "advance": "[\n  {\n    \"$match\": {\n      \"exam\": \"@param:exam_id\",\n      \"created_by\": \"@jwt:user.id\"\n    }\n  },\n  {\n    \"$group\": {\n      \"_id\": null,\n      \"totalAttempts\": { \"$sum\": 1 }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-exams\",\n      \"let\": { \"examId\": { \"$toObjectId\": \"@param:exam_id\" } },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": { \"$eq\": [\"$_id\", \"$$examId\"] }\n          }\n        },\n        {\n          \"$project\": {\n            \"member_retries_allowed\": 1\n          }\n        }\n      ],\n      \"as\": \"examInfo\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"examInfo\": { \"$arrayElemAt\": [\"$examInfo\", 0] }\n    }\n  },\n  {\n    \"$project\": {\n      \"canAttempt\": {\n        \"$lt\": [\"$totalAttempts\", \"$examInfo.member_retries_allowed\"]\n      }\n    }\n  },\n  {\n    \"$match\": {\n      \"canAttempt\": true\n    }\n  }\n]",
+  "tenant_id": "674028d2611a654e763a73e8"
+}

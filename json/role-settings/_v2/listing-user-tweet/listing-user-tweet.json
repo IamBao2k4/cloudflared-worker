@@ -1,0 +1,46 @@
+{
+  "listing-user-tweet": {},
+  "get-list": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "67cfbabddada26e67e87ef2d",
+          "title": "get list user tweet",
+          "entity": "mge-listing-tweet",
+          "path_file": "json/response/67cfbabddada26e67e87ef2d.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "7d712452-75a9-45c2-8682-9c5bfaf501bc",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "67c92992f4aa922e5d2a1074"
+            }
+          ],
+          "id": "3dce5d62-7e0f-4cb1-b495-f8af15276815"
+        },
+        "list_validate": [
+          {
+            "_id": "67c92992f4aa922e5d2a1074",
+            "title": "is-user-active-in-tenant",
+            "entity": {
+              "_id": "6757b1998659c9e98a2f1e2b",
+              "mongodb_collection_name": "user-tenant-level-mapping"
+            },
+            "path_file": "json/validate/67c92992f4aa922e5d2a1074.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

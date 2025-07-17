@@ -1,0 +1,13 @@
+{
+  "_id": "67da44f5bab79a925cd2faae",
+  "title": "approve user into group",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "674810a776462b61b5df8ece"
+  ],
+  "queryAdvance": "{\r\n  \"status\":\"joined\"\r\n}",
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

@@ -1,0 +1,26 @@
+{
+  "_id": "67a03397545d084698a9ac2e",
+  "title": "update-instructor",
+  "note": "",
+  "cache_time": "",
+  "method": "put",
+  "outputEntity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "queryAdvance": "{\n  \"email\": 0,\n  \"username\": 0,\n  \"phone\": 0,\n  \"full_name\": 0,\n  \"first_name\": 0,\n  \"last_name\": 0,\n  \"birthday\": 0,\n  \"nickname\": 0\n}",
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "documents": [],
+  "params": [
+    {
+      "key": "",
+      "value": "course_id",
+      "description": ""
+    },
+    {
+      "key": "",
+      "value": "",
+      "description": ""
+    }
+  ]
+}

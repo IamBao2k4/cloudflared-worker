@@ -1,0 +1,12 @@
+{
+  "_id": "67a1cfc61aaf205cfbd7136f",
+  "title": "delete course's member",
+  "note": "",
+  "cache_time": "",
+  "method": "delete",
+  "outputEntity": [
+    "67853fcd4c9747dfaeed5f84"
+  ],
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

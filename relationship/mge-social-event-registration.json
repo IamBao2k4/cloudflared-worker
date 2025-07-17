@@ -1,0 +1,23 @@
+[
+  {
+    "name": "user",
+    "targetTable": "user",
+    "localField": "user",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "tweet",
+    "targetTable": "mge-social-tweet-event",
+    "localField": "tweet",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "social_group",
+    "targetTable": "mge-group",
+    "localField": "social_group",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

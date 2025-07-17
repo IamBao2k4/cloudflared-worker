@@ -1,0 +1,9 @@
+[
+  {
+    "name": "department",
+    "targetTable": "mge-department",
+    "localField": "department",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

@@ -1,0 +1,94 @@
+{
+  "course-categories": {},
+  "post": {
+    "headers": [
+      {
+        "value": "x-tenant-id",
+        "key": "x-tenant-id"
+      }
+    ],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6854e82eced3311bbefc6bbc",
+          "title": "create categories",
+          "entity": "mge-categories",
+          "path_file": "json/response/6854e82eced3311bbefc6bbc.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "63524f56-3855-4019-8584-00080a412ecd",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6854ea8fced3311bbefc6bd9"
+            }
+          ],
+          "id": "0ca153d8-2b5e-4a81-8dd1-02ce39c8aef1"
+        },
+        "list_validate": [
+          {
+            "_id": "6854ea8fced3311bbefc6bd9",
+            "title": "is-user-has-full-permission",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/6854ea8fced3311bbefc6bd9.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  },
+  "put": {
+    "headers": [],
+    "params": [],
+    "body": [],
+    "validate": [
+      {
+        "notification": {},
+        "response": {
+          "_id": "6854ebceced3311bbefc6c2a",
+          "title": "update course categories",
+          "entity": "mge-categories",
+          "path_file": "json/response/6854ebceced3311bbefc6c2a.json"
+        },
+        "query_validate": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "0d762b16-0282-4ad4-9fa8-a387922a656d",
+              "field": "data",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "6854ea8fced3311bbefc6bd9"
+            }
+          ],
+          "id": "841d4513-d817-4ca2-9ed7-85870c3232bd"
+        },
+        "list_validate": [
+          {
+            "_id": "6854ea8fced3311bbefc6bd9",
+            "title": "is-user-has-full-permission",
+            "entity": {
+              "_id": "6740251baefaffc3e4662e6b",
+              "mongodb_collection_name": "tenant"
+            },
+            "path_file": "json/validate/6854ea8fced3311bbefc6bd9.json"
+          }
+        ],
+        "custom_filter": {
+          "rules": []
+        }
+      }
+    ]
+  }
+}

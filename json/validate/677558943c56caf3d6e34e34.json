@@ -1,0 +1,34 @@
+{
+  "_id": "677558943c56caf3d6e34e34",
+  "title": "is-comment-not-mine",
+  "note": "",
+  "entity": [
+    "6764e3926e57acaf6815ab97"
+  ],
+  "data": {
+    "id": "355f152a-69d2-43b1-8188-6e3878fb9706",
+    "rules": [
+      {
+        "id": "bb07a1e4-7fa4-4123-8a30-f1d9dd37f76b",
+        "field": "mge-tweet-comment._id",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "$mge-tweet-comment._id:param.comment_id"
+      },
+      {
+        "id": "ab26773e-dfc3-4581-a18b-854bb1f1f72a",
+        "field": "mge-tweet-comment.created_by",
+        "operator": "!=",
+        "valueSource": "value",
+        "value": "$mge-tweet-comment.created_by:jwt.user@id"
+      }
+    ],
+    "combinator": "and",
+    "not": false
+  },
+  "required": [],
+  "queryMongodb": "{\"$and\":[{\"mge-tweet-comment._id\":\"$mge-tweet-comment._id:param.comment_id\"},{\"mge-tweet-comment.created_by\":{\"$ne\":\"$mge-tweet-comment.created_by:jwt.user@id\"}}]}",
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "674028d2611a654e763a73e8"
+}

@@ -1,0 +1,18 @@
+{
+  "_id": "67c7fbbdf4aa922e5d291b8f",
+  "title": "is-user-not-course-creator",
+  "note": "",
+  "entity": [
+    "67529c0665017d942f7592d1"
+  ],
+  "advance": "[\r\n  {\r\n    \"$addFields\": {\r\n      \"_id\": {\r\n        \"$toString\": \"$_id\"\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"$match\": {\r\n      \"_id\": \"@param:course_id\",\r\n      \"created_by\": {\r\n        \"$ne\": \"@jwt:user.id\"\r\n      }\r\n    }\r\n  }\r\n]",
+  "data": {
+    "id": "08b10e3c-1379-4201-8eae-420e120b89e6",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "queryMongodb": "{\"$and\":[{\"$expr\":true}]}",
+  "required": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

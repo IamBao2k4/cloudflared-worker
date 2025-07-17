@@ -1,0 +1,86 @@
+{
+  "_id": "6752bcd265017d942f759541",
+  "title": "mge discussions",
+  "mongodb_collection_name": "mge-discussions",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "content": {
+        "widget": "longAnswer",
+        "customRole": "texteditor",
+        "title": "content",
+        "type": "string"
+      },
+      "attachments": {
+        "title": "Attachments",
+        "type": "string",
+        "widget": "multipleFiles",
+        "description": "Danh sách tệp đính kèm hoặc hình ảnh (nếu có)."
+      },
+      "course": {
+        "title": "Course",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-courses",
+          "_id": "mge-courses",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "b2ff3f6c-8793-4614-a1f9-ef7eebaf6e71"
+          }
+        },
+        "description": "ID của khóa học mà thảo luận thuộc về.",
+        "filter": true
+      }
+    },
+    "required": [
+      "title",
+      "content",
+      "course"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "content": {
+      "ui:widget": "longAnswer"
+    },
+    "attachments": {
+      "ui:widget": "multipleFiles"
+    },
+    "course": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "title",
+      "content",
+      "attachments",
+      "course"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "entity_group": [
+    "677f8ef04bac6329557659ef"
+  ],
+  "created_at": "2024-12-06T08:58:58.384Z",
+  "__v": 0,
+  "use_seo_path": false,
+  "use_parent_delete_childs": false
+}

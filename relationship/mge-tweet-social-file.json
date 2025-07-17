@@ -1,0 +1,30 @@
+[
+  {
+    "name": "social_group",
+    "targetTable": "mge-group",
+    "localField": "social_group",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "categories",
+    "targetTable": "mge-group-category",
+    "localField": "categories",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "tag",
+    "targetTable": "mge-social-tag",
+    "localField": "tag",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "approve_by",
+    "targetTable": "user",
+    "localField": "approve_by",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

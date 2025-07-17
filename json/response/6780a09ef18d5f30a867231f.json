@@ -1,0 +1,19 @@
+{
+  "_id": "6780a09ef18d5f30a867231f",
+  "title": "update course",
+  "outputEntity": [
+    "67529c0665017d942f7592d1"
+  ],
+  "queryAdvance": "{\n  \"title\":0,\n  \"slug\":0,\n  \"short_description\":0,\n  \"long_description\":0,\n  \"cover_image\":0,\n  \"status\":0,\n  \"contains_course\":[\n    {\"title\":0}\n  ],\n  \"objectives\":[\n    {\"title\":0}\n  ],\n  \"objects\":[\n    {\"title\":0}\n  ],\n  \"category\":0\n}",
+  "note": "",
+  "method": "put",
+  "categories": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "body": null,
+  "documents": [],
+  "headers": null,
+  "params": null,
+  "cache_time": ""
+}

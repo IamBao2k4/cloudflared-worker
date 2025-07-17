@@ -1,0 +1,104 @@
+{
+  "_id": "6785e1f9d6d51abef2b118e6",
+  "title": "get list courses user manage",
+  "outputEntity": [
+    "67529c0665017d942f7592d1"
+  ],
+  "queryAdvance": "[\n  {\n    \"$match\": {\n      \"tenant_id\": \"@header:x-tenant-id\"\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"media\",\n      \"let\": {\n        \"featuredImageId\": {\n          \"$arrayElemAt\": [\n            \"$cover_image\",\n            0\n          ]\n        }\n      },\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"$expr\": {\n              \"$eq\": [\n                \"$_id\",\n                {\n                  \"$toObjectId\": \"$$featuredImageId\"\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"$addFields\": {\n            \"path\": {\n              \"$concat\": [\n                {\n                  \"$cond\": [\n                    {\n                      \"$eq\": [\n                        \"minio\",\n                        \"@app_settings:storage_type\"\n                      ]\n                    },\n                    \"@app_settings:minio.public\",\n                    \"@app_settings:doSpace.public\"\n                  ]\n                },\n                \"/\",\n                \"$disk\",\n                \"/\",\n                \"$filename\"\n              ]\n            }\n          }\n        }\n      ],\n      \"as\": \"cover_image\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"_id\": {\n        \"$toString\": \"$_id\"\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-course-member\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"course\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"user\": \"@jwt:user.id\",\n            \"status\": \"joined\",\n            \"$or\": [\n              {\n                \"role\": \"instructor\"\n              },\n              {\n                \"role\": \"assistant\"\n              }\n            ]\n          }\n        }\n      ],\n      \"as\": \"memberStatus\"\n    }\n  },\n  {\n    \"$match\": {\n      \"memberStatus\": {\n        \"$ne\": []\n      }\n    }\n  },\n  {\n    \"$lookup\": {\n      \"from\": \"mge-course-member\",\n      \"localField\": \"_id\",\n      \"foreignField\": \"course\",\n      \"pipeline\": [\n        {\n          \"$match\": {\n            \"status\": \"joined\"\n          }\n        }\n      ],\n      \"as\": \"group_members\"\n    }\n  },\n  {\n    \"$addFields\": {\n      \"member_count\": {\n        \"$size\": \"$group_members\"\n      }\n    }\n  },\n  {\n    \"$project\": {\n      \"group_members\": 0\n    }\n  },\n  {\n    \"$facet\": {\n      \"meta_data\": [\n        {\n          \"$count\": \"count\"\n        },\n        {\n          \"$addFields\": {\n            \"skip\": \"@param:skip\",\n            \"limit\": \"@param:limit\"\n          }\n        }\n      ],\n      \"data\": [\n        {\n          \"$skip\": \"@param:skip\"\n        },\n        {\n          \"$limit\": \"@param:limit\"\n        }\n      ]\n    }\n  }\n]",
+  "note": "",
+  "method": "get-list",
+  "categories": [],
+  "locale": null,
+  "locale_id": null,
+  "tenant_id": "677f6b3da3131eb0d3f9906d",
+  "cache_time": "",
+  "documents": [],
+  "headers": [
+    {
+      "value": "x-tenant-id",
+      "key": "x-tenant-id"
+    }
+  ],
+  "params": [
+    {
+      "value": "skip",
+      "key": "skip"
+    },
+    {
+      "value": "limit",
+      "key": "limit"
+    }
+  ],
+  "restricted": [
+    {
+      "key": "title",
+      "value": "title"
+    },
+    {
+      "key": "slug",
+      "value": "slug"
+    },
+    {
+      "key": "short_description",
+      "value": "short_description",
+      "required": true
+    },
+    {
+      "key": "long_description",
+      "value": "long_description",
+      "required": true
+    },
+    {
+      "key": "cover_image",
+      "value": "cover_image"
+    },
+    {
+      "key": "status",
+      "value": "status"
+    },
+    {
+      "key": "contains_course",
+      "value": "contains_course"
+    },
+    {
+      "key": "objectives",
+      "value": "objectives"
+    },
+    {
+      "key": "objects",
+      "value": "objects"
+    },
+    {
+      "key": "requests",
+      "value": "requests"
+    },
+    {
+      "key": "category",
+      "value": "category"
+    },
+    {
+      "key": "type",
+      "value": "type"
+    },
+    {
+      "key": "_id",
+      "value": "_id"
+    },
+    {
+      "key": "created_by",
+      "value": "created_by"
+    },
+    {
+      "key": "updated_by",
+      "value": "updated_by"
+    },
+    {
+      "key": "created_at",
+      "value": "created_at"
+    },
+    {
+      "key": "updated_at",
+      "value": "updated_at"
+    }
+  ]
+}

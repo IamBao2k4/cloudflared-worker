@@ -1,0 +1,17 @@
+{
+  "_id": "678dd4a96b0c9dca1257aa75",
+  "title": "delete topic",
+  "note": "",
+  "method": "delete",
+  "outputEntity": [
+    "6752bd9c65017d942f75955a"
+  ],
+  "data": {
+    "id": "34b5acc2-32a0-47b0-96ef-3bc77fdbd530",
+    "rules": [],
+    "combinator": "and",
+    "not": false
+  },
+  "categories": [],
+  "tenant_id": "677f6b3da3131eb0d3f9906d"
+}

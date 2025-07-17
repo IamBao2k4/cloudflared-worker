@@ -1,0 +1,13 @@
+{
+  "_id": "67be99cd7df148c72be0c6e0",
+  "title": "Create tweet videos with status draft",
+  "note": "",
+  "cache_time": "",
+  "method": "post",
+  "outputEntity": [
+    "674e8ef485bc5241dd6405dd"
+  ],
+  "queryAdvance": "{\n  \"title\":1,\n  \"slug\":1,\n  \"short_description\":0,\n  \"video_link\":0,\n  \"video_file\":0,\n  \"categories\": 0,\n  \"tag\":0,\n  \"status\":\"draft\",\n  \"social_group\":\"@param:group_id\",\n  \"comment_off\": \"false,true\",\n  \"like_off\": \"false,true\",\n  \"report_tweet_off\": \"false,true\",\n  \"report_comment_off\": \"false,true\",\n  \"youtube_path\":0,\n  \"featured_image\":0\n}",
+  "categories": [],
+  "tenant_id": "674028d2611a654e763a73e8"
+}

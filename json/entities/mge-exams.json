@@ -1,0 +1,452 @@
+{
+  "_id": "6752ad7665017d942f759440",
+  "title": "mge exams",
+  "mongodb_collection_name": "mge-exams",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "description": " Tiêu đề của bài kiểm tra, hiển thị trên giao diện học viên",
+        "filter": true
+      },
+      "slug": {
+        "title": "Slug",
+        "type": "string",
+        "widget": "UriKeyGen",
+        "description": " Đường dẫn URL ngắn gọn, tự động sinh từ title",
+        "depend_field": "root_name"
+      },
+      "chapters": {
+        "title": "Chapters",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-chapters",
+          "_id": "mge-chapters",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "b1d4f17c-a626-4389-8924-474887f80513"
+          }
+        },
+        "description": " ID của chương mà bài kiểm tra thuộc về (nếu có)",
+        "filter": true
+      },
+      "course": {
+        "title": "Courses",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-courses",
+          "_id": "mge-courses",
+          "type": "n-1"
+        },
+        "description": " ID của khóa học mà bài kiểm tra thuộc về",
+        "filter": true
+      },
+      "exam_type": {
+        "type": "string",
+        "widget": "select",
+        "title": "Exam Type",
+        "description": " Loại bài kiểm tra: trắc nghiệm, tự luận",
+        "choices": [
+          {
+            "key": "Trắc nghiệm",
+            "value": "multiple_choice"
+          },
+          {
+            "key": "Tự luận",
+            "value": "essay"
+          }
+        ],
+        "filter": true
+      },
+      "essay_content": {
+        "type": "string",
+        "widget": "longAnswer",
+        "customRole": "textarea",
+        "title": "Essay Content",
+        "description": " Nội dung bài kiểm tra dạng tự luận (dành riêng cho bài kiểm tra tự luận)."
+      },
+      "essay_files": {
+        "type": "string",
+        "widget": "multipleFiles",
+        "title": "Essay Files",
+        "description": " Danh sách file hoặc tài liệu đính kèm (nếu có)."
+      },
+      "testing_time": {
+        "type": "string",
+        "widget": "numberInput",
+        "title": "Testing Time",
+        "description": " Tổng thời gian làm bài kiểm tra (tính bằng phút)"
+      },
+      "test_opening_time": {
+        "title": "Test Opening Time",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "YYYY/MM/DD : HH:mm a",
+        "formatDate": "date-time",
+        "description": " Thời gian bài kiểm tra bắt đầu mở.",
+        "show_past": true
+      },
+      "testing_closing_time": {
+        "title": "Testing Closing Time",
+        "type": "string",
+        "widget": "dateTime",
+        "displayFormat": "YYYY/MM/DD : HH:mm a",
+        "formatDate": "date-time",
+        "description": " Thời gian bài kiểm tra đóng lại.",
+        "show_past": true
+      },
+      "member_retries_allowed": {
+        "title": "Member Retries Allowed",
+        "type": "string",
+        "widget": "numberInput",
+        "description": " Số lần làm lại bài kiểm tra mà học viên được phép",
+        "default": "1"
+      },
+      "minimum_passing_score": {
+        "title": "Minimum Passing Score",
+        "type": "string",
+        "widget": "numberInput"
+      },
+      "show_answer": {
+        "title": "Show Answer",
+        "type": "string",
+        "widget": "boolean",
+        "description": " Cho phép hiển thị đáp án sau khi hoàn thành bài kiểm tra hay không.",
+        "appearance": "switch",
+        "default": true
+      },
+      "shuffle_question": {
+        "title": "Shuffle Question",
+        "type": "string",
+        "widget": "boolean",
+        "description": " Sắp xếp ngẫu nhiên thứ tự các câu hỏi.",
+        "appearance": "switch"
+      },
+      "shuffle_answer": {
+        "title": "Shuffle Answer",
+        "type": "string",
+        "widget": "boolean",
+        "description": " Cho phép hiển thị đáp án sau khi làm bài ",
+        "appearance": "switch"
+      },
+      "return_previous_question": {
+        "title": "Return Previous Question",
+        "type": "string",
+        "widget": "boolean",
+        "description": " Cho phép quay lại câu hỏi trước (true hoặc false).",
+        "appearance": "switch",
+        "default": true
+      },
+      "score_scale": {
+        "title": "Score Scale",
+        "type": "string",
+        "widget": "select",
+        "description": " Thang điểm của bài kiểm tra (10, 100, 100%)",
+        "choices": [
+          {
+            "key": "10",
+            "value": "10"
+          },
+          {
+            "key": "100",
+            "value": "100"
+          },
+          {
+            "key": "100%",
+            "value": "100%"
+          }
+        ],
+        "default": "10"
+      },
+      "time_limit_mode": {
+        "title": "time_limit_mode",
+        "type": "string",
+        "default": false,
+        "widget": "boolean"
+      },
+      "questions": {
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "title": "title",
+              "type": "string",
+              "widget": "shortAnswer"
+            },
+            "question_type": {
+              "title": "question_type",
+              "type": "string",
+              "widget": "select",
+              "choices": [
+                {
+                  "key": "Multiple Choice",
+                  "value": "multiple_choice"
+                },
+                {
+                  "key": "Check Box",
+                  "value": "check_box"
+                },
+                {
+                  "key": "True/False",
+                  "value": "true_false"
+                },
+                {
+                  "key": "Fill in Blank",
+                  "value": " fill_in_blank"
+                }
+              ]
+            },
+            "answer": {
+              "items": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "title": "content",
+                    "type": "string",
+                    "widget": "shortAnswer"
+                  },
+                  "is_correct": {
+                    "title": "is_correct",
+                    "type": "string",
+                    "default": false,
+                    "widget": "boolean"
+                  },
+                  "position": {
+                    "title": "position",
+                    "type": "string",
+                    "widget": "numberInput"
+                  },
+                  "id": {
+                    "title": "id",
+                    "type": "string",
+                    "widget": "shortAnswer"
+                  }
+                },
+                "required": []
+              },
+              "title": "answer",
+              "type": "array"
+            },
+            "score": {
+              "title": "score",
+              "type": "string",
+              "widget": "numberInput"
+            },
+            "answer_to_show": {
+              "title": "answer_to_show",
+              "type": "string",
+              "widget": "shortAnswer"
+            },
+            "blank_answer": {
+              "items": {
+                "type": "object",
+                "properties": {
+                  "answer": {
+                    "title": "answer",
+                    "type": "string",
+                    "widget": "shortAnswer"
+                  }
+                },
+                "required": []
+              },
+              "title": "blank_answer",
+              "type": "array"
+            },
+            "id": {
+              "title": "id",
+              "type": "string",
+              "widget": "shortAnswer"
+            }
+          },
+          "required": []
+        },
+        "title": "questions",
+        "type": "array"
+      },
+      "position": {
+        "title": "position",
+        "type": "string",
+        "widget": "numberInput",
+        "default": "0"
+      },
+      "is_final_exam": {
+        "title": "is_final_exam",
+        "type": "string",
+        "default": false,
+        "widget": "boolean",
+        "filter": true
+      }
+    },
+    "required": [
+      "title",
+      "slug",
+      "course"
+    ]
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "chapters": {
+      "ui:widget": "relation"
+    },
+    "course": {
+      "ui:widget": "relation"
+    },
+    "exam_type": {
+      "ui:widget": "select"
+    },
+    "essay_content": {
+      "ui:widget": "textarea"
+    },
+    "essay_files": {
+      "ui:widget": "multipleFiles"
+    },
+    "testing_time": {
+      "ui:widget": "numberInput"
+    },
+    "test_opening_time": {
+      "ui:widget": "dateTime"
+    },
+    "testing_closing_time": {
+      "ui:widget": "dateTime"
+    },
+    "member_retries_allowed": {
+      "ui:widget": "numberInput"
+    },
+    "minimum_passing_score": {
+      "ui:widget": "numberInput"
+    },
+    "show_answer": {
+      "ui:widget": "boolean"
+    },
+    "shuffle_question": {
+      "ui:widget": "boolean"
+    },
+    "shuffle_answer": {
+      "ui:widget": "boolean"
+    },
+    "return_previous_question": {
+      "ui:widget": "boolean"
+    },
+    "score_scale": {
+      "ui:widget": "select"
+    },
+    "time_limit_mode": {
+      "ui:widget": "boolean"
+    },
+    "questions": {
+      "items": {
+        "title": {
+          "ui:widget": "shortAnswer"
+        },
+        "question_type": {
+          "ui:widget": "select"
+        },
+        "answer": {
+          "items": {
+            "content": {
+              "ui:widget": "shortAnswer"
+            },
+            "is_correct": {
+              "ui:widget": "boolean"
+            },
+            "position": {
+              "ui:widget": "numberInput"
+            },
+            "id": {
+              "ui:widget": "shortAnswer"
+            },
+            "ui:order": [
+              "content",
+              "is_correct",
+              "position",
+              "id"
+            ]
+          }
+        },
+        "score": {
+          "ui:widget": "numberInput"
+        },
+        "answer_to_show": {
+          "ui:widget": "shortAnswer"
+        },
+        "blank_answer": {
+          "items": {
+            "answer": {
+              "ui:widget": "shortAnswer"
+            },
+            "ui:order": [
+              "answer"
+            ]
+          }
+        },
+        "id": {
+          "ui:widget": "shortAnswer"
+        },
+        "ui:order": [
+          "title",
+          "question_type",
+          "answer",
+          "score",
+          "answer_to_show",
+          "blank_answer",
+          "id"
+        ]
+      }
+    },
+    "position": {
+      "ui:widget": "numberInput"
+    },
+    "is_final_exam": {
+      "ui:widget": "boolean"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "chapters",
+      "course",
+      "exam_type",
+      "essay_content",
+      "essay_files",
+      "testing_time",
+      "test_opening_time",
+      "testing_closing_time",
+      "member_retries_allowed",
+      "minimum_passing_score",
+      "show_answer",
+      "shuffle_question",
+      "shuffle_answer",
+      "return_previous_question",
+      "score_scale",
+      "time_limit_mode",
+      "questions",
+      "position",
+      "is_final_exam"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "entity_group": null,
+  "created_at": "2024-12-06T07:53:26.039Z",
+  "__v": 0,
+  "use_seo_path": false,
+  "use_parent_delete_childs": false
+}

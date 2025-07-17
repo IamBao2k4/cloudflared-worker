@@ -1,0 +1,149 @@
+{
+  "_id": "676a2762dedfcf1bf1c55abf",
+  "title": "mge entity like",
+  "mongodb_collection_name": "mge-entity-like",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "entity_id": {
+        "widget": "shortAnswer",
+        "title": "entity_id",
+        "type": "string",
+        "filter": true
+      },
+      "entity_name": {
+        "widget": "select",
+        "returnValue": 2,
+        "choices": [
+          {
+            "key": "mge-tweet-social-image",
+            "value": "mge-tweet-social-image"
+          },
+          {
+            "key": "mge-tweet-social-news",
+            "value": "mge-tweet-social-news"
+          },
+          {
+            "key": "mge-tweet-social-videos",
+            "value": "mge-tweet-social-videos"
+          },
+          {
+            "key": "mge-tweet-social-votes",
+            "value": "mge-tweet-social-votes"
+          },
+          {
+            "key": "mge-tweet-social-file",
+            "value": "mge-tweet-social-file"
+          },
+          {
+            "key": "mge-tweet-social-event",
+            "value": "mge-tweet-social-event"
+          },
+          {
+            "key": "mge-tweet-social-file",
+            "value": "mge-tweet-social-file"
+          },
+          {
+            "key": "mge-tweet-social-file",
+            "value": "mge-tweet-social-file"
+          },
+          {
+            "key": "mge-tweet-comment",
+            "value": "mge-tweet-comment"
+          },
+          {
+            "key": "mge-discussions",
+            "value": "mge-discussions"
+          },
+          {
+            "key": "mge-user-rating",
+            "value": "mge-user-rating"
+          }
+        ],
+        "default": [],
+        "allowNull": false,
+        "isMultiple": false,
+        "title": "entity_name",
+        "type": "string",
+        "filter": true
+      },
+      "type": {
+        "title": "type",
+        "type": "string",
+        "widget": "select",
+        "choices": [
+          {
+            "key": "like",
+            "value": "like"
+          },
+          {
+            "key": "dislike",
+            "value": "dislike"
+          }
+        ]
+      },
+      "social_group": {
+        "title": "social_group",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "mge-group",
+          "_id": "mge-group",
+          "type": "n-1",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "66054d56-df1a-4ff0-8cb4-23531f5a8a43"
+          }
+        },
+        "filter": true
+      }
+    },
+    "required": [
+      "entity_id",
+      "social_group"
+    ]
+  },
+  "ui_schema": {
+    "entity_id": {
+      "ui:widget": "shortAnswer"
+    },
+    "entity_name": {
+      "ui:widget": "select"
+    },
+    "type": {
+      "ui:widget": "select"
+    },
+    "social_group": {
+      "ui:widget": "relation"
+    },
+    "ui:order": [
+      "entity_id",
+      "entity_name",
+      "type",
+      "social_group"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "use_seo_path": false,
+  "entity_group": null,
+  "created_at": "2024-12-24T03:15:46.354Z",
+  "__v": 0,
+  "unique_keys": "[\n  {\n    \"created_by\": 1,\n    \"entity_id\": 1\n  }\n]",
+  "use_parent_delete_childs": false,
+  "entity_setting": {
+    "entity_trigger_inc": "mge-tweet,tweet-comment",
+    "field_trigger_inc": "like_count",
+    "number_trigger_inc": 1,
+    "field_id_trigger_inc": "entity_id"
+  },
+  "id": "676a2762dedfcf1bf1c55abf"
+}

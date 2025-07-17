@@ -1,0 +1,23 @@
+[
+  {
+    "name": "tag_posttype",
+    "targetTable": "emc-posttpe",
+    "localField": "tag_posttype",
+    "foreignField": "_id",
+    "type": "one-to-many"
+  },
+  {
+    "name": "parent",
+    "targetTable": "emc-category",
+    "localField": "parent",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  },
+  {
+    "name": "session_tags.session_tag_hot",
+    "targetTable": "emc-tags-groups",
+    "localField": "session_tags.session_tag_hot",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

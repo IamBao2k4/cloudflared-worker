@@ -1,0 +1,57 @@
+{
+  "use_parent_delete_childs": false,
+  "use_seo_path": false,
+  "_id": "6743decf4633668aab2b4179",
+  "title": "Prompts Tree",
+  "mongodb_collection_name": "prompts-tree",
+  "json_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Title",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "slug": {
+        "title": "Slug",
+        "type": "string",
+        "widget": "shortAnswer"
+      },
+      "data": {
+        "title": "Data",
+        "type": "string",
+        "widget": "longAnswer",
+        "customRole": "textarea"
+      }
+    },
+    "required": []
+  },
+  "ui_schema": {
+    "title": {
+      "ui:widget": "shortAnswer"
+    },
+    "slug": {
+      "ui:widget": "shortAnswer"
+    },
+    "data": {
+      "ui:widget": "textarea"
+    },
+    "ui:order": [
+      "title",
+      "slug",
+      "data"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": false,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "created_at": "2024-11-25T02:19:59.593Z",
+  "__v": 0
+}

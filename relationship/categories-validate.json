@@ -1,0 +1,9 @@
+[
+  {
+    "name": "parent_id",
+    "targetTable": "categories-validate",
+    "localField": "parent_id",
+    "foreignField": "_id",
+    "type": "many-to-one"
+  }
+]

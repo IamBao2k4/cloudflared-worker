@@ -1,0 +1,68 @@
+{
+  "_id": "6717504e1ed82866d5e1c034",
+  "title": "category",
+  "mongodb_collection_name": "category",
+  "json_schema": {
+    "type": "object",
+    "required": [
+      "title",
+      "slug"
+    ],
+    "properties": {
+      "title": {
+        "title": "Title",
+        "description": "Nhập thông tin tiêu đề",
+        "type": "string",
+        "widget": "shortAnswer",
+        "filter": true
+      },
+      "parent_id": {
+        "title": "Parent ID",
+        "type": "string",
+        "widget": "relation",
+        "typeRelation": {
+          "title": "category",
+          "id": "category",
+          "filter": {
+            "combinator": "and",
+            "rules": [],
+            "id": "7f38442b-0f34-4867-aac5-9d1bd3a78952"
+          },
+          "type": "1-n"
+        }
+      },
+      "slug": {
+        "title": "slug",
+        "type": "string",
+        "widget": "UriKeyGen"
+      }
+    }
+  },
+  "ui_schema": {
+    "parent_id": {
+      "ui:widget": "relation"
+    },
+    "slug": {
+      "ui:widget": "UriKeyGen"
+    },
+    "ui:order": [
+      "title",
+      "parent_id",
+      "slug"
+    ]
+  },
+  "languages": [],
+  "is_active": true,
+  "use_locale": false,
+  "use_parent": true,
+  "use_block": false,
+  "use_content_review": false,
+  "use_like": false,
+  "use_comment": false,
+  "use_save": false,
+  "created_at": "2024-10-22T07:12:14.283Z",
+  "__v": 0,
+  "entity_group": null,
+  "use_parent_delete_childs": false,
+  "use_seo_path": true
+}
