@@ -1,13 +1,18 @@
-
 import { CoreBootstrap, createCoreSystem } from "../core/main/connect";
 import { NewCore } from "../core/main/newCore";
 import { EntityManager } from "../manager";
 import { settingCore } from "./app-settings";
+import { coreSingleton } from "./core-singleton";
+
 export let coreGlobal: CoreBootstrap;
+
 export const InitialCore = async () => {
-  coreGlobal = new CoreBootstrap()
-  await coreGlobal.initializeWithConfig(settingCore)
-  const watching = await new EntityManager(coreGlobal.relationshipRegistry)
+  await coreSingleton.initialize();
+  coreGlobal = coreSingleton.getCore()!;
+  
+  if (coreGlobal && coreGlobal.relationshipRegistry) {
+    const watching = await new EntityManager(coreGlobal.relationshipRegistry);
+  }
 };
 
 

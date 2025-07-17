@@ -1,0 +1,18 @@
+{
+  "name": "mongorest-worker",
+  "compatibility_date": "2025-07-17",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "src/worker.ts",
+  "vars": {
+    "NODE_ENV": "production",
+    "PREFIX_API": "/api/v1",
+    "TIME_ZONE": "Asia/Ho_Chi_Minh",
+    "PORT": "3000",
+    "APP_NAME": "MongoRest API",
+    "ELASTICSEARCH_INDEX": "mongorest-api-logs",
+    "ELASTICSEARCH_ENABLED": "true"
+  },
+  "build": {
+    "command": "npm run build"
+  }
+}

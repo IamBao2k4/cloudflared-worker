@@ -1,5 +1,6 @@
 import { HttpError } from '../../utils/http-error';
 import { coreGlobal } from '../../configs/core-global';
+import { coreSingleton } from '../../configs/core-singleton';
 import { DatabaseType } from '../../core/adapters/base/types';
 import { IntermediateQueryResult } from '../../core/types/intermediateQuery';
 
@@ -27,7 +28,17 @@ class CommonService {
     queryData: any = {},
     roles: string[] = ['default'],
   ): Promise<IntermediateQueryResult<any>> {
-    const relation = coreGlobal.relationshipRegistry.getForTable(collectionName)
+    // Ensure core is initialized
+    if (!coreSingleton.isInitialized()) {
+      await coreSingleton.initialize();
+    }
+    
+    const core = coreSingleton.getCore();
+    if (!core) {
+      throw new Error('Core is not available');
+    }
+    
+    const relation = core.relationshipRegistry.getForTable(collectionName)
     if (relation.length > 0) {
       if (queryData.select == undefined) {
         queryData.select = "*"
@@ -37,7 +48,11 @@ class CommonService {
         queryData.select += `,${item.name}()`
       })
     }
-    const result = coreGlobal.getCore().findAll(queryData as any, collectionName, roles, 'mongodb');
+    const result = await core.getCore().findAll(queryData as any, collectionName, roles, 'mongodb');
+    console.log("CommonService findAllQuery result:", JSON.stringify({
+      dataLength: result.data.length,
+      hasMetadata: !!result.metadata
+    }));
     return result;
   }
   
@@ -52,7 +67,7 @@ class CommonService {
         queryData.select += `,${item.name}()`
       })
     }
-    return coreGlobal.getCore().findById(
+    return await coreGlobal.getCore().findById(
       collectionName,
       queryData,
       id,

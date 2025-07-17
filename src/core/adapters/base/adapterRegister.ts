@@ -35,15 +35,16 @@ export class AdapterRegistry {
     const key = this.createAdapterKey(adapter.name, adapter.version);
     
     if (this.adapters.has(key)) {
-      console.warn(`Adapter ${key} is already registered, skipping...`);
-      return;
+      console.warn(`Adapter ${key} is already registered, replacing with new instance...`);
     }
 
     this.adapters.set(key, adapter);
     
     // Update type mapping
     const typeAdapters = this.typeMap.get(adapter.type) || [];
-    typeAdapters.push(key);
+    if (!typeAdapters.includes(key)) {
+      typeAdapters.push(key);
+    }
     this.typeMap.set(adapter.type, typeAdapters);
   }
 
@@ -169,34 +170,45 @@ export class AdapterRegistry {
    * Initialize all registered adapters
    */
   async initializeAll(configs: Record<string, any>, relationshipRegistry: RelationshipRegistry): Promise<void> {
-    Object.entries(configs).forEach((value, key) => {
-      switch (value[0]) {
+    console.log("AdapterRegistry.initializeAll() called with configs:", Object.keys(configs));
+    for (const [key, value] of Object.entries(configs)) {
+      console.log(`Processing adapter config for: ${key}`);
+      switch (key) {
         case "mongodb":
-          const mongoAdapter = new MongoDBAdapter(relationshipRegistry)
-          mongoAdapter.initialize(value[1])
-          this.register(mongoAdapter)
-          console.log("AdapterRegistry Initial Mongodb")
+          try {
+            console.log("Creating MongoDB adapter...");
+            const mongoAdapter = new MongoDBAdapter(relationshipRegistry)
+            console.log("Initializing MongoDB adapter...");
+            await mongoAdapter.initialize(value)
+            console.log("Registering MongoDB adapter...");
+            this.register(mongoAdapter)
+            console.log("AdapterRegistry Initial Mongodb - SUCCESS")
+          } catch (error) {
+            console.error("MongoDB adapter initialization failed:", error);
+            throw error;
+          }
           break
         case "mysql":
           const mysqlAdapter = new MySQLAdapter()
-          mysqlAdapter.initialize(value[1])
+          await mysqlAdapter.initialize(value)
           this.register(mysqlAdapter)
           console.log("AdapterRegistry Initial Mysql")
           break
         case "postgresql":
           const postgresAdapter = new PostgreSQLAdapter()
-          postgresAdapter.initialize(value[1])
+          await postgresAdapter.initialize(value)
           this.register(postgresAdapter)
           console.log("AdapterRegistry Initial Postgresql")
           break
         case "elasticsearch":
           const elasticsearchAdapter = new ElasticsearchAdapter()
-          elasticsearchAdapter.initialize(value[1])
+          await elasticsearchAdapter.initialize(value)
           this.register(elasticsearchAdapter)
           console.log("AdapterRegistry Initial Elasticsearch")
           break         
       }
-    })
+    }
+    console.log("AdapterRegistry.initializeAll() completed");
   }
 
   async disposeAll(): Promise<void> {

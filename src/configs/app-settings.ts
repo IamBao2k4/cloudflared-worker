@@ -28,7 +28,7 @@ export const appSettings = {
 };
 
 export const settingCore: BootstrapConfig = {
-  includeBuiltinAdapters: false,
+  includeBuiltinAdapters: true, // PHẢI là true để sử dụng MongoDB adapter
   relationships: {
     // Your specific relationships for the complex query
     // user: [

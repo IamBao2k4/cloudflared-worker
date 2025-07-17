@@ -14,9 +14,8 @@ export async function CommonRoutes(app: FastifyInstance) {
       queryData,
       roles
     );
-    reply.send(
-      result.data
-    );
+    console.log("Route handler - returning result.data with", result.data.length, "items");
+    return result.data;
   });
 
   // Get entity details by id
