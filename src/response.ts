@@ -12,6 +12,7 @@ export function responseInterceptor(
             message: "Success",
             statusCode: 200,
             data: payload,
+            datetime: new Date().toISOString(),
         };
         done(null, JSON.stringify(wrapped));
     } else {

@@ -193,16 +193,16 @@ export class MongoDBAdapter extends BaseDatabaseAdapter {
 
     try {
       const client = new MongoClient(connectString, {
-        // connectTimeoutMS: 210,
-        // serverSelectionTimeoutMS: 210,
-        // socketTimeoutMS: 210,
-        // maxPoolSize: 10,
-        // retryWrites: true,
-        // retryReads: true
+        connectTimeoutMS: 210,
+        serverSelectionTimeoutMS: 210,
+        socketTimeoutMS: 210,
+        maxPoolSize: 10,
+        retryWrites: true,
+        retryReads: true
       });
 
       await client.connect();
-      console.log("MongoDB client connected:", client);
+      // console.log("MongoDB client connected:", client);
       this.db = client.db(dbName);
     } catch (error) {
       console.error('❌ MongoDB connection failed:', error);

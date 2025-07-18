@@ -8,6 +8,7 @@ import { InitialCore, coreGlobal, filterPassword } from './configs/core-global';
 import { appSettings } from './configs/app-settings';
 import { commonService } from './module/common/common.service';
 import { authService } from './module/auth/auth.service';
+import './apm'
 
 // Create a local CommonService that uses coreGlobal
 
