@@ -4,17 +4,17 @@ import {
   ExecutionOptions,
   AdapterConfig,
   ValidationResult,
-} from "../base/types";
+} from '../base/types.js';
 import {
   IntermediateQuery,
   IntermediateQueryResult,
-} from "../../types/intermediateQuery";
-import { RelationshipRegistry } from "../base/relationship/RelationshipRegistry";
-// import { EntityManager } from './managers/EntityManager';
-import { QueryConverter } from "./converters/QueryConverter";
-import { MongoDBQuery } from "./types";
+} from '../../types/intermediateQuery.js';
+import { RelationshipRegistry } from '../base/relationship/RelationshipRegistry.js';
+// import { EntityManager } from './managers/EntityManager.js';
+import { QueryConverter } from './converters/QueryConverter.js';
+import { MongoDBQuery } from './types.js';
 import { Collection, CollectionOptions, Db, Filter, MongoClient } from "mongodb";
-import { BaseDatabaseAdapter } from "../base/databaseAdapter";
+import { BaseDatabaseAdapter } from '../base/databaseAdapter.js';
 
 /**
  * MongoDB adapter for converting intermediate queries to MongoDB aggregation pipelines
@@ -38,7 +38,7 @@ export class MongoDBAdapter extends BaseDatabaseAdapter {
     if (!this.db) {
       throw new Error("MongoDB database connection is not available");
     }
-    
+
     const col = this.db.collection(collection, options);
     return await col.findOne(filter);
   }
@@ -52,7 +52,7 @@ export class MongoDBAdapter extends BaseDatabaseAdapter {
    */
   async executeQuery<T = any>(
     collectionName: string,
-    intermediateQuery : IntermediateQuery,
+    intermediateQuery: IntermediateQuery,
     nativeQuery: MongoDBQuery,
     options?: ExecutionOptions
   ): Promise<IntermediateQueryResult<T>> {
@@ -190,10 +190,19 @@ export class MongoDBAdapter extends BaseDatabaseAdapter {
     if (!dbName || !connectString) {
       throw new Error("Database name could not be determined from the connection configuration.");
     }
-    
+
     try {
-      const client = new MongoClient(connectString);
+      const client = new MongoClient(connectString, {
+        // connectTimeoutMS: 210,
+        // serverSelectionTimeoutMS: 210,
+        // socketTimeoutMS: 210,
+        // maxPoolSize: 10,
+        // retryWrites: true,
+        // retryReads: true
+      });
+
       await client.connect();
+      console.log("MongoDB client connected:", client);
       this.db = client.db(dbName);
     } catch (error) {
       console.error('❌ MongoDB connection failed:', error);
