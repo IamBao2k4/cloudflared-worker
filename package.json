@@ -10,6 +10,10 @@
     "dev:demo": "nodemon --exec tsx src/transports/express/demo-server.ts",
     "demo:new": "tsx src/transports/expressServer.ts",
     "build": "tsc",
+    "worker:dev": "npx wrangler dev",
+    "worker:deploy": "npx wrangler deploy",
+    "worker:tail": "npx wrangler tail",
+    "worker:types": "npx wrangler types",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -20,6 +24,7 @@
     "debug:config": "tsx scripts/debug-config.ts"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250718.0",
     "@types/cors": "^2.8.19",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.16.4",
@@ -30,7 +35,8 @@
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.4",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "wrangler": "^4.25.0"
   },
   "dependencies": {
     "@elastic/elasticsearch": "^8.18.2",
@@ -44,6 +50,7 @@
     "@types/pg": "^8.10.0",
     "@vercel/analytics": "^1.5.0",
     "ajv": "^8.17.1",
+    "axios": "^1.7.7",
     "class-validator": "^0.14.2",
     "cors": "^2.8.5",
     "dotenv": "^17.0.1",
@@ -51,14 +58,13 @@
     "fastify": "^5.4.0",
     "handlebars": "^4.7.8",
     "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.16.0",
+    "mongodb": "^6.17.0",
     "mongodb-memory-server": "^10.1.4",
     "mysql2": "^3.6.0",
     "pg": "^8.11.0",
     "pino": "^9.7.0",
     "pino-elasticsearch": "^8.1.0",
     "redis": "^5.5.6",
-    "uuid": "^11.1.0",
-    "axios": "^1.7.7"
+    "uuid": "^11.1.0"
   }
 }

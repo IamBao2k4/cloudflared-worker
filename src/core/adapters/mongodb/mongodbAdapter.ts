@@ -33,12 +33,14 @@ export class MongoDBAdapter extends BaseDatabaseAdapter {
     this.queryConverter = new QueryConverter(relationshipRegistry);
   }
 
-  async FindOne(collection: string, options?: CollectionOptions, ) {
-
-    const doc = this.db?.collection(collection, options)
-    if (doc) {
-      doc.findOne()
+  async FindOne(collection: string, filter: Filter<any> = {}, options?: CollectionOptions) {
+    this.ensureInitialized();
+    if (!this.db) {
+      throw new Error("MongoDB database connection is not available");
     }
+    
+    const col = this.db.collection(collection, options);
+    return await col.findOne(filter);
   }
 
   convertQuery(query: IntermediateQuery): MongoDBQuery {
@@ -177,20 +179,26 @@ export class MongoDBAdapter extends BaseDatabaseAdapter {
 
     if (config.connection.connectionString) {
       const match = config.connection.connectionString.match(/\/([^/?]+)(\?|$)/);
-      connectString = config.connection.connectionString
+      connectString = config.connection.connectionString;
       if (match) {
         dbName = match[1];
       }
-    }else {
+    } else {
       throw new Error("MongoDB connection configuration is required");
     }
-    if (!dbName && !connectString) {
+    
+    if (!dbName || !connectString) {
       throw new Error("Database name could not be determined from the connection configuration.");
     }
-    const client = new MongoClient(connectString);
-    await client.connect();
-    this.db = client.db(dbName);
     
+    try {
+      const client = new MongoClient(connectString);
+      await client.connect();
+      this.db = client.db(dbName);
+    } catch (error) {
+      console.error('❌ MongoDB connection failed:', error);
+      throw new Error(`MongoDB connection failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
   }
   async testConnection(): Promise<boolean> {
     try {

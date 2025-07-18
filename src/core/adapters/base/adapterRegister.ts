@@ -35,15 +35,16 @@ export class AdapterRegistry {
     const key = this.createAdapterKey(adapter.name, adapter.version);
     
     if (this.adapters.has(key)) {
-      console.warn(`Adapter ${key} is already registered, skipping...`);
-      return;
+      console.warn(`Adapter ${key} is already registered, replacing with new instance...`);
     }
 
     this.adapters.set(key, adapter);
     
     // Update type mapping
     const typeAdapters = this.typeMap.get(adapter.type) || [];
-    typeAdapters.push(key);
+    if (!typeAdapters.includes(key)) {
+      typeAdapters.push(key);
+    }
     this.typeMap.set(adapter.type, typeAdapters);
   }
 
@@ -169,34 +170,53 @@ export class AdapterRegistry {
    * Initialize all registered adapters
    */
   async initializeAll(configs: Record<string, any>, relationshipRegistry: RelationshipRegistry): Promise<void> {
-    Object.entries(configs).forEach((value, key) => {
-      switch (value[0]) {
+    console.log("AdapterRegistry.initializeAll() called with configs:", Object.keys(configs));
+    
+    for (const [key, value] of Object.entries(configs)) {
+      console.log(`Processing adapter config for: ${key}`);
+      switch (key) {
         case "mongodb":
-          const mongoAdapter = new MongoDBAdapter(relationshipRegistry)
-          mongoAdapter.initialize(value[1])
-          this.register(mongoAdapter)
-          console.log("AdapterRegistry Initial Mongodb")
-          break
+          try {
+            const mongoAdapter = new MongoDBAdapter(relationshipRegistry);
+            await mongoAdapter.initialize(value);
+            this.register(mongoAdapter);
+          } catch (error) {
+            console.error("MongoDB adapter initialization failed:", error);
+            throw error;
+          }
+          break;
         case "mysql":
-          const mysqlAdapter = new MySQLAdapter()
-          mysqlAdapter.initialize(value[1])
-          this.register(mysqlAdapter)
-          console.log("AdapterRegistry Initial Mysql")
-          break
+          try {
+            const mysqlAdapter = new MySQLAdapter();
+            await mysqlAdapter.initialize(value);
+            this.register(mysqlAdapter);
+          } catch (error) {
+            console.error("MySQL adapter initialization failed:", error);
+            throw error;
+          }
+          break;
         case "postgresql":
-          const postgresAdapter = new PostgreSQLAdapter()
-          postgresAdapter.initialize(value[1])
-          this.register(postgresAdapter)
-          console.log("AdapterRegistry Initial Postgresql")
-          break
+          try {
+            const postgresAdapter = new PostgreSQLAdapter();
+            await postgresAdapter.initialize(value);
+            this.register(postgresAdapter);
+          } catch (error) {
+            console.error("PostgreSQL adapter initialization failed:", error);
+            throw error;
+          }
+          break;
         case "elasticsearch":
-          const elasticsearchAdapter = new ElasticsearchAdapter()
-          elasticsearchAdapter.initialize(value[1])
-          this.register(elasticsearchAdapter)
-          console.log("AdapterRegistry Initial Elasticsearch")
-          break         
+          try {
+            const elasticsearchAdapter = new ElasticsearchAdapter();
+            await elasticsearchAdapter.initialize(value);
+            this.register(elasticsearchAdapter);
+          } catch (error) {
+            console.error("Elasticsearch adapter initialization failed:", error);
+            throw error;
+          }
+          break;         
       }
-    })
+    }
   }
 
   async disposeAll(): Promise<void> {

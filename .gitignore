@@ -7,3 +7,11 @@ generator/
 **/logs/
 **/.next/
 .vercel
+
+# Wrangler files
+.wrangler/
+worker-configuration.d.ts
+
+# Environment variables
+.env
+.dev.vars
