@@ -3,14 +3,14 @@ dist/
 logs/
 generator/
 **/node_modules/
-**/dist/
-**/logs/
-**/.next/
-.vercel
+# **/dist/
+# **/logs/
+# **/.next/
+# .vercel
 
-# Wrangler files
-.wrangler/
-worker-configuration.d.ts
+# # Wrangler files
+# .wrangler/
+# worker-configuration.d.ts
 
 # Environment variables
 .env

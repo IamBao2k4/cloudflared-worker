@@ -23,40 +23,44 @@ let isInitialized = false;
 
 async function initializeWorker(env: any) {
     if (!isInitialized) {
-        // Set environment variables for the core system
-        if (!globalThis.process) {
-            globalThis.process = { env: {} } as any;
-        }
-        
-        // Map Cloudflare Workers env to process.env for compatibility
-        globalThis.process.env = {
-            APP_NAME: env.APP_NAME || 'MongoRest API',
-            TIME_ZONE: env.TIME_ZONE || 'Asia/Ho_Chi_Minh',
-            PORT: env.PORT || '3000',
-            PREFIX_API: env.PREFIX_API || '/api/v1',
-            MONGODB_URL: env.MONGODB_URL,
-            ELASTICSEARCH_ENABLED: env.ELASTICSEARCH_ENABLED || 'false',
-            SECRET_JWT: env.SECRET_JWT,
-            IS_REPLICA_SET: 'true'
-        };
-        
-        // Initialize core just like in index.ts
-        await InitialCore();
-        
-        // Now initialize core with proper adapter configuration
-        const coreConfig = {
-            adapters: {
-                mongodb: {
-                    connection: {
-                        connectionString: env.MONGODB_URL || "mongodb://localhost:27017/test"
-                    }
-                }
+        try {
+            // Set environment variables for the core system
+            if (!globalThis.process) {
+                globalThis.process = { env: {} } as any;
             }
-        };
-        
-        await coreGlobal.getCore().initialize(coreConfig);
-        
-        isInitialized = true;
+            
+            // Map Cloudflare Workers env to process.env for compatibility
+            globalThis.process.env = {
+                APP_NAME: env.APP_NAME || 'MongoRest API',
+                TIME_ZONE: env.TIME_ZONE || 'Asia/Ho_Chi_Minh',
+                PORT: env.PORT || '3000',
+                PREFIX_API: env.PREFIX_API || '/api/v1',
+                MONGODB_URL: env.MONGODB_URL,
+                ELASTICSEARCH_ENABLED: env.ELASTICSEARCH_ENABLED || 'false',
+                SECRET_JWT: env.SECRET_JWT,
+                IS_REPLICA_SET: 'true'
+            };
+            
+            // Check if MongoDB URL is available before initializing
+            if (!env.MONGODB_URL) {
+                console.warn('⚠️ MONGODB_URL not provided, some features may not work');
+                isInitialized = true; // Still mark as initialized to avoid repeated attempts
+                return;
+            }
+            
+            console.log('🔄 Initializing core system...');
+            
+            // Initialize core just like in index.ts
+            await InitialCore();
+            
+            console.log('✅ Core system initialized successfully');
+            
+            isInitialized = true;
+        } catch (error) {
+            console.error('❌ Failed to initialize worker:', error);
+            // Don't throw - just log and continue with limited functionality
+            isInitialized = true; // Mark as initialized to prevent retry loops
+        }
     }
 }
 
@@ -121,6 +125,16 @@ export default {
 
             // Test MongoDB connection endpoint
             if (url.pathname === '/test-mongodb') {
+                if (!env.MONGODB_URL) {
+                    return new Response(JSON.stringify({
+                        error: 'MongoDB URL not configured',
+                        message: 'Please set MONGODB_URL secret using: wrangler secret put MONGODB_URL'
+                    }), { 
+                        status: 503,
+                        headers: corsHeaders 
+                    });
+                }
+
                 try {
                     // Try to get the core and adapter
                     const core = coreGlobal.getCore();
@@ -158,8 +172,8 @@ export default {
                         mongodb_url_in_process: globalThis.process?.env?.MONGODB_URL ? 'SET' : 'NOT_SET'
                     };
 
-                    // Try to get core status
-                    if (coreGlobal) {
+                    // Try to get core status only if MongoDB is configured
+                    if (coreGlobal && env.MONGODB_URL) {
                         try {
                             const core = coreGlobal.getCore();
                             debugInfo['core_instance'] = !!core;
@@ -175,6 +189,8 @@ export default {
                         } catch (e) {
                             debugInfo['core_error'] = e instanceof Error ? e.message : 'Unknown error';
                         }
+                    } else {
+                        debugInfo['core_status'] = 'MongoDB not configured or core not available';
                     }
 
                     return new Response(JSON.stringify(debugInfo, null, 2), { 
@@ -206,6 +222,18 @@ export default {
 
             // Handle API routes with prefix
             if (url.pathname.startsWith(API_PREFIX + '/')) {
+                // Check if MongoDB is configured
+                if (!env.MONGODB_URL) {
+                    return new Response(JSON.stringify({
+                        error: 'Service Unavailable',
+                        message: 'Database is not configured. Please set MONGODB_URL secret.',
+                        hint: 'Use: wrangler secret put MONGODB_URL'
+                    }), { 
+                        status: 503,
+                        headers: corsHeaders 
+                    });
+                }
+
                 const pathWithoutPrefix = url.pathname.substring(API_PREFIX.length + 1);
                 const pathParts = pathWithoutPrefix.split('/');
                 const entityName = pathParts[0];

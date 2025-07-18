@@ -28,7 +28,7 @@ export const appSettings = {
 };
 
 export const settingCore: BootstrapConfig = {
-  includeBuiltinAdapters: false,
+  includeBuiltinAdapters: false, // Don't include built-in adapters automatically
   relationships: {
     // Your specific relationships for the complex query
     // user: [
@@ -131,38 +131,12 @@ export const settingCore: BootstrapConfig = {
     // ],
   },
   core: {
-    adapters: {
+    adapters: process.env.MONGODB_URL ? {
       mongodb: {
         connection: {
-          connectionString:
-            process.env.MONGODB_URL ||
-            "mongodb://thaily:Th%40i2004@192.168.1.109:27017/mongorest?authSource=admin",
+          connectionString: process.env.MONGODB_URL,
         },
-      },
-      // postgresql: {
-      //   connection: {
-      //     host: process.env.POSTGRES_HOST || "localhost",
-      //     port: parseInt(process.env.POSTGRES_PORT || "5432"),
-      //     database: process.env.POSTGRES_DB || "mydb",
-      //     username: process.env.POSTGRES_USER || "admin",
-      //     password: process.env.POSTGRES_PASSWORD || "secret",
-      //   },
-      // },
-      // elasticsearch: {
-      //   connection: {
-      //     host: process.env.ELASTICSEARCH_HOST || "localhost",
-      //     port: parseInt(process.env.ELASTICSEARCH_PORT || "9200"),
-      //   },
-      // },
-      // mysql: {
-      //   connection: {
-      //     host: process.env.MYSQL_HOST || "localhost",
-      //     port: parseInt(process.env.MYSQL_PORT || "3306"),
-      //     database: process.env.MYSQL_DB || "myappdb",
-      //     username: process.env.MYSQL_USER || "thaily",
-      //     password: process.env.MYSQL_PASSWORD || "Th@i2004",
-      //   },
-      // },
-    },
+      }
+    } : {}
   },
 };
