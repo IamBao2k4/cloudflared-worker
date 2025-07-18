@@ -1,5 +1,5 @@
 {
-  "name": "mongorest-worker",
+  "name": "mongorest-v1",
   "compatibility_date": "2025-07-17",
   "compatibility_flags": ["nodejs_compat"],
   "main": "src/worker.ts",
