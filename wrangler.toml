@@ -1,0 +1,25 @@
+name = "mongorest-v1"
+main = "src/worker.ts"
+compatibility_date = "2025-07-18"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+name = "cloudflared-worker"
+
+[env.staging]
+name = "cloudflared-worker-staging"
+
+# Environment variables
+[vars]
+NODE_ENV = "production"
+PREFIX_API = "/api/v1"
+APP_NAME = "MongoRest API"
+TIME_ZONE = "Asia/Ho_Chi_Minh"
+PORT = "3000"
+ELASTICSEARCH_NODE = "https://elasticsearch.mangoads.com.vn"
+ELASTICSEARCH_INDEX = "mongorest-api-logs"
+ELASTICSEARCH_ENABLED = "true"
+
+# Sensitive environment variables (use wrangler secret for these)
+# SECRET_JWT - should be set via: wrangler secret put SECRET_JWT
+# MONGODB_URL - should be set via: wrangler secret put MONGODB_URL
