@@ -6,100 +6,10 @@
 
 import { InitialCore, coreGlobal, filterPassword } from './configs/core-global';
 import { appSettings } from './configs/app-settings';
+import { commonService } from './module/common/common.service';
+import { authService } from './module/auth/auth.service';
 
 // Create a local CommonService that uses coreGlobal
-class CommonService {
-    LIST_ENTITY_WITHOUT_TENANT = [
-        'user',
-        'entity',
-        'role',
-    ];
-
-    constructor() { 
-        console.log('CommonService Initialized for Workers');
-    }
-
-    async findAllQuery(
-        collectionName: string,
-        queryData: any = {},
-        roles: string[] = ['default'],
-    ): Promise<any> {
-        try {
-            const relation = coreGlobal.relationshipRegistry.getForTable(collectionName);
-            if (relation.length > 0) {
-                if (queryData.select == undefined) {
-                    queryData.select = "*";
-                }
-                relation.forEach((item: any) => {
-                    queryData.select += `,${item.name}()`;
-                });
-            }
-            
-            const result = await coreGlobal.getCore().findAll(queryData as any, collectionName, roles, 'mongodb');
-            return result;
-        } catch (error) {
-            console.error(`❌ Error in findAllQuery for ${collectionName}:`, error);
-            throw error;
-        }
-    }
-    
-    async findOne(collectionName: string, queryData: any = {}, id: string, roles: string[] = ['default']): Promise<any> {
-        const relation = coreGlobal.relationshipRegistry.getForTable(collectionName);
-        if (relation.length > 0) {
-            if (queryData.select == undefined) {
-                queryData.select = "*";
-            }
-            relation.forEach((item: any) => {
-                queryData.select += `,${item.name}()`;
-            });
-        }
-        return coreGlobal.getCore().findById(
-            collectionName,
-            queryData,
-            id,
-            roles,
-            'mongodb',
-        );
-    }
-
-    async create(collectionName: string, createDto: any, roles: string[] = ['default']): Promise<any> {
-        return await coreGlobal.getCore().create(
-            collectionName,
-            createDto,
-            roles,
-            'mongodb'
-        );
-    }
-
-    async update(collectionName: string, id: string, body: any, roles: string[] = ['default']): Promise<any> {
-        return await coreGlobal.getCore().update(
-            collectionName,
-            id,
-            body,
-            roles,
-            'mongodb'
-        );
-    }
-
-    async partialUpdate(collectionName: string, id: string, body: any, roles: string[] = ['default']): Promise<any> {
-        return await coreGlobal.getCore().partialUpdate(
-            collectionName,
-            id,
-            body,
-            roles,
-            'mongodb'
-        );
-    }
-
-    async hardDelete(collectionName: string, id: string, roles: string[] = ['default']): Promise<any> {
-        return await coreGlobal.getCore().delete(
-            collectionName,
-            id,
-            roles,
-            'mongodb'
-        );
-    }
-}
 
 // Declare global variables like in index.ts
 declare global {
@@ -110,12 +20,9 @@ global.filterPassword = filterPassword;
 
 // Initialize services once
 let isInitialized = false;
-let commonService: CommonService;
 
 async function initializeWorker(env: any) {
     if (!isInitialized) {
-        console.log('🔧 Initializing Cloudflare Worker...');
-        
         // Set environment variables for the core system
         if (!globalThis.process) {
             globalThis.process = { env: {} } as any;
@@ -133,8 +40,6 @@ async function initializeWorker(env: any) {
             IS_REPLICA_SET: 'true'
         };
         
-        console.log('📡 Initializing core system with MongoDB URL:', env.MONGODB_URL ? 'Connected' : 'Not provided');
-        
         // Initialize core just like in index.ts
         await InitialCore();
         
@@ -149,14 +54,9 @@ async function initializeWorker(env: any) {
             }
         };
         
-        console.log('🔧 Initializing core with config:', coreConfig);
         await coreGlobal.getCore().initialize(coreConfig);
         
-        // Initialize common service
-        commonService = new CommonService();
-        
         isInitialized = true;
-        console.log('✅ Worker initialized successfully');
     }
 }
 
@@ -222,8 +122,6 @@ export default {
             // Test MongoDB connection endpoint
             if (url.pathname === '/test-mongodb') {
                 try {
-                    console.log('🧪 Testing MongoDB connection...');
-                    
                     // Try to get the core and adapter
                     const core = coreGlobal.getCore();
                     const adapter = core.getAdapter('mongodb');
@@ -239,7 +137,6 @@ export default {
                     }), { headers: corsHeaders });
                     
                 } catch (error) {
-                    console.error('MongoDB test error:', error);
                     return new Response(JSON.stringify({
                         error: 'MongoDB Test Failed',
                         message: error instanceof Error ? error.message : 'Unknown error',
@@ -294,57 +191,16 @@ export default {
 
             // Authentication routes
             if (url.pathname === '/auth/login' && request.method === 'POST') {
-                const body = await request.json() as { email: string; password: string };
-                const { email, password } = body;
-                
-                if (email === 'tiennt1242@gmail.com' && password === 'tiennt1242@gmail.com') {
-                    const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTFlOGE0N2I0NWIyOTc0YmQ2MTMzYyIsImVtYWlsIjoiYWRtaW4yMDI0QGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4yMDI0QGdtYWlsLmNvbSIsInBob25lIjoiODQ1NTkzMzAwNzIiLCJyb2xlX3N5c3RlbSI6ImFkbWluIiwiaWF0IjoxNzUxMzUzMjQ0LCJleHAiOjE3NTE0Mzk2NDR9.LwXXoDQ-kxcdIZfYPkfoAdGELRpbPZ64gQCgP42-lR8';
-                    return new Response(JSON.stringify({ success: true, accessToken }), { 
-                        headers: corsHeaders 
-                    });
-                } else {
-                    return new Response(JSON.stringify({ 
-                        success: false, 
-                        message: 'Invalid credentials' 
-                    }), { 
-                        status: 401, 
-                        headers: corsHeaders 
-                    });
-                }
+                const loginResult = await authService.login(request);
+                return new Response(JSON.stringify(loginResult), { 
+                    status: loginResult.success ? 200 : 401,
+                    headers: corsHeaders 
+                });
             }
 
             if (url.pathname === '/auth/me' && request.method === 'GET') {
                 // Return user data like in original auth.ts
-                const userData = {
-                    "_id": "6711e8a47b45b2974bd6133c",
-                    "email": "admin2024@gmail.com",
-                    "username": "admin2024@gmail.com",
-                    "phone": "84559330072",
-                    "is_active": true,
-                    "role_system": "admin",
-                    "created_at": "2024-09-12T06:45:23.353Z",
-                    "updated_at": "2025-05-28T13:33:37.000Z",
-                    "role": [
-                        {
-                            "title": "2bds",
-                            "permission": [
-                                {
-                                    "title": "Post",
-                                    "entity": "post",
-                                    "filter": ["get-all", "get-all-self", "get", "get-self", "post", "put", "put-self", "delete"],
-                                    "access_field": []
-                                },
-                                {
-                                    "title": "category", 
-                                    "entity": "category",
-                                    "filter": ["get-all", "get-all-self", "get", "get-self", "post", "put", "put-self", "delete"],
-                                    "access_field": []
-                                }
-                            ]
-                        }
-                    ]
-                };
-                
+                const userData = await authService.getUserProfile();
                 return new Response(JSON.stringify(userData), { headers: corsHeaders });
             }
 
@@ -371,29 +227,18 @@ export default {
                 const roles = request.headers.get('x-roles')?.split(',').map(r => r.trim()) || ['default'];
 
                 try {
-                    console.log(`API Request: ${request.method} ${url.pathname}`, {
-                        entityName,
-                        entityId,
-                        roles,
-                        queryParams
-                    });
-
                     switch (request.method) {
                         case 'GET':
                             if (entityId) {
                                 // Get single entity by ID using core
-                                console.log(`Calling findOne for ${entityName} with id ${entityId}`);
                                 const result = await commonService.findOne(entityName, queryParams, entityId, roles);
-                                console.log('findOne result:', result);
                                 return new Response(JSON.stringify(result), { 
                                     status: 200, 
                                     headers: corsHeaders 
                                 });
                             } else {
                                 // Get all entities using core
-                                console.log(`Calling findAllQuery for ${entityName}`);
                                 const result = await commonService.findAllQuery(entityName, queryParams, roles);
-                                console.log('findAllQuery result:', result);
                                 return new Response(JSON.stringify(result), { 
                                     status: 200, 
                                     headers: corsHeaders 
@@ -457,7 +302,6 @@ export default {
                             });
                     }
                 } catch (error) {
-                    console.error('API Error:', error);
                     return new Response(JSON.stringify({
                         error: 'Internal Server Error',
                         message: error instanceof Error ? error.message : 'Unknown error'
@@ -479,7 +323,6 @@ export default {
             });
 
         } catch (error) {
-            console.error('Worker Error:', error);
             return new Response(JSON.stringify({
                 error: 'Internal Server Error',
                 message: error instanceof Error ? error.message : 'Unknown error'

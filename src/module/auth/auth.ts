@@ -3,9 +3,9 @@ import { authService } from './auth.service';
 
 export async function AuthRoutes(app: FastifyInstance) {
 
-    app.post('/auth/login', async (request: FastifyRequest, reply) => authService.login(request, reply));
+    app.post('/auth/login', async (request: FastifyRequest) => authService.login(request));
 
-    app.get('/auth/me', async (request: FastifyRequest, reply) => {
-        reply.send();
+    app.get('/auth/me', async (request: FastifyRequest) => {
+        return authService.getUserProfile();
     });
 }
